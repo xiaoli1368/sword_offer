@@ -1978,21 +1978,327 @@ public:
 
 - 看了别人的答案，才把题目看懂，就不能说的明白些吗？要求完全复制，包括那些随机的没有任何意义的链接。
 
+- 问题的关键在于顺序遍历时，那些随机的链接无法同样复制。解决方法有两种。
+
+- 一是多次遍历法：(1) 在旧链表中创建新链表，此时不处理兄弟节点。(2) 根据旧链表的兄弟节点，初始化新链表的兄弟节点。(3) 从旧链表中拆分得到新链表。
+
+- 方法一：map关联
+      首先遍历一遍原链表，创建新链表（赋值label和next），用map关联对应结点；再遍历一遍，更新新链表的random指针。（注意map中应有NULL ----> NULL的映射）
+
+  方法二：next指针关联
+      创建新链表的时候，用原结点的next指针指向对应新结点，新结点的next指针指向下一个原结点，以此类推，形成之字形关联。然后，就可以先更新新链表的random指针，再解除next关联，更新next指针。这种方法不需要map来辅助，不管查找next还是random指针都是O(1)的，效率很高。
+
 **参考代码：**
 
 ```python
 # python
+# -*- coding:utf-8 -*-
+# class RandomListNode:
+#     def __init__(self, x):
+#         self.label = x
+#         self.next = None
+#         self.random = None
+class Solution:
+    # 返回 RandomListNode
+    def Clone(self, head):
+        # write code here
+        if head == None:
+            return None
+        
+        # 遍历节点并拷贝到后面
+        currNode = head
+        while currNode != None:
+            nextNode = currNode.next
+            newNode = RandomListNode(currNode.label)
+            currNode.next = newNode
+            newNode.next = nextNode
+            currNode = nextNode
+            
+        # 拷贝随机的链接关系
+        currNode = head
+        while currNode != None:
+            currNode.next.random = currNode.random.next if currNode.random else None
+            currNode = currNode.next.next
+            
+        # 从旧链表中分离出新链表
+        currNode = head
+        headClone = head.next
+        while currNode != None:
+            tmp = currNode.next
+            currNode.next  = tmp.next
+            tmp.next = tmp.next.next if tmp.next else None
+            currNode = currNode.next
+            
+        return headClone
+           
+# 映射方法
+# -*- coding:utf-8 -*-
+# class RandomListNode:
+#     def __init__(self, x):
+#         self.label = x
+#         self.next = None
+#         self.random = None
+class Solution:
+    # 返回 RandomListNode
+    def Clone(self, head):
+        # write code here
+        if head == None:
+            return None
+        
+        head1 = head
+        head2 = RandomListNode(head1.label)
+        newhead = head2
+        Map = {head1 : head2}
+        
+        # 完全复制并且建立映射
+        while head1 != None:
+            if head1.next != None:
+                head2.next = RandomListNode(head1.next.label)
+                
+            head1 = head1.next
+            head2 = head2.next
+            Map[head1] = head2
+            
+        # 复制随机的链接
+        head1 = head
+        head2 = newhead
+        while head1 != None:
+            head2.random = Map[head1.random]
+            head1 = head1.next
+            head2 = head2.next
+            
+        return newhead
+    
+    
+ # 使用递归
+python使用了递归结果是可以的，但是c++使用递归结果就不行，奇怪
 ```
 
 ```c++
 // c++
+/*
+struct RandomListNode {
+    int label;
+    struct RandomListNode *next, *random;
+    RandomListNode(int x) :
+            label(x), next(NULL), random(NULL) {
+    }
+};
+*/
+class Solution {
+public:
+    RandomListNode* Clone(RandomListNode* head) {
+        if (head == nullptr) {
+            return nullptr;
+        }
+        
+        // 首先遍历链表，复制每个节点，并将其插入到后边
+        // 注意尾部的nullptr没有复制
+        //1、复制每个结点，如复制结点A得到A1，将结点A1插到结点A后面；
+        RandomListNode* currNode = head;
+        RandomListNode* nextNode = nullptr;
+        while (currNode != nullptr) {
+            nextNode = currNode->next;
+            RandomListNode *newNode = new RandomListNode(currNode->label);
+            currNode->next = newNode;
+            newNode->next = nextNode;
+            currNode = nextNode;
+        }
+        
+        // 拷贝随机的链接关系
+        //2、重新遍历链表，复制老结点的随机指针给新结点，如A1.random = A.random.next;
+        currNode = head;
+        while (currNode != nullptr) {
+            currNode->next->random = currNode->random == nullptr ? nullptr : currNode->random->next;
+            currNode = currNode->next->next;
+        }
+        
+        // 从旧链表分离得到新链表
+         //3、拆分链表，将链表拆分为原链表和复制后的链表
+        currNode = head;
+        RandomListNode* headClone = head->next;
+        while (currNode != nullptr) {
+            RandomListNode* tmp = currNode->next;
+            currNode->next = tmp->next;
+            tmp->next = tmp->next == nullptr ? nullptr : tmp->next->next;
+            currNode = currNode->next;
+        }
+        
+        return headClone;
+    }
+};
+
+// 使用映射的方法
+/*
+struct RandomListNode {
+    int label;
+    struct RandomListNode *next, *random;
+    RandomListNode(int x) :
+            label(x), next(NULL), random(NULL) {
+    }
+};
+*/
+#include <map>
+class Solution {
+public:
+    RandomListNode* Clone(RandomListNode* head) {
+        if (head == nullptr) {
+            return nullptr;
+        }
+        
+        // map法
+        // 初始化
+        map<RandomListNode*, RandomListNode*> map;
+        RandomListNode* head1 = head;
+        RandomListNode* head2 = new RandomListNode(head1->label);
+        RandomListNode* newhead = head2;
+        map[head1] = head2;
+        
+        // 完全复制链表并建立map
+        while (head1) {
+            if (head1->next) {
+                head2->next = new RandomListNode(head1->next->label);
+            } else {
+                head2->next = nullptr;
+            }
+            
+            head1 = head1->next;
+            head2 = head2->next;
+            map[head1] = head2;
+        }
+        
+        // 复制随机的链接
+        head1 = head;
+        head2 = newhead;
+        while (head1) {
+            head2->random = map[head1->random];
+            head1 = head1->next;
+            head2 = head2->next;
+        }
+        
+        return newhead;
+    }
+};
+```
+
+### 26. 二叉树搜索树与双向链表
+
+**题目描述：**
+
+> 输入一颗二叉树的根节点和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。路径定义为从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。(注意: 在返回值的list中，数组长度大的数组靠前)
+
+**解题思路：**
+
+- 非递归版本：进行中序遍历，把对应的节点链接起来
+- 递归版本：每一个树，调整结构，挂载到之前的双链表上
+- 
+
+**参考代码：**
+
+```python
+# python
+# -*- coding:utf-8 -*-
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+class Solution:
+    def __init__(self):
+        self.head = None
+    def Convert(self, root):
+        # write code here
+        if root == None:
+            return None
+        
+        # 右
+        self.Convert(root.right)
+        
+        # 中
+        root.right = self.head
+        if self.head != None:
+            self.head.left = root
+        self.head = root
+        
+        # 左
+        self.Convert(root.left)
+        
+        return self.head
+```
+
+```c++
+// c++
+TreeNode* head = nullptr;
+TreeNode* Convert(TreeNode* root) {
+    // 中序遍历：右　中　左
+    if (root == nullptr) {
+        return nullptr;
+    }
+    
+    // 右
+    Convert(root->right);
+    
+    // 中
+    root->right = head;
+    if (head != nullptr) {
+        head->left = root;
+    }
+    head = root;
+    
+    // 左
+    Convert(root->left);
+    
+    return head;
+}
+
+// 其它方法
+/*
+struct TreeNode {
+	int val;
+	struct TreeNode *left;
+	struct TreeNode *right;
+	TreeNode(int x) :
+			val(x), left(NULL), right(NULL) {
+	}
+};*/
+class Solution {
+public:
+    // 中序遍历：左 中　右
+    TreeNode* last = nullptr; // 类内变量，记录双链表的尾部
+    
+    TreeNode* Convert(TreeNode* root) {
+        if (root == nullptr) {
+            return nullptr;
+        }
+        
+        // 左
+        // 将左子树挂载到last上，并返回头
+        TreeNode* head = Convert(root->left); // 中间变量，记录双链表的头
+        if (head == nullptr) {
+            head = root;
+        }
+        
+        // 中
+        // 完成last和根的链接
+        root->left = last;
+        if (last != nullptr) {
+            last->right = root;
+        } 
+        last = root;
+        
+        // 右
+        Convert(root->right);
+        
+        return head;
+    }
+};
 ```
 
 ### 24. 二叉树中和为某一值的路径
 
 **题目描述：**
 
-> 输入一颗二叉树的根节点和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。路径定义为从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。(注意: 在返回值的list中，数组长度大的数组靠前)
+> 输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结点指针的指向。
 
 **解题思路：**
 
@@ -2006,26 +2312,48 @@ public:
 
 ```c++
 // c++
-```
-
-### 24. 二叉树中和为某一值的路径
-
-**题目描述：**
-
-> 输入一颗二叉树的根节点和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。路径定义为从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。(注意: 在返回值的list中，数组长度大的数组靠前)
-
-**解题思路：**
-
-- 摄氏度法
-
-**参考代码：**
-
-```python
-# python
-```
-
-```c++
-// c++
+#include <algorithm>
+class Solution {
+public:
+    vector<string> ret;
+    
+    void swap(char& a, char& b) {
+        char tmp = a;
+        a = b;
+        b = tmp;
+    }
+    
+    // 采用递归，输入str，每个函数实现的功能是将当前的全排列可能添加到ret中去
+    void perm(string str, int low, int high) {
+        if (low == high) {
+            ret.push_back(str);
+            return;
+        }
+        
+        sort(str.begin() + low, str.end());
+        
+        // 依次交换，并进行下一次的迭代
+        for (int i = low; i <= high; i++) {
+            // 跳过重复
+            if (i == low || str[low] != str[i]) {
+                swap(str[i], str[low]); // 交换
+                perm(str, low + 1, high); // 递归
+                //swap(str[i], str[low]); // 交换回来
+            }
+        }
+        return;
+    }
+    
+    vector<string> Permutation(string str) {
+        if (str.empty()) {
+            return ret;
+        }
+        
+        sort(str.begin(), str.end());
+        perm(str, 0, str.size() - 1);
+        return ret;
+    }
+};
 ```
 
 ### 24. 二叉树中和为某一值的路径
