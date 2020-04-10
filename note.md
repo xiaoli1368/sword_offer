@@ -1972,36 +1972,31 @@ public:
 
 **题目描述：**
 
-> 输入一颗二叉树的根节点和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。路径定义为从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。(注意: 在返回值的list中，数组长度大的数组靠前)
+> 输入一个复杂链表（每个节点中有节点值，以及两个指针，一个指向下一个节点，另一个特殊指针指向任意一个节点），返回结果为复制后复杂链表的head。（注意，输出结果中请不要返回参数中的节点引用，否则判题程序会直接返回空）
 
 **解题思路：**
 
 - 看了别人的答案，才把题目看懂，就不能说的明白些吗？要求完全复制，包括那些随机的没有任何意义的链接。
 
-- 问题的关键在于顺序遍历时，那些随机的链接无法同样复制。解决方法有两种。
-
-- 一是多次遍历法：(1) 在旧链表中创建新链表，此时不处理兄弟节点。(2) 根据旧链表的兄弟节点，初始化新链表的兄弟节点。(3) 从旧链表中拆分得到新链表。
+- 问题的关键在于顺序遍历时，那些随机的链接无法同样复制。解决方法有两种。一是多次遍历法：(1) 在旧链表中创建新链表，此时不处理兄弟节点。(2) 根据旧链表的兄弟节点，初始化新链表的兄弟节点。(3) 从旧链表中拆分得到新链表。二是map字典关联。
 
 - 方法一：map关联
-      首先遍历一遍原链表，创建新链表（赋值label和next），用map关联对应结点；再遍历一遍，更新新链表的random指针。（注意map中应有NULL ----> NULL的映射）
-
-  方法二：next指针关联
-      创建新链表的时候，用原结点的next指针指向对应新结点，新结点的next指针指向下一个原结点，以此类推，形成之字形关联。然后，就可以先更新新链表的random指针，再解除next关联，更新next指针。这种方法不需要map来辅助，不管查找next还是random指针都是O(1)的，效率很高。
+  
+首先遍历一遍原链表，创建新链表（赋值label和next），用map关联对应结点；再遍历一遍，更新新链表的random指针。（注意map中应有NULL ----> NULL的映射）
+  
+- 方法二：next指针关联
+  
+创建新链表的时候，用原结点的next指针指向对应新结点，新结点的next指针指向下一个原结点，以此类推，形成之字形关联。然后，就可以先更新新链表的random指针，再解除next关联，更新next指针。这种方法不需要map来辅助，不管查找next还是random指针都是O(1)的，效率很高。
+  
+- 另外，python使用了递归结果是可以的，但是c++使用递归结果就不行，奇怪。
 
 **参考代码：**
 
 ```python
-# python
-# -*- coding:utf-8 -*-
-# class RandomListNode:
-#     def __init__(self, x):
-#         self.label = x
-#         self.next = None
-#         self.random = None
+# next指针关联
 class Solution:
     # 返回 RandomListNode
     def Clone(self, head):
-        # write code here
         if head == None:
             return None
         
@@ -2030,18 +2025,12 @@ class Solution:
             currNode = currNode.next
             
         return headClone
-           
-# 映射方法
-# -*- coding:utf-8 -*-
-# class RandomListNode:
-#     def __init__(self, x):
-#         self.label = x
-#         self.next = None
-#         self.random = None
+
+# ====================
+# map映射方法
 class Solution:
     # 返回 RandomListNode
     def Clone(self, head):
-        # write code here
         if head == None:
             return None
         
@@ -2069,22 +2058,24 @@ class Solution:
             
         return newhead
     
-    
- # 使用递归
-python使用了递归结果是可以的，但是c++使用递归结果就不行，奇怪
+# ====================
+# 递归法（这种方式，新链表挂载在了旧链表上）
+class Solution:
+    # 返回 RandomListNode
+    def Clone(self, head):
+        # write code here
+        if head == None:
+            return None
+        
+        newhead = RandomListNode(head.label)
+        newhead.random = head.random
+        newhead.next = self.Clone(head.next)
+        
+        return newhead
 ```
 
 ```c++
-// c++
-/*
-struct RandomListNode {
-    int label;
-    struct RandomListNode *next, *random;
-    RandomListNode(int x) :
-            label(x), next(NULL), random(NULL) {
-    }
-};
-*/
+// next指针遍历
 class Solution {
 public:
     RandomListNode* Clone(RandomListNode* head) {
@@ -2092,9 +2083,8 @@ public:
             return nullptr;
         }
         
-        // 首先遍历链表，复制每个节点，并将其插入到后边
+        // 1、复制每个结点，如复制结点A得到A1，将结点A1插到结点A后面；
         // 注意尾部的nullptr没有复制
-        //1、复制每个结点，如复制结点A得到A1，将结点A1插到结点A后面；
         RandomListNode* currNode = head;
         RandomListNode* nextNode = nullptr;
         while (currNode != nullptr) {
@@ -2105,16 +2095,16 @@ public:
             currNode = nextNode;
         }
         
+        // 2、重新遍历链表，复制老结点的随机指针给新结点，如A1.random = A.random.next;
         // 拷贝随机的链接关系
-        //2、重新遍历链表，复制老结点的随机指针给新结点，如A1.random = A.random.next;
         currNode = head;
         while (currNode != nullptr) {
             currNode->next->random = currNode->random == nullptr ? nullptr : currNode->random->next;
             currNode = currNode->next->next;
         }
         
+        // 3、拆分链表，将链表拆分为原链表和复制后的链表
         // 从旧链表分离得到新链表
-         //3、拆分链表，将链表拆分为原链表和复制后的链表
         currNode = head;
         RandomListNode* headClone = head->next;
         while (currNode != nullptr) {
@@ -2128,16 +2118,8 @@ public:
     }
 };
 
-// 使用映射的方法
-/*
-struct RandomListNode {
-    int label;
-    struct RandomListNode *next, *random;
-    RandomListNode(int x) :
-            label(x), next(NULL), random(NULL) {
-    }
-};
-*/
+// ====================
+// map映射方法
 #include <map>
 class Solution {
 public:
@@ -2146,8 +2128,7 @@ public:
             return nullptr;
         }
         
-        // map法
-        // 初始化
+        // map法, 初始化
         map<RandomListNode*, RandomListNode*> map;
         RandomListNode* head1 = head;
         RandomListNode* head2 = new RandomListNode(head1->label);
@@ -2185,24 +2166,17 @@ public:
 
 **题目描述：**
 
-> 输入一颗二叉树的根节点和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。路径定义为从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。(注意: 在返回值的list中，数组长度大的数组靠前)
+> 输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结点指针的指向。
 
 **解题思路：**
 
-- 非递归版本：进行中序遍历，把对应的节点链接起来
-- 递归版本：每一个树，调整结构，挂载到之前的双链表上
-- 
+- 递归进行中序遍历，左中右，但是需要注意的是，递归函数返回的是链表的头，而由于递归过程中需要完成链表的拼接，因此需要记录链表的尾，因此需要额外的变量来记录。
+- 注意对空节点的处理。
+- 更为高效的方式是，采用逆向的中序遍历，右中左，这样就能节省额外的存储变量空间。
 
 **参考代码：**
 
 ```python
-# python
-# -*- coding:utf-8 -*-
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
 class Solution:
     def __init__(self):
         self.head = None
@@ -2252,15 +2226,6 @@ TreeNode* Convert(TreeNode* root) {
 }
 
 // 其它方法
-/*
-struct TreeNode {
-	int val;
-	struct TreeNode *left;
-	struct TreeNode *right;
-	TreeNode(int x) :
-			val(x), left(NULL), right(NULL) {
-	}
-};*/
 class Solution {
 public:
     // 中序遍历：左 中　右
@@ -2294,20 +2259,53 @@ public:
 };
 ```
 
-### 24. 二叉树中和为某一值的路径
+### 27. 字符串的排列
 
 **题目描述：**
 
-> 输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结点指针的指向。
+> 输入一个字符串,按字典序打印出该字符串中字符的所有排列。例如输入字符串abc,则打印出由字符a,b,c所能排列出来的所有字符串abc,acb,bac,bca,cab和cba。（输入一个字符串,长度不超过9(可能有字符重复),字符只包括大小写字母。）
 
 **解题思路：**
 
-- 摄氏度法
+- 这里只是实现了基本的解法，高效解法需要补充。
+- 利用递归实现，perm(1234) = 1perm(234) + 2perm(134) + 3perm(124) + 4perm(123)
+- 首先进行排序，后续依次将后面的元素与首元素进行调换位置，然后排序，再进行后续的递归
+- 递归终止的条件为low==high
+- 注意对含有重复元素情况的处理
 
 **参考代码：**
 
 ```python
-# python
+class Solution:
+    def __init__(self):
+        self.ret = []
+        
+    def perm(self, ss, low, high):
+        if low == high:
+            tmp = "".join(ss)
+            self.ret.append(tmp)
+            return
+        
+        # 这里是个坑，需要补上之前的那一小段才可以
+        curr = ss[0:low] + sorted(ss[low:high + 1])
+        
+        for i in range(low, high + 1):
+            if i == low or curr[i] != curr[low]:
+                curr[i], curr[low] = curr[low], curr[i]
+                self.perm(curr, low + 1, high)
+                curr[i], curr[low] = curr[low], curr[i]
+                
+        return
+    
+    def Permutation(self, ss):
+        # write code here
+        if ss == None:
+            return self.ret
+        
+        strList = list(ss)
+        self.perm(strList, 0, len(strList) - 1)
+        
+        return self.ret
 ```
 
 ```c++
@@ -2356,15 +2354,255 @@ public:
 };
 ```
 
-### 24. 二叉树中和为某一值的路径
+### 28. 数组中出现次数超过一半的数字
 
 **题目描述：**
 
-> 输入一颗二叉树的根节点和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。路径定义为从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。(注意: 在返回值的list中，数组长度大的数组靠前)
+> 数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出0。
 
 **解题思路：**
 
-- 摄氏度法
+- 先进行排序，之后构建长度为length/2的检测区间[first, last]
+- 当array[first] == array[last]时，则找到该元素。
+- 存在高效解法，待补充（多数投票问题,可以利用 Boyer-Moore Majority Vote Algorithm 来解决这个问题,使得时间复杂度为 O(N)）
+
+**参考代码：**
+
+```python
+class Solution:
+    def MoreThanHalfNum_Solution(self, number):
+        # write code here
+        number.sort()
+        
+        length = len(number)
+        first = 0
+        end = first + length // 2
+        while end < length:
+            if number[first] == number[end]:
+                return number[first]
+            first += 1
+            end += 1
+        
+        return 0
+```
+
+```c++
+#include <algorithm>
+class Solution {
+public:
+    int MoreThanHalfNum_Solution(vector<int> numbers) {
+        sort(numbers.begin(), numbers.end());
+        
+        int length = numbers.size();
+        int first = 0;
+        int end = first + length / 2;
+        
+        while (end < length) {
+            if (numbers[first] == numbers[end]) {
+                return numbers[first];
+            }
+            first++;
+            end++;
+        }
+        return 0;
+    }
+};
+```
+
+### 29. 最小的k个数
+
+**题目描述：**
+
+> 输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。
+
+**解题思路：**
+
+- 借助stl直接排序，然后取最小的k个数
+- 存在不借助stl的高效解法（待补充）
+
+**参考代码：**
+
+```python
+class Solution:
+    def GetLeastNumbers_Solution(self, tinput, k):
+        # write code here
+        if tinput == [] or k > len(tinput):
+            return []
+        
+        tinput.sort()
+        return tinput[0:k]
+```
+
+```c++
+#include <algorithm>
+class Solution {
+public:
+    vector<int> GetLeastNumbers_Solution(vector<int> input, int k) {
+        vector<int> result = {};
+        if (input.empty() || k > input.size()) {
+            return result;
+        }
+        
+        sort(input.begin(), input.end());
+        result.insert(result.begin(), input.begin(), input.begin() + k);
+        return result;
+    }
+};
+```
+
+### 30. 连续子数组的最大和
+
+**题目描述：**
+
+> HZ偶尔会拿些专业问题来忽悠那些非计算机专业的同学。今天测试组开完会后,他又发话了:在古老的一维模式识别中,常常需要计算连续子向量的最大和,当向量全为正数的时候,问题很好解决。但是,如果向量中包含负数,是否应该包含某个负数,并期望旁边的正数会弥补它呢？例如:{6,-3,-2,7,-15,1,2,2},连续子向量的最大和为8(从第0个开始,到第3个为止)。给一个数组，返回它的最大连续子序列的和，你会不会被他忽悠住？(子向量的长度至少是1)
+
+**解题思路：**
+
+- **动态规划**，初级题目
+
+- F（i）：以array[i]为末尾元素的子数组的和的最大值，子数组的元素的相对位置不变  
+
+  F（i）=　max（F（i-1）+　array[i] ， array[i]）  
+
+  res：所有子数组的和的最大值  
+
+  res　=　max（res，F（i））
+
+**参考代码：**
+
+```python
+class Solution:
+    def FindGreatestSumOfSubArray(self, array):
+        # write code here
+        if array == []:
+            return 0
+        
+        length = len(array)
+        if length == 1:
+            return array[0]
+        
+        curr_sum = array[0]
+        curr_max = array[0]
+        
+        for i in range(1, length):
+            if curr_sum >= 0:
+                curr_sum += array[i]
+            else:
+                curr_sum = array[i]
+                
+            if curr_sum > curr_max:
+                curr_max = curr_sum
+                
+        return curr_max
+```
+
+```c++
+class Solution {
+public:
+    int FindGreatestSumOfSubArray(vector<int> array) {
+        if (array.empty()) {
+            return 0;
+        }
+        
+        int length = array.size();
+        if (length == 1) {
+            return array[0];
+        }
+        
+        int curr_sum = array[0];
+        int curr_max = array[0];
+        for (int i = 1; i < length; i++) {
+            if (curr_sum >= 0) {
+                curr_sum += array[i];
+            } else {
+                curr_sum = array[i];
+            }
+            
+            if (curr_sum > curr_max) {
+                curr_max = curr_sum;
+            }
+        }
+        
+        return curr_max;
+    }
+};
+```
+
+### 31. 整数中1出现的次数
+
+**题目描述：**
+
+> 求出1-13的整数中1出现的次数,并算出100-1300的整数中1出现的次数？为此他特别数了一下1~13中包含1的数字有1、10、11、12、13因此共出现6次,但是对于后面问题他就没辙了。ACMer希望你们帮帮他,并把问题更加普遍化,可以很快的求出任意非负整数区间中1出现的次数（从1 到 n 中1出现的次数）。
+
+**解题思路：**
+
+- 从个位到最高位依次进行查找，例如12345：
+
+  考虑个位为1的情况，00001-12341，共有(12345//10 + 1)种，总共1235种
+
+  考虑十位为1的情况，00010-12310，共有(1234//10 + 1)组，其中每组涵盖10-19，共10种，总共1240种
+
+  考虑百位为1的情况，00100-12100，共有(123//10 + 1)组，其中每组涵盖00-99，共100种，总共1300种
+
+  考虑千位为1的情况，01000-11000，共有(12//10 + 1)组，其中每组函数000-999，共1000种，总共2000种
+
+  考虑万位为1的情况，10000-12345，共有(2345+1)，共有2346种
+
+- 注意，这种方式从右到左来讨论1的位置，且当假定当前数位上为1时，只考虑后续几位的变化情况，因此不同数位上是1时并不会产生重叠的情况
+
+- 当前数位有3种情况，0，１，大于2
+
+- 以当前数位是0为基础，假设此时满足条件的数目为a*b，则大于2时的数目为(a+1)\*b，1时的数目为a\*b+c
+
+- 其中c是额外处理的情况，而对于0-2带来的a和a+1的问题，可以利用+8来实现进位的处理（因此如果是判断数字中是否含有2，则比较的01-2-3-9的处理，即3时要进位，此时要利用+7来实现进位的处理）
+
+**参考代码：**
+
+```python
+class Solution:
+    def NumberOf1Between1AndN_Solution(self, n):
+        """
+        暴力解法
+        """
+        return ''.join(map(str, range(n+1))).count('1')
+    
+    def NumberOf1Between1AndN_Solution2(self, n):
+        cnt = 0
+        m = 1
+        
+        while m <= n:
+            a = n // m
+            b = n % m
+            cnt += (a + 8) // 10 * m + (b + 1 if a % 10 == 1 else 0)
+            m *= 10
+        
+        return cnt
+```
+
+```c++
+class Solution {
+public:
+    int NumberOf1Between1AndN_Solution(int n) {
+        int cnt = 0;
+        for (int m = 1; m <= n; m *= 10) {
+            int a = n / m;
+            int b = n % m;
+            cnt += (a + 8) / 10 * m + (a % 10 == 1 ? b + 1 : 0);
+        }
+        return cnt;
+    }
+};
+```
+
+### 32. 把数组排成最小的数
+
+**题目描述：**
+
+> 输入一个正整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出的所有数字中最小的一个。例如输入数组{3，32，321}，则打印出这三个数字能排成的最小数字为321323。
+
+**解题思路：**
+
+- 略
 
 **参考代码：**
 
@@ -2376,15 +2614,15 @@ public:
 // c++
 ```
 
-### 24. 二叉树中和为某一值的路径
+### 33. 丑数
 
 **题目描述：**
 
-> 输入一颗二叉树的根节点和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。路径定义为从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。(注意: 在返回值的list中，数组长度大的数组靠前)
+> 把只包含质因子2、3和5的数称作丑数（Ugly Number）。例如6、8都是丑数，但14不是，因为它包含质因子7。 习惯上我们把1当做是第一个丑数。求按从小到大的顺序的第N个丑数。
 
 **解题思路：**
 
-- 摄氏度法
+- 略
 
 **参考代码：**
 
@@ -2396,15 +2634,15 @@ public:
 // c++
 ```
 
-### 24. 二叉树中和为某一值的路径
+### 34. 第一个只出现一次的字符
 
 **题目描述：**
 
-> 输入一颗二叉树的根节点和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。路径定义为从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。(注意: 在返回值的list中，数组长度大的数组靠前)
+> 在一个字符串(0<=字符串长度<=10000，全部由字母组成)中找到第一个只出现一次的字符,并返回它的位置, 如果没有则返回 -1（需要区分大小写）
 
 **解题思路：**
 
-- 摄氏度法
+- 略
 
 **参考代码：**
 
@@ -2415,88 +2653,6 @@ public:
 ```c++
 // c++
 ```
-
-### 24. 二叉树中和为某一值的路径
-
-**题目描述：**
-
-> 输入一颗二叉树的根节点和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。路径定义为从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。(注意: 在返回值的list中，数组长度大的数组靠前)
-
-**解题思路：**
-
-- 摄氏度法
-
-**参考代码：**
-
-```python
-# python
-```
-
-```c++
-// c++
-```
-
-### 24. 二叉树中和为某一值的路径
-
-**题目描述：**
-
-> 输入一颗二叉树的根节点和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。路径定义为从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。(注意: 在返回值的list中，数组长度大的数组靠前)
-
-**解题思路：**
-
-- 摄氏度法
-
-**参考代码：**
-
-```python
-# python
-```
-
-```c++
-// c++
-```
-
-### 24. 二叉树中和为某一值的路径
-
-**题目描述：**
-
-> 输入一颗二叉树的根节点和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。路径定义为从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。(注意: 在返回值的list中，数组长度大的数组靠前)
-
-**解题思路：**
-
-- 摄氏度法
-
-**参考代码：**
-
-```python
-# python
-```
-
-```c++
-// c++
-```
-
-### 24. 二叉树中和为某一值的路径
-
-**题目描述：**
-
-> 输入一颗二叉树的根节点和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。路径定义为从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。(注意: 在返回值的list中，数组长度大的数组靠前)
-
-**解题思路：**
-
-- 摄氏度法
-
-**参考代码：**
-
-```python
-# python
-```
-
-```c++
-// c++
-```
-
-
 
 ### 50. 数组中重复的数字
 
