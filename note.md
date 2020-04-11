@@ -1982,12 +1982,14 @@ public:
 
 - 方法一：map关联
   
+
 首先遍历一遍原链表，创建新链表（赋值label和next），用map关联对应结点；再遍历一遍，更新新链表的random指针。（注意map中应有NULL ----> NULL的映射）
-  
+
 - 方法二：next指针关联
   
+
 创建新链表的时候，用原结点的next指针指向对应新结点，新结点的next指针指向下一个原结点，以此类推，形成之字形关联。然后，就可以先更新新链表的random指针，再解除next关联，更新next指针。这种方法不需要map来辅助，不管查找next还是random指针都是O(1)的，效率很高。
-  
+
 - 另外，python使用了递归结果是可以的，但是c++使用递归结果就不行，奇怪。
 
 **参考代码：**
@@ -2602,16 +2604,58 @@ public:
 
 **解题思路：**
 
-- 略
+- 主要思路是将题目看做是，字符串排序问题
+- 判断字符串a比字符串b小的条件是，a + b < b + a
+- 冒泡实现从小到大的排序
 
 **参考代码：**
 
 ```python
-# python
+class Solution:
+    def PrintMinNumber(self, numbers):
+        # write code here
+        if numbers == []:
+            return ""
+        
+        length = len(numbers)
+        num = [str(x) for x in numbers]
+        for i in range(0, length-1):
+            for j in range(i + 1, length):
+                if num[i] + num[j] > num[j] + num[i]:
+                    num[i], num[j] = num[j], num[i]
+
+        return "".join(num)
 ```
 
 ```c++
-// c++
+class Solution {
+public:
+    string PrintMinNumber(vector<int> numbers) {
+        string result;
+        if (numbers.empty()) {
+            return result;
+        }
+        
+        int length = numbers.size();
+        for (int i = 0; i < length - 1; i++) {
+            for (int j = i + 1; j < length; j++) {
+                string a = to_string(numbers[i]);
+                string b = to_string(numbers[j]);
+                if (a + b > b + a) {
+                    int tmp = numbers[i];
+                    numbers[i] = numbers[j];
+                    numbers[j] = tmp;
+                }
+            }
+        }
+        
+        for (auto i : numbers) {
+            result += to_string(i);
+        }
+        
+        return result;
+    }
+};
 ```
 
 ### 33. 丑数
