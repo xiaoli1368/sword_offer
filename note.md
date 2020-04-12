@@ -2666,16 +2666,61 @@ public:
 
 **解题思路：**
 
-- 略
+- 基础的思路是暴力枚举，从1开始遍历，分别使用532进行整除，知道最后无法整除时，查看结果是否为1，判断当前结果是否为丑数。（这种方法的最大问题就是复杂度过大）
+- 高效的思路是发现所有的丑数都是由1235之间相互倍乘得到，因此可以维护三个队列，每个队列分别对应倍乘235的情况，当时每个队列的基数都要实时更新（从之前的丑数中依次增大），当前的丑数由这三个对列中最小值得出。
+- 利用三个指针，功能是维护了三个有序的丑数队列（由小到大），再求三个队列的最小值的最小值，则一定是还没有出现的丑数中的最小值。（注意更新的步骤，每个队列需要pop出最小的值作为丑数，同时需要push一个倍乘相应系数的丑数，进行下一次的筛选）
 
 **参考代码：**
 
 ```python
 # python
+# -*- coding:utf-8 -*-
+class Solution:
+    def GetUglyNumber_Solution(self, index):
+        # write code here
+        if index == 0:
+            return 0
+        
+        result = [1] * index
+        t2 = t3 = t5 = 0
+        
+        for i in range(1, index):
+            result[i] = min(result[t2] * 2, result[t3] * 3, result[t5] * 5)
+            if result[i] == 2 * result[t2]:
+                t2 += 1
+            if result[i] == 3 * result[t3]:
+                t3 += 1
+            if result[i] == 5 * result[t5]:
+                t5 += 1
+        
+        return result[index - 1]
 ```
 
 ```c++
-// c++
+class Solution {
+public:
+    int min(int a, int b, int c) {
+        int tmp = a < b ? a : b;
+        return tmp < c ? tmp : c;
+    }
+    int GetUglyNumber_Solution(int index) {
+        if (index == 0) {
+            return 0;
+        }
+        
+        int t2 = 0, t3 = 0, t5 = 0;
+        vector<int> result(index, 1);
+        
+        for (int i = 1; i < index; i++) {
+            result[i] = min(result[t2] * 2, result[t3] * 3, result[t5] * 5);
+            if (result[i] == 2 * result[t2]) t2++;
+            if (result[i] == 3 * result[t3]) t3++;
+            if (result[i] == 5 * result[t5]) t5++;
+        }
+        
+        return result[index - 1];
+    }
+};
 ```
 
 ### 34. 第一个只出现一次的字符
