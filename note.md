@@ -2785,16 +2785,105 @@ public:
 
 **解题思路：**
 
-- 暴力解法
+- 使用归并法来实现逆序对的统计，与归并法排序很像，三个部分构成
+- 递归，把当前数组分为前后两个数组，每个数组各自区分，直到每个数组仅有一个数字
+- 合并，根据前后两个数组的元素大小关系，统计逆序对。这里的任务实际上，对于两个从小到大排列的有序数组，判断存在多少个逆序对，同时将二者组合排序。以下代码中讨论了4种情况：1) 前数组已遍历完，2) 后数组已遍历完，3) 两数组都没有遍历完，且前元素小于后元素，4) 两数组都没有遍历完，且前元素大于后元素。注意，每种情况都有选择一个元素保持到tmp数组，最终需要将这个有序的tmp数组拷贝替换原始的nums数组，只有最后一种情况存在逆序数，需要累加。
+- 排序，将前后两个数组排序并且替换原理的数组位置
 
 **参考代码：**
 
 ```python
-# python
+class Solution:
+    def __init__(self):
+        self.cnt = 0
+    
+    def InversePairs(self, nums):
+        if nums == []:
+            return 0
+        self.mergeSort(nums, 0, len(nums) - 1)
+        return self.cnt % 1000000007
+        
+    def mergeSort(self, nums, l, h):
+        if l >= h:
+            return
+        m = l + (h - l) // 2
+        self.mergeSort(nums, l, m)
+        self.mergeSort(nums, m + 1, h)
+        self.merge(nums, l, m, h)
+    
+    def merge(self, nums, l, m, h):
+        i = l
+        j = m + 1
+        k = l
+        tmp = []
+        while i <= m or j <= h:
+            if i > m: # 前数组已经遍历完
+                tmp.append(nums[j])
+                j += 1
+            elif j > h or nums[i] <= nums[j]: # 后数组已经遍历完，或则　前 < 后
+                tmp.append(nums[i])
+                i += 1
+            else: # 前 > 后，符合逆序对的定义
+                tmp.append(nums[j])
+                j += 1
+                self.cnt += m - i + 1
+            k += 1
+        nums[l:h+1] = tmp[:]
 ```
 
 ```c++
-// c++
+class Solution {
+public:
+    long cnt = 0;
+    vector<int> tmp;
+    
+    // 外部接口函数
+    int InversePairs(vector<int> nums) {
+        int length = nums.size();
+        if (length == 0) {
+            return 0;
+        }
+        
+        tmp = nums;
+        mergeSort(nums, 0, length - 1);
+        return int(cnt % 1000000007);
+    }
+    
+    // 递归调用的函数
+    void mergeSort(vector<int>& nums, int l, int h) {
+        if (l >= h) {
+            // 当分组到只剩一个时，返回上一层，开始merge
+            return;
+        }
+        int m = l + (h - l) / 2;
+        mergeSort(nums, l, m);     // 左数组，统计，排序
+        mergeSort(nums, m + 1, h); // 右数组，统计，排序
+        merge(nums, l, m, h);      // 本次的前后数组，统计，排序
+    }
+    
+    // 用来实现当前前后数组统计与合并的函数
+    // 将两个有序数组合并为一个，同时统计逆序对
+    void merge(vector<int>& nums, int l, int m, int h) {
+        int i = l, j = m + 1, k = l;
+        while (i <= m || j <= h) {
+            if (i > m) { // 此时前数组已被遍历完，所有前数组小于后数组当前值
+                tmp[k++] = nums[j++];
+            } else if (j > h) { // 后数组被遍历完
+                tmp[k++] = nums[i++];
+            } else if (nums[i] <= nums[j]) { // 两个数组都没有遍历完，前 < 后
+                tmp[k++] = nums[i++];
+            } else { // 两个数组都没有遍历完，后 < 前，符合逆序数要求
+                tmp[k++] = nums[j++];
+                this->cnt += m - i + 1;
+            }
+        }
+        
+        // 将完成排序的部分拷贝到原数组中
+        for (k = l; k <= h; k++) {
+            nums[k] = tmp[k];
+        }
+    }
+};
 ```
 
 ### 36. 两个链表的第一个公共结点
@@ -2805,36 +2894,175 @@ public:
 
 **解题思路：**
 
-- 暴力解法
+- map法：第一次遍历使用map记录第一个链表的键值，第二次遍历第二个链表，寻找map中是否存在
+- 迭代法：相同长度的两个链表，第一次遍历直接找到公共节点；不同长度的情况，第一次遍历找到长度差，第二次以长度差进行遍历比较，直接找到公共节点。
 
 **参考代码：**
 
 ```python
-# python
+# -*- coding:utf-8 -*-
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+class Solution:
+    def FindFirstCommonNode(self, h1, h2):
+        # write code here
+        listMap = []
+        
+        tmp = h1
+        while tmp:
+            listMap.append(id(tmp))
+            tmp = tmp.next
+        
+        tmp = h2
+        while tmp:
+            if listMap.count(id(tmp)) == 1:
+                return tmp
+            tmp = tmp.next
+            
+        return None
+    
+    def FindFirstCommonNode2(self, h1, h2):
+        # write code here
+        t1 = h1
+        t2 = h2
+        while t1 != t2:
+            t1 = t1.next if t1 != None else h2
+            t2 = t2.next if t2 != None else h1
+        return t1
 ```
 
 ```c++
-// c++
+/*
+struct ListNode {
+	int val;
+	struct ListNode *next;
+	ListNode(int x) :
+			val(x), next(NULL) {
+	}
+};*/
+#include <map>
+class Solution {
+public:
+    ListNode* FindFirstCommonNode (ListNode* h1, ListNode* h2) {
+        if (h1 == nullptr || h2 == nullptr) {
+            return nullptr;
+        }
+        
+        map<ListNode*, int> map;
+        
+        ListNode* tmp = h1;
+        while (tmp != nullptr) {
+            map[tmp] = tmp->val;
+            //map.insert(pair<ListNode*, int>(tmp, tmp->val));
+            tmp = tmp->next;
+        }
+        
+        tmp = h2;
+        while (tmp != nullptr) {
+            if (map.count(tmp) == 1) {
+                return tmp;
+            }
+            tmp = tmp->next;
+        }
+        return nullptr;
+    }
+
+// 迭代方法
+    ListNode* FindFirstCommonNode2 (ListNode* h1, ListNode* h2) {
+        ListNode* t1 = h1;
+        ListNode* t2 = h2;
+        while (t1 != t2) {
+            t1 = (t1 == nullptr ? h2 : t1->next);
+            t2 = (t2 == nullptr ? h1 : t2->next);
+        }
+        return t1;
+    }
+};
 ```
 
 ### 37. 数字在排序数组中出现的次数
 
 **题目描述：**
 
-> 统计一个数字在排序数组中出现的次数。
+> 统计一个数字在排序数组中出现的次数。（从小到达的有序数组，而且都是正整数）
 
 **解题思路：**
 
-- 暴力解法
+- 常规思路：使用二分查找确定是否存在，当存在时返回一个任意的相等的索引，以此为基础向左右两边查找，直到两边都不相等。
+- 高效思路：利用元素都是正整数这一特点，不要去查找目标值k，而是查找假想的值[k-0.5, k+0.5]，这样直接获得目标的区间。也可以修改二分查找算法，去寻找第一个大于等于某值的索引，这样查找[k, k+1]的区间也可以实现
+- 其他思路，递归
 
 **参考代码：**
 
 ```python
-# python
+# -*- coding:utf-8 -*-
+class Solution:
+    def GetNumberOfK(self, data, k):
+        first = self.binarySearch(data, k)
+        last = self.binarySearch(data, k + 1)
+        if first == len(data) or data[first] != k:
+            return 0
+        else:
+            return last - first
+        
+    def binarySearch(self, data, k):
+        l = 0
+        h = len(data)
+        while l < h:
+            m = l + (h - l) // 2
+            if data[m] >= k:
+                h = m
+            else:
+                l = m + 1
+        return l
 ```
 
 ```c++
-// c++
+class Solution {
+public:
+    int GetNumberOfK(vector<int> data ,int k) {
+        if (data.empty()) {
+            return 0;
+        }
+        
+        // 二分查找是否存在，返回任意一个等于k的索引
+        int l = 0;
+        int h = data.size() - 1;
+        int index = -1;
+        while (l <= h) {
+            int m = l + (h - l) / 2;
+            if (data[m] > k) {
+                h = m - 1;
+            } else if (data[m] < k) {
+                l = m + 1;
+            } else if (data[m] == k) {
+                index = m;
+                break;
+            }
+        }
+        
+        // 如果不存在k
+        if (index == -1) {
+            return 0;
+        }
+        
+        // 如果存在，则从该位置向两端检测出现的次数
+        l = index;
+        h = index;
+        while (data[l] == k || data[h] == k) {
+            if (data[l] == k) {
+                l--;
+            }
+            if (data[h] == k) {
+                h++;
+            }
+        }
+        
+        return h - l - 1;
+    }
+};
 ```
 
 ### 38. 二叉树的深度
