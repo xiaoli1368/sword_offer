@@ -3073,16 +3073,39 @@ public:
 
 **解题思路：**
 
-- 暴力解法
+- 递归直接求解即可
 
 **参考代码：**
 
 ```python
 # python
+class Solution:
+    def TreeDepth(self, root):
+        # write code here
+        if root == None:
+            return 0
+        
+        l = self.TreeDepth(root.left)
+        r = self.TreeDepth(root.right)
+        
+        return 1 + (l if l > r else r)
+        # return 1 + max(l, r)
 ```
 
 ```c++
-// c++
+class Solution {
+public:
+    int TreeDepth(TreeNode* root) {
+        if (root == nullptr) {
+            return 0;
+        }
+
+        int left = TreeDepth(root->left);
+        int right = TreeDepth(root->right);
+
+        return 1 + (left > right ? left : right);
+    }
+};
 ```
 
 ### 39. 平衡二叉树
@@ -3093,16 +3116,80 @@ public:
 
 **解题思路：**
 
-- 暴力解法
+- 平衡二叉树的定义就是：左右子树的高度差小于等于1，而且左右子树也是平衡二叉树
+- 分析定义，只要递归判断各个结点，保证左右子树的高度差小于等于1即可
 
 **参考代码：**
 
 ```python
-# python
+# -*- coding:utf-8 -*-
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+class Solution():
+    def getTreeHeight(self, root):
+        if root == None:
+            return 0
+        return 1 + max(self.getTreeHeight(root.left), self.getTreeHeight(root.right))
+    
+    def IsBalanced_Solution(self, root):
+        """
+        个人解法
+        """
+        if root == None:
+            return True
+
+        l = self.getTreeHeight(root.left)
+        r = self.getTreeHeight(root.right)
+
+        l, r = max(l, r), min(l, r)
+
+        return l - r <= 1 and self.IsBalanced_Solution(root.left) and self.IsBalanced_Solution(root.right)
 ```
 
 ```c++
-// c++
+class Solution {
+public:
+    // 平衡二叉树的定义就是左右子树的高度差小于等于1
+    // 因此在递归获取高度时一旦发现不满足，则应退出保存
+    // 所以需要借助一个类内的全局变量
+    bool isBalanced = true;
+
+    // 首先需要获取高度
+    int getTreeHeight(TreeNode* root) {
+        if (root == nullptr) {
+            return 0;
+        }
+
+        int left = getTreeHeight(root->left);
+        int right = getTreeHeight(root->right);
+
+        // 调整二者大小，使得 left >= right
+        if (left < right) {
+            int tmp = left;
+            left = right;
+            right = tmp;
+        }
+
+        if (left - right > 1) {
+            isBalanced = false;
+        }
+
+        return 1 + left;
+    }
+
+    bool isBalanced_Solution(TreeNode* root) {
+        if (root == nullptr) {
+            return true;
+        }
+
+        getTreeHeight(root);
+        return isBalanced;
+    }
+};
+
 ```
 
 ### 40. 数组中只出现一次的数字
@@ -3113,16 +3200,73 @@ public:
 
 **解题思路：**
 
-- 暴力解法
+- 需要明确关于异或的几条规则：
+
+  两个相同的数异或，结果为0
+
+  一个数异或0，结果是自身
+
+  异或可以交换顺序
+
+  对题目中的设置，依次异或，最终的结果为待求的两个数字之间的异或
+
+- 本题的关键点是，通过异或来寻找一个掩码mask，使得遍历整个数组，将每个元素与这个mask作用后，会出现不同的结果，如0/1/others，这样就能区分为待求的两个目标值。
+
+- (a ^ b) ^ b = a ^ (b ^ b) = a ^ 0 = a
+
+- 使用 diff = a ^b
+
+  diff &= -diff
+
+  可以获取一个只有一位为1的掩码mask，如00100，表明a和b最右边开始第一个不同的数位的位置，因此可以遍历整个数组，迭代异或看最终结果是否为1来区分a或b
+
+  （注意，其他的元素不影响，因为是偶数次出现，因此连续异或时最终的影响会抵消）
 
 **参考代码：**
 
 ```python
-# python
+# -*- coding:utf-8 -*-
+class Solution:
+    # 返回[a,b] 其中ab是出现一次的两个数字
+    def FindNumsAppearOnce(self, array):
+        # write code here
+        # 投机取巧的方式
+        result = []
+        if array == []:
+            return result
+        
+        for i in array:
+            if array.count(i) == 1:
+                result.append(i)
+        
+        return result
 ```
 
 ```c++
-// c++
+class Solution {
+public:
+    void FindNumsAppearOnce(std::vector<int> data, int* num1, int* num2) {
+        if (data.empty()) {
+            return;
+        }
+
+        int diff = 0;
+        for (auto i : data) {
+            diff ^= i;
+        }
+        diff &= -diff;
+
+        *num1 = 0;
+        *num2 = 0;
+        for (auto i : data) {
+            if ((i & diff) == 0) {
+                *num1 ^= i;
+            } else {
+                *num2 ^= i;
+            }
+        }
+    }
+};
 ```
 
 ### 41. 和为S的连续正数序列
@@ -3133,16 +3277,86 @@ public:
 
 **解题思路：**
 
-- 暴力解法
+- 分析：本质是等差序列求和的问题
+- 常规思路：根据能否整数进行因数分解，特别注意是对 2*sum 进行因数分解，结果为 num * midTwice，然后根据 [num, midTwice] 组合的奇偶性质，判断能否满足要求，后续利用 [num, midTwice] 来输出 [l, h] 序列。需要注意的地方有：num要从大往小遍历，这样才能保证最终输出的结果是从小到大。另一个就是需要检测一下l的大小，防止l出现小于等于0的情况
+- 高效解法：使用双指针，使用中间变量时刻更新当前这两个指针之间的所有元素的和，然后两个指针配合移动，从而实现找到满足条件的解。找到第一个解后，需要跳出并继续寻找下一个解。（这种方式思路简单，但是好像复杂度更高）
 
 **参考代码：**
 
 ```python
-# python
+# -*- coding:utf-8 -*-
+class Solution:
+    def FindContinuousSequence(self, tsum):
+        # write code here
+        if tsum < 3:
+            return []
+
+        l = 1
+        h = 2
+        currSum = 3
+        result = []
+
+        while l <= tsum // 2 + 1:
+            if currSum > tsum:
+                currSum -= l
+                l += 1
+            elif currSum < tsum:
+                h += 1
+                currSum += h
+            else:
+                # 此时相等
+                result.append(list(range(l, h + 1)))
+                currSum -= l
+                l += 1
+
+        return result
 ```
 
 ```c++
-// c++
+class Solution {
+public:
+    // 用于添加的函数
+    void add_vec(std::vector<std::vector<int>>& vec, int l, int h) {
+        if (l <= 0) {
+            return;
+        }
+
+        std::vector<int> tmp;
+        for (int i = l; i <= h; i++) {
+            tmp.push_back(i);
+        }
+        vec.push_back(tmp);
+    }
+
+    // 高效解法
+    std::vector<std::vector<int>> FindContinuousSequence(int sum) {
+        std::vector<std::vector<int>> result;
+        if (sum < 3) {
+            return result;
+        }
+
+        int l = 1;
+        int h = 2;
+        int currSum = 3;
+
+        while (h <= sum / 2 + 1) {
+            if (currSum > sum) {
+                currSum -= l;
+                l++;
+            } else if (currSum < sum) {
+                h++;
+                currSum += h;
+            } else {
+                // 此时相等
+                add_vec(result, l, h);
+                currSum -= l;
+                l++;
+            }
+        }
+        
+        return result;
+    }
+}
 ```
 
 ### 42. 和为S的两个数字
@@ -3153,16 +3367,64 @@ public:
 
 **解题思路：**
 
-- 暴力解法
+- 使用双指针，配合从两端向中间查找，首先查找到满足要求的两个数即为输出结果。
 
 **参考代码：**
 
 ```python
-# python
+# -*- coding:utf-8 -*-
+class Solution:
+    def FindNumbersWithSum(self, array, tsum):
+        # write code here
+        if array == []:
+            return []
+
+        l = 0
+        h = len(array) - 1
+        currSum = 0
+
+        while l < h:
+            currSum = array[l] + array[h]
+            if currSum == tsum:
+                return [array[l], array[h]]
+            elif currSum < tsum:
+                l += 1
+            elif currSum > tsum:
+                h -= 1
+
+        return []
 ```
 
 ```c++
-// c++
+class Solution {
+public:
+    vector<int> FindNumbersWithSum(vector<int> array,int sum) {
+        // 使用双指针
+        vector<int> result;
+        if (array.empty()) {
+            return result;
+        }
+        
+        int l = 0;
+        int h = array.size() - 1;
+        int currSum = 0;
+        
+        while (l < h) {
+            currSum = array[l] + array[h];
+            if (currSum == sum) {
+                result.push_back(array[l]);
+                result.push_back(array[h]);
+                return result;
+            } else if (currSum < sum) {
+                l++;
+            } else if (currSum > sum) {
+                h--;
+            }
+        }
+        
+        return result;
+    }
+};
 ```
 
 ### 43. 左旋转字符串
