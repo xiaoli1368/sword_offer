@@ -3435,16 +3435,75 @@ public:
 
 **解题思路：**
 
-- 暴力解法
+- 常规解法：直接借助stl实现子串切分以及拼接
 
 **参考代码：**
 
 ```python
-# python
+class Solution():
+    def LeftRotateString(self, s, n):
+        """
+        借助下标操作的解法
+        """
+        if s == "" or n == 0:
+            return s
+        
+        return s[n:] + s[0:n]
+
+    def str_reverse(self, s, l ,h):
+        """
+        对s[l:h]实现翻转
+        """
+        tmp = list(s)
+        while l < h:
+            tmp[l], tmp[h] = tmp[h], tmp[l]
+            l += 1
+            h -= 1
+        s = str(tmp)
+
+    def LeftRotateString2(self, s, n):
+        if s == "" or n == 0:
+            return s
+        
+        # 没有对输入的s进行保护
+        self.str_reverse(s, 0, n - 1)
+        self.str_reverse(s, n, len(s) - 1)
+        self.str_reverse(s, 0, len(s) - 1)
+        return s
 ```
 
 ```c++
-// c++
+class Solution {
+public:
+    string LeftRotateString(string str, int n) {
+        if (str.empty() || n == 0) {
+            return str;
+        }
+        return str.substr(n, str.size() - n) + str.substr(0, n);
+    }
+
+    // 高效解法：两部分分别翻转，然后整体翻转
+    void str_reverse(std::string& str, int l, int h) {
+        while (l < h) {
+            char tmp = str[l];
+            str[l] = str[h];
+            str[h] = tmp;
+            l++;
+            h--;
+        }
+    }
+
+    std::string LeftRotateString(std::string str, int n) {
+        if (str.empty() || n == 0) {
+            return str;
+        }
+
+        str_reverse(str, 0, n - 1);
+        str_reverse(str, n, str.size() - 1);
+        str_reverse(str, 0, str.size() - 1);
+        return str;
+    }
+};
 ```
 
 ### 44. 翻转单词顺序列
@@ -3455,16 +3514,91 @@ public:
 
 **解题思路：**
 
-- 暴力解法
+- 暴力解法：借助python-stl，实现字符串分割，翻转
+- 常规解法：先翻转每个单词，然后再翻转整个字符串（优点是不需要额外的空间）
 
 **参考代码：**
 
 ```python
-# python
+class Solution():
+    def ReverseSentence(self, s):
+        """
+        pythonic解法
+        """
+        if s == "":
+            return s
+
+        tmp = s.split(" ")
+        tmp.reverse()
+        return " ".join(tmp)
+
+    def str_reverse(self, s, l, h):
+        tmp = list(s)
+        while l < h:
+            tmp[l], tmp[h] = tmp[h], tmp[l]
+            l += 1
+            h -= 1
+        s = str(tmp)
+        
+    def ReverseSentence2(self, s):
+        """
+        字符串翻转法
+        """
+        if s == "":
+            return s
+
+        l = 0
+        h = 0
+        length = len(s)
+
+        while l <= h and h <= length:
+            if h == length or s[h] == " ":
+                self.str_reverse(s, l, h - 1)
+                l = h + 1
+            h += 1
+        self.str_reverse(s, 0, length - 1)
+
+        return s
 ```
 
 ```c++
-// c++
+class Solution {
+public:
+    // 简化版
+    std::string ReverseSentence(std::string str) {
+        if (str.empty()) {
+            return str;
+        }
+
+        int l = 0;
+        int h = 0;
+        int length = str.size();
+
+        // 开头是空格也可以处理
+        while (l <= h && h <= length) {
+            if (h == length || str[h] == ' ') {
+                str_reverse(str, l, h - 1);
+                l = h + 1; // 跳过了每次的空格
+            }
+            h++;
+        }
+        str_reverse(str, 0, length - 1);
+
+        return str;
+    }
+
+    // 翻转字符串
+    void str_reverse(std::string& str, int l, int h) {
+        char tmp = '\0';
+        while (l < h) {
+            tmp = str[l];
+            str[l] = str[h];
+            str[h] = tmp;
+            l++;
+            h--;
+        }
+    }
+};
 ```
 
 ### 45. 扑克牌顺子
@@ -3475,16 +3609,128 @@ public:
 
 **解题思路：**
 
-- 暴力解法
+- 这道题的主要含义是指：输入一个vector，数量和数值大小未知，也有可能相等（需要保证是5个数，并且每个数都在0-13之间），判断能否构成顺子，其中0可以代替1-13中的任意一个数。
+
+- 个人常规解法：
+
+  1）判断元素个数是否为5，不是则返回false
+
+  2）遍历全部元素，判断是否位于[0, 13]区间，获取大小王个数（即0的个数，也就是癞子），获取除0外最小值，最大值
+
+  3）分情况讨论：4个癞子，true；其它情况，min != max && max - min <= 4，true；其它情况，false
+
+- 参考答案解法：中间增加了排序，，然后从没有癞子的地方开始补全，根据前后两个元素的差值来选择使用相应数量的癞子补全，最终检测剩余癞子的个数是否大于等于0，代码更加简化
 
 **参考代码：**
 
 ```python
-# python
+class Solution():
+    def IsContinuous(self, numbers):
+        if len(numbers) != 5:
+            return False
+        
+        nmin = 14
+        nmax = 0
+        zero_cnt = numbers.count(0)
+
+        for i in numbers:
+            if i == 0:
+                continue
+            if i < nmin:
+                nmin = i
+            if i > nmax:
+                nmax = i
+        
+        if nmin < 0 or nmax > 13:
+            return False
+
+        if zero_cnt == 4 or (nmax - nmin <= 4 and nmax != nmin):
+            return True
+        else:
+            return False
+
+    def IsContinuous2(self, numbers):
+        """
+        参考答案，癞子补全法
+        """
+        if len(numbers) != 5:
+            return False
+        
+        numbers.sort()
+        cnt = numbers.count(0)
+
+        for i in range(cnt, len(numbers) - 1):
+            if numbers[i] == numbers[i + 1]:
+                return False
+            cnt -= numbers[i + 1] - numbers[i] - 1
+        
+        return cnt >= 0
 ```
 
 ```c++
-// c++
+#include <algorithm>
+class Solution {
+public:
+    // 个人解法
+    bool IsContinuous(std::vector<int> numbers) {
+        if (numbers.size() != 5) {
+            return false;
+        }
+
+        int min = 14;
+        int max = 0;
+        int zero_cnt = 0;
+
+        for (auto i : numbers) {
+            if (i < 0 && i > 13) {
+                return false;
+            } else if (i == 0) {
+                zero_cnt++;
+                continue;
+            }
+            
+            // 位于[1, 13]
+            if (i < min) {
+                min = i;
+            }
+            if (i > max) {
+                max = i;
+            }
+        }
+
+        if (zero_cnt == 4 || (max - min <= 4 && min != max)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // 参考答案解法
+    bool IsContinuous2(std::vector<int> numbers) {
+        if (numbers.size() != 5) {
+            return false;
+        }
+        sort(numbers.begin(), numbers.end());
+
+        int cnt = 0;
+        for (auto i : numbers) {
+            if (i == 0) {
+                cnt++;
+            }
+        }
+
+        // 从没有癞子的地方开始，使用癞子去补全顺子
+        for (int i = cnt; i < numbers.size() - 1; i++) {
+            if (numbers[i] == numbers[i + 1]) {
+                return false;
+            }
+            // 差值为n，则使用n个癞子进行补全
+            cnt -= numbers[i + 1] - numbers[i] - 1;
+        }
+
+        return cnt >= 0;
+    }
+};
 ```
 
 ### 46. 圆圈中最后剩下的数
