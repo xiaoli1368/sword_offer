@@ -3743,16 +3743,89 @@ public:
 
 **解题思路：**
 
-- 暴力解法
+- 常规思路：使用数组来模拟报数的过程，循环求解。（或者使用链表来求解，单向循环列表，每个结点存储是否被选中的标志bool sign，不断遍历该链表，根据m来选中结点，知道剩下一个结点退出）
+- 本质是一个约瑟夫环的问题，考虑编号为[0, 1, 2, ..., m-1, m, ..., n - 1]的序列，排除编号为[m - 1]后的序列为[0, 1, 2, ..., m, ..., n - 1]。将该序列看做从[m]开始的新序列为[m, ..., n - 1, 0, 1, 2, ..., m - 2]，此时通过可以通过公式映射为新序列[0, 1, 2, ..., m-1, m, ..., n - 2]，由此成为一个新的子问题。
+- 所以可以利用递归或者反向迭代的思路来解决，考虑最终的的递归退出条件为n=1，此时返回0。
+- 考虑递推公式为：s(n) = (s(n-1) + m) % n，这个公式的含义是，将在长度为n-1的解的索引变换到长度为n的序列中的索引。（最终长度为1时的解为0，需要借助该公式不断迭代，得到长度为n时的解）
 
 **参考代码：**
 
 ```python
-# python
+class Solution:
+    def LastRemaining_Solution(self, n, m):
+        # write code here
+        if n <= 0 or m <= 0:
+            return -1
+        
+        tsum = 0
+        for i in range(2, n + 1) :
+            tsum = (tsum + m) % i
+        
+        return tsum
 ```
 
 ```c++
-// c++
+class Solution {
+public:
+    // 暴力枚举
+    int LastRemaining_Solution(int n, int m) {
+        if (n <= 0 || m <= 0) {
+            return -1;
+        }
+
+        int sign[n] = {0};
+        int count = n;
+        int index = -1;
+        int step = 0;
+
+        while (count > 0) { // 全部删除，则最后一个就是待求
+            index++;
+            if (index >= n) { // 确保环形遍历
+                index = 0;
+            }
+            if (sign[index] == 1) { // 跳过删除的元素
+                continue;
+            }
+            step++;
+            if (step == m) { // 确定找到了下一个元素
+                sign[index] = 1;
+                count--;
+                step = 0;
+            }
+        }
+
+        return index;
+    }
+
+    // 其它方法
+    int LastRemaining_Solution2(int n, int m) {
+        if (n == 0) {
+            return -1;
+        }
+
+        int s = 0;
+        for (int i = 2; i <= n; i++) {
+            // 这个公式可以由递归得到
+            s = (s + m) % i;
+        }
+        return s;
+    }
+
+    // 其它方法
+    int LastRemaining_Solution3(int n, int m) {
+        if (n == 0) {
+            return -1;
+        }
+        if (n == 1) {
+            return 0;
+        }
+
+        return (LastRemaining_Solution3(n - 1, m) + m) % n;
+    }
+
+    // 需补充单向循环链表方法
+    int LastRemaining_Solution4(int n, int m) {}
+};
 ```
 
 ### 47. 前N项正整数求和
@@ -3763,16 +3836,61 @@ public:
 
 **解题思路：**
 
-- 暴力解法
+- 根据题目，可以使用的运算符有：加法、减法、移位运算。
+- 由于不能使用if语句，因此正常形式的递归也无法使用，但是可以借助&&的短路特性来实现递归。（暴力累加）
+- 公式法：(n+1)*n/2，需要考虑如何实现乘法，可以利用sizeof(二维数组实现)，也可以利用pow(n, 2) + n，来实现，最终利用右移位实现除法。
 
 **参考代码：**
 
 ```python
-# python
+class Solution():
+    def Sum_Solution(self, n):
+        """
+        递归解法
+        """
+        tmp = n and self.Sum_Solution(n - 1)
+        return n + tmp
+
+    def Sum_Solution2(self, n):
+        return sum(list(range(1, n + 1)))
+
+    def Sum_Solution3(self, n):
+        return (n**2 + n) >> 1
 ```
 
 ```c++
-// c++
+class Solution {
+public:
+    // 递归解法
+    int Sum_Solution(int n) {
+        int sum = n;
+        bool tmp = n > 0 && (sum += Sum_Solution(n - 1)) > 0;
+        return sum;
+    }
+
+    // 其它解法
+    int Sum_Solution2(int n) {
+        char tmp[n][n+1];
+        return sizeof(tmp) >> 1;
+    }
+
+    int Sum_Solution3(int n) {
+        return (int(pow(n, 2)) + n) >> 1;
+    }
+
+    // 自定义乘法
+    int multiply(int a, int b) {
+        int res = 0;
+        (a&1) && (res += b);
+        a >>= 1; b <<=1;
+        a && (res += multiply(a, b));
+        return res;
+    }
+
+    int Sum_Solution4(int n) {
+        return multiply(n, n + 1) >> 1;
+    }
+};
 ```
 
 ### 48. 不用加减乘除做加法
@@ -3783,36 +3901,136 @@ public:
 
 **解题思路：**
 
-- 暴力解法
+- 本质是数字电路中对加法器的实现
+- 一位加法器：a^b为本位和，(a&b) <<1为进位
+
+- 对每位执行一位加法，整体上可以借助递归实现
+- 注意：本位和与进位之间也是加法的运算
+- 也可以通过循环来实现
 
 **参考代码：**
 
 ```python
-# python
+class Solution():
+    def Add(self, a, b):
+        """
+        递归法
+        """
+        tmp = a if b == 0 else self.Add((a^b) & 0xffffffff,
+                                        ((a&b) << 1) & 0xffffffff)
+        return tmp if tmp < 0x7fffffff else ~(tmp ^ 0xffffffff)
+
+    def Add2(self, a, b):
+        """
+        循环
+        """
+        while b != 0:
+            tmp = (a ^ b) & 0xffffffff
+            b = ((a & b) << 1) & 0xffffffff
+            a = tmp if tmp < 0x7fffffff else ~(tmp ^ 0xffffffff)
+        return a
+
+
+def main():
+    s = Solution()
+    print(s.Add(10 ,-12))
+    print(s.Add2(10, -12))
 ```
 
 ```c++
-// c++
+class Solution {
+public:
+    // 递归实现
+    int Add(int a, int b) {
+        return b == 0 ? a : Add(a ^ b, (a & b) << 1);
+    }
+
+    // 循环实现
+    int Add2(int a, int b) {
+        int tmp = 0;
+        while (b != 0) {
+            tmp = a ^ b;
+            b = (a & b) << 1;
+            a = tmp;
+        }
+        return a;
+    }
+};
 ```
 
 ### 49. 把字符串转换成整数
 
 **题目描述：**
 
-> 将一个字符串转换成一个整数，要求不能使用字符串转换整数的库函数。 数值为0或者字符串不是一个合法的数值则返回0
+> 将一个字符串转换成一个整数，要求不能使用字符串转换整数的库函数。 数值为0或者字符串不是一个合法的数值则返回0。输入一个字符串,包括数字字母符号,可以为空，如果是合法的数值表达则返回该数字，否则返回0。
 
 **解题思路：**
 
-- 暴力解法
+- 关键点在于：特殊情况分析，考虑正负号，考虑非法数值，考虑int溢出
 
 **参考代码：**
 
 ```python
-# python
+# -*- coding:utf-8 -*-
+class Solution:
+    def StrToInt(self, s):
+        # write code here
+        if s == "":
+            return 0
+        
+        sign = 1
+        tsum = 0
+        for i in range(0, len(s)):
+            if i == 0 and s[i] == "-":
+                sign = -1
+                continue
+            if i == 0 and s[i] == "+":
+                continue
+            if s[i] < "0" or s[i] > "9":
+                return 0
+            tsum = tsum * 10 + ord(s[i]) - ord("0")
+        tsum *= sign
+        
+        if tsum >= 2**31 or tsum < -2**31:
+            return 0
+        else:
+            return tsum
 ```
 
 ```c++
-// c++
+#include <cmath>
+class Solution {
+public:
+    int StrToInt(string str) {
+        if (str.empty()) {
+            return 0;
+        }
+        
+        int sign = 1;
+        long sum = 0;
+        for (int i = 0; i < str.size(); i++) {
+            if (i == 0 && str[i] == '-') {
+                sign = -1;
+                continue;
+            }
+            if (i == 0 && str[i] == '+') {
+                continue;
+            }
+            if (str[i] < '0' || str[i] > '9') {
+                return 0;
+            }
+            sum = sum * 10 + str[i] - '0';
+        }
+        sum *= sign;
+        
+        // 溢出判断
+        if (sum >= pow(2, 31) || sum < -pow(2, 31)) {
+            return 0;
+        } else {
+            return sum;
+        }
+    }
+};
 ```
 
 
@@ -3821,26 +4039,6 @@ public:
 **题目描述：**
 
 > 在一个长度为n的数组里的所有数字都在0到n-1的范围内。 数组中某些数字是重复的，但不知道有几个数字是重复的。也不知道每个数字重复几次。请找出数组中任意一个重复的数字。 例如，如果输入长度为7的数组{2,3,1,0,2,5,3}，那么对应的输出是第一个重复的数字2。
-
-**注意事项：**
-
-1. python中交换列表中两个元素的位置不能使用更深层次的列表迭代：
-
-   ```python
-   a = [2, 3, 1, 0, 2, 5, 3]
-   a[0], a [2] = a[2], a[0]  # 正确
-   a[0], a[a[0]] = a[a[0]], a[2] # 错误
-   index = a[0]
-   a[0], a[index] = a[index], a[0] # 正确
-   ```
-
-2. 使用pdb进行调试的方式
-
-   ```python
-   import pdb
-   pdb.set_trace()
-   外部调试，快捷键 n c
-   ```
 
 **解题思路：**
 
@@ -3853,9 +4051,6 @@ public:
 **参考代码：**
 
 ```python
-#!/bin/python3                                                       
-#-*- coding:utf-8 -*-
-
 class solution():
     # 需要赋值到duplication[0]
     # 函数返回bool
@@ -3882,7 +4077,6 @@ if __name__ == "__main__":
 
 ```C++
 #include <iostream>                                                  
-
 class Solution {
 public:
     bool duplicate(int numbers[], int length, int* duplication) {
@@ -3921,7 +4115,7 @@ int main (int argc, char* argv[])
 ## 第二部分
 
 ```markdown
-其它
+分类汇总
 ```
 
 
