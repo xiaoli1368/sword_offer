@@ -7,7 +7,7 @@
 ## 目录
 [TOC]
 
-## 第一部分
+## 第一部分　全部题目
 
 ### 01. 二维数组中的查找
 
@@ -4125,11 +4125,50 @@ int main (int argc, char* argv[])
 **参考代码：**
 
 ```python
-# python
+# -*- coding:utf-8 -*-
+class Solution:
+    def multiply(self, A):
+        # write code here
+        if len(A) == 0:
+            return []
+        ret = [0] * len(A)
+        
+        tmp = 1
+        for i in range(0, len(A)):
+            ret[i] = tmp
+            tmp *= A[i]
+        
+        tmp = 1
+        for i in range(len(A) - 1, -1, -1):
+            ret[i] *= tmp
+            tmp *= A[i]
+        
+        return ret
 ```
 
 ```C++
 // c++
+class Solution {
+public:
+    vector<int> multiply(const vector<int>& A) {
+        vector<int> ret;
+        if (A.empty()) {
+            return ret;
+        }
+        
+        for (int i = 0; i < A.size(); i++) {
+            int tmp = 1;
+            for (int j = 0; j < A.size(); j++) {
+                if (j != i) {
+                    tmp *= A[j]; 
+                }
+            }
+            ret.push_back(tmp);
+        }
+        
+        return ret;
+    }
+};
 ```
 
 ### 52. 正则表达式匹配
@@ -4140,16 +4179,71 @@ int main (int argc, char* argv[])
 
 **解题思路：**
 
-- 待补充
+- 两种思路，一是递归，二是循环
+- 关键是把各种情况讨论清楚
+- 递归回溯法，其实就是把所有可能的情况全部试一遍，通过不停的剪去s和p相同的首部，直到某一个或两个都被剪空，就可以得到结论了
 
 **参考代码：**
 
 ```python
-# python
+# -*- coding:utf-8 -*-
+class Solution:
+    # s, pattern都是字符串
+    def match(self, s, pattern):
+        # write code here
+        if len(s) == 0 and len(pattern) == 0:
+            return True
+        elif len(s) != 0 and len(pattern) == 0:
+            return False
+        elif len(s) == 0  and len(pattern) != 0:
+            if len(pattern) > 1 and pattern[1] == "*":
+                return self.match(s, pattern[2:])
+            else:
+                return False
+        else: # 二者都非空
+            if len(pattern) == 1 or pattern[1] != "*": # 后一位不是 *
+                if s[0] == pattern[0] or pattern[0] == ".":
+                    return self.match(s[1:], pattern[1:])
+                else:
+                    return False
+            else: # 后一位是 *
+                if s[0] != pattern[0] and pattern[0] != ".":
+                    return self.match(s, pattern[2:])
+                else:
+                    return self.match(s[1:], pattern) or self.match(s, pattern[2:])
 ```
 
 ```C++
 // c++
+class Solution {
+public:
+    bool match(char* str, char* pattern) {
+        if (*str == '\0' && *pattern == '\0') {
+            return true;
+        }
+        if (*str != '\0' && *pattern == '\0') {
+            return false;
+        }
+        
+        // 剩下的情况是 *pattern != '\0'
+        // 此时考虑 *(pattern + 1) 是否为 '*'
+        
+        if (*(pattern + 1) != '*') { // 后一位不是 '*'
+            if (*str == *pattern || (*str != '\0' && *pattern == '.')) {
+                return match(str + 1, pattern + 1);
+            } else {
+                return false;
+            }
+        } else { // 后一位是 '*'
+            if (*str == *pattern || (*str != '\0' && *pattern == '.')) {
+                // 注意这里，不确定 * 会重复几次，因此需要 ||
+                return match(str + 1, pattern) || match(str, pattern + 2);
+            } else { // * 被当作空
+                return match(str, pattern + 2);
+            }
+        }
+    }
+};
 ```
 
 ### 53. 表示数值的字符串
@@ -4160,16 +4254,102 @@ int main (int argc, char* argv[])
 
 **解题思路：**
 
-- 待补充
+- 主要思路如下：第一个符号位特殊处理，然后while遍历，记录三个情况：has_value，dot_cnt，e_cnt
+- 特殊情况返回false或者true，两个*或者.同时出现则false，不能在先有e的情况下出现.，后续出现+-符号位时必须在e后边
 
 **参考代码：**
 
 ```python
-# python
+# -*- coding:utf-8 -*-
+class Solution:
+    # s字符串
+    def isNumeric(self, s):
+        # write code here
+        if s == None or len(s) == 0:
+            return False
+        
+        e_cnt = 0
+        dot_cnt = 0
+        has_value = False
+        
+        i = 0 if s[0] != "+" and s[0] != "-" else 1
+        for j in range(i, len(s)):
+            if s[j] >= "0" and s[j] <= "9":
+                has_value = True
+            else:
+                has_value = False
+                if s[j] == "." and e_cnt == 0:
+                    dot_cnt += 1
+                elif s[j] == "e" or s[j] == "E":
+                    e_cnt += 1
+                elif (s[j] == "+" or s[j] == "-") and (s[j-1] == "e" or s[j-1] == "E"):
+                    continue
+                else:
+                    return False
+                
+                if e_cnt >= 2 or dot_cnt >= 2:
+                    return False
+        
+        return has_value
+
+
+# 投机取巧解法
+def func(self, s):
+    try:
+        ss = float(s)
+        return True
+    expect:
+        return False
+
 ```
 
 ```C++
-// c++
+class Solution {
+public:
+    bool isNumeric(char* str) {
+        // 参数合法性判断
+        if (str == nullptr) {
+            return false;
+        }
+        
+        // 处理首位的符号位
+        if (*str == '+' || *str == '-') {
+            str++;
+        }
+        
+        // 辅助参数
+        int e_cnt = 0;
+        int dot_cnt = 0;
+        bool has_value = false;
+        
+        // 为了简化代码
+        str--;
+        while (*(++str) != '\0') {
+            if (*str >= '0' && *str <= '9') {
+                has_value = true;
+            } else {
+                // 以下不会出现数值
+                has_value = false;
+                if (*str == '.' && e_cnt == 0) { // 注意不能在先有e的情况下出现.
+                    dot_cnt++;
+                } else if (*str == 'e' || *str == 'E') {
+                    e_cnt++;
+                } else if ((*str == '+' || *str == '-') && (*(str - 1) == 'e' || *(str - 1) == 'E')) { // 再次出现符号位时，前一位必须为e
+                    continue;
+                } else {
+                    return false;
+                }
+                
+                // 合法性判断
+                if (e_cnt >= 2 || dot_cnt >= 2) { // 两个e或者两个.出现时，即为false
+                    return false;
+                }
+            }
+        }
+        return has_value;
+    }
+
+};
 ```
 
 ### 54. 字符流中第一个不重复的字符
@@ -4180,16 +4360,52 @@ int main (int argc, char* argv[])
 
 **解题思路：**
 
-- 待补充
+- 重点是：使用hash来记录次数，使用string来记录顺序
 
 **参考代码：**
 
 ```python
-# python
+# -*- coding:utf-8 -*-
+class Solution:
+    # 返回对应char
+    def __init__(self):
+        self.hash = []
+    
+    def Insert(self, ch):
+        if ch != None:
+            self.hash.append(ch)
+    
+    def FirstAppearingOnce(self):
+        for i in self.hash:
+            if self.hash.count(i) == 1:
+                return i
+        return "#"
 ```
 
 ```C++
-// c++
+class Solution
+{
+public:
+    string s; // 用来记录顺序
+    char hash[256] = {0};
+    
+    // Insert one char from stringstream
+    void Insert(char ch) {
+        s += ch;
+        hash[ch]++;
+    }
+    
+    // return the first appearence once char in current stringstream
+    char FirstAppearingOnce() {
+        for (auto i : s) {
+            if (hash[i] == 1) {
+                return i;
+            }
+        }
+        
+        return '#';
+    }
+};
 ```
 
 ### 55. 链表中环的入口结点
@@ -4200,16 +4416,56 @@ int main (int argc, char* argv[])
 
 **解题思路：**
 
-- 待补充
+- 利用哈希表直接求解，有其他的高效算法解法，需要看一下
 
 **参考代码：**
 
 ```python
-# python
+# -*- coding:utf-8 -*-
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+class Solution:
+    def EntryNodeOfLoop(self, head):
+        # write code here
+        tmp = []
+        while head != None:
+            if tmp.count(head) == 0:
+                tmp.append(head)
+                head = head.next
+            else:
+                return head
+        
+        return None
 ```
 
 ```C++
-// c++
+/*
+struct ListNode {
+    int val;
+    struct ListNode *next;
+    ListNode(int x) :
+        val(x), next(NULL) {
+    }
+};
+*/
+class Solution {
+public:
+    std::map<ListNode*, int> map;
+    ListNode* EntryNodeOfLoop(ListNode* head) {
+        while (head != nullptr) {
+            if (map.count(head) == 0) {
+                map[head] = head->val;
+                head = head->next;
+            } else {
+                return head;
+            }
+        }
+        
+        return nullptr;
+    }
+};
 ```
 
 ### 56. 删除链表中重复的结点
@@ -4220,16 +4476,104 @@ int main (int argc, char* argv[])
 
 **解题思路：**
 
-- 待补充
+- 看似简单，其实很麻烦
+- 需要考虑的几点：检测到重复后需要删除，头部也有可能重复，所以需要新加一个头检测
+- 可以单独写一个函数，用来判断当前结点的后方有多少个是重复的
+- 注意python中传入参数的引用的使用，另一种思路是函数返回多个值
 
 **参考代码：**
 
 ```python
-# python
+# -*- coding:utf-8 -*-
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+class Solution:
+    def checkSame(self, head):
+        """
+        输入一个结点，输出后边有多个个重复的，以及不重复的那个结点
+        """
+        cnt = 0
+        while head != None and head.next != None:
+            if head.val != head.next.val:
+                return cnt, head.next
+            else:
+                cnt += 1
+                head = head.next
+        
+        return cnt, None
+        
+    def deleteDuplication(self, head):
+        if head == None:
+            return None
+        
+        new_head = ListNode(0)
+        new_head.next = head
+        curr = new_head
+        
+        while curr != None:
+            cnt, tmp = self.checkSame(curr.next)
+            if cnt == 0:
+                curr = curr.next
+            else:
+                curr.next = tmp
+                
+        return new_head.next
 ```
 
 ```C++
-// c++
+/*
+struct ListNode {
+    int val;
+    struct ListNode *next;
+    ListNode(int x) :
+        val(x), next(NULL) {
+    }
+};
+*/
+class Solution {
+public:
+    // 输出一个结点，返回从这里开始有多少个重复的结点，next_head为不重复的下一个结点
+    // 这里注意要用引用
+    int checkSame(ListNode* head, ListNode* & next_head) {
+        int cnt = 0;
+        while (head != nullptr && head->next != nullptr) {
+            if (head->val != head->next->val) {
+                next_head = head->next;
+                return cnt;
+            } else {
+                cnt++;
+                head = head->next;
+            }
+        }
+        
+        next_head = nullptr;
+        return cnt;
+    }
+    
+    ListNode* deleteDuplication(ListNode* head) {
+        if (head == nullptr) {
+            return nullptr;
+        }
+        
+        // 为了检测head是否存在重复，需要新加一个额外的head
+        ListNode* new_head = new ListNode(0);
+        new_head->next = head;
+        ListNode* curr = new_head;
+        ListNode* tmp = nullptr;
+        
+        while (curr != nullptr) {
+            if (checkSame(curr->next, tmp) == 0) {
+                curr = curr->next;
+            } else {
+                curr->next = tmp;
+            }
+        }
+        
+        return new_head->next;
+    }
+};
 ```
 
 ### 57. 二叉树的下一个结点
@@ -4240,16 +4584,83 @@ int main (int argc, char* argv[])
 
 **解题思路：**
 
-- 待补充
+- 分情况讨论即可
+- 空，返回nullptr
+- 右子树非空，while进行中序遍历，找到最底层的left，输出
+- 右子树为空，迭代向上寻找，是父节点的左则输出父节点，是父节点的右则继续迭代
 
 **参考代码：**
 
 ```python
-# python
+# -*- coding:utf-8 -*-
+# class TreeLinkNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+#         self.next = None
+class Solution:
+    def GetNext(self, p):
+        if p == None:
+            return None
+        
+        if p.right != None:
+            p = p.right
+            while p.left != None:
+                p = p.left
+            return p
+        else:
+            while p.next != None:
+                if p == p.next.left:
+                    return p.next
+                else:
+                    p = p.next
+            
+        return None
 ```
 
 ```C++
-// c++
+/*
+struct TreeLinkNode {
+    int val;
+    struct TreeLinkNode *left;
+    struct TreeLinkNode *right;
+    struct TreeLinkNode *next;
+    TreeLinkNode(int x) :val(x), left(NULL), right(NULL), next(NULL) {
+        
+    }
+};
+*/
+class Solution {
+public:
+    TreeLinkNode* GetNext(TreeLinkNode* p) {
+        if (p == nullptr) {
+            return nullptr;
+        }
+        
+        if (p->right != nullptr) {
+            // 右子树非空时，中序遍历右子树，得到一个结点并返回，即最底层的左子树
+            p = p->right;
+            while (p->left != nullptr) {
+                p = p->left;
+            }
+            return p;
+        } else {
+            // 右子树为空时，迭代循环，直到满足输出
+            // 注意一下循环判断条件为p->next，而非是p非空，坑
+            while (p->next != nullptr) {
+                if (p == p->next->left){ // 右子树为空，且p是上一级的左，输出
+                    return p->next;
+                } else { // 右子树为空，且p是上一级的右，迭代
+                    p = p->next;
+                }
+            }
+        }
+       
+        // 最终跳槽循环只可能是，一直是右子树往上迭代，直到顶点
+        return nullptr;
+    }
+};
 ```
 
 ### 58. 对称的二叉树
@@ -4260,16 +4671,69 @@ int main (int argc, char* argv[])
 
 **解题思路：**
 
-- 待补充
+- 递归实现，需要注意的点有：
+- 叶节点的left和right都是空
+- 当前val需要对应相等
+- 镜像比较的含义是，left与right比较，right与left比较
 
 **参考代码：**
 
 ```python
-# python
+# -*- coding:utf-8 -*-
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+class Solution:
+    def isSame(self, a, b):
+        if a == None and b == None:
+            return True
+        elif a != None and b != None:
+            return a.val == b.val and self.isSame(a.left, b.right) and self.isSame(a.right, b.left)
+        else:
+            return False
+    
+    def isSymmetrical(self, root):
+        # write code here
+        if root == None:
+            return True
+        
+        return self.isSame(root.left, root.right)
 ```
 
 ```C++
-// c++
+/*
+struct TreeNode {
+    int val;
+    struct TreeNode *left;
+    struct TreeNode *right;
+    TreeNode(int x) :
+            val(x), left(NULL), right(NULL) {
+    }
+};
+*/
+class Solution {
+public:
+    bool isSame(TreeNode* a, TreeNode* b) {
+        if (a == nullptr && b == nullptr) {
+            return true;
+        } else if (a != nullptr && b != nullptr) {
+            return a->val == b->val && isSame(a->left, b->right) && isSame(a->right, b->left);
+        } else {
+            return false;
+        }
+    }
+    
+    bool isSymmetrical(TreeNode* root) {
+        if (root == nullptr) {
+            return true;
+        }
+        
+        return isSame(root->left, root->right);
+    }
+
+};
 ```
 
 ### 59. 按之字形顺序打印二叉树
@@ -4280,16 +4744,107 @@ int main (int argc, char* argv[])
 
 **解题思路：**
 
-- 待补充
+- 本题和下一道题很类似，难点在于控制每层的打印方向，需要增加额外的变量
+- 关键点在于每一个curr_list都是倒序遍历，设置sign，0/1分别对应先添加left以及先添加right
 
 **参考代码：**
 
 ```python
-# python
+# -*- coding:utf-8 -*-
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+class Solution:
+    def Print(self, root):
+        if root == None:
+            return []
+        
+        ret = []
+        curr_list = [root]
+        sign = 0
+        
+        while curr_list:
+            tmp = []
+            next_list = []
+            curr_list.reverse()
+            
+            for i in curr_list:
+                tmp.append(i.val)
+                if sign == 0:
+                    if i.left:
+                        next_list.append(i.left)
+                    if i.right:
+                        next_list.append(i.right)
+                else:
+                    if i.right:
+                        next_list.append(i.right)
+                    if i.left:
+                        next_list.append(i.left)
+            
+            ret.append(tmp)
+            curr_list = next_list
+            sign = 1 - sign
+        
+        return ret
 ```
 
 ```C++
-// c++
+/*
+struct TreeNode {
+    int val;
+    struct TreeNode *left;
+    struct TreeNode *right;
+    TreeNode(int x) :
+            val(x), left(NULL), right(NULL) {
+    }
+};
+*/
+class Solution {
+public:
+    vector<vector<int> > Print(TreeNode* root) {
+        vector<vector<int>> ret;
+        if (root == nullptr) {
+            return ret;
+        }
+        
+        int sign = 0; // 表示从左到右
+        vector<TreeNode*> curr_list = {root};
+        
+        while (!curr_list.empty()) {
+            vector<int> tmp;
+            vector<TreeNode*> next_list;
+            
+            // 永远是倒序遍历
+            // 0先右后左添加，1先左后右添加
+            for (int j = curr_list.size() - 1; j >= 0; j--) {
+                auto i = curr_list[j];
+                tmp.push_back(i->val);
+                if (sign == 0) {
+                    if (i->left != nullptr) {
+                        next_list.push_back(i->left);
+                    }
+                    if (i->right != nullptr) {
+                        next_list.push_back(i->right);
+                    }
+                } else {
+                    if (i->right != nullptr) {
+                        next_list.push_back(i->right);
+                    }
+                    if (i->left != nullptr) {
+                        next_list.push_back(i->left);
+                    }
+                }
+            }
+            ret.push_back(tmp);
+            curr_list = next_list;
+            sign = 1 - sign;
+        }
+        
+        return ret;
+    }
+};
 ```
 
 ### 60. 把二叉树打印成多行
@@ -4300,16 +4855,85 @@ int main (int argc, char* argv[])
 
 **解题思路：**
 
-- 待补充
+- 关键是四个vector，ret : 最终输出，curr_list : 当前层结点，next_list : 下一层非空结点，tmp : 当前层结点val
+- 步骤：１）循环遍历curr_list，２）把每个结点val整合到tmp，最终整合到ret，３）把每个结点的left, right整合到next_list, 然后赋值给curr_list
 
 **参考代码：**
 
 ```python
-# python
+# -*- coding:utf-8 -*-
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+class Solution:
+    # 返回二维列表[[1,2],[4,5]]
+    def Print(self, root):
+        # write code here
+        ret = []
+        if root == None:
+            return ret
+        
+        curr_list = [root]
+        
+        while curr_list:
+            tmp = []
+            next_list = []
+            for i in curr_list:
+                tmp.append(i.val)
+                if i.left:
+                    next_list.append(i.left)
+                if i.right:
+                    next_list.append(i.right)
+            ret.append(tmp)
+            curr_list = next_list
+            
+        return ret
 ```
 
 ```C++
-// c++
+/*
+struct TreeNode {
+    int val;
+    struct TreeNode *left;
+    struct TreeNode *right;
+    TreeNode(int x) :
+            val(x), left(NULL), right(NULL) {
+    }
+};
+*/
+class Solution {
+public:
+        vector<vector<int> > Print(TreeNode* root) {
+            vector<vector<int>> ret;
+            if (root == nullptr) {
+                return ret;
+            }
+            
+            vector<TreeNode*> curr_list = {root};
+            
+            while (!curr_list.empty()) {
+                // 将curr_list内值整理到ret，同时子结点整理到next_list
+                vector<int> tmp;
+                vector<TreeNode*> next_list;
+                for (auto i : curr_list) {
+                    tmp.push_back(i->val);
+                    if (i->left != nullptr) {
+                        next_list.push_back(i->left);
+                    }
+                    if (i->right != nullptr) {
+                        next_list.push_back(i->right);
+                    }
+                }
+                
+                ret.push_back(tmp);
+                curr_list = next_list;
+            }
+            
+            return ret;
+        }
+};
 ```
 
 ### 61. 序列化二叉树
@@ -4324,16 +4948,115 @@ int main (int argc, char* argv[])
 
 **解题思路：**
 
-- 待补充
+- 分析：（1）思考什么表示结束？#，那么！是用来干什么的？（！用来表示当前结点值结束了，如12！）（2）思考返回值是什么？字符串指针
+- 需要另外编写两个函数用来递归调用：c++之所以这样做是考虑，生成的str是局部变量，跳出函数后有可能会清空
+- 注意python函数参数，如果在函数形式参数中传递list时，使用保持list的引用（针对删除列表元素这个操作，不能使用冒号赋值，需要使用del）
+- 更为高效的方式为，每个val或者#后边都加上“，”，这样解析的时候可以直接使用split(",")解析出来“#”或者一个str形式的val
 
 **参考代码：**
 
 ```python
-# python
+# -*- coding:utf-8 -*-
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+class Solution:
+    def Serialize(self, root):
+        # write code here
+        if root == None:
+            return "#"
+        
+        return str(root.val) + "!" + self.Serialize(root.left) + self.Serialize(root.right)
+    
+    def my_Deserialize(self, s):
+        # 传递列表更加方便
+        if s[0] == "#":
+            s.pop(0)
+            return None
+        
+        # 获取当前值
+        index = s.index("!")
+        curr_val = int("".join(s[:index]))
+        del s[:index + 1]
+        #s = s[index + 1:] // 这是错误的方式
+        
+        currNode = TreeNode(curr_val)
+        currNode.left = self.my_Deserialize(s)
+        currNode.right = self.my_Deserialize(s)
+        
+        return currNode
+        
+    def Deserialize(self, s):
+        # 注意字符串参数是传值的
+        if s == "":
+            return None
+        
+        tmp = list(s)
+        return self.my_Deserialize(tmp)
 ```
 
 ```C++
-// c++
+/*
+struct TreeNode {
+    int val;
+    struct TreeNode *left;
+    struct TreeNode *right;
+    TreeNode(int x) :
+            val(x), left(NULL), right(NULL) {
+    }
+};
+*/
+class Solution {
+public:
+    std::string ret;
+    
+    std::string my_Serialize(TreeNode *root) {
+        if (root == nullptr) {
+            return "#";
+        } else {
+            // 先序遍历
+            return std::to_string(root->val) + "!" + my_Serialize(root->left) + my_Serialize(root->right);
+        }
+    }
+    
+    TreeNode* my_Deserialize(char* &str) {
+        if (*str == '#') {
+            return nullptr;
+        }
+        
+        // 提取当前结点值
+        int curr_val = 0;
+        while (*str != '!') {
+            curr_val = curr_val * 10 + (*str - '0');
+            str++;
+        }
+        
+        TreeNode* currNode = new TreeNode(curr_val);
+        currNode->left = my_Deserialize(++str);
+        currNode->right = my_Deserialize(++str);
+        
+        return currNode;
+    }
+    
+    char* Serialize(TreeNode *root) {    
+        if (root == nullptr) {
+            return nullptr;
+        }
+        
+        this->ret = my_Serialize(root);
+        return (char*)(ret.c_str());
+    }
+    
+    TreeNode* Deserialize(char *str) {
+        if (str == nullptr) {
+            return nullptr;
+        }
+        
+        return my_Deserialize(str);
+    }
+};
 ```
 
 ### 62. 二叉搜索树的第k个结点
@@ -4344,16 +5067,80 @@ int main (int argc, char* argv[])
 
 **解题思路：**
 
-- 待补充
+- 思路一：先整体排序，保存到vector，之后输出所以为k-1的元素
+- 高效方法：中序遍历第k个即可，利用全局变量
 
 **参考代码：**
 
 ```python
-# python
+# -*- coding:utf-8 -*-
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+class Solution:
+    def __init__(self):
+        self.index = 0
+    
+    def KthNode(self, root, k):
+        # 返回对应节点TreeNode
+        if root == None or k <= 0:
+            return None
+        
+        tmp = self.KthNode(root.left, k)
+        if tmp:
+            return tmp
+        
+        self.index += 1
+        if self.index == k:
+            return root
+        
+        tmp = self.KthNode(root.right, k)
+        if tmp:
+            return tmp
+        
+        return None
 ```
 
 ```C++
-// c++
+/*
+struct TreeNode {
+    int val;
+    struct TreeNode *left;
+    struct TreeNode *right;
+    TreeNode(int x) :
+            val(x), left(NULL), right(NULL) {
+    }
+};
+*/
+class Solution {
+public:
+    int index = 0;
+    
+    TreeNode* KthNode(TreeNode* root, int k) {
+        if (root == nullptr or k <= 0) {
+            return nullptr;
+        }
+        
+        TreeNode* tmp;
+        tmp = KthNode(root->left, k);
+        if (tmp) { // 需要提前检测是否要返回
+            return tmp;
+        }
+        
+        if (++index == k) {
+            return root;
+        }
+        
+        tmp = KthNode(root->right, k);
+        if (tmp) { // 需要提前检测是否要返回
+            return tmp;
+        }
+        
+        return nullptr; // 如果没有找到
+    }
+};
 ```
 
 ### 63. 数据流中的中位数
@@ -4364,16 +5151,58 @@ int main (int argc, char* argv[])
 
 **解题思路：**
 
-- 待补充
+- 主要思路：排序，然后找中位数元素，求解
+- 有两种方式，一是借助stl进行排序，二是自行排序
 
 **参考代码：**
 
 ```python
-# python
+# -*- coding:utf-8 -*-
+class Solution:
+    def __init__(self):
+        self.data = []
+    
+    def Insert(self, num):
+        # write code here
+        self.data.append(num)
+        self.data.sort()
+    
+    def GetMedian(self, not_used):
+        # write code here
+        length = len(self.data)
+        if length == 0:
+            return 0.0
+        
+        if length % 2 == 1:
+            return self.data[length // 2]
+        else:
+            return float(self.data[length // 2] + self.data[length // 2 - 1]) / 2
 ```
 
 ```C++
-// c++
+#include <algorithm>
+class Solution {
+public:
+    std::vector<int> data;
+    
+    void Insert(int num) {
+        data.push_back(num);
+        sort(data.begin(), data.end());
+    }
+
+    double GetMedian() {
+        int length = data.size();
+        if (length == 0) {
+            return 0.0;
+        }
+        
+        if (length % 2 == 1) {
+            return data[length / 2];
+        } else {
+            return double(data[length / 2] + data[length / 2 - 1]) / 2;
+        }
+    }
+};
 ```
 
 ### 64. 滑动窗口的最大值
@@ -4384,7 +5213,9 @@ int main (int argc, char* argv[])
 
 **解题思路：**
 
-- 待补充
+- 常规思路：正常化窗，每次使用stl求最大值
+- 高效思路：每次平移后，不需要全部排序求最大值，只需要两点，确定之前的最大值是否被丢弃，新来的值与之前的最大值相比哪个更大
+- 其它实现方式：双端队列，两端删除，参考它解法
 
 **参考代码：**
 
@@ -4393,7 +5224,25 @@ int main (int argc, char* argv[])
 ```
 
 ```C++
-// c++
+#include <algorithm>
+class Solution {
+public:
+    vector<int> maxInWindows(const vector<int>& num, unsigned int size) {
+        vector<int> ret;
+        int length = num.size();
+        
+        if (size > length || size == 0) {
+            return ret;
+        }
+        
+        for (int i = 0; i <= length - size; i++) {
+            ret.push_back(*std::max_element(num.begin() + i, num.begin() + i + size));
+        }
+        
+        return ret;
+    }
+};
+
 ```
 
 ### 65. 矩阵中的路径
@@ -4404,16 +5253,109 @@ int main (int argc, char* argv[])
 
 **解题思路：**
 
-- 待补充
+- 思路：有些难，递归回溯法
+- 更为高效的python版本是直接转换为二维列表（留待后续补充吧）
+- 回溯法的基本做法是搜索，或是一种组织得井井有条的，能避免不必要搜索的穷举式搜索法。这种方法适用于解一些组合数相当大的问题。回溯法指导思想——走不通，就掉头。设计过程：确定问题的解空间；确定结点的扩展规则；搜索。
 
 **参考代码：**
 
 ```python
-# python
+# -*- coding:utf-8 -*-
+class Solution:
+    def hasPath(self, matrix, rows, cols, path):
+        # write code here
+        if not matrix or not path or rows <= 0 or cols <= 0:
+            return False
+        
+        matrix = list(matrix)        # 原来是一维字符串
+        flag = [False] * rows * cols # 表示全都没有遍历过
+        
+        for i in range(rows):
+            for j in range(cols):
+                if self.haha(matrix, rows, cols, i, j, path, 0, flag):
+                    return True
+        
+        return False
+    
+    def haha(self, matrix, rows, cols, i, j, path, k, flag):
+        index = i * cols + j
+        
+        if i < 0 or i >= rows or j < 0 or j >= cols or k >= len(path) or matrix[index] != path[k] or flag[index] == True:
+            return False
+        
+        if k == len(path) - 1:
+            return True
+        
+        flag[index] = True
+        
+        if self.haha(matrix, rows, cols, i - 1, j, path, k + 1, flag) or \
+           self.haha(matrix, rows, cols, i + 1, j, path, k + 1, flag) or \
+           self.haha(matrix, rows, cols, i, j - 1, path, k + 1, flag) or \
+           self.haha(matrix, rows, cols, i, j + 1, path, k + 1, flag):
+            return True
+        
+        flag[index] = False
+        return False
 ```
 
 ```C++
-// c++
+class Solution {
+public:
+    bool hasPath(char* matrix, int rows, int cols, char* str) {
+        // 合法性判断
+        if (matrix == nullptr || str == nullptr || rows <= 0 || cols <= 0) {
+            return false;
+        }
+        
+        // 标记是否遍历过的数组
+        bool* flag = new bool[rows * cols];
+        memset(flag, false, rows * cols);
+        
+        // 遍历整个数组，作为起点，haha判断是否找到路径
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (haha(matrix, rows, cols, i, j, str, 0, flag)) {
+                    return true;
+                }
+            }
+        }
+        
+        // 没有找到
+        delete[] flag;
+        return false;
+    }
+    
+    bool haha(char* matrix, int rows, int cols, int i, int j, char* str, int k, bool* flag) {
+        // 二维索引处理为一维索引
+        int index = i * cols + j;
+        
+        // 递归的合法性判断，直接返回的情况（出界，不等，已经遍历过）
+        if (i < 0 || i > rows || j < 0 || j > cols || matrix[index] != str[k] || flag[index] == true) {
+            return false;
+        }
+        
+        // 如果str已经到头了，之前的都找到了，则true
+        if (str[k + 1] == '\0') {
+            return true;
+        }
+        
+        // 标记当前的位置已经遍历过
+        flag[index] = true;
+        
+        // 递归从四个方向回溯
+        if (   haha(matrix, rows, cols, i - 1, j, str, k + 1, flag)
+            || haha(matrix, rows, cols, i + 1, j, str, k + 1, flag)
+            || haha(matrix, rows, cols, i, j - 1, str, k + 1, flag)
+            || haha(matrix, rows, cols, i, j + 1, str, k + 1, flag)) {
+            return true;
+        }
+        
+        // 如果没有找到，则标记为没有遍历过
+        flag[index] = false;
+        return false;
+    }
+
+};
 ```
 
 ### 66. 机器人的运动范围
@@ -4424,16 +5366,100 @@ int main (int argc, char* argv[])
 
 **解题思路：**
 
-- 待补充
+- 递归回溯法：走过就标记
 
 **参考代码：**
 
 ```python
-# python
+# -*- coding:utf-8 -*-
+class Solution:
+    def __init__(self):
+        self.count = 0
+    
+    def my_sum(self, a):
+        ret = 0
+        while a != 0:
+            ret += a % 10
+            a //= 10
+        return ret
+    
+    def findway (self, threshold, rows, cols, i, j, flag):
+        if i < 0 or i >= rows or j < 0 or j >= cols or flag[i][j] == 1:
+            return
+        
+        if self.my_sum(i) + self.my_sum(j) > threshold:
+            return
+        
+        flag[i][j] = 1
+        self.count += 1
+        
+        self.findway(threshold, rows, cols, i + 1, j, flag)
+        self.findway(threshold, rows, cols, i - 1, j, flag)
+        self.findway(threshold, rows, cols, i, j - 1, flag)
+        self.findway(threshold, rows, cols, i, j + 1, flag)
+        return
+        
+    def movingCount(self, threshold, rows, cols):
+        # write code here
+        if threshold > 0 and rows > 0 and cols > 0:
+            flag = [[0 for i in range(cols)] for j in range(rows)]
+            self.findway(threshold, rows, cols, 0, 0, flag)
+        return self.count
 ```
 
 ```C++
-// c++
+class Solution {
+public:
+    int cnt = 0;
+    bool* flag;
+    
+    // 获取a的数位之和
+    int sum(int a) {
+        int ret = 0;
+        while (a != 0) {
+            ret += a % 10;
+            a /= 10;
+        }
+        return ret;
+    }
+    
+    void search(int threshold, int rows, int cols, int i, int j) {
+        int index = i * cols + j;
+        
+        // 出界或者已经遍历过了，返回
+        if (i < 0 || i >= rows || j < 0 || j >= cols || flag[index] == true) {
+            return;
+        }
+        
+        // 大于门限返回
+        if (sum(i) + sum(j) > threshold) {
+            return;
+        }
+        
+        // 当前格子可以进入
+        flag[index] = true;
+        cnt++;
+        
+        search(threshold, rows, cols, i + 1, j);
+        search(threshold, rows, cols, i - 1, j);
+        search(threshold, rows, cols, i, j - 1);
+        search(threshold, rows, cols, i, j + 1);
+        
+    }
+    
+    int movingCount(int threshold, int rows, int cols) {
+        // 合理性判断
+        if (threshold <= 0 || rows <= 0 || cols <= 0) {
+            return cnt;
+        }
+        
+        flag = new bool[rows * cols];
+        memset(flag, false, rows * cols);
+        
+        search(threshold, rows, cols, 0, 0);
+        return cnt;
+    }
+};
 ```
 
 ### 67. 剪绳子
@@ -4444,20 +5470,70 @@ int main (int argc, char* argv[])
 
 **解题思路：**
 
-- 待补充
+- 有几点先验知识需要考虑：
+- 全部分为长度为1的线段，没有意义，乘积为1
+- 分为若干段时，这几段越接近，乘积越大（均值不等式）
+- 不能出现1，出现1还不如把1加到之前那个上边，乘积更大一些
+- 3的效率最高
+- 存在高效算法，后续应补充（贪婪算法，动态规划）
 
 **参考代码：**
 
 ```python
-# python
+# -*- coding:utf-8 -*-
+class Solution:
+    def cutRope(self, n):
+        # write code here
+        if n <= 3:
+            return n - 1
+        cnt3 = n // 3 - 1 if n % 3 == 1 else n // 3
+        cnt2 = (n - cnt3 * 3) // 2
+        return 2**cnt2 * 3**cnt3
 ```
 
 ```C++
-// c++
+个人解法1：
+#include<cmath>
+class Solution {
+public:
+    int cutRope(int n) {
+        if (n <= 2) {
+            return 1;
+        }
+        
+        if (n == 3) {
+            return 2;
+        }
+        
+        long ret = 0;
+        int cnt2 = (n % 2 == 0 ? n/2 : n/2-1);
+        int cnt3 = (n % 2 == 0 ? 0 : 1);
+        
+        while (cnt2 >= 3) {
+            cnt2 -= 3;
+            cnt3 += 2;
+        }
+        
+        ret = pow(2, cnt2) * pow(3, cnt3);
+        return ret;
+    }
+};
+
+个人高度优化版：
+#include<cmath>
+class Solution {
+public:
+    int cutRope(int n) {
+        if (n <= 3) return n - 1;
+        int cnt3 = (n % 3 == 1 ? n / 3 - 1 : n / 3);
+        int cnt2 = (n - cnt3 * 3) / 2;
+        return pow(2, cnt2) * pow(3, cnt3);
+    }
+};
 ```
 
 
-## 第二部分
+## 第二部分　分类汇总
 
 ```markdown
 分类汇总
