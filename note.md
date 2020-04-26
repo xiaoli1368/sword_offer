@@ -17,6 +17,7 @@
 
 **解题思路：**
 
+- 考察知识点：数组
 - 暴力枚举：时间复杂度过大
 - 高效解法：利用矩阵的有序性，从而实现更快的检测。（矩阵的L型结构都是有序的，反L也是有序的，因此可以从左下角开始查找，或者从右上角开始查找）
 
@@ -471,148 +472,85 @@ class Solution:
 
 **解题思路：**
 
-- 这道题一开始没有思路（能够想到是二分折半），直接采用暴力枚举的方式做的，没想到还通过了
-- 高效思路是，每次进行折半划分，确定两边的子数组，哪个是非递减数组，哪个是新的旋转数组（旋转数组的首元素大于尾部元素）
-- 注意特殊情况是相等，此时无法进行数组划分，因此需要采用常规查找
-- 对于二分查找，有几个需要注意的边界问题，中间middle的取值，可以有两种形式，(low+right)/2或者(row+right+1)/2，可以发现当范围逐渐缩小到有两个值时（row/right），此时的middle在两种形式下分别对应row和right
-- 另外一个注意的地方就是，缩小范围时的判断条件。假设当首元素小于尾元素，则认为这一段数据是递增的。那么区分当前数组的判断添加有两个，将row与middle比较，或者将middle与high比较。注意这两种情况与middle的取值情况应该对应，同时也会具备不同的迭代方式。
-- 主要考察的内容就是二分查找的深层次运用
+- 考察知识点：数组，二分查找
+- 暴力枚举：这道题一开始没有思路（能够想到是二分折半），但直接采用暴力枚举的方式做的，没想到还通过了
+- 高效思路：每次进行折半划分，确定两边的子数组，哪个是非递减数组，哪个是新的旋转数组（旋转数组的首元素大于尾部元素）
+- 注意特殊情况是相等，此时无法进行数组划分，因此需要采用常规查找最小值
+- 对于二分查找，需要注意中间middle的取值，可以有两种形式，(low+right)/2或者low+(high-low)/2，都是偏向low。另外一个注意的地方就是，缩小范围时的判断条件和区间划分。将array[m]与array[l]或者array[h]比较，二者实现形式并不一致，其中一个要简单，另外一个需要更为复杂的边界条件。
+- 可以将本题看做是求数组[0, 0, 0, 1, -1, 0, 0, 0]中的-1，注意到在二分查找的区间划分中，-1属于h半段，因此编程中使用array[m]与array[h]比较更为方便（因为如果此时选择与array[l]比较，则有可能发生在更新l时跳过目标点的情况，需要细细体会，倘若要求的值位于l半段，则与array[l]比较更为方便）
+- 另一种思路：使用array[m]与array[l]比较来获取最大值点，然后最大值点的右侧就是待求最小值
 
 **参考代码：**
 
 ```c++
-// 暴力查找版本
+// cpp
 class Solution {
 public:
-    int minNumberInRotateArray(vector<int> rotateArray) {
-        int length = rotateArray.size();
-        if (length == 0) {
+    int minNumberInRotateArray(std::vector<int> array) {
+        if (array.empty()) {
             return 0;
         }
-        for (int i = 0; i < length - 1; i++) {
-            if (rotateArray[i] > rotateArray[i + 1]) {
-                return rotateArray[i + 1];
+
+        int l = 0;
+        int h = array.size() - 1;
+        while (l <= h) {
+            int m = (l + h) / 2;
+            if (array[l] == array[m] && array[m] == array[h]) {
+                return minNumber(array, l, h);
+            } else if (array[m] <= array[h]) {
+                h = m;
+            } else {
+                l = m + 1;
             }
         }
-        return rotateArray[0];
+        return array[l];
     }
-};
-
-// 高效版本
-class Solution {
-public:
-    int minNumber(vector<int> array, int low, int high) {
+    
+    int minNumber(std::vector<int> array, int low, int high) {
         int tmp = array[low];
-        for (int i = 0; i <= high; i++) {
-            if (array[i] < tmp) {
+        for (int i = low; i <= high; i++) {
+            if (tmp > array[i]) {
                 tmp = array[i];
             }
         }
         return tmp;
-    }
-    
-    int minNumberInRotateArray(vector<int> array) {
-        int length = array.size();
-        if (length == 0) {
-            return 0;
-        }
-        
-        int low = 0;
-        int high = length - 1;
-        while (low < high) {
-            int middle = (low + high + 1) / 2;
-            if (array[low] == array[middle] && array[middle] == array[high]) {
-                return minNumber(array, low, high);
-            } else if (array[low] <= array[middle]) {
-                low = middle;
-            } else {
-                if (low + 1 == middle) {
-                    low++;
-                }
-                high = middle;
-            }
-        }
-        return array[low];
-    }
-};
-
-// 参考答案
-class Solution {
-public:
-    int minNumber(vector<int> array, int low, int high) {
-        int tmp = array[low];
-        for (int i = 0; i <= high; i++) {
-            if (array[i] < tmp) {
-                tmp = array[i];
-            }
-        }
-        return tmp;
-    }
-    
-    int minNumberInRotateArray(vector<int> array) {
-        int length = array.size();
-        if (length == 0) {
-            return 0;
-        }
-        
-        int low = 0;
-        int high = length - 1;
-        while (low < high) {
-            int middle = (low + high) / 2;
-            if (array[low] == array[middle] && array[middle] == array[high]) {
-                return minNumber(array, low, high);
-            } else if (array[middle] >= array[high]) {
-                low = middle + 1;
-            } else {
-                high = middle;
-            }
-        }
-        return array[low];
     }
 };
 ```
 
 ```python
-# 暴力查找版本
-# -*- coding:utf-8 -*-
+# python
 class Solution:
-    def minNumberInRotateArray(self, rotateArray):
-        # write code hereA
-        if rotateArray == []:
-            return 0
-        for i in range(len(rotateArray) - 1):
-            if rotateArray[i] > rotateArray[i + 1]:
-                return rotateArray[i + 1]
-        return rotateArray[0]
-    
-# 高效版本
-# -*- coding:utf-8 -*-
-class Solution:
-    def minNumber(self, array, low, high):
-        tmp = array[low]
-        while low <= high:
-            if array[low] < tmp:
-                tmp = array[low]
-            low += 1
-        return tmp
-
     def minNumberInRotateArray(self, array):
-        # write code here
+        """
+        二分查找，高效思路，优先使用[m, h]区间
+        """
         length = len(array)
         if length == 0:
             return 0
         
-        low = 0
-        high = length - 1
-        while low < high:
-            middle = (low + high) // 2 
-            if array[low] == array[middle] and array[middle] == array[high]:
-                return self.minNumber(array, low, high)
-            elif array[middle] >= array[high]:
-                low = middle + 1
+        l = 0
+        h = length - 1
+        while l <= h:
+            m = (l + h) // 2
+            if array[l] == array[m] and array[m] == array[h]:
+                return self.minNumber(array, l, h)
+            elif array[m] <= array[h]:
+                h = m
             else:
-                high = middle
-        return array[low]
+                l = m + 1
+        return array[l]
+
+    def minNumber(self, array, l, h):
+        """
+        输入一个数组，返回最小值
+        """
+        tmp = array[l]
+        while l <= h:
+            if tmp > array[l]:
+                tmp = array[l]
+            l += 1
+        return tmp
 ```
 
 ### 07. 斐波那契数列
@@ -4010,6 +3948,7 @@ public:
 
 **解题思路：**
 
+- 考察知识点：数组，哈希
 - 暴力枚举：二重循环遍历，每个位置与后续的全部位置进行比较，复杂度是O(N^2)
 - 哈希思路：使用map或者set来解题
 - 高效思路：考虑到题目中给出了对原始数组的限制，即**长度为N的数组，元素取值为0~N-1**，因此必然有重复。考虑到如果把数组完全升序排序，则一定会有**位置i处的元素值不是i**的情况发生，因此本题考察的就是如何进行元素位置的移动，使得尽快出现**位置i处的元素值不是i**的情况发生
