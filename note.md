@@ -17,56 +17,44 @@
 
 **解题思路：**
 
-- 直接的方式就是暴力枚举
-- 最优的策略是利用矩阵的有序性，从而实现更快的检测。（矩阵的L型结构都是有序的，反L也是有序的，因此可以从左下角开始查找，或者从右上角开始查找）
+- 暴力枚举：时间复杂度过大
+- 高效解法：利用矩阵的有序性，从而实现更快的检测。（矩阵的L型结构都是有序的，反L也是有序的，因此可以从左下角开始查找，或者从右上角开始查找）
 
 **参考代码：**
 
-```python
-# 这一版比较低级
-# 从左上角开始查找，相等则退出
-# 更大时则优先向右移动，遇到边界开始向下移（使用flag记录比较的方向，向右还是向下）
-# 变小时向下移动
-# 如果是连续两次都是变小，此时根据flag则应进行左移动
+```c++
+// c++
+class Solution {
+public:
+	bool Find(int target, std::vector<std::vector<int>> array) {
+		if (array.empty()) {
+			return false;
+		}
 
-# -*- coding:utf-8 -*-
-class Solution:
-    # array 二维列表
-    def Find(self, target, array):
-        # write code here
-        i = 0
-        j = 0
-        dire = 0
-        ilen = len(array)
-        jlen = len(array[0])
-        while (i < ilen and j < jlen and i >= 0 and j >= 0):
-            if target == array[i][j]:
-                return True
-            elif target > array[i][j] and j + 1 < jlen:
-                j += 1
-                dire = 0
-            elif target > array[i][j] and j + 1 == jlen:
-                i += 1
-                dire = 1
-            elif target < array[i][j] and dire == 0:
-                i += 1
-                j -= 1
-                dire = 1
-            elif target < array[i][j] and dire == 1:
-                j -= 1
-        return False
+		int i = 0;
+		int j = array[0].size() - 1;
+		while (i < array.size() && j >= 0) {
+	        if (target == array[i][j]) {
+			    return true;
+			} else if (target < array[i][j]) {
+			    j--;
+			} else {
+			    i++;
+			}
+		}
+
+		return false;
+	}
+};
 ```
 
 ```python
-# 这个是高效的算法
-# -*- coding:utf-8 -*-
+# python
 class Solution:
-    # array 二维列表
     def Find(self, target, array):
-        # write code here
         i = 0
         j = len(array[0]) - 1
-        while (i < len(array) and j >= 0):
+        while i < len(array) and j >= 0:
             if target == array[i][j]:
                 return True
             elif target < array[i][j]:
@@ -74,26 +62,6 @@ class Solution:
             else:
                 i += 1
         return False
-```
-
-```c++
-class Solution {
-public:
-    bool Find(int target, vector<vector<int> > array) {
-        int i = 0;
-        int j = array[0].size() - 1;
-        while (i < array.size() && j >= 0) {
-            if (target == array[i][j]) {
-                return true;
-            } else if (target < array[i][j]) {
-                j--;
-            } else {
-                i++;
-            }
-        }
-        return false;
-    }
-};
 ```
 
 ### 02. 替换空格
@@ -4042,74 +4010,46 @@ public:
 
 **解题思路：**
 
-- 第一思路是二重循环遍历，每个位置与后续的全部位置进行比较，这样的复杂度是O(N*(N-1))
-- 考虑到题目中给出了对原始数组的限制，即**长度为N的数组，元素取值为0~N-1**，因此必然有重复
-- 考虑到如果把数组完全升序排序，则一定会有**位置i处的元素值不是i**的情况发生
-- 因此本题考察的就是如何进行元素位置的移动，使得尽快出现**位置i处的元素值不是i**的情况发生
-- 需要注意的点就是：python/C++在进行数组内元素交换的时候的方法
+- 暴力枚举：二重循环遍历，每个位置与后续的全部位置进行比较，复杂度是O(N^2)
+- 哈希思路：使用map或者set来解题
+- 高效思路：考虑到题目中给出了对原始数组的限制，即**长度为N的数组，元素取值为0~N-1**，因此必然有重复。考虑到如果把数组完全升序排序，则一定会有**位置i处的元素值不是i**的情况发生，因此本题考察的就是如何进行元素位置的移动，使得尽快出现**位置i处的元素值不是i**的情况发生
+- 需要注意：python/C++在进行数组内元素交换的时候的方法，nums[nums[i]]的使用
 
 **参考代码：**
 
-```python
-class solution():
-    # 需要赋值到duplication[0]
-    # 函数返回bool
-    def duplicate(self, numbers, duplication):
-        i = 0 
-        while (i < len(numbers)):
-            if numbers[i] == i:
-                i += 1
-            elif numbers[i] != numbers[numbers[i]]:
-                index = numbers[i]
-                numbers[i], numbers[index] = numbers[index], numbers[i]
-            else:
-                duplication[0] = numbers[i]
-                return True
-        return False
-
-
-if __name__ == "__main__":
-    test = [2, 3, 1, 0, 2, 5, 3]
-    duplication = [0] 
-    s = solution()
-    print(s.duplicate(test, duplication), duplication[0])
-```
-
-```C++
-#include <iostream>                                                  
+```cpp
+// cpp
 class Solution {
 public:
-    bool duplicate(int numbers[], int length, int* duplication) {
-        int i = 0;
-        int index = 0;
-        while (i < length) {
-            if (numbers[i] == i) {
-                i++;
-            } else if (numbers[i] != numbers[numbers[i]]) {
-                index = numbers[i];
-                numbers[i] = numbers[index];
-                numbers[index] = index;
-            } else {
-                duplication[0] = numbers[i];
-                return true;
+    bool duplicate(int nums[], int length, int* duplication) {
+        for (int i = 0; i < length; i++) {
+            while (nums[i] != i) {
+                if (nums[i] == nums[nums[i]]) {
+                    duplication[0] = nums[i];
+                    return true;
+                }
+                int curr = nums[i];
+                nums[i] = nums[curr];
+                nums[curr] = curr;
             }
-        }
+        }      
         return false;
     }
 };
+```
 
-int main (int argc, char* argv[])
-{
-    int numbers[] = {2, 3, 1, 0, 2, 5, 3};
-    int duplication[] = {0};
-    Solution s;
-    if (s.duplicate(numbers, 7, duplication)) {
-        printf("Ture %d\n", duplication[0]);
-    } else {
-        printf("False\n");
-    }
-    return 0;
-}
+```python
+# python
+class solution():
+    def duplicate(self, nums, duplication):
+        for i in range(len(nums)):
+            while nums[i] != i:
+                if nums[i] == nums[nums[i]]:
+                    duplication[0] = nums[i]
+                    return True
+                else:
+                    nums[nums[i]], nums[i] = nums[i], nums[nums[i]]
+        return False
 ```
 
 ### 51. 构建乘积数组

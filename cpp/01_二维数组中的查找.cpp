@@ -3,7 +3,51 @@
 
 class Solution {
 public:
+    // 暴力枚举
+	bool Find1(int target, std::vector<std::vector<int>> array) {
+		if (array.empty()) {
+			return false;
+		}
+
+        for (auto i : array) {
+			for (auto j : i) {
+				if (j == target) {
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+	
+	// 从左下开始查找的版本
+	bool Find2(int target, std::vector<std::vector<int>> array) {
+		if (array.empty()) {
+			return false;
+		}
+
+		int i = array.size() - 1;
+		int j = 0;
+		while (j < array[0].size() && i >= 0) {
+	        if (target == array[i][j]) {
+			    return true;
+			} else if (target < array[i][j]) {
+			    i--;
+			} else {
+			    j++;
+			}
+		}
+
+		return false;
+	}
+
+
+    // 最终优化版，从右上开始查找
 	bool Find(int target, std::vector<std::vector<int>> array) {
+		if (array.empty()) {
+			return false;
+		}
+
 		int i = 0;
 		int j = array[0].size() - 1;
 		while (i < array.size() && j >= 0) {
@@ -18,6 +62,22 @@ public:
 
 		return false;
 	}
+
+    // 测试函数
+	void test(int& target, std::vector<std::vector<int>>& array) {
+		int i = 1;
+		for (auto ptr : this->func_vec_) {
+			std::cout << "Function " << i++
+			          << " , result: " << (this->*ptr)(target, array)
+					  << std::endl;
+		}
+	}
+
+private:
+    typedef bool (Solution::*func_ptr)(int, std::vector<std::vector<int>>);
+	std::vector<func_ptr> func_vec_ = {&Solution::Find1,
+	                                   &Solution::Find2,
+									   &Solution::Find};
 };
 
 int main(int argc, char* argv[])
@@ -29,10 +89,6 @@ int main(int argc, char* argv[])
 	                                       {10, 13, 14, 17, 24},
 										   {18, 21, 23, 26, 30}};
 	Solution s;
-	if (s.Find(target, array)) {
-	    std::cout << "Ture" << std::endl;
-	} else {
-        std::cout << "False" << std::endl;	
-	}
+	s.test(target, array);
 	return 0;
 }
