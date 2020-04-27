@@ -918,30 +918,18 @@ public:
 
 **解题思路：**
 
-- 思路1：借助额外数组，完成奇偶元素的分离，最终拼接输出（空间换时间）
-- 思路2：借助一个数组，两次遍历，第一次遍历确定奇偶分界线的索引，第二次遍历进行添加
-- 思路3：使用冒泡思想，每次将当前最后一个偶数上浮到数组最右边，（时间换空间，二重循环，复杂度大，可适当优化）
+- 思路1：借助两个数组，完成奇偶元素的分离，最终拼接输出（空间换时间）
+- 思路2：借助一个数组，两次遍历，第一次遍历确定奇偶分界线的索引，第二次遍历进行添加不同的元素
+- 思路3：使用冒泡思想，每次将当前最后一个偶数上浮到数组最右边（时间换空间，二重循环，复杂度大，可适当优化）
 - 高效思路：插入排序，外层遍历找到第一个奇数，然后内层遍历将该奇数搬移到所有左侧偶数之前，然后重复处理第二个奇数
 
 **参考代码：**
 
-```python
-class Solution:
-    def reOrderArray(self, array):
-        # write code here
-        tmp1 = []
-        tmp2 = []
-        for i in array:
-            if i % 2 == 1:
-                tmp1.append(i)
-            else:
-                tmp2.append(i)
-        return tmp1 + tmp2
-```
-
-```c++
+```cpp
+// cpp
 class Solution {
 public:
+    // 两个额外数据，空间时间
     void reOrderArray(vector<int> &array) {
         vector<int> tmp1, tmp2;
         for (auto i : array) {
@@ -955,7 +943,78 @@ public:
         tmp1.insert(tmp1.end(), tmp2.begin(), tmp2.end());
         array = tmp1;
     }
+    
+    // 高效方式，类似插入排序，不借助额外数组，两层遍历
+    // 外层遍历依次找到各个奇数，内层遍历实现找到该奇数前的几个偶数，交换当前奇数与该偶数段的位置
+    void reOrderArray2(std::vector<int>& array) {
+        if (array.empty()) {
+            return;
+        }
+
+        for (int i = 0; i < array.size(); i++) {
+            if (array[i] % 2 == 1) {
+                // 确定上一个奇数的位置（或者为首元素之前的-1索引）
+                // 寻找到相邻两个奇数之间的偶数段
+                // 当前分段：[last_odd], [last_odd + 1, i - 1], [i]
+                // 交换[i]与[last_odd + 1, i - 1]
+                int curr_odd = array[i];
+                int last_odd = i - 1;
+
+                while (last_odd >= 0 && array[last_odd] % 2 == 0) {
+                    last_odd--;
+                }
+
+                for (int j = i - 1; j >= last_odd + 1; j--) {
+                    array[j + 1] = array[j];
+                }
+                array[last_odd + 1] = curr_odd;
+            }
+        }
+    }
 };
+```
+
+```python
+# python
+class Solution:
+    def reOrderArray(self, array):
+        """
+        两个额外数组，空间换时间
+        """
+        tmp1 = []
+        tmp2 = []
+        for i in array:
+            if i % 2 == 1:
+                tmp1.append(i)
+            else:
+                tmp2.append(i)
+        return tmp1 + tmp2
+        return array
+
+    def reOrderArray2(slef, array):
+        """
+        高效方式，类似插入排序，不借助额外数组，两层遍历
+        """
+        if array == []:
+            return array
+        
+        for i in range(len(array)):
+            if array[i] % 2 == 1:
+                # 确定上一个奇数的位置
+                # 寻找相邻两个奇数之间的偶数段
+                # [last_odd], [last_odd + 1, i - 1], [i]
+                # 交换[i]与[last_odd + 1, i - 1]
+                curr_odd = array[i]
+                last_odd = i - 1
+
+                while last_odd >= 0 and array[last_odd] % 2 == 0:
+                    last_odd -= 1
+                
+                for j in range(i - 1, last_odd, -1):
+                    array[j + 1] = array[j]
+                array[last_odd + 1] = curr_odd
+        
+        return array
 ```
 
 ### 14. 链表倒数第k个节点

@@ -10,9 +10,9 @@
 |题解|数据结构|算法|刷题链接|
 |--|--|--|--|
 |01. 二维数组中的查找|数组|查找|[牛客网](https://www.nowcoder.com/practice/abc3fe2ce8e146608e868a70efebf62e?tpId=13&tqId=11154&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)|
-|06. 旋转数组的最小数字|数组|二分查找|[牛客网]()|
-|13. 调整数组顺序使得奇数位于偶数前面|数组|排序|[牛客网]()|
-|50. 数组中重复的数字|数组|哈希，查找|[牛客网]()|
+|06. 旋转数组的最小数字|数组|二分查找|[牛客网](https://www.nowcoder.com/practice/9f3231a991af4f55b95579b44b7a01ba?tpId=13&tqId=11159&tPage=1&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)|
+|13. 调整数组顺序使得奇数位于偶数前面|数组|排序|[牛客网](https://www.nowcoder.com/practice/beb5aa231adc45b2a5dcc5b62c93f593?tpId=13&tqId=11166&tPage=1&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)|
+|50. 数组中重复的数字|数组|哈希，查找|[牛客网](https://www.nowcoder.com/practice/623a5ac0ea5b4e5f95552655361ae0a8?tpId=13&tqId=11203&tPage=3&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)|
 
 ## 分类汇总
 

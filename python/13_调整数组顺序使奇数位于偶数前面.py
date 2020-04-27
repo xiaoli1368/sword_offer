@@ -1,12 +1,12 @@
 #!bin/bash python3
 #-*- coding:utf-8 -*-
 
-import pdb
+import time
 
 class Solution():
-    def reOrderArray(self, array):
+    def reOrderArray1(self, array):
         """
-        两个数组，一次遍历
+        两个额外数组，一次遍历，使用stl完成拼接
         """
         tmp1 = []
         tmp2 = []
@@ -19,13 +19,8 @@ class Solution():
 
     def reOrderArray2(self, array):
         """
-        pythonic方式
-        """
-        return sorted(array, key=lambda x: x%2, reverse=True)
-
-    def reOrderArray3(self, array):
-        """
         一个数组，两次遍历
+        首先插入奇数，然后插入偶数
         """
         tmp = []
         for i in array:
@@ -36,32 +31,36 @@ class Solution():
                 tmp.append(i)
         return tmp
 
+    def reOrderArray3(self, array):
+        """
+        一个数组，两次遍历
+        首先确定奇偶分界索引，之后分别插入
+        """
+        if array == []:
+            return
+        
+        odd_index = 0
+        even_index = 0
+        tmp = [0] * len(array)
+
+        for i in array:
+            if i % 2 == 1:
+                even_index += 1
+
+        for i in array:
+            if i % 2 == 1:
+                tmp[odd_index] = i
+                odd_index += 1
+            else:
+                tmp[even_index] = i
+                even_index += 1
+        
+        return tmp
+
     def reOrderArray4(self, array):
         """
-        冒泡的方式，移动偶数到最右边
-        """
-        index = 0
-        length = len(array)
-        evencnt = 0
-        evenidx = 0
-        
-        for i in array:
-            if i % 2 == 0:
-                evencnt += 1
-
-        while index < length and evenidx < evencnt:
-            if array[index] % 2 == 0:
-                tmp = array[index]
-                array.append(tmp)
-                del array[index]
-                evenidx += 1
-            else:
-                index += 1
-        return array
-
-    def reOrderArray5(self, array):
-        """
-        二重循环方式的冒泡
+        二重循环，冒泡方式，将偶数放到最右边
+        未优化，时间复杂度较大
         """
         for i in range(len(array)):
             for j in range(len(array)-1):
@@ -69,14 +68,71 @@ class Solution():
                     array[j], array[j+1] = array[j+1], array[j]
         return array
 
+    def reOrderArray5(self, array):
+        """
+        二重循环，冒泡方式，部分优化
+        依次需要将当前偶数放到最右侧，次右侧...
+        """
+        for i in range(len(array) - 1, 0, -1):
+            for j in range(i):
+                if array[j] % 2 == 0 and array[j + 1] % 2 == 1:
+                    array[j], array[j + 1] = array[j + 1], array[j]
+        return array
+
+    def reOrderArray6(self, array):
+        """
+        pythonic方式
+        """
+        return sorted(array, key=lambda x: x%2, reverse=True)
+
+    def reOrderArray(slef, array):
+        """
+        高效方式，类似插入排序，不借助额外数组，两层遍历
+        """
+        if array == []:
+            return array
+        
+        for i in range(len(array)):
+            if array[i] % 2 == 1:
+                # 确定上一个奇数的位置
+                # 寻找相邻两个奇数之间的偶数段
+                # [last_odd], [last_odd + 1, i - 1], [i]
+                # 交换[i]与[last_odd + 1, i - 1]
+                curr_odd = array[i]
+                last_odd = i - 1
+
+                while last_odd >= 0 and array[last_odd] % 2 == 0:
+                    last_odd -= 1
+                
+                for j in range(i - 1, last_odd, -1):
+                    array[j + 1] = array[j]
+                array[last_odd + 1] = curr_odd
+        
+        return array
+
+    def test(self, array):
+        """
+        测试函数
+        """
+        func_vec = [self.reOrderArray1,
+                    self.reOrderArray2,
+                    self.reOrderArray3,
+                    self.reOrderArray4,
+                    self.reOrderArray5,
+                    self.reOrderArray6,
+                    self.reOrderArray]
+        for func in func_vec:
+            # 这里需要建立临时的空间
+            tmp_array = array[:]
+            start = time.time()
+            result = func(tmp_array)
+            end = time.time()
+            print("time(us): {:>5.2f}, result: {}".format((end - start)*10**6, result))
+
 def main():
-    s = Solution()
     array = [1, 8, 5, 6, 7, 2, 6, 9, 3]
-    print(s.reOrderArray(array))
-    print(s.reOrderArray2(array))
-    print(s.reOrderArray3(array))
-    print(s.reOrderArray4(array))
-    print(s.reOrderArray5(array))
+    s = Solution()
+    s.test(array)
  
 
 if __name__ == "__main__":
