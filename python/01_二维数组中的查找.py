@@ -1,6 +1,8 @@
 #!/bin/bash python3
 #-*- coding:utf-8 -*-
 
+import time
+
 class Solution():
     def Find1(self, target, array):
         """
@@ -94,7 +96,11 @@ class Solution():
         func_vec = [self.Find1, self.Find2, self.Find3, self.Find4, self.Find]
         for func in func_vec:
             # 这里可以直接使用引用
-            print(func(target, array))
+            start = time.time()
+            result = func(target, array)
+            end = time.time()
+
+            print("result: {}, time: {}".format(result, end - start))
 
 
 def main():
@@ -104,8 +110,11 @@ def main():
              [3,  6,   9, 16, 22],
              [10, 13, 14, 17, 24],
              [18, 21, 23, 26, 30]]
+
     s = Solution()
     s.test(target, array)
+    print("==========")
+    s.test(29, array)
 
 
 if __name__ == "__main__":

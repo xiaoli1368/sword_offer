@@ -1,6 +1,8 @@
 #!/bin/bash python3
 #-*- coding:utf-8 -*-
 
+import time
+
 class Solution():
     def minNumberInRotateArray1(self, array):
         """
@@ -155,17 +157,23 @@ class Solution():
                     self.maxNumberInRotateArray]
         for func in func_vec:
             # 这里可以使用引用
-            print(func(array))
+            start = time.time()
+            result = func(array)
+            end = time.time()
+            print("result: {}, time: {}".format(result, end - start))
 
 
 def main():
     array = [3, 4, 5, 1, 2]
     array2 = [1, 1, 1, 0, 1]
+    array3 = list(range(7000, 10000)) + list(range(7000))
 
     s = Solution()
     s.test(array)
     print("==========")
     s.test(array2)
+    print("==========")
+    s.test(array3)
 
 
 if __name__ == "__main__":

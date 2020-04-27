@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <stdio.h>
+#include <sys/time.h>
 
 class Solution {
 public:
@@ -41,6 +43,12 @@ public:
                 h = m; // 这里不使用m-1
             }
         }
+
+        // 特殊情况是没有旋转，返回了最大值，需要进行额外的判断
+        if (array[l] > array[0]) {
+            return array[0];
+        }
+        
         return array[l];
 
     }
@@ -172,11 +180,14 @@ public:
 
     // 测试函数
     void test(std::vector<int>& array) {
-        int i = 1;
+        int result;
+        struct timeval start, end;
+
         for (auto func : this->func_vec_) {
-            std::cout << "Function : " << i++
-                      << " , result: " << (this->*func)(array)
-                      << std::endl;
+            gettimeofday(&start, 0);
+            result = (this->*func)(array);
+            gettimeofday(&end, 0);
+            printf("result: %d, time(us): %ld\n", result, end.tv_usec - start.tv_usec);
         }
     }
 
@@ -192,13 +203,15 @@ private:
 int main(int argc, char* argv[])
 {
     std::vector<int> array = {3, 4, 5, 1, 2};
-    //std::vector<int> array2 = {1, 3, 5};
     std::vector<int> array2 = {1, 1, 1, 0, 1};
+    std::vector<int> array3 = {1, 3, 5, 7, 9};
 
     Solution s;
     s.test(array);
     std::cout << "==========" << std::endl;
     s.test(array2);
+    std::cout << "==========" << std::endl;
+    s.test(array3);
 
     return 0;
 }

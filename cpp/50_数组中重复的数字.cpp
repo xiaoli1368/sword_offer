@@ -2,6 +2,8 @@
 #include <vector>
 #include <map>
 #include <set>
+#include <stdio.h>
+#include <sys/time.h>
 
 class Solution {
 public:
@@ -106,11 +108,14 @@ public:
 
     // 测试函数
     void test(int nums[], int length, int* duplication) {
-		int i = 1;
+		bool result;
+		struct timeval start, end;
+
 		for (auto ptr : this->func_vec_) {
-			std::cout << "Function " << i++
-			          << " , result: " << (this->*ptr)(nums, length, duplication) 
-			          << " , number: " << duplication[0] << std::endl;
+			gettimeofday(&start, 0);
+			result = (this->*ptr)(nums, length, duplication);
+			gettimeofday(&end, 0);
+            printf("True/False: %d, result: %d, time(us): %ld\n", result, duplication[0], end.tv_usec - start.tv_usec);
 		}
 	}
 

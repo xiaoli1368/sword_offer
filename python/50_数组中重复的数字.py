@@ -1,6 +1,8 @@
 #!/bin/python3
 #-*- coding:utf-8 -*-
 
+import time
+
 class solution():
     def duplicate1(self, numbers, duplication):
         """
@@ -88,14 +90,24 @@ class solution():
             # 注意不能传递引用
             tmp_nums = nums[:]
             tmp_dupl = duplication[:]
-            print(func(tmp_nums, tmp_dupl), tmp_dupl[0])
+
+            start = time.time()
+            result = func(tmp_nums, tmp_dupl)
+            end = time.time()
+
+            print("result: {} {}, time: {}".format(result, tmp_dupl[0], end - start))
 
 
 def main():
-    nums = [2, 3, 1, 0, 2, 5, 3]
     duplication = [0]
+    nums = [2, 3, 1, 0, 2, 5, 3]
+    nums2 = list(range(100, 500)) + list(range(100))
+    nums2[300] = 50
+
     s = solution()
     s.test(nums, duplication)
+    print("==========")
+    s.test(nums2, duplication)
 
 
 if __name__ == "__main__":

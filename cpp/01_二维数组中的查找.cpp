@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <stdio.h>
+#include <sys/time.h>
 
 class Solution {
 public:
@@ -65,11 +67,14 @@ public:
 
     // 测试函数
 	void test(int& target, std::vector<std::vector<int>>& array) {
-		int i = 1;
+		bool result;
+		struct timeval start, end;
+
 		for (auto ptr : this->func_vec_) {
-			std::cout << "Function " << i++
-			          << " , result: " << (this->*ptr)(target, array)
-					  << std::endl;
+			gettimeofday(&start, 0);
+			result = (this->*ptr)(target, array);
+			gettimeofday(&end, 0);
+			printf("result: %d, time(us): %ld\n", result, end.tv_usec - start.tv_usec);
 		}
 	}
 
@@ -90,5 +95,9 @@ int main(int argc, char* argv[])
 										   {18, 21, 23, 26, 30}};
 	Solution s;
 	s.test(target, array);
+	std::cout << "==========" << std::endl;
+	target = 29;
+	s.test(target, array);
+
 	return 0;
 }
