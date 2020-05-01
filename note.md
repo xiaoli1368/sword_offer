@@ -2345,45 +2345,62 @@ public:
 
 **参考代码：**
 
-```python
-class Solution:
-    def MoreThanHalfNum_Solution(self, number):
-        # write code here
-        number.sort()
-        
-        length = len(number)
-        first = 0
-        end = first + length // 2
-        while end < length:
-            if number[first] == number[end]:
-                return number[first]
-            first += 1
-            end += 1
-        
-        return 0
-```
-
-```c++
-#include <algorithm>
+```cpp
+// cpp
 class Solution {
 public:
-    int MoreThanHalfNum_Solution(vector<int> numbers) {
-        sort(numbers.begin(), numbers.end());
-        
-        int length = numbers.size();
-        int first = 0;
-        int end = first + length / 2;
-        
-        while (end < length) {
-            if (numbers[first] == numbers[end]) {
-                return numbers[first];
-            }
-            first++;
-            end++;
+    int MoreThanHalfNum_Solution(std::vector<int> nums) {
+        if (nums.empty()) {
+            return 0;
         }
-        return 0;
+
+        int curr_val = 0;
+        int curr_cnt = 0;
+
+        for (auto i : nums) {
+            if (curr_cnt == 0) {
+                curr_cnt = 1;
+                curr_val = i;
+            } else {
+                curr_cnt += (curr_val == i ? 1 : -1);
+            }
+        }
+
+        // 此时不存在大于一半的数字
+        if (curr_cnt == 0) {
+            return 0;
+        }
+
+        return curr_val;
     }
 };
+```
+
+```python
+# python
+class Solution:
+    def MoreThanHalfNum_Solution(self, nums):
+        """
+        高效方法，多数投票法，复杂度是O(n)
+        """
+        if nums == []:
+            return 0
+        
+        curr_val = 0
+        curr_cnt = 0
+
+        for i in nums:
+            if curr_cnt == 0:
+                curr_cnt = 1
+                curr_val= i
+            else:
+                curr_cnt += 1 if curr_val == i else -1
+        
+        # 此时有可能不存在大于一半的数字
+        if curr_cnt == 0:
+            return 0
+        
+        return curr_val
 ```
 
 ### 29. 最小的k个数
@@ -2435,74 +2452,57 @@ public:
 
 **解题思路：**
 
-- **动态规划**，初级题目
+- 常规思路：暴力枚举
 
-- F（i）：以array[i]为末尾元素的子数组的和的最大值，子数组的元素的相对位置不变  
+- 高效思路：动态规划，初级题目
 
-  F（i）=　max（F（i-1）+　array[i] ， array[i]）  
-
-  res：所有子数组的和的最大值  
-
-  res　=　max（res，F（i））
+  > [1] 建模：使用F(i)表示以array[i]为末尾元素的子数组的和的最大值，必须要求以array[i]为结尾
+  >
+  > [2] 状态转移方程：在已知F(i-1)的情况下如何求F(i)，考虑F(i-1)的大小，根据其正负，选择将当前值array[i]加到之前和上或者直接选择array[i]，即：
+  >
+  > F(i) = array[i] + (F[i-1] > 0 ? F[i-1] : 0); // 注意无论array[i]是否为正负，都有覆盖array[i]
+  >
+  > [3] 解：因为F(i)的会遍历整个数组，获取以每个元素为结果的最大子数组和，因此需要额外的变量来记录其中的最大值
 
 **参考代码：**
 
-```python
-class Solution:
-    def FindGreatestSumOfSubArray(self, array):
-        # write code here
-        if array == []:
-            return 0
-        
-        length = len(array)
-        if length == 1:
-            return array[0]
-        
-        curr_sum = array[0]
-        curr_max = array[0]
-        
-        for i in range(1, length):
-            if curr_sum >= 0:
-                curr_sum += array[i]
-            else:
-                curr_sum = array[i]
-                
-            if curr_sum > curr_max:
-                curr_max = curr_sum
-                
-        return curr_max
-```
-
-```c++
+```cpp
+// cpp
 class Solution {
 public:
-    int FindGreatestSumOfSubArray(vector<int> array) {
+    int FindGreatestSumOfSubArray(std::vector<int> array) {
         if (array.empty()) {
             return 0;
         }
-        
-        int length = array.size();
-        if (length == 1) {
-            return array[0];
-        }
-        
-        int curr_sum = array[0];
+
+        int curr_sum = -1;
         int curr_max = array[0];
-        for (int i = 1; i < length; i++) {
-            if (curr_sum >= 0) {
-                curr_sum += array[i];
-            } else {
-                curr_sum = array[i];
-            }
-            
-            if (curr_sum > curr_max) {
+        for (auto i : array) {
+            curr_sum = i + (curr_sum > 0 ? curr_sum : 0);
+            if (curr_max < curr_sum) {
                 curr_max = curr_sum;
             }
         }
-        
+
         return curr_max;
     }
-};
+}
+```
+
+```python
+# Python
+class Solution:
+    def FindGreatestSumOfSubArray(self, array):
+        if array == []:
+            return 0
+        
+        curr_sum = -1
+        curr_max = array[0]
+        for i in array:
+            curr_sum = i + (curr_sum if curr_sum > 0 else 0)
+            curr_max = max(curr_max, curr_sum)
+        
+        return curr_max
 ```
 
 ### 31. 整数中1出现的次数
