@@ -2579,43 +2579,27 @@ public:
 
 **解题思路：**
 
-- 主要思路是将题目看做是，字符串排序问题
-- 判断字符串a比字符串b小的条件是，a + b < b + a
-- 冒泡实现从小到大的排序
+- 常规思路：全排列组合，寻找最小的数字（存在的问题：计算量n!过大，同时也存在大数溢出问题）
+- 解决大数溢出问题一种直观方式为：将数字转换为字符串
+- 高效思路：根据题目要求，自定义新型的字符串比较大小函数，判断数字a和b大小的方式为，先转换为字符串a和b，如果a + b < b + a则有a小于b，然后使用排序算法实现
+- 也可以选择其它的排序算法
 
 **参考代码：**
 
-```python
-class Solution:
-    def PrintMinNumber(self, numbers):
-        # write code here
-        if numbers == []:
-            return ""
-        
-        length = len(numbers)
-        num = [str(x) for x in numbers]
-        for i in range(0, length-1):
-            for j in range(i + 1, length):
-                if num[i] + num[j] > num[j] + num[i]:
-                    num[i], num[j] = num[j], num[i]
-
-        return "".join(num)
-```
-
-```c++
+```cpp
+//cpp
 class Solution {
 public:
-    string PrintMinNumber(vector<int> numbers) {
-        string result;
+    std::string PrintMinNumber(std::vector<int> numbers) {
         if (numbers.empty()) {
-            return result;
+            return "";
         }
-        
+
         int length = numbers.size();
         for (int i = 0; i < length - 1; i++) {
             for (int j = i + 1; j < length; j++) {
-                string a = to_string(numbers[i]);
-                string b = to_string(numbers[j]);
+                std::string a = std::to_string(numbers[i]);
+                std::string b = std::to_string(numbers[j]);
                 if (a + b > b + a) {
                     int tmp = numbers[i];
                     numbers[i] = numbers[j];
@@ -2623,14 +2607,29 @@ public:
                 }
             }
         }
-        
+
+        std::string result;
         for (auto i : numbers) {
-            result += to_string(i);
+            result += std::to_string(i);
         }
-        
         return result;
     }
-};
+}
+```
+
+```python
+class Solution:
+    def PrintMinNumber(self, numbers):
+        if numbers == []:
+            return ""
+
+        num = [str(x) for x in numbers]
+        for i in range(len(numbers) - 1, 0, -1):
+            for j in range(0, i):
+                if num[i] + num[j + 1] > num[j + 1] + num[i]: 
+                    num[i], num[j + 1] = num[j + 1], num[i]
+        
+        return "".join(num)
 ```
 
 ### 33. 丑数
