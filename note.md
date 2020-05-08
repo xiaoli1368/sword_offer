@@ -2759,53 +2759,21 @@ public:
 
 **解题思路：**
 
-- 使用归并法来实现逆序对的统计，与归并法排序很像，三个部分构成
-- 递归，把当前数组分为前后两个数组，每个数组各自区分，直到每个数组仅有一个数字
-- 合并，根据前后两个数组的元素大小关系，统计逆序对。这里的任务实际上，对于两个从小到大排列的有序数组，判断存在多少个逆序对，同时将二者组合排序。以下代码中讨论了4种情况：1) 前数组已遍历完，2) 后数组已遍历完，3) 两数组都没有遍历完，且前元素小于后元素，4) 两数组都没有遍历完，且前元素大于后元素。注意，每种情况都有选择一个元素保持到tmp数组，最终需要将这个有序的tmp数组拷贝替换原始的nums数组，只有最后一种情况存在逆序数，需要累加。
-- 排序，将前后两个数组排序并且替换原理的数组位置
+- 常规思路：二重循环暴力枚举
+- 其它思路：倒序遍历数组，建立二叉排序树，然后递归获取右子树的总节点个数，即为逆序数
+- 其它思路2：倒序遍历数组，对于[0, len]的数组，扫描当前下标a时，使用二分查找，判断a位于[a+1, len]的哪个位置，根据这个位置可以获取一个以a为首的逆序数个数，然后将a插入到该位置（其它元素前移，这样能保证每次[a+1, len]都是降序的）
+- 高效思路：使用归并法来实现逆序对的统计，与归并法排序很像，三个部分构成：
+
+>递归，把当前数组分为前后两个数组，每个数组各自区分，直到每个数组仅有一个数字
+>
+>合并，根据前后两个数组的元素大小关系，统计逆序对。这里的具体任务是，对于两个从小到大排列的有序数组，判断存在多少个逆序对，同时将二者组合排序。以下代码中讨论了4种情况：1) 前数组已遍历完，2) 后数组已遍历完，3) 两数组都没有遍历完，且前元素小于后元素，4) 两数组都没有遍历完，且前元素大于后元素。注意，每种情况都有选择一个元素保存到tmp数组，最终需要将这个有序的tmp数组拷贝替换原始的nums数组，只有最后一种情况存在逆序数，需要累加结果。
+>
+>排序，将前后两个数组排序并且替换原理的数组位置
 
 **参考代码：**
 
-```python
-class Solution:
-    def __init__(self):
-        self.cnt = 0
-    
-    def InversePairs(self, nums):
-        if nums == []:
-            return 0
-        self.mergeSort(nums, 0, len(nums) - 1)
-        return self.cnt % 1000000007
-        
-    def mergeSort(self, nums, l, h):
-        if l >= h:
-            return
-        m = l + (h - l) // 2
-        self.mergeSort(nums, l, m)
-        self.mergeSort(nums, m + 1, h)
-        self.merge(nums, l, m, h)
-    
-    def merge(self, nums, l, m, h):
-        i = l
-        j = m + 1
-        k = l
-        tmp = []
-        while i <= m or j <= h:
-            if i > m: # 前数组已经遍历完
-                tmp.append(nums[j])
-                j += 1
-            elif j > h or nums[i] <= nums[j]: # 后数组已经遍历完，或则　前 < 后
-                tmp.append(nums[i])
-                i += 1
-            else: # 前 > 后，符合逆序对的定义
-                tmp.append(nums[j])
-                j += 1
-                self.cnt += m - i + 1
-            k += 1
-        nums[l:h+1] = tmp[:]
-```
-
-```c++
+```cpp
+// cpp
 class Solution {
 public:
     long cnt = 0;
@@ -2813,13 +2781,12 @@ public:
     
     // 外部接口函数
     int InversePairs(vector<int> nums) {
-        int length = nums.size();
-        if (length == 0) {
+        if (nums.empty()) {
             return 0;
         }
         
         tmp = nums;
-        mergeSort(nums, 0, length - 1);
+        mergeSort(nums, 0, nums.size() - 1);
         return int(cnt % 1000000007);
     }
     
@@ -2858,6 +2825,45 @@ public:
         }
     }
 };
+```
+
+```python
+class Solution:
+    def __init__(self):
+        self.cnt = 0
+    
+    def InversePairs(self, nums):
+        if nums == []:
+            return 0
+        self.mergeSort(nums, 0, len(nums) - 1)
+        return self.cnt % 1000000007
+        
+    def mergeSort(self, nums, l, h):
+        if l >= h:
+            return
+        m = l + (h - l) // 2
+        self.mergeSort(nums, l, m)
+        self.mergeSort(nums, m + 1, h)
+        self.merge(nums, l, m, h)
+    
+    def merge(self, nums, l, m, h):
+        i = l
+        j = m + 1
+        k = l
+        tmp = []
+        while i <= m or j <= h:
+            if i > m: # 前数组已经遍历完
+                tmp.append(nums[j])
+                j += 1
+            elif j > h or nums[i] <= nums[j]: # 后数组已经遍历完，或则　前 < 后
+                tmp.append(nums[i])
+                i += 1
+            else: # 前 > 后，符合逆序对的定义
+                tmp.append(nums[j])
+                j += 1
+                self.cnt += m - i + 1
+            k += 1
+        nums[l:h+1] = tmp[:]
 ```
 
 ### 36. 两个链表的第一个公共结点

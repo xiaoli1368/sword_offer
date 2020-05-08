@@ -1,9 +1,27 @@
 #!/bin/bash python3
 #-*- coding:utf-8 -*-
 
+import time
+import random
+
 class Solution():
     def __init__(self):
         self.cnt = 0
+    
+    def InversePairs1(self, nums):
+        """
+        暴力枚举
+        """
+        if nums == []:
+            return 0
+        
+        count = 0
+        for i in range(0, len(nums) - 1):
+            for j in range(i + 1, len(nums)):
+                if nums[i] > nums[j]:
+                    count += 1
+        
+        return count
 
     def InversePairs(self, nums):
         """
@@ -43,11 +61,31 @@ class Solution():
         # 拷贝数组
         nums[l:h+1] = tmp[:]
 
+    def test(self, nums):
+        """
+        测试函数
+        """
+        func_vec = [self.InversePairs1, self.InversePairs]
+        for func in func_vec:
+            # 必要的处理，防止后续调用影响
+            tmp_nums = nums[:]
+            self.cnt = 0
+
+            # 正式调用
+            start = time.time()
+            result = func(tmp_nums)
+            end = time.time()
+            print("result: {:d}, time(us): {:>5.2f}".format(result, (end - start)*10**6))
+
 
 def main():
-    s = Solution()
     nums = [1, 2, 3, 4, 5, 6, 7, 0]
-    print(s.InversePairs(nums))
+    nums2 = random.sample(range(100), 100) # 这种方式生成0-100的乱序
+
+    s = Solution()
+    s.test(nums)
+    print("=====")
+    s.test(nums2)
 
 
 if __name__ == "__main__":

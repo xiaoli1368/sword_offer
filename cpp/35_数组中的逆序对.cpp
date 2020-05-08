@@ -1,25 +1,46 @@
 #include <iostream>
 #include <vector>
+#include <ctime>
+#include <cstdlib>
+#include <stdio.h>
+#include <sys/time.h>
 
 class Solution {
 public:
+    // 暴力枚举
+    int InversePairs1(std::vector<int> nums) {
+        if (nums.empty()) {
+            return 0;
+        }
+
+        int count = 0;
+        for (int i = 0; i < nums.size() - 1; i++) {
+            for (int j = i + 1; j < nums.size(); j++) {
+                if (nums[i] > nums[j]) {
+                    count++;
+                }
+            }
+        }
+
+        return count;
+    }
+
+    // 高效方式：归并排序
     long cnt = 0;
     std::vector<int> tmp;
-    
-    // 外部接口函数
     int InversePairs(std::vector<int> nums) {
-        int length = nums.size();
-        if (length == 0) {
+        if (nums.empty()) {
             return 0;
         }
         
         tmp = nums;
-        mergeSort(nums, 0, length - 1);
+        mergeSort(nums, 0, nums.size() - 1);
         return int(cnt % 1000000007);
     }
 
     // 递归调用的函数
     // 注意使用引用，否则排序后无法替换原数组的值
+    // 这里其实是二分的思想
     void mergeSort(std::vector<int>& nums, int l, int h) {
         if (l >= h) {
             // 当分组到只剩一个时，返回上一层，开始merge
@@ -54,13 +75,50 @@ public:
             nums[k] = tmp[k];
         }
     }
+
+    // 测试函数
+    void test(std::vector<int>& nums) {
+        int result = 0;
+        struct timeval start, end;
+        for (auto func : this->func_vec_) {
+            // 必要的处理，防止后续调用干扰
+            this->cnt = 0;
+
+            // 正式调用
+            gettimeofday(&start, 0);
+            result = (this->*func)(nums);
+            gettimeofday(&end, 0);
+            printf("result: %d, time(us): %ld\n", result, end.tv_usec - start.tv_usec);
+        }
+    }
+
+private:
+    typedef int (Solution::*func_ptr)(std::vector<int>);
+    std::vector<func_ptr> func_vec_ = {&Solution::InversePairs1, &Solution::InversePairs};
 };
+
+// 获取指定数目和范围的随机数组
+void get_rand_vec(std::vector<int>& nums, int range, int length) {
+    if (range <= 0) {
+        return;
+    }
+
+    srand((unsigned)time(nullptr)); // 设置随机数种子
+    for (int i = 0; i < length; i++) {
+        nums.push_back(rand() % range);
+    }
+}
 
 int main(int argc, char* argv[])
 {
-    Solution s;
     std::vector<int> nums = {1, 2, 3, 4, 5, 6, 7, 0};
+    std::vector<int> nums2;
+    get_rand_vec(nums2, 100, 100);
+ 
+    Solution s;
+    s.test(nums);
+    std::cout << "=====" << std::endl;
+    s.test(nums2);
 
-    std::cout << s.InversePairs(nums) << std::endl;
     return 0;
 }
