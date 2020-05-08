@@ -2966,26 +2966,56 @@ public:
 
 **题目描述：**
 
-> 统计一个数字在排序数组中出现的次数。（从小到达的有序数组，而且都是正整数）
+> 统计一个数字在排序数组中出现的次数。（从小到大的有序数组，而且都是正整数）
 
 **解题思路：**
 
-- 常规思路：使用二分查找确定是否存在，当存在时返回一个任意的相等的索引，以此为基础向左右两边查找，直到两边都不相等。
-- 高效思路：利用元素都是正整数这一特点，不要去查找目标值k，而是查找假想的值[k-0.5, k+0.5]，这样直接获得目标的区间。也可以修改二分查找算法，去寻找第一个大于等于某值的索引，这样查找[k, k+1]的区间也可以实现
+- 常规思路：遍历数组，进行统计计数，复杂度为O(n)，缺点在于没有利用有序这一条件
+- 普通二分查找：首先使用二分查找确定是否存在，当存在时返回一个任意的相等的索引，以此为基础向左右两边查找，直到两边都不相等。（这种方式实现不够简洁，但是高效）
+- 高效思路：利用元素都是正整数这一特点，不使用二分查找来寻找某一元素，而去查找左边界索引，这样查找[k, k+1]区间，最终返回差即可。需要注意的细节是寻找左边界时考虑到数组末端的特殊情况。
 - 其他思路，递归
 
 **参考代码：**
 
+```cpp
+// cpp
+class Solution {
+public:
+    int GetNumberOfK(vector<int> data ,int k) {
+        if (data.empty()) {
+            return 0;
+        }
+        
+        int first = binSearch(data, k);
+        int last = binSearch(data, k + 1);
+        
+        return last - first;
+    }
+    
+    int binSearch(vector<int>& data, int k) {
+        int l = 0;
+        int h = data.size();
+        
+        while (l < h) {
+            int m = l + (h - l) / 2;
+            if (data[m] < k) {
+                l = m + 1;
+            } else {
+                h = m;
+            }
+        }
+        return l;
+    }
+};
+```
+
 ```python
-# -*- coding:utf-8 -*-
+# python
 class Solution:
     def GetNumberOfK(self, data, k):
         first = self.binarySearch(data, k)
         last = self.binarySearch(data, k + 1)
-        if first == len(data) or data[first] != k:
-            return 0
-        else:
-            return last - first
+        return last - first
         
     def binarySearch(self, data, k):
         l = 0
@@ -2997,52 +3027,6 @@ class Solution:
             else:
                 l = m + 1
         return l
-```
-
-```c++
-class Solution {
-public:
-    int GetNumberOfK(vector<int> data ,int k) {
-        if (data.empty()) {
-            return 0;
-        }
-        
-        // 二分查找是否存在，返回任意一个等于k的索引
-        int l = 0;
-        int h = data.size() - 1;
-        int index = -1;
-        while (l <= h) {
-            int m = l + (h - l) / 2;
-            if (data[m] > k) {
-                h = m - 1;
-            } else if (data[m] < k) {
-                l = m + 1;
-            } else if (data[m] == k) {
-                index = m;
-                break;
-            }
-        }
-        
-        // 如果不存在k
-        if (index == -1) {
-            return 0;
-        }
-        
-        // 如果存在，则从该位置向两端检测出现的次数
-        l = index;
-        h = index;
-        while (data[l] == k || data[h] == k) {
-            if (data[l] == k) {
-                l--;
-            }
-            if (data[h] == k) {
-                h++;
-            }
-        }
-        
-        return h - l - 1;
-    }
-};
 ```
 
 ### 38. 二叉树的深度
