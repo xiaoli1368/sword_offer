@@ -2411,23 +2411,16 @@ class Solution:
 
 **解题思路：**
 
-- 借助stl直接排序，然后取最小的k个数
-- 存在不借助stl的高效解法（待补充）
+- 常规思路：排序，之后取前k个值，时间复杂度为stl
+- 冒泡排序：从后往前冒泡，依次取最小值、次小值等，遍历k次即可，时间复杂度为O(n*k)
+- 基于partition函数，每次随机选择一个参考元素，将当前数组分区为两部分，左侧小于参考元素，右侧大于参考元素，返回当前参考元素的索引。解法为：从[start, end]区间随机获取index的分区，根据与k的大小关系，继续选择[start, index - 1]或者[index + 1, end]分区，依次迭代，直到找到前k个最小值的分区，时间复杂度为O(n)，缺点是会改变原始数组，且前k个最小元素没有排序
+- 借助最大堆实现，遍历data数组，前k个元素构成一个长度为k的最大堆，其余元素与堆最大值比较，只有当更小时才进行【入堆，出堆】的更新操作，最终输出k个元素即可，时间复杂度为O(n*logk)，适用于海量数据，n远大于k的情况
+- 利用空间换时间，构造长为10000的vec，遍历输入data，执行vec[data[i]]++来累积数量，最后从vec头部取k项有数量的值即可
 
 **参考代码：**
 
-```python
-class Solution:
-    def GetLeastNumbers_Solution(self, tinput, k):
-        # write code here
-        if tinput == [] or k > len(tinput):
-            return []
-        
-        tinput.sort()
-        return tinput[0:k]
-```
-
-```c++
+```cpp
+// cpp，其它方法见源文件
 #include <algorithm>
 class Solution {
 public:
@@ -2442,6 +2435,18 @@ public:
         return result;
     }
 };
+```
+
+```python
+# python，其它方法见源文件
+class Solution:
+    def GetLeastNumbers_Solution(self, tinput, k):
+        # write code here
+        if tinput == [] or k > len(tinput):
+            return []
+        
+        tinput.sort()
+        return tinput[0:k]
 ```
 
 ### 30. 连续子数组的最大和
