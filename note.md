@@ -1414,62 +1414,27 @@ public:
 
 **解题思路：**
 
-- 这道题的关键是把问题分解为打印环形。
-- 依次从最外环打印到最内的环
-- 每个环的打印，分为四条直线
-- 注意最后的终止条件
-- 注意防止出现单行或者单列的特殊情况
+- 高效思路：将问题理解为打印环形，依次从最外环打印到最内的环。然后采用分治的思想，将每个环的打印，分为四条直线。
+- 需要额外注意：终止条件，考虑出现单行或者单列的特殊情况
 
 **参考代码：**
 
-```python
-# -*- coding:utf-8 -*-
-class Solution:
-    # matrix类型为二维列表，需要返回列表
-    def printMatrix(self, matrix):
-        # write code here
-        if matrix == []:
-            return []
-        
-        top = 0
-        bottom = len(matrix) - 1
-        left = 0
-        right = len(matrix[0]) - 1
-
-        result = []
-        while top <= bottom and left <= right:
-            for i in range(left, right + 1):
-                result.append(matrix[top][i])
-            for i in range(top + 1, bottom + 1):
-                result.append(matrix[i][right])
-            if top != bottom:
-                for i in range(right - 1, left - 1, -1):
-                    result.append(matrix[bottom][i])
-            if left != right:
-                for i in range(bottom - 1, top, -1):
-                    result.append(matrix[i][left])
-            top += 1
-            bottom -= 1
-            left += 1
-            right -= 1
-        return result
-```
-
-```c++
+```cpp
+// cpp
 class Solution {
 public:
-    vector<int> printMatrix(vector<vector<int> > matrix) {
-        vector<int> result;
-        
-        if (matrix.size() == 0) {
-            return result;
+    // 高效解法：将每圈打印分解为四次直线打印
+    std::vector<int> printMatrix(std::vector<std::vector<int>> matrix) {
+        if (matrix.empty()) {
+            return std::vector<int>{};
         }
-        
+
         int top = 0;
-        int bottom = matrix.size() - 1;
         int left = 0;
+        int bottom = matrix.size() - 1;
         int right = matrix[0].size() - 1;
-        
+        std::vector<int> result;
+
         while (top <= bottom && left <= right) {
             for (int i = left; i <= right; i++) {
                 result.push_back(matrix[top][i]);
@@ -1492,11 +1457,51 @@ public:
             bottom--;
             left++;
             right--;
-        }
-        
+        } 
+
         return result;
     }
 };
+```
+
+```python
+# python
+class Solution:
+    def printMatrix(self, matrix):
+        """
+        高效方式，顺时针打印矩阵
+        """
+        if matrix == []:
+            return
+
+        top = 0
+        left = 0
+        bottom = len(matrix) - 1
+        right = len(matrix[0]) - 1
+        result = []
+
+        while top <= bottom and left <= right:
+            # 上横线
+            for i in range(left, right + 1):
+                result.append(matrix[top][i])
+            # 右竖线
+            for i in range(top+1, bottom+1):
+                result.append(matrix[i][right])
+            # 下横线
+            if top != bottom:
+                for i in range(right-1, left-1, -1):
+                    result.append(matrix[bottom][i])
+            # 左竖线
+            if left != right:
+                for i in range(bottom-1, top, -1):
+                    result.append(matrix[i][left])
+            # 更新        
+            top += 1
+            bottom -= 1
+            left += 1
+            right -= 1
+        
+        return result
 ```
 
 ### 20. 包含min函数的栈
