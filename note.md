@@ -4062,55 +4062,62 @@ class solution():
 
 **解题思路：**
 
-- 待补充
+- 常规思路：依次遍历每个元素，计算两边延伸的乘积，复杂度O(n*(n-1))
+- 其他思路：外层循环遍历数组，将当前位置修改为1，内层循环遍历求数据乘积，之后再恢复修改，复杂度O(n^2)
+- 高效思路：两次遍历，第一次遍历计算由左侧元素构成的乘积数组，第二次遍历在之前的基础上，叠加由右侧元素构成的乘积数组，复杂度O(2n)
 
 **参考代码：**
 
-```python
-# -*- coding:utf-8 -*-
-class Solution:
-    def multiply(self, A):
-        # write code here
-        if len(A) == 0:
-            return []
-        ret = [0] * len(A)
-        
-        tmp = 1
-        for i in range(0, len(A)):
-            ret[i] = tmp
-            tmp *= A[i]
-        
-        tmp = 1
-        for i in range(len(A) - 1, -1, -1):
-            ret[i] *= tmp
-            tmp *= A[i]
-        
-        return ret
-```
-
-```C++
-// c++
+```c++
+// cpp
 class Solution {
 public:
-    vector<int> multiply(const vector<int>& A) {
-        vector<int> ret;
+   // 高效思路，两次遍历，区分左右侧元素构成的乘积数组
+    std::vector<int> multiply(const std::vector<int>& A) {
         if (A.empty()) {
-            return ret;
+            return A;
         }
         
-        for (int i = 0; i < A.size(); i++) {
-            int tmp = 1;
-            for (int j = 0; j < A.size(); j++) {
-                if (j != i) {
-                    tmp *= A[j]; 
-                }
-            }
+        int tmp = 1;
+        std::vector<int> ret;
+        for (auto i : A) {
             ret.push_back(tmp);
+            tmp *= i;
+        }
+        
+        tmp = 1;
+        for (int i = A.size() - 1; i >= 0; i--) {
+            ret[i] *= tmp;
+            tmp *= A[i];
         }
         
         return ret;
     }
 };
+```
+
+```python
+# python
+class Solution:
+    def multiply(self, A):
+        """
+        高效思路，两次遍历，复杂度O(2n)
+        """
+        if A == []:
+            return []
+        
+        tmp = 1
+        result = []
+        for i in A:
+            result.append(tmp)
+            tmp *= i
+        
+        tmp = 1
+        for i in range(len(A) - 1, -1, -1):
+            result[i] *= tmp
+            tmp *= A[i]
+        
+        return result
 ```
 
 ### 52. 正则表达式匹配
