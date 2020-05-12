@@ -19,7 +19,7 @@
 |32. 把数组排成最小的数|数组|自定义排序|[牛客网](https://www.nowcoder.com/practice/8fecd3f8ba334add803bf2a06af1b993?tpId=13&tqId=11185&tPage=2&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)|
 |35. 数组中的逆序对|数组|归并排序，分治法|[牛客网](https://www.nowcoder.com/practice/96bd6684e04a44eb80e6a68efc0ec6c5)|
 |37. 数字在排序数组中出现的次数|数组|二分查找，单元素，左边界|[牛客网](https://www.nowcoder.com/practice/70610bf967994b22bb1c26f9ae901fa2?tpId=13&tqId=11190&tPage=2&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)|
-|40. 数组中只出现一次的数字|数组|||
+|40. 数组中只出现一次的数字|数组|特殊查找，异或，hash|[牛客网](https://www.nowcoder.com/practice/e02fdb54d7524710a7d664d082bb7811?tpId=13&tqId=11193&tPage=2&rp=2&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)|
 |41. 和为S的连续正数序列|数组|||
 |42. 和为S的两个数组|数组|||
 |45. 扑克牌顺子|数组|||

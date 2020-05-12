@@ -3174,49 +3174,38 @@ public:
 
 **解题思路：**
 
-- 需要明确关于异或的几条规则：
+- 常规思路：使用哈希map法，时间复杂度为O(2n)，空间复杂度为O(n)
 
-  两个相同的数异或，结果为0
+- 高效思路，需要一些关于异或的知识：
 
-  一个数异或0，结果是自身
+  > 基本规则：相等异或为0，不等异或为1
+  >
+  > 交换规则：异或可以交换顺序
+  >
+  > 0运算规则：一个数异或0，结果是自身
+  >
+  > 数组规则：若数组内除了一个数字之外，其他的数字都出现了两次，则遍历异或则可求出该数字
 
-  异或可以交换顺序
+- 本题的高效思路是：
 
-  对题目中的设置，依次异或，最终的结果为待求的两个数字之间的异或
+  > 关键点是通过异或来寻找一个掩码mask，使得遍历整个数组，将每个元素与这个mask作用后，会出现两种不同的结果，如0/1，这样就能将原始数组，分别划分为包含待求两个目标值的数字集合。
+  >
+  > 后续每个集合内分别遍历异或就可以得到两个目标值。
 
-- 本题的关键点是，通过异或来寻找一个掩码mask，使得遍历整个数组，将每个元素与这个mask作用后，会出现不同的结果，如0/1/others，这样就能区分为待求的两个目标值。
+- 掩码的选择以及求解：
 
-- (a ^ b) ^ b = a ^ (b ^ b) = a ^ 0 = a
-
-- 使用 diff = a ^b
-
-  diff &= -diff
-
-  可以获取一个只有一位为1的掩码mask，如00100，表明a和b最右边开始第一个不同的数位的位置，因此可以遍历整个数组，迭代异或看最终结果是否为1来区分a或b
-
-  （注意，其他的元素不影响，因为是偶数次出现，因此连续异或时最终的影响会抵消）
+  > 可以获取一个只有一位为1的掩码mask，如00100，表明a和b最右边开始第一个不同的数位的位置。（异或运算，可以看作显示a与b二进制上每位是否不同）
+  >
+  > 首先，依次异或，最终的结果为待求的两个数字之间的异或，diff = a^b
+  >
+  > 其次，处理为掩码，diff &= -diff
+  >
+  > 最后，利用掩码划分为两个数组，每个数组遍历异或即可分别求出两个目标值
 
 **参考代码：**
 
-```python
-# -*- coding:utf-8 -*-
-class Solution:
-    # 返回[a,b] 其中ab是出现一次的两个数字
-    def FindNumsAppearOnce(self, array):
-        # write code here
-        # 投机取巧的方式
-        result = []
-        if array == []:
-            return result
-        
-        for i in array:
-            if array.count(i) == 1:
-                result.append(i)
-        
-        return result
-```
-
-```c++
+```cpp
+// cpp
 class Solution {
 public:
     void FindNumsAppearOnce(std::vector<int> data, int* num1, int* num2) {
@@ -3233,7 +3222,7 @@ public:
         *num1 = 0;
         *num2 = 0;
         for (auto i : data) {
-            if ((i & diff) == 0) {
+            if ((i & diff) == 0) { // 注意运算符优先级
                 *num1 ^= i;
             } else {
                 *num2 ^= i;
@@ -3241,6 +3230,41 @@ public:
         }
     }
 };
+```
+
+```python
+# python
+class Solution:
+    # 返回[a,b] 其中ab是出现一次的两个数字
+    def FindNumsAppearOnce2(self, array):
+        """
+        Pythonic方式，优化版
+        """
+        if array == []:
+            return []
+        
+        return [i for i in array if array.count(i) == 1]
+
+    def FindNumsAppearOnce(self, array):
+        """
+        高效解法
+        """
+        if array == []:
+            return []
+        
+        diff = 0
+        for i in array:
+            diff ^= i
+        #diff &= (diff & 0xffffffff)
+        diff &= -diff
+
+        result = [0, 0]
+        for i in array:
+            if (i & diff) == 0: 
+                result[0] ^= i
+            else:
+                result[1] ^= i
+        return result
 ```
 
 ### 41. 和为S的连续正数序列
@@ -5446,7 +5470,7 @@ class Solution:
 ```
 
 ```C++
-个人解法1：
+k个人解法1：
 #include<cmath>
 class Solution {
 public:
