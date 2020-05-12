@@ -3365,64 +3365,63 @@ public:
 
 **解题思路：**
 
-- 使用双指针，配合从两端向中间查找，首先查找到满足要求的两个数即为输出结果。
+- 常规思路：暴力枚举，时间复杂度O(n^2)
+- 其它思路：hash方法，时间复杂度O(n)，空间复杂度O(n)
+- 高效思路：双指针，从两端向中间查找，首先查找到满足要求的两个数即为输出结果，时间复杂度O(n)
+- 其它高效思路：双指针+二分查找，每次双指针移动的时候不采用+1/-1的方式移动，而是采用二分的方式移动，时间复杂度O(logn*logn)，数据量大时高效
 
 **参考代码：**
 
-```python
-# -*- coding:utf-8 -*-
-class Solution:
-    def FindNumbersWithSum(self, array, tsum):
-        # write code here
-        if array == []:
-            return []
-
-        l = 0
-        h = len(array) - 1
-        currSum = 0
-
-        while l < h:
-            currSum = array[l] + array[h]
-            if currSum == tsum:
-                return [array[l], array[h]]
-            elif currSum < tsum:
-                l += 1
-            elif currSum > tsum:
-                h -= 1
-
-        return []
-```
-
-```c++
+```cpp
+// cpp
 class Solution {
 public:
-    vector<int> FindNumbersWithSum(vector<int> array,int sum) {
-        // 使用双指针
-        vector<int> result;
-        if (array.empty()) {
-            return result;
-        }
-        
+    // 高效思路：双指针
+    std::vector<int> FindNumbersWithSum(std::vector<int> array, int sum) {
         int l = 0;
         int h = array.size() - 1;
-        int currSum = 0;
-        
+        std::vector<int> result;
+
         while (l < h) {
-            currSum = array[l] + array[h];
+            int currSum = array[l] + array[h];
             if (currSum == sum) {
                 result.push_back(array[l]);
                 result.push_back(array[h]);
-                return result;
+                break;
             } else if (currSum < sum) {
                 l++;
             } else if (currSum > sum) {
                 h--;
             }
         }
-        
+
         return result;
     }
 };
+```
+
+```python
+# python
+class Solution:
+    def FindNumbersWithSum(self, array, tsum):
+        """
+        高效方式：双指针
+        """
+        l = 0
+        h = len(array) - 1
+        result = []
+
+        while l < h:
+            currSum = array[l] + array[h]
+            if currSum == tsum:
+                result += [array[l], array[h]]
+                break
+            elif currSum < tsum:
+                l += 1
+            elif currSum > tsum:
+                h -= 1
+
+        return result
 ```
 
 ### 43. 左旋转字符串
