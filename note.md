@@ -3275,46 +3275,69 @@ class Solution:
 
 **解题思路：**
 
-- 分析：本质是等差序列求和的问题
-- 常规思路：根据能否整数进行因数分解，特别注意是对 2*sum 进行因数分解，结果为 num * midTwice，然后根据 [num, midTwice] 组合的奇偶性质，判断能否满足要求，后续利用 [num, midTwice] 来输出 [l, h] 序列。需要注意的地方有：num要从大往小遍历，这样才能保证最终输出的结果是从小到大。另一个就是需要检测一下l的大小，防止l出现小于等于0的情况
-- 高效解法：使用双指针，使用中间变量时刻更新当前这两个指针之间的所有元素的和，然后两个指针配合移动，从而实现找到满足条件的解。找到第一个解后，需要跳出并继续寻找下一个解。（这种方式思路简单，但是好像复杂度更高）
+- 常规思路：本质是等差序列求和的问题，根据能否整数进行因数分解，特别注意是对 2*sum 进行因数分解，结果为 num * midTwice，然后根据 [num, midTwice] 组合的奇偶性质，判断能否满足要求，后续利用 [num, midTwice] 来输出 [l, h] 序列。需要注意的地方有：num要从大往小遍历，这样才能保证最终输出的结果是从小到大。另一个就是需要检测一下l的大小，防止l出现小于等于0的情况，时间复杂度O(n/2)
+- 高效解法：双指针解法，从最小的窗口开始划窗，使用中间变量时刻更新当前这两个指针之间的所有元素的和，然后两个指针配合移动，从而实现找到满足条件的解。找到第一个解后，需要跳出并继续寻找下一个解。（这种方式思路简单，容易编写代码，但是好像复杂度高于O(n/2)）
 
 **参考代码：**
 
-```python
-# -*- coding:utf-8 -*-
-class Solution:
-    def FindContinuousSequence(self, tsum):
-        # write code here
-        if tsum < 3:
-            return []
-
-        l = 1
-        h = 2
-        currSum = 3
-        result = []
-
-        while l <= tsum // 2 + 1:
-            if currSum > tsum:
-                currSum -= l
-                l += 1
-            elif currSum < tsum:
-                h += 1
-                currSum += h
-            else:
-                # 此时相等
-                result.append(list(range(l, h + 1)))
-                currSum -= l
-                l += 1
-
-        return result
-```
-
-```c++
+```cpp
+// cpp
 class Solution {
 public:
+    // 常规解法（优化版）
+    // midTwice * num = sum * 2
+    std::vector<std::vector<int>> FindContinuousSequence2(int sum) {
+        int l = 0;
+        int h = 0;
+        int midTwice = 0;      // 目标序列中间值的二倍
+        int num = sum / 2 + 1; // 目标序列的数量（长度）
+        std::vector<std::vector<int>> result;
+
+        while (num >= 2) {
+            if ((sum * 2) % num == 0) { // 存在约数
+                midTwice = (sum * 2) / num;
+                if ((num + midTwice) % 2 == 1) { // 确保一奇一偶
+                    l = midTwice / 2 - num / 2 + midTwice % 2;
+                    h = midTwice / 2 + num / 2;
+                    add_vec(result, l, h);
+                }
+            }
+            num--;
+        }
+        return result;
+    }
+
+    // 双指针解法
+    // 效率一般
+    std::vector<std::vector<int>> FindContinuousSequence(int sum) {
+        if (sum < 3) {
+            return std::vector<std::vector<int>>{};
+        }
+
+        int l = 1;
+        int h = 2;
+        int currSum = 3;
+        std::vector<std::vector<int>> result;
+ 
+
+        while (h <= sum / 2 + 1) {
+            currSum = (l + h) * (h - l + 1) / 2;
+            if (currSum > sum) {
+                l++;
+            } else if (currSum < sum) {
+                h++;
+            } else { // 此时相等
+                add_vec(result, l, h);
+                l++;
+            }
+        }
+        
+        return result;
+    }
+
     // 用于添加的函数
-    void add_vec(std::vector<std::vector<int>>& vec, int l, int h) {
+    void add_vec(std::vector<std::vector<int>>& vec, int& l, int& h) {
+        // 注意要去除l为负数的情况
         if (l <= 0) {
             return;
         }
@@ -3325,36 +3348,52 @@ public:
         }
         vec.push_back(tmp);
     }
-
-    // 高效解法
-    std::vector<std::vector<int>> FindContinuousSequence(int sum) {
-        std::vector<std::vector<int>> result;
-        if (sum < 3) {
-            return result;
-        }
-
-        int l = 1;
-        int h = 2;
-        int currSum = 3;
-
-        while (h <= sum / 2 + 1) {
-            if (currSum > sum) {
-                currSum -= l;
-                l++;
-            } else if (currSum < sum) {
-                h++;
-                currSum += h;
-            } else {
-                // 此时相等
-                add_vec(result, l, h);
-                currSum -= l;
-                l++;
-            }
-        }
-        
-        return result;
-    }
 }
+```
+
+```python
+# python
+class Solution:
+    def FindContinuousSequence2(self, tsum):
+        """
+        个人解法究极优化版
+        num:      目标序列的数量（长度），倒序遍历保证输出正序
+        midTwice: 目标序列中间值的二倍
+        """
+        result = []
+        for num in range(tsum // 2 + 1, 1, -1):
+            midTwice = (tsum * 2) // num
+            if num * midTwice == tsum * 2 and (num + midTwice) % 2 == 1:
+                # 存在约数，且是一奇一偶
+                l = midTwice // 2 - num // 2 + midTwice % 2
+                h = midTwice // 2 + num // 2
+                if l > 0: # 去除l为负数的情况
+                    result.append(list(range(l, h + 1)))
+
+        return result
+
+    def FindContinuousSequence(slef, tsum):
+        """
+        参考解法
+        """
+        if tsum < 3:
+            return []
+
+        l = 1
+        h = 2
+        result = []
+
+        while l <= tsum // 2 + 1:
+            currSum = (l + h) * (h - l + 1) // 2
+            if currSum > tsum:
+                l += 1
+            elif currSum < tsum:
+                h += 1
+            else:
+                result.append(list(range(l, h + 1))) # 此时相等
+                l += 1
+
+        return result
 ```
 
 ### 42. 和为S的两个数字
