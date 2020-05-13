@@ -3645,104 +3645,58 @@ public:
 
 **解题思路：**
 
-- 这道题的主要含义是指：输入一个vector，数量和数值大小未知，也有可能相等（需要保证是5个数，并且每个数都在0-13之间），判断能否构成顺子，其中0可以代替1-13中的任意一个数。
+- 题目分析：本题抽象为输入一个vector，数量和数值大小未知，也有可能相等（需要保证是5个数，并且每个数都在0-13之间），判断能否构成顺子，其中0可以代替1-13中的任意一个数。
 
 - 个人常规解法：
 
-  1）判断元素个数是否为5，不是则返回false
+  > 1）判断元素个数是否为5，不是则返回false
+>
+  > 2）遍历全部元素，判断非0元素的重复性，获取最大值，非0最小值
+>
+  > 3）在无非0重复元素的情况下，只有当[max, min]长度小于等于5时，结果构成顺子
 
-  2）遍历全部元素，判断是否位于[0, 13]区间，获取大小王个数（即0的个数，也就是癞子），获取除0外最小值，最大值
-
-  3）分情况讨论：4个癞子，true；其它情况，min != max && max - min <= 4，true；其它情况，false
-
-- 参考答案解法：中间增加了排序，，然后从没有癞子的地方开始补全，根据前后两个元素的差值来选择使用相应数量的癞子补全，最终检测剩余癞子的个数是否大于等于0，代码更加简化
+- 参考解法：首先进行排序，然后一次遍历，期间进行重复性判断，根据前后两个元素的差值来选择使用相应数量的癞子补全，最终检测剩余癞子的个数是否大于等于0，代码更加简化
 
 **参考代码：**
 
-```python
-class Solution():
-    def IsContinuous(self, numbers):
-        if len(numbers) != 5:
-            return False
-        
-        nmin = 14
-        nmax = 0
-        zero_cnt = numbers.count(0)
-
-        for i in numbers:
-            if i == 0:
-                continue
-            if i < nmin:
-                nmin = i
-            if i > nmax:
-                nmax = i
-        
-        if nmin < 0 or nmax > 13:
-            return False
-
-        if zero_cnt == 4 or (nmax - nmin <= 4 and nmax != nmin):
-            return True
-        else:
-            return False
-
-    def IsContinuous2(self, numbers):
-        """
-        参考答案，癞子补全法
-        """
-        if len(numbers) != 5:
-            return False
-        
-        numbers.sort()
-        cnt = numbers.count(0)
-
-        for i in range(cnt, len(numbers) - 1):
-            if numbers[i] == numbers[i + 1]:
-                return False
-            cnt -= numbers[i + 1] - numbers[i] - 1
-        
-        return cnt >= 0
-```
-
-```c++
+```cpp
+// cpp
 #include <algorithm>
+#include <map>
 class Solution {
 public:
     // 个人解法
-    bool IsContinuous(std::vector<int> numbers) {
+    // 修复版，使用map处理重复情况
+    bool IsContinuous2(std::vector<int> numbers) {
         if (numbers.size() != 5) {
             return false;
         }
 
         int min = 14;
         int max = 0;
-        int zero_cnt = 0;
+        std::map<int, int> map;
 
         for (auto i : numbers) {
-            if (i < 0 && i > 13) {
-                return false;
-            } else if (i == 0) {
-                zero_cnt++;
+            if (i == 0) {
                 continue;
             }
-            
-            // 位于[1, 13]
-            if (i < min) {
+            if (++map[i] == 2) { // 非0重复性判断
+                return false;
+            }
+            if (i < min) { // 更新最小值 
                 min = i;
             }
-            if (i > max) {
+            if (i > max) { // 更新最大值
                 max = i;
             }
         }
 
-        if (zero_cnt == 4 || (max - min <= 4 && min != max)) {
-            return true;
-        } else {
-            return false;
-        }
+        // 在无非0重复的情况下
+        return max - min <= 4;
     }
 
     // 参考答案解法
-    bool IsContinuous2(std::vector<int> numbers) {
+    bool IsContinuous(std::vector<int> numbers) {
         if (numbers.size() != 5) {
             return false;
         }
@@ -3767,6 +3721,42 @@ public:
         return cnt >= 0;
     }
 };
+```
+
+```python
+# python
+class Solution():
+    def IsContinuous2(self, numbers):
+        """
+        个人解法修改版，pythonic
+        """
+        if len(numbers) != 5:
+            return False
+
+        # 去除非0重复
+        for i in numbers:
+            if i != 0 and numbers.count(i) > 1:
+                return False 
+        
+        tmp_no_zero = [i for i in numbers if i != 0]
+        return max(numbers) - min(tmp_no_zero) <= 4
+
+    def IsContinuous(self, numbers):
+        """
+        参考答案，癞子补全法
+        """
+        if len(numbers) != 5:
+            return False
+        
+        numbers.sort()
+        cnt = numbers.count(0)
+
+        for i in range(cnt, len(numbers) - 1):
+            if numbers[i] == numbers[i + 1]:
+                return False
+            cnt -= numbers[i + 1] - numbers[i] - 1
+        
+        return cnt >= 0
 ```
 
 ### 46. 圆圈中最后剩下的数
