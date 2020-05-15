@@ -5219,17 +5219,18 @@ public:
 
 **解题思路：**
 
-- 常规思路：正常化窗，每次使用stl求最大值
-- 高效思路：每次平移后，不需要全部排序求最大值，只需要两点，确定之前的最大值是否被丢弃，新来的值与之前的最大值相比哪个更大
-- 其它实现方式：双端队列，两端删除，参考它解法
+- 常规思路：正常窗口检测，每次使用stl求最大值
+- 高效思路：每次平移后，不需要全部排序求最大值，只需要两点，确定之前的最大值是否被丢弃，如果丢弃则需要更新最大值，将新来的值与当前最大值比较输出即可
+- 解决思路1：使用临时变量保存上一次最大值，只有在上一次最大值被移出后才使用stl求新的最大值（效果不大）
+- 解决思路2：使用最大堆实现，c++中的最大堆移动任意元素后需要重新生成最大堆，效率不高
+- 解决思路3：双端队列，保存最大值、次大值等等，两端删除，前端删除过期元素，后端删除较小的元素，每次从头部取最大值（比较高效）
+- 高效思路：动态规划（后续待补充）
 
 **参考代码：**
 
-```python
-# python
-```
-
 ```C++
+// cpp
+// 高效解法见源代码
 #include <algorithm>
 class Solution {
 public:
@@ -5250,6 +5251,43 @@ public:
 };
 
 ```
+
+```python
+# python
+# 高效解法见源代码
+
+class Solution:
+    def maxInWindows2(self, num, size):
+        """
+        优化版
+        """
+        if size <= 0 or size > len(num):
+            return []
+        
+        return [max(num[i:i+size]) for i in range(len(num) - size + 1)]
+    
+    def maxInWindows4(self, num, size):
+        """
+        使用双端队列
+        """
+        if size <= 0 or size > len(num):
+            return []
+        
+        ret, deq = [], []
+
+        for i in range(len(num)):
+            while deq != [] and num[i] > num[deq[-1]]:
+                deq.pop(-1)
+            if deq != [] and deq[0] < i - size + 1:
+                deq.pop(0)
+            deq.append(i)
+            if i >= size - 1:
+                ret.append(num[deq[0]])
+        
+        return ret
+```
+
+
 
 ### 65. 矩阵中的路径
 
