@@ -5424,54 +5424,49 @@ class Solution:
 
 **解题思路：**
 
-- 递归回溯法：走过就标记
+- 题目分析：注意本题并只是要求多少满足要求的方格，还要求了方格之间必须连通！
+- 解题思路：递归回溯法，走过就标记，没有可走的了就回溯（注意回溯之前并不清除标记），与65题很类似，但是要简单，因为只需要检测上方和右方共两个方向即可。
+- 最终可以作图看一下运动范围，结果还有规律的，见源代码。
 
 **参考代码：**
 
-```python
-# -*- coding:utf-8 -*-
-class Solution:
-    def __init__(self):
-        self.count = 0
-    
-    def my_sum(self, a):
-        ret = 0
-        while a != 0:
-            ret += a % 10
-            a //= 10
-        return ret
-    
-    def findway (self, threshold, rows, cols, i, j, flag):
-        if i < 0 or i >= rows or j < 0 or j >= cols or flag[i][j] == 1:
-            return
-        
-        if self.my_sum(i) + self.my_sum(j) > threshold:
-            return
-        
-        flag[i][j] = 1
-        self.count += 1
-        
-        self.findway(threshold, rows, cols, i + 1, j, flag)
-        self.findway(threshold, rows, cols, i - 1, j, flag)
-        self.findway(threshold, rows, cols, i, j - 1, flag)
-        self.findway(threshold, rows, cols, i, j + 1, flag)
-        return
-        
-    def movingCount(self, threshold, rows, cols):
-        # write code here
-        if threshold > 0 and rows > 0 and cols > 0:
-            flag = [[0 for i in range(cols)] for j in range(rows)]
-            self.findway(threshold, rows, cols, 0, 0, flag)
-        return self.count
-```
-
-```C++
+```cpp
+// cpp
 class Solution {
 public:
-    int cnt = 0;
-    bool* flag;
+    int cnt = 0; // 最终输出结果
+    bool* flag;  // 类内变量，标记数组
     
-    // 获取a的数位之和
+    int movingCount(int threshold, int rows, int cols) {
+        if (rows < 0 || cols < 0 || threshold < 0) {
+            return 0;
+        }
+
+        this->cnt = 0;
+        this->flag = new bool[rows * cols];
+        memset(this->flag, false, rows * cols);
+
+        checkPath(threshold, rows, cols, 0, 0);
+        return this->cnt;
+    }
+
+    void checkPath(int threshold, int rows, int cols, int i, int j) {
+        // 直接返回的条件：出界，当前方格已标记，当前方格不可进入
+        int index = i * cols + j;
+        if (i >= rows || j >= cols || this->flag[index] || sum(i) + sum(j) > threshold) {
+            return;
+        }
+
+        // 此时当前方格可以进入
+        this->flag[index] = true;
+        this->cnt++;
+
+        checkPath(threshold, rows, cols, i + 1, j); // 检测上方
+        checkPath(threshold, rows, cols, i, j + 1); // 检测下方
+        return;
+    }
+
+    // 获取一个数的数位之和
     int sum(int a) {
         int ret = 0;
         while (a != 0) {
@@ -5480,44 +5475,58 @@ public:
         }
         return ret;
     }
-    
-    void search(int threshold, int rows, int cols, int i, int j) {
-        int index = i * cols + j;
-        
-        // 出界或者已经遍历过了，返回
-        if (i < 0 || i >= rows || j < 0 || j >= cols || flag[index] == true) {
-            return;
-        }
-        
-        // 大于门限返回
-        if (sum(i) + sum(j) > threshold) {
-            return;
-        }
-        
-        // 当前格子可以进入
-        flag[index] = true;
-        cnt++;
-        
-        search(threshold, rows, cols, i + 1, j);
-        search(threshold, rows, cols, i - 1, j);
-        search(threshold, rows, cols, i, j - 1);
-        search(threshold, rows, cols, i, j + 1);
-        
-    }
-    
-    int movingCount(int threshold, int rows, int cols) {
-        // 合理性判断
-        if (threshold <= 0 || rows <= 0 || cols <= 0) {
-            return cnt;
-        }
-        
-        flag = new bool[rows * cols];
-        memset(flag, false, rows * cols);
-        
-        search(threshold, rows, cols, 0, 0);
-        return cnt;
-    }
 };
+```
+
+```python
+# python
+class Solution:
+    def __init__(self):
+        self.count = 0
+        self.flag = []
+
+    def movingCount(self, threshold, rows, cols):
+        """
+        递归回溯，优化版
+        只用搜索上方和右方
+        """
+        if threshold < 0 or rows < 0 or cols < 0:
+            return 0
+        
+        self.count = 0
+        self.flag = [[0 for i in range(cols)] for j in range(rows)]
+
+        self.checkPath(threshold, rows, cols, 0, 0)
+        return self.count
+
+    def checkPath(self, threshold, rows, cols, i, j):
+        """
+        搜索函数
+        """
+        index = i * cols + j
+        if i >= rows or j >= cols or self.flag[i][j] or self.my_sum(i) + self.my_sum(j) > threshold:
+            return
+        
+        self.flag[i][j] = 1
+        self.count += 1
+
+        self.checkPath(threshold, rows, cols, i + 1, j)
+        self.checkPath(threshold, rows, cols, i, j + 1)
+        return
+
+    def my_sum(self, a):
+        """
+        求取整数a的各个数位数字的和
+        另一种求和方式为：
+        tmp = list(map(int, list(str(a))))
+        return sum(tmp)
+        """
+        ret = 0
+        while a != 0:
+            ret += a % 10
+            a //= 10
+        return ret
+    
 ```
 
 ### 67. 剪绳子

@@ -26,8 +26,8 @@
 |50. 数组中重复的数字|数组|哈希，查找|[牛客网](https://www.nowcoder.com/practice/623a5ac0ea5b4e5f95552655361ae0a8?tpId=13&tqId=11203&tPage=3&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)|
 |51. 构建乘积数组|数组|分治，遍历|[牛客网](https://www.nowcoder.com/practice/94a4d381a68b47b7a8bed86f2975db46?tpId=13&tqId=11204&tPage=3&rp=2&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)|
 |64. 滑动窗口的最大值|数组|堆，双端队列，动态规划|[牛客网](https://www.nowcoder.com/practice/1624bc35a45c42c0bc17d17fa0cba788?tpId=13&tqId=11217&tPage=4&rp=2&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)|
-|65. 矩阵中的路径|数组|回溯法，递归，DFS|[递归](https://www.nowcoder.com/practice/c61c6999eecb4b8f88a98f66b273a3cc)|
-|66. 机器人的运动范围|数组|||
+|65. 矩阵中的路径|数组|回溯法，递归，DFS|[牛客网](https://www.nowcoder.com/practice/c61c6999eecb4b8f88a98f66b273a3cc)|
+|66. 机器人的运动范围|数组|回溯法，递归，DFS|[牛客网](https://www.nowcoder.com/practice/6e5207314b5241fb83f2329e89fdecc8?tpId=13&tqId=11219&tPage=4&rp=4&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)|
 |||||
 |02. 替换空格|字符串|||
 |27. 字符串的排列|字符串|||
