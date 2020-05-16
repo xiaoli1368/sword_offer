@@ -5297,17 +5297,91 @@ class Solution:
 
 **解题思路：**
 
-- 思路：有些难，递归回溯法
-- 更为高效的python版本是直接转换为二维列表（留待后续补充吧）
-- 回溯法的基本做法是搜索，或是一种组织得井井有条的，能避免不必要搜索的穷举式搜索法。这种方法适用于解一些组合数相当大的问题。回溯法指导思想——走不通，就掉头。设计过程：确定问题的解空间；确定结点的扩展规则；搜索。
+- 思路：递归回溯法，DFS
+
+  > 回溯法的基本做法是搜索，或是一种组织得井井有条的，能避免不必要搜索的穷举式搜索法。这种方法适用于解一些组合数相当大的问题。回溯法指导思想——走不通，就掉头。
+  >
+  > 设计过程：(1) 确定问题的解空间；(2) 确定结点的扩展规则；(3) 搜索。
+
+- 算法流程：
+
+  ```python
+  result = []
+  def backtrack(路径, 选择列表):
+      if 满足结束条件:
+          result.add(路径)
+          return
+      for 选择 in 选择列表:
+          做选择
+          backtrack(路径, 选择列表)
+          撤销选择
+  ```
+
+- python存在其它思路：直接转换为二维列表求解（留待后续补充吧）
 
 **参考代码：**
 
+```cpp
+// cpp
+class Solution {
+public:
+    bool hasPath(char* matrix, int rows, int cols, char* str) {
+        if (matrix == nullptr || str == nullptr || rows <= 0 || cols <= 0) {
+            return false;
+        }
+
+        bool* flag = new bool[rows * cols];
+        memset(flag, false, rows * cols);
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (checkPath(matrix, str, flag, rows, cols, i, j, 0)) {
+                    return true;
+                }
+            }
+        }
+
+        // 注意delete
+        delete [] flag;
+        return false;
+    }
+
+    bool checkPath(char* matrix, char* str, bool* flag, int rows, int cols, int i, int j, int k) {
+        // 找到路径的判断
+        if (str[k] == '\0') {
+            return true;
+        }
+
+        // 各处错误判断
+        int index = i * cols + j;
+        if (i < 0 || i >= rows || j < 0 || j > cols || flag[index] == true || str[k] != matrix[index]) {
+            return false;
+        }
+
+        // 此时：str[k] == maxtrix[index]
+        flag[index] = true;
+        if (checkPath(matrix, str, flag, rows, cols, i + 1, j, k + 1) ||
+            checkPath(matrix, str, flag, rows, cols, i - 1, j, k + 1) ||
+            checkPath(matrix, str, flag, rows, cols, i, j + 1, k + 1) ||
+            checkPath(matrix, str, flag, rows, cols, i, j - 1, k + 1)) {
+            return true;         // 从四个方向递归回溯，找到了路径
+        } else {
+            flag[index] = false; // 注意这里要恢复flag
+            return false;        // 四个方向都没有找到
+        }
+    }
+};
+```
+
 ```python
-# -*- coding:utf-8 -*-
+# python
 class Solution:
     def hasPath(self, matrix, rows, cols, path):
-        # write code here
+        """
+        第一次的方式，递归回溯
+        matrix: 一维字符串
+        path: 一维字符串
+        """
         if not matrix or not path or rows <= 0 or cols <= 0:
             return False
         
@@ -5316,12 +5390,12 @@ class Solution:
         
         for i in range(rows):
             for j in range(cols):
-                if self.haha(matrix, rows, cols, i, j, path, 0, flag):
+                if self.checkPath(matrix, rows, cols, i, j, path, 0, flag):
                     return True
         
         return False
     
-    def haha(self, matrix, rows, cols, i, j, path, k, flag):
+    def checkPath(self, matrix, rows, cols, i, j, path, k, flag):
         index = i * cols + j
         
         if i < 0 or i >= rows or j < 0 or j >= cols or k >= len(path) or matrix[index] != path[k] or flag[index] == True:
@@ -5332,74 +5406,14 @@ class Solution:
         
         flag[index] = True
         
-        if self.haha(matrix, rows, cols, i - 1, j, path, k + 1, flag) or \
-           self.haha(matrix, rows, cols, i + 1, j, path, k + 1, flag) or \
-           self.haha(matrix, rows, cols, i, j - 1, path, k + 1, flag) or \
-           self.haha(matrix, rows, cols, i, j + 1, path, k + 1, flag):
+        if self.checkPath(matrix, rows, cols, i - 1, j, path, k + 1, flag) or \
+           self.checkPath(matrix, rows, cols, i + 1, j, path, k + 1, flag) or \
+           self.checkPath(matrix, rows, cols, i, j - 1, path, k + 1, flag) or \
+           self.checkPath(matrix, rows, cols, i, j + 1, path, k + 1, flag):
             return True
         
         flag[index] = False
         return False
-```
-
-```C++
-class Solution {
-public:
-    bool hasPath(char* matrix, int rows, int cols, char* str) {
-        // 合法性判断
-        if (matrix == nullptr || str == nullptr || rows <= 0 || cols <= 0) {
-            return false;
-        }
-        
-        // 标记是否遍历过的数组
-        bool* flag = new bool[rows * cols];
-        memset(flag, false, rows * cols);
-        
-        // 遍历整个数组，作为起点，haha判断是否找到路径
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                if (haha(matrix, rows, cols, i, j, str, 0, flag)) {
-                    return true;
-                }
-            }
-        }
-        
-        // 没有找到
-        delete[] flag;
-        return false;
-    }
-    
-    bool haha(char* matrix, int rows, int cols, int i, int j, char* str, int k, bool* flag) {
-        // 二维索引处理为一维索引
-        int index = i * cols + j;
-        
-        // 递归的合法性判断，直接返回的情况（出界，不等，已经遍历过）
-        if (i < 0 || i > rows || j < 0 || j > cols || matrix[index] != str[k] || flag[index] == true) {
-            return false;
-        }
-        
-        // 如果str已经到头了，之前的都找到了，则true
-        if (str[k + 1] == '\0') {
-            return true;
-        }
-        
-        // 标记当前的位置已经遍历过
-        flag[index] = true;
-        
-        // 递归从四个方向回溯
-        if (   haha(matrix, rows, cols, i - 1, j, str, k + 1, flag)
-            || haha(matrix, rows, cols, i + 1, j, str, k + 1, flag)
-            || haha(matrix, rows, cols, i, j - 1, str, k + 1, flag)
-            || haha(matrix, rows, cols, i, j + 1, str, k + 1, flag)) {
-            return true;
-        }
-        
-        // 如果没有找到，则标记为没有遍历过
-        flag[index] = false;
-        return false;
-    }
-
-};
 ```
 
 ### 66. 机器人的运动范围
