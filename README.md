@@ -29,7 +29,7 @@
 |65. 矩阵中的路径|数组|回溯法，递归，DFS|[牛客网](https://www.nowcoder.com/practice/c61c6999eecb4b8f88a98f66b273a3cc)|
 |66. 机器人的运动范围|数组|回溯法，递归，DFS|[牛客网](https://www.nowcoder.com/practice/6e5207314b5241fb83f2329e89fdecc8?tpId=13&tqId=11219&tPage=4&rp=4&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)|
 |||||
-|02. 替换空格|字符串|||
+|02. 替换空格|字符串|其它|[牛客网](https://www.nowcoder.com/practice/4060ac7e3e404ad1a894ef3e17650423?tpId=13&tqId=11155&tPage=1&rp=4&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)|
 |27. 字符串的排列|字符串|||
 |34. 第一个只出现一次的字符|字符串|||
 |43. 左旋转字符串|字符串|||

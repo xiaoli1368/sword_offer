@@ -71,54 +71,31 @@ class Solution:
 
 **解题思路：**
 
-- 这道题原本的字符串会增长，因此需要动态的空间，事实上测试端已经事先设定了足够大的字符串数组，因此不需要考虑这些情况。
-- 注意高效的思路是，第一次循环确定空格数量从而明确最终的字符串长度，第二次循环从尾到头实现搬移
+- 题目分析：解题时需要考虑原本的字符串会增长，因此需要额外的空间，有两种形式，一是使用string，二是事先申请足够大的字符串数组。（刷题时不需要考虑这些情况，根据形参的类型解题即可）
+- 常规思路：利用stl的string，借助临时变量，一次遍历，根据当前字符情况来更新即可，时间复杂度O(n)，空间复杂度O(n)
+- 高效思路：对于c形式的字符数组，不借助额外空间，两次遍历，第一次循环确定空格数量从而明确最终的字符串长度，第二次循环从尾到头实现搬移，时间复杂度O(n*2)，空间复杂度O(1)
 
 **参考代码：**
 
-```python
-#!bin/bash python3
-# -*- coding:utf-8 -*-
-
-class Solution:
-    def replaceSpace(self, s):
-        return s.replace(" ", "%20")
-
-    def replaceSpace2(self, s):
-        tmp = ""
-        for i in s:
-            if i == " ":
-                tmp += "%20"
-            else:
-                tmp += i
-        return tmp
-
-
-def main():
-    s = Solution()
-    input_str = " A B "
-    print(s.replaceSpace(input_str))
-    print(s.replaceSpace2(input_str))
-
-
-if __name__ == "__main__":
-    main()
-```
-
-```c++
-#include <stdio.h>
-#include <iostream>
-#include <string>
-
+```cpp
+// cpp
 class Solution {
 public:
+    // 基于c字符数组，扩容搬移法
     void replaceSpace(char *str, int length) {
+        if (str == nullptr || length <= 0) {
+            return;
+        }
+
+        // 获取空格的长度
         int count = 0;
         for (int i = 0; i < length; i++) {
             if (str[i] == ' ') {
                 count++;
             }
         }
+
+        // 从尾部开始搬移
         int j = length + 2 * count;
         str[j] = '\0';
         for (int i = length - 1; i >= 0; i--) {
@@ -132,9 +109,12 @@ public:
         }
     } 
 
-    // c++形式
-    // 借助额外空间
-    void replaceSpace2(std::string& str) {
+    // 基于c++中字符串，借助额外空间
+    void replaceSpace(std::string& str) {
+        if (str.empty()) {
+            return;
+        }
+
         std::string tmp = "";
         for (auto i : str) {
             if (i == ' ') {
@@ -145,48 +125,29 @@ public:
         }
         str = tmp;
     }
-
-    // c++形式
-    // 减少额外空间的使用
-    void replaceSpace3(std::string& str) {
-        int length = str.length();
-        for (int i = 0; i < length; i++) {
-            if (str[i] == ' ') {
-                str.append("  ");
-            }
-        }
-        // 从后端开始搬移
-        int j = str.length(); 
-        for (int i = length - 1; i >= 0; i--) {
-            if (str[i] == ' ') {
-                str[--j] = '0';
-                str[--j] = '2';
-                str[--j] = '%';
-            } else {
-                str[--j] = str[i];
-            }
-        }
-    }
 };
+```
 
-int main(int argc, char* argv[])
-{
-    Solution s;
-    char input_str[100]= " A B \0";
-    s.replaceSpace(input_str, 5);
-    printf("%s\n", input_str);
+```python
+# python
+class Solution:
+    def replaceSpace1(self, s):
+        """
+        pythonic方法
+        """
+        return s.replace(" ", "%20")
 
-    // c++形式
-    std::string in_str = " A B ";
-    s.replaceSpace2(in_str);
-    std::cout << in_str << std::endl;
-
-    std::string in_str2 = " A B ";
-    s.replaceSpace3(in_str2);
-    std::cout << in_str2 << std::endl;
-
-    return 0;
-}
+    def replaceSpace2(self, s):
+        """
+        扩容替换法
+        """
+        tmp = ""
+        for i in s:
+            if i == " ":
+                tmp += "%20"
+            else:
+                tmp += i
+        return tmp
 ```
 
 ### 03. 从头到尾打印链表
