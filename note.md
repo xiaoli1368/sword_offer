@@ -2198,91 +2198,125 @@ public:
 
 **解题思路：**
 
-- 这里只是实现了基本的解法，高效解法需要补充。
-- 利用递归实现，perm(1234) = 1perm(234) + 2perm(134) + 3perm(124) + 4perm(123)
-- 首先进行排序，后续依次将后面的元素与首元素进行调换位置，然后排序，再进行后续的递归
-- 递归终止的条件为low==high
-- 注意对含有重复元素情况的处理
+- 题目分析：本质是全排列，使用递归回溯法求解（注意要求结果是否有序或无序）
+
+  > 基本原理：perm(1234) = 1perm(234) + 2perm(134) + 3perm(124) + 4perm(123)
+  >
+  > 在核心的perm(str, start)函数中，循环调换位置，然后进行后续的递归
+  >
+  > 递归终止的条件为start == str.size() - 1
+
+- 考虑几个问题：（1）递归实现遍历的两种方式：传递引用或者传值，交换位置。（2）结果是否要求保持字典序。（3）考虑重复的情况，结果中不应该包括重复的元素。
+
+  > 关于重复性的处理：
+  >
+  > 1）i == start，表示当前情况，继续递归
+  >
+  > 2）str[i] != str[start] && ifHasSame(str, start, i)，对于区间[start, i]，在考虑调换(start, i)二者的位置时，只有当二者不相等并且中间没有与i相同的元素，才继续递归
+  >
+  > 关于直接循环替换实现有序以及无重复：
+  >
+  > 1）对于输入 abc 进行全排列，以下比较两种递归交换方式，第一种传递引用，递归后swap恢复，第二种传递值，递归后不进行swap恢复
+  >
+  > 2）第一种结果：abc, acb, bac, bca, cba, cab
+  >
+  > 3）第二种结果：abc, acb, bac, bca, cab, cba
+  >
+  > 4）可见第二种结果是有序的，注意之所以导数第二个元素会得到 cab，是因为这是在之前的结果 bac 上执行[0, 3]交换得到的
+  >
+  > 5）至于重复性处理与上同
+
+- 解决思路1：有序版本，借助stl中的全排列函数，直接求解
+
+- 解决思路2：无序版本，递归传递引用来实现遍历，使用set/map来存储，消除重复性
+
+- 解决思路3：有序版本，使用思路2求解，结果使用stl排序
+
+- 解决思路4：有序版本，递归传递引用来实现遍历，使用vector来存储，使用额外判断消除重复性，每次递归使用stl完成排序，实现最终的结果有序
+
+- 解决思路5：有序版本，递归传递值，循环交换实现遍历（同时保证无重复，有序性），缺点为形参传递浪费
+
+- 详细解法见源代码，其它高效解法待补充。
 
 **参考代码：**
 
-```python
-class Solution:
-    def __init__(self):
-        self.ret = []
-        
-    def perm(self, ss, low, high):
-        if low == high:
-            tmp = "".join(ss)
-            self.ret.append(tmp)
-            return
-        
-        # 这里是个坑，需要补上之前的那一小段才可以
-        curr = ss[0:low] + sorted(ss[low:high + 1])
-        
-        for i in range(low, high + 1):
-            if i == low or curr[i] != curr[low]:
-                curr[i], curr[low] = curr[low], curr[i]
-                self.perm(curr, low + 1, high)
-                curr[i], curr[low] = curr[low], curr[i]
-                
-        return
-    
-    def Permutation(self, ss):
-        # write code here
-        if ss == None:
-            return self.ret
-        
-        strList = list(ss)
-        self.perm(strList, 0, len(strList) - 1)
-        
-        return self.ret
-```
-
-```c++
-// c++
-#include <algorithm>
+```cpp
+// cpp
 class Solution {
 public:
-    vector<string> ret;
+    std::vector<std::string> ret;
+    
+    // 4. 递归传递值，不使用stl排序，循环替换实现（有序，无重复）
+    std::vector<std::string> Permutation4(std::string str) {
+        if (str.empty()) {
+            return ret;
+        }
+        
+        sort(str.begin(), str.end());
+        perm2(str, 0); // 调用perm-method-2
+        return ret;
+    }
+
+    void perm2(std::string str, int start) {
+        if (start == str.size() - 1) {
+            ret.push_back(str);
+            return;
+        }
+        
+        // 依次交换，并进行下一次的迭代
+        for (int i = start; i < str.size(); i++) {
+            if (i == start || str[start] != str[i]) { // 跳过重复
+                swap(str[i], str[start]);             // 交换
+                perm2(str, start + 1);                // 递归
+            }
+        }
+        return;
+    }
     
     void swap(char& a, char& b) {
         char tmp = a;
         a = b;
         b = tmp;
     }
-    
-    // 采用递归，输入str，每个函数实现的功能是将当前的全排列可能添加到ret中去
-    void perm(string str, int low, int high) {
-        if (low == high) {
-            ret.push_back(str);
-            return;
-        }
-        
-        sort(str.begin() + low, str.end());
-        
-        // 依次交换，并进行下一次的迭代
-        for (int i = low; i <= high; i++) {
-            // 跳过重复
-            if (i == low || str[low] != str[i]) {
-                swap(str[i], str[low]); // 交换
-                perm(str, low + 1, high); // 递归
-                //swap(str[i], str[low]); // 交换回来
-            }
-        }
-        return;
-    }
-    
-    vector<string> Permutation(string str) {
-        if (str.empty()) {
-            return ret;
-        }
-        
-        sort(str.begin(), str.end());
-        perm(str, 0, str.size() - 1);
-        return ret;
-    }
 };
+```
+
+```python
+# python
+class Solution:
+    def __init__(self):
+        self.ret = []
+    
+    def Permutation4(self, ss):
+        """
+        4. 递归传递值，不使用使用stl排序，循环替换实现（有序，重复）
+        """
+        if len(ss) == 0:
+            return []
+        
+        self.perm2(sorted(list(ss)), 0)
+        return self.ret
+
+    def perm2(self, oriStrList, start):
+        """
+        有序版本，递归传递值
+        输入字符串ss对应的列表oriStrList，以及起始索引start
+        注意：
+            [1] 这种方式传递了很多次形式参数
+            [2] 不需要额外的步骤
+        """
+        if start == len(oriStrList) - 1:
+            self.ret.append("".join(oriStrList))
+            return
+        
+        # 保证值传递
+        strList = oriStrList[:]
+        
+        for i in range(start, len(strList)):
+            if i == start or strList[i] != strList[start]:
+                strList[i], strList[start] = strList[start], strList[i]
+                self.perm1(strList, start + 1)
+        return
 ```
 
 ### 28. 数组中出现次数超过一半的数字
