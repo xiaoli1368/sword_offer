@@ -2710,17 +2710,40 @@ public:
 
 **解题思路：**
 
-- 暴力解法：二重遍历即可（无奈超时了）
-- 高效解法：借助map，记录每个字母出现的次数，同时按要求输出第一个只出现一次的字母
-- 注意map是以红黑树实现的，map后，不能以map的迭代器遍历，必需用str[i]来遍历。
-- 也可以使用一个256的数组来代替stl中的map，本质都是hash
+- 暴力解法：二重遍历即可，每个位置需要一次与其它所以字符对比
+- 其它思路：借助map，记录每个字母出现的次数，同时按要求输出第一个只出现一次的字母
+- 高效思路：自行利用ascii关系，建立hash表，用一个256的数组来代替stl中的map，查找输出
+- 其它思路：借助stl实现
 
 **参考代码：**
 
+```cpp
+// cpp
+class Solution {
+public:
+    int FirstNotRepeatingChar(std::string str) {
+        if (str.empty()) {
+            return -1;
+        }
+
+        unsigned char hash[256] = {0};
+        for (auto i : str) {
+            hash[i]++;
+        }
+        for (int i = 0; i < str.size(); i++) {
+            if (hash[str[i]] == 1) {
+                return i;
+            }
+        }
+        return -1;
+    }
+};
+```
+
 ```python
+# python
 class Solution:
     def FirstNotRepeatingChar(self, s):
-        # write code here
         if len(s) <= 0:
             return -1
         
@@ -2731,29 +2754,6 @@ class Solution:
             if d[i] == 1:
                 return s.index(i)
         return -1
-```
-
-```c++
-class Solution {
-public:
-    int FirstNotRepeatingChar(string str) {
-        if (str.empty()) {
-            return -1;
-        }
-        
-        unsigned int hash[256] = {0};
-        for (int i = 0; i < str.size(); i++) {
-            hash[str[i]]++;
-        }
-        for (int i = 0; i < str.size(); i++) {
-            if (hash[str[i]] == 1) {
-                return i;
-            }
-        }
-        
-        return -1;
-    }
-};
 ```
 
 ### 35. 数组中的逆序对

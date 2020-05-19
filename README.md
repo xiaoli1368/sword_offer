@@ -31,7 +31,7 @@
 |||||
 |02. 替换空格|字符串|插入删除|[牛客网](https://www.nowcoder.com/practice/4060ac7e3e404ad1a894ef3e17650423?tpId=13&tqId=11155&tPage=1&rp=4&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)|
 |27. 字符串的排列|字符串|全排列，回溯法，递归|[牛客网](https://www.nowcoder.com/practice/fe6b651b66ae47d7acce78ffdd9a96c7?tpId=13&tqId=11180&tPage=2&rp=4&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)|
-|34. 第一个只出现一次的字符|字符串|||
+|34. 第一个只出现一次的字符|字符串|哈希表|[牛客网](https://www.nowcoder.com/practice/1c82e8cf713b4bbeb2a5b31cf5b0417c?tpId=13&tqId=11187&tPage=2&rp=4&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)|
 |43. 左旋转字符串|字符串|||
 |44. 翻转单词顺序列|字符串|||
 |49. 把字符串转换成整数|字符串|||
