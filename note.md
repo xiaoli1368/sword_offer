@@ -4361,34 +4361,18 @@ public:
 
 **解题思路：**
 
-- 重点是：使用hash来记录次数，使用string来记录顺序
+- 常规思路：使用hash来记录次数，使用string来记录顺序
+- 其它思路：使用hash来记录次数，使用队列queue来记录顺序（只记录出现一次的字符的先后顺序）
 
 **参考代码：**
 
-```python
-# -*- coding:utf-8 -*-
-class Solution:
-    # 返回对应char
-    def __init__(self):
-        self.hash = []
-    
-    def Insert(self, ch):
-        if ch != None:
-            self.hash.append(ch)
-    
-    def FirstAppearingOnce(self):
-        for i in self.hash:
-            if self.hash.count(i) == 1:
-                return i
-        return "#"
-```
-
-```C++
-class Solution
-{
+```cpp
+// cpp
+class Solution {
 public:
-    string s; // 用来记录顺序
-    char hash[256] = {0};
+    // ===== 使用hash + string =====
+    std::string s; // 用来记录顺序
+    unsigned char hash[256] = {0};
     
     // Insert one char from stringstream
     void Insert(char ch) {
@@ -4403,10 +4387,28 @@ public:
                 return i;
             }
         }
-        
         return '#';
     }
 };
+```
+
+```python
+# python
+class Solution:
+    def __init__(self):
+        self.str = ""
+        self.hash = []
+
+    def Insert(self, ch):
+        if ch != None:
+            self.str += ch
+            self.hash[ord(ch)] += 1
+    
+    def FirstAppearingOnce(self):
+        for ch in self.str:
+            if self.hash[ord(ch)] == 1:
+                return ch
+        return "#"
 ```
 
 ### 55. 链表中环的入口结点

@@ -37,7 +37,7 @@
 |49. 把字符串转换成整数|字符串|||
 |52. 正则表达式匹配|字符串|||
 |53. 表示数值的字符串|字符串|||
-|54. 字符流中第一个不重复的字符|字符串|||
+|54. 字符流中第一个不重复的字符|字符串|哈希表，队列|[牛客网](https://www.nowcoder.com/practice/00de97733b8e4f97a3fb5c680ee10720?tpId=13&tqId=11207&tPage=3&rp=4&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)|
 |||||
 |03. 从头到尾打印链表|线性表|||
 |05. 用两个栈实现队列|线性表|||
