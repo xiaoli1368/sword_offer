@@ -3536,52 +3536,12 @@ class Solution():
 
 - 暴力解法：借助python-stl，实现字符串分割，翻转
 - 常规解法：先翻转每个单词，然后再翻转整个字符串（优点是不需要额外的空间）
+- 注意：leetcode中的题目增加了额外的要求，一是删除字符串前后的空格，二是保证相邻两个单词之间仅有一个空格
 
 **参考代码：**
 
-```python
-class Solution():
-    def ReverseSentence(self, s):
-        """
-        pythonic解法
-        """
-        if s == "":
-            return s
-
-        tmp = s.split(" ")
-        tmp.reverse()
-        return " ".join(tmp)
-
-    def str_reverse(self, s, l, h):
-        tmp = list(s)
-        while l < h:
-            tmp[l], tmp[h] = tmp[h], tmp[l]
-            l += 1
-            h -= 1
-        s = str(tmp)
-        
-    def ReverseSentence2(self, s):
-        """
-        字符串翻转法
-        """
-        if s == "":
-            return s
-
-        l = 0
-        h = 0
-        length = len(s)
-
-        while l <= h and h <= length:
-            if h == length or s[h] == " ":
-                self.str_reverse(s, l, h - 1)
-                l = h + 1
-            h += 1
-        self.str_reverse(s, 0, length - 1)
-
-        return s
-```
-
-```c++
+```cpp
+// cpp
 class Solution {
 public:
     // 简化版
@@ -3594,7 +3554,6 @@ public:
         int h = 0;
         int length = str.size();
 
-        // 开头是空格也可以处理
         while (l <= h && h <= length) {
             if (h == length || str[h] == ' ') {
                 str_reverse(str, l, h - 1);
@@ -3607,18 +3566,50 @@ public:
         return str;
     }
 
-    // 翻转字符串
+    // 工具函数：翻转字符串
     void str_reverse(std::string& str, int l, int h) {
-        char tmp = '\0';
-        while (l < h) {
-            tmp = str[l];
+        for (; l < h; l++, h--) {
+            char tmp = str[l];
             str[l] = str[h];
             str[h] = tmp;
-            l++;
-            h--;
         }
     }
 };
+```
+
+```python
+# python
+class Solution():
+    def ReverseSentence(self, s):
+        """
+        字符串翻转法
+        """
+        if s == "":
+            return s
+
+        l = 0
+        h = 0
+        length = len(s)
+        tmp = list(s)
+
+        while l <= h and h <= length:
+            if h == length or s[h] == " ":
+                self.str_reverse(tmp, l, h - 1)
+                l = h + 1
+            h += 1
+        self.str_reverse(tmp, 0, length - 1)
+
+        return "".join(tmp)
+
+    def str_reverse(self, s, l, h):
+        """
+        工具函数，字符串翻转
+        注意s是一个列表
+        """
+        while l < h:
+            s[l], s[h] = s[h], s[l]
+            l += 1
+            h -= 1
 ```
 
 ### 45. 扑克牌顺子
