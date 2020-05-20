@@ -3466,65 +3466,18 @@ class Solution:
 
 **解题思路：**
 
-- 常规解法：直接借助stl实现子串切分以及拼接
+- 常规思路：直接借助stl实现子串切分以及拼接
+- 其它思路：使用两个相同的原始字符串str拼接为tmp，然后从tmp的第n处，提取长为str.size()的字串即可
+- 正常思路：自行编写字符串翻转函数，对原始字符串的两部分分别翻转，然后整体翻转即可
 
 **参考代码：**
 
-```python
-class Solution():
-    def LeftRotateString(self, s, n):
-        """
-        借助下标操作的解法
-        """
-        if s == "" or n == 0:
-            return s
-        
-        return s[n:] + s[0:n]
-
-    def str_reverse(self, s, l ,h):
-        """
-        对s[l:h]实现翻转
-        """
-        tmp = list(s)
-        while l < h:
-            tmp[l], tmp[h] = tmp[h], tmp[l]
-            l += 1
-            h -= 1
-        s = str(tmp)
-
-    def LeftRotateString2(self, s, n):
-        if s == "" or n == 0:
-            return s
-        
-        # 没有对输入的s进行保护
-        self.str_reverse(s, 0, n - 1)
-        self.str_reverse(s, n, len(s) - 1)
-        self.str_reverse(s, 0, len(s) - 1)
-        return s
-```
-
-```c++
+```cpp
+// cpp
 class Solution {
 public:
-    string LeftRotateString(string str, int n) {
-        if (str.empty() || n == 0) {
-            return str;
-        }
-        return str.substr(n, str.size() - n) + str.substr(0, n);
-    }
-
     // 高效解法：两部分分别翻转，然后整体翻转
-    void str_reverse(std::string& str, int l, int h) {
-        while (l < h) {
-            char tmp = str[l];
-            str[l] = str[h];
-            str[h] = tmp;
-            l++;
-            h--;
-        }
-    }
-
-    std::string LeftRotateString(std::string str, int n) {
+    std::string LeftRotateString2(std::string str, int n) {
         if (str.empty() || n == 0) {
             return str;
         }
@@ -3534,7 +3487,43 @@ public:
         str_reverse(str, 0, str.size() - 1);
         return str;
     }
+
+    // 工具函数，实现翻转（对称）
+    void str_reverse(std::string& str, int l, int h) {
+        for (; l < h; l++, h--) {
+            char tmp = str[l];
+            str[l] = str[h];
+            str[h] = tmp;
+        }
+    }
 };
+```
+
+```python
+class Solution():
+    def LeftRotateString2(self, s, n):
+        """
+        两两部分翻转，然后整体翻转
+        """
+        if s == "" or n <= 0 or n >= len(s):
+            return s
+        
+        tmp = list(s)
+        self.str_reverse(tmp, 0, n - 1)
+        self.str_reverse(tmp, n, len(s) - 1)
+        self.str_reverse(tmp, 0, len(s) - 1)
+        return "".join(tmp)
+
+    def str_reverse(self, s, l ,h):
+        """
+        对s[l:h]实现翻转
+        注意s是一个列表
+        """
+        while l < h:
+            s[l], s[h] = s[h], s[l]
+            l += 1
+            h -= 1
+    
 ```
 
 ### 44. 翻转单词顺序列
