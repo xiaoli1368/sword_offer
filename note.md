@@ -4239,17 +4239,73 @@ public:
 
 **解题思路：**
 
-- 主要思路如下：第一个符号位特殊处理，然后while遍历，记录三个情况：has_value，dot_cnt，e_cnt
-- 特殊情况返回false或者true，两个*或者.同时出现则false，不能在先有e的情况下出现.，后续出现+-符号位时必须在e后边
+- 常规思路：依次遍历，排出不满足条件的情况。
+
+  > 第一个符号位特殊处理，然后while遍历，记录三个情况：has_value，dot_cnt，e_cnt
+  >
+  > 特殊情况返回false或者true，两个*或者.同时出现则false，不能在先有e的情况下出现.，后续出现+-符号位时必须在e后边
+
+- 高效思路：对字符串以第一个e进行切分，分别判断指数和底数是否满足条件，注意特殊情况
+
+- 注意：leetcode的版本要更为复杂，本题python存在开挂解法：try except
 
 **参考代码：**
 
+```cpp
+// cpp
+class Solution {
+public:
+    bool isNumeric(char* str) {
+        if (str == nullptr) {
+            return false;
+        }
+        
+        // 处理首位的符号位
+        if (*str == '+' || *str == '-') {
+            str++;
+        }
+        
+        // 辅助参数
+        int e_cnt = 0;
+        int dot_cnt = 0;
+        bool has_value = false;
+        
+        // 为了简化代码
+        str--;
+        while (*(++str) != '\0') {
+            if (*str >= '0' && *str <= '9') {
+                has_value = true;
+            } else { // 以下不会出现数值
+                has_value = false;
+                if (*str == '.' && e_cnt == 0) { // 注意不能在先有e的情况下出.小数点
+                    dot_cnt++;
+                } else if (*str == 'e' || *str == 'E') {
+                    e_cnt++;
+                } else if ((*str == '+' || *str == '-') && (*(str - 1) == 'e' || *(str - 1) == 'E')) { // 再次出现符号位时，前一位必须为e
+                    continue;
+                } else {
+                    return false;
+                }
+                
+                // 合法性判断
+                if (e_cnt >= 2 || dot_cnt >= 2) { // 两个e或者两个.出现时，即为false
+                    return false;
+                }
+            }
+        }
+        return has_value;
+    }
+};
+```
+
 ```python
-# -*- coding:utf-8 -*-
+# python
 class Solution:
-    # s字符串
-    def isNumeric(self, s):
-        # write code here
+    def isNumeric1(self, s):
+        """
+        牛客网版本，已经AC
+        注意s是字符串
+        """
         if s == None or len(s) == 0:
             return False
         
@@ -4276,65 +4332,6 @@ class Solution:
                     return False
         
         return has_value
-
-
-# 投机取巧解法
-def func(self, s):
-    try:
-        ss = float(s)
-        return True
-    expect:
-        return False
-
-```
-
-```C++
-class Solution {
-public:
-    bool isNumeric(char* str) {
-        // 参数合法性判断
-        if (str == nullptr) {
-            return false;
-        }
-        
-        // 处理首位的符号位
-        if (*str == '+' || *str == '-') {
-            str++;
-        }
-        
-        // 辅助参数
-        int e_cnt = 0;
-        int dot_cnt = 0;
-        bool has_value = false;
-        
-        // 为了简化代码
-        str--;
-        while (*(++str) != '\0') {
-            if (*str >= '0' && *str <= '9') {
-                has_value = true;
-            } else {
-                // 以下不会出现数值
-                has_value = false;
-                if (*str == '.' && e_cnt == 0) { // 注意不能在先有e的情况下出现.
-                    dot_cnt++;
-                } else if (*str == 'e' || *str == 'E') {
-                    e_cnt++;
-                } else if ((*str == '+' || *str == '-') && (*(str - 1) == 'e' || *(str - 1) == 'E')) { // 再次出现符号位时，前一位必须为e
-                    continue;
-                } else {
-                    return false;
-                }
-                
-                // 合法性判断
-                if (e_cnt >= 2 || dot_cnt >= 2) { // 两个e或者两个.出现时，即为false
-                    return false;
-                }
-            }
-        }
-        return has_value;
-    }
-
-};
 ```
 
 ### 54. 字符流中第一个不重复的字符

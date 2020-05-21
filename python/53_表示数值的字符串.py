@@ -1,11 +1,12 @@
 #!/bin/bash/ python3
 #-*- coding:utf-8 -*-
 
-# -*- coding:utf-8 -*-
 class Solution:
-    # s字符串
-    def isNumeric(self, s):
-        # write code here
+    def isNumeric1(self, s):
+        """
+        牛客网版本，已经AC
+        注意s是字符串
+        """
         if s == None or len(s) == 0:
             return False
         
@@ -33,11 +34,36 @@ class Solution:
         
         return has_value
 
-
-    # 投机取巧解法
-    def func(self, s):
+    def isNumeric2(self, s):
+        """
+        投机取巧解法
+        """
         try:
             ss = float(s)
             return True
-        expect:
+        except:
             return False
+
+    def test(self, s):
+        """
+        测试函数
+        """
+        result1 = self.isNumeric1(s)
+        result2 = self.isNumeric2(s)
+        print("result1: {:d}, result2: {:d}, string: {:s}".format(result1, result1, s))
+
+
+def main():
+    strs = ["+100", "5e2", "-123", "3.1416", "0123",
+            "12e", "1a3.14", "1.2.3", "+-5", "12e+5.4",
+            "0", " 0.1", "abc", "1 a", "2e10", " -90e3",
+            " 1e", "e3", " 6e-1", " 99e2.5", "53.5e93",
+            " --6", "-+3", "95a54e53"]
+
+    s = Solution()
+    for ss in strs:
+        s.test(ss)
+
+
+if __name__ == "__main__":
+    main()
