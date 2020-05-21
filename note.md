@@ -3968,14 +3968,54 @@ public:
 **解题思路：**
 
 - 关键点在于：特殊情况分析，考虑正负号，考虑非法数值，考虑int溢出
+- 注意：leetcode对应的题目，增加了更多的限制，如数字串的首位不能为0，数字串有可能过长导致long类型溢出
 
 **参考代码：**
 
+```cpp
+// cpp
+class Solution {
+public:
+    // 个人答案，优化版，不使用pow函数
+    int StrToInt(std::string str) {
+        if (str.empty()) {
+            return 0;
+        }
+        
+        int sign = 1;
+        long sum = 0;
+        int maxInt = 0x7fffffff;
+        int minInx = 0x80000000;
+
+        for (int i = 0; i < str.size(); i++) {
+            if (i == 0 && str[i] == '-') {
+                sign = -1;
+                continue;
+            }
+            if (i == 0 && str[i] == '+') {
+                continue;
+            }
+            if (str[i] < '0' || str[i] > '9') {
+                return 0;
+            }
+            sum = sum * 10 + int(str[i] - '0');
+        }
+        sum *= sign;
+
+        // 考虑int溢出
+        if (sum > maxInt || sum < minInx) {
+            return 0;
+        } else {
+            return sum;
+        }
+    }
+};
+```
+
 ```python
-# -*- coding:utf-8 -*-
+# python
 class Solution:
     def StrToInt(self, s):
-        # write code here
         if s == "":
             return 0
         
@@ -3996,42 +4036,6 @@ class Solution:
             return 0
         else:
             return tsum
-```
-
-```c++
-#include <cmath>
-class Solution {
-public:
-    int StrToInt(string str) {
-        if (str.empty()) {
-            return 0;
-        }
-        
-        int sign = 1;
-        long sum = 0;
-        for (int i = 0; i < str.size(); i++) {
-            if (i == 0 && str[i] == '-') {
-                sign = -1;
-                continue;
-            }
-            if (i == 0 && str[i] == '+') {
-                continue;
-            }
-            if (str[i] < '0' || str[i] > '9') {
-                return 0;
-            }
-            sum = sum * 10 + str[i] - '0';
-        }
-        sum *= sign;
-        
-        // 溢出判断
-        if (sum >= pow(2, 31) || sum < -pow(2, 31)) {
-            return 0;
-        } else {
-            return sum;
-        }
-    }
-};
 ```
 
 
