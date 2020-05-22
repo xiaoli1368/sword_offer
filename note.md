@@ -4164,71 +4164,89 @@ class Solution:
 
 **解题思路：**
 
-- 两种思路，一是递归，二是循环
-- 关键是把各种情况讨论清楚
-- 递归回溯法，其实就是把所有可能的情况全部试一遍，通过不停的剪去s和p相同的首部，直到某一个或两个都被剪空，就可以得到结论了
+- 两种思路，一是递归，二是动态规划，关键是把各种情况讨论清楚
+
+- 递归回溯法，其实就是把所有可能的情况全部试一遍，通过不停的剪去s和p相同的首部，直到某一个或两个都被剪空，就可以得到结论了。
+
+  > 比较f(s, p)时，需要考虑p当前字符的下一位是否为'*'
+  >
+  > 对于不含有'*'的情况，比较当前字符是否匹配（包括'.'情况），并进行递归即可：f(s, p) = (s[0] == p[0]?) && f(s+1, p+1)
+  >
+  > 对于含有'\*'的情况，要复杂的多，此时存在两种匹配情况，一是将p的当前字符以及*作为空，二是\*将发挥作用，补上一位p的当前字符，二者比较结果相同后s跳到下一位继续比较（注意p不会跳到下一位，因为不确定\*应该补上多少位字符），此时有：
+  >
+  > f(s, p) = f(s, p+2) || ((s == p) && f(s+1, p))
+
+- 可以发现本题存在递推关系，因此可以利用动态规划进行求解，注意可以自顶向下，或者自下向顶进行递推：
+
+  > 自下向顶：dp(m, n)表示s在m右侧的序列，与p在n开始的序列，是否匹配
+  >
+  > 自顶向下：dp(m, n)表示s在m左侧的序列，与p在n左侧的序列，是否匹配
+  >
+  > 源代码仅给出了从左到右遍历的方式，后续待补充
 
 **参考代码：**
 
-```python
-# -*- coding:utf-8 -*-
-class Solution:
-    # s, pattern都是字符串
-    def match(self, s, pattern):
-        # write code here
-        if len(s) == 0 and len(pattern) == 0:
-            return True
-        elif len(s) != 0 and len(pattern) == 0:
-            return False
-        elif len(s) == 0  and len(pattern) != 0:
-            if len(pattern) > 1 and pattern[1] == "*":
-                return self.match(s, pattern[2:])
-            else:
-                return False
-        else: # 二者都非空
-            if len(pattern) == 1 or pattern[1] != "*": # 后一位不是 *
-                if s[0] == pattern[0] or pattern[0] == ".":
-                    return self.match(s[1:], pattern[1:])
-                else:
-                    return False
-            else: # 后一位是 *
-                if s[0] != pattern[0] and pattern[0] != ".":
-                    return self.match(s, pattern[2:])
-                else:
-                    return self.match(s[1:], pattern) or self.match(s, pattern[2:])
-```
-
-```C++
+```cpp
+// cpp
 // c++
 class Solution {
 public:
-    bool match(char* str, char* pattern) {
-        if (*str == '\0' && *pattern == '\0') {
-            return true;
-        }
-        if (*str != '\0' && *pattern == '\0') {
-            return false;
+    // 递归优化版
+    bool match2(char* str, char* pattern) {
+        if (*pattern == '\0') {
+            return *str == '\0';
         }
         
-        // 剩下的情况是 *pattern != '\0'
+        // 此时的情况是 *pattern != '\0'
+        bool first_match = false;
+        if (*str != '\0' && (*pattern == '.' || *pattern == *str)) {
+            first_match = true;
+        }
+        
         // 此时考虑 *(pattern + 1) 是否为 '*'
-        
-        if (*(pattern + 1) != '*') { // 后一位不是 '*'
-            if (*str == *pattern || (*str != '\0' && *pattern == '.')) {
-                return match(str + 1, pattern + 1);
-            } else {
-                return false;
-            }
-        } else { // 后一位是 '*'
-            if (*str == *pattern || (*str != '\0' && *pattern == '.')) {
-                // 注意这里，不确定 * 会重复几次，因此需要 ||
-                return match(str + 1, pattern) || match(str, pattern + 2);
-            } else { // * 被当作空
-                return match(str, pattern + 2);
-            }
+        if (*(pattern + 1) == '\0' || *(pattern + 1) != '*') {
+            return first_match && match2(str + 1, pattern + 1);
+        } else {
+            return match2(str, pattern + 2) || (first_match && match2(str + 1, pattern));
         }
     }
 };
+```
+
+```python
+# python
+class Solution:
+    def match3(self, s, p):
+        """
+        动态规划版本
+        """
+        if p == "":
+            return s == ""
+        
+        m = len(s)
+        n = len(p)
+        
+        dp = [[False] * (n + 1) for i in range(m + 1)]
+        dp[0][0] = True
+        if m != 0 and (p[0] == "." or p[0] == s[0]):
+            dp[1][1] = True
+        if p[0] == "*":
+            dp[0][1] = True
+        for i in range(n):
+            if p[i] == "*" and dp[0][i - 1] == True:
+                dp[0][i + 1] = True
+
+        for i in range(m):
+            for j in range(1, n):
+                if s[i] == p[j] or p[j] == ".":
+                    dp[i + 1][j + 1] = dp[i][j]
+                if p[j] == "*":
+                    if s[i] != p[j - 1] and p[j - 1] != ".":
+                        dp[i + 1][j + 1] = dp[i + 1][j - 1]
+                    else:
+                        dp[i + 1][j + 1] = (dp[i][j + 1] or dp[i + 1][j - 1])
+        
+        return dp[m][n]
 ```
 
 ### 53. 表示数值的字符串
