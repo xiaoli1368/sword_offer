@@ -705,19 +705,50 @@ class Solution:
 
 **解题思路：**
 
-- 首先要考虑将负数转为补码表示（c++直接使用unsigned int，python需要借助0xffffffff）
-- 两种思路，暴力枚举的方式是不断的进行整除2以及右移一位，统计1的个数
-- 另外一种思路是，循环使用 n&(n-1) != 0 可以消去原来数中的一位1（注意这种方式运算更快，每次消掉一位1，而且不用考虑符号的问题，但是python的与操作比较特殊，因此仍然需要转换符号）
+- 首先，要考虑将负数转为补码表示：c++直接使用类型转换 unsigned int，python需要借助 0xffffffff
+- 常规思路：暴力枚举，循环右移，检测最右边二进制位是否为1，缺点需要检测32次
+- 高效思路：环使用 n&(n-1) != 0 可以消去原来数中的一位1（注意这种方式运算更快，每次消掉一位1，而且不用考虑符号的问题，但是python的与操作比较特殊，因此仍然需要转换符号）
 
 **参考代码：**
 
+```cpp
+// cpp
+class Solution {
+public:
+    // 循环移位法,注意需要转换类型
+    // 时间复杂度为O(32)
+    int NumberOf1(int n) {
+        unsigned int tmp = n;
+        int result = 0;
+        while (tmp > 0) {
+            if (tmp & 1 == 1) {
+                result++;
+            }
+            tmp >>= 1;
+        }
+        return result;
+    }
+
+    // 依次找最后一位1,不需要转换类型
+    // 时间复杂度:O(1的个数)
+    int NumberOf1_easy(int n) {
+        // 这种方式不需要转换符号
+        int cnt = 0;
+        while (n != 0) {
+            cnt++;
+            n &= (n - 1);
+        }
+        return cnt;
+    }
+};
+```
+
 ```python
+# python
 class Solution():
     def NumberOf1(self, n):
         """
-        注意与操作0xffffffff
-        这样并不是获得了一个补码
-        而是获得了一个正数，这个正数与n的补码具有相同个数的1
+        循环移位法
         """
         result = 0
         if n < 0:
@@ -730,7 +761,7 @@ class Solution():
 
     def NumberOf1_easy(self, n):
         """
-        高效解法
+        依次找最后一位1
         """
         cnt = 0
         if n < 0:
@@ -739,34 +770,6 @@ class Solution():
             cnt += 1
             n = n & (n - 1)
         return cnt
-```
-
-```c++
-class Solution {
-public:
-    int NumberOf1(int n) {
-        // c++需要转换类型
-        unsigned int tmp = n;
-        int result = 0;
-        while (tmp > 0) {
-            if (tmp & 1 == 1) {
-                result++;
-            }
-            tmp >>= 1;
-        }
-        return result;
-    }
-
-    int NumberOf1_easy(int n) {
-        // 这种方式不需要转换符号
-        int cnt = 0;
-        while (n != 0) {
-            cnt++;
-            n &= (n - 1);
-        }
-        return cnt;
-    }
-};
 ```
 
 ### 12. 数值的整数次方

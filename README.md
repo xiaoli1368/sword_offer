@@ -71,7 +71,7 @@
 |08. 跳台阶|其它|递归，动态规划|[牛客网](https://www.nowcoder.com/practice/8c82a5b80378478f9484d87d1c5f12a4?tpId=13&tqId=11161&tPage=1&rp=4&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)|
 |09. 变态跳台阶|其它|递归，动态规划|[牛客网](https://www.nowcoder.com/practice/22243d016f6b47f2a6928b4313c85387?tpId=13&tqId=11162&tPage=1&rp=4&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)|
 |10. 矩形覆盖|其它|递归，动态规划|[牛客网](https://www.nowcoder.com/practice/72a5a919508a4251859fb2cfb987a0e6?tpId=13&tqId=11163&tPage=1&rp=4&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)|
-|11. 二进制中的1|其它||[牛客网]()|
+|11. 二进制中的1|其它|位运算|[牛客网](https://www.nowcoder.com/practice/8ee967e43c2c4ec193b040ea7fbb10b8?tpId=13&tqId=11164&tPage=1&rp=4&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)|
 |12. 数值的整数次方|其它||[牛客网]()|
 |31. 整数中1出现的个数|其它||[牛客网]()|
 |33. 丑数|其它|||
@@ -91,6 +91,7 @@
 - 查找（二分，递归，dfs，bfs，回溯）
 - 排序（快排，归并）
 - 其它（分治，贪心，动态规划）
+- 二进制位运算
 
 **比较复杂的题目：**
 
