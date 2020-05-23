@@ -72,7 +72,7 @@
 |09. 变态跳台阶|其它|递归，动态规划|[牛客网](https://www.nowcoder.com/practice/22243d016f6b47f2a6928b4313c85387?tpId=13&tqId=11162&tPage=1&rp=4&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)|
 |10. 矩形覆盖|其它|递归，动态规划|[牛客网](https://www.nowcoder.com/practice/72a5a919508a4251859fb2cfb987a0e6?tpId=13&tqId=11163&tPage=1&rp=4&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)|
 |11. 二进制中的1|其它|位运算|[牛客网](https://www.nowcoder.com/practice/8ee967e43c2c4ec193b040ea7fbb10b8?tpId=13&tqId=11164&tPage=1&rp=4&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)|
-|12. 数值的整数次方|其它||[牛客网]()|
+|12. 数值的整数次方|其它|快速幂，二分法|[牛客网](https://www.nowcoder.com/practice/1a834e5e3e1a4b7ba251417554e07c00?tpId=13&tqId=11165&tPage=1&rp=4&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)|
 |31. 整数中1出现的个数|其它||[牛客网]()|
 |33. 丑数|其它|||
 |46. 圆圈中最后剩下的数|其它|||
@@ -86,12 +86,30 @@
 
 未完，待补充：
 
-**按照解题算法分类：**
+**比较复杂的题目：**
+
+- 65
+- 52
+
+**基础篇（按照数据结构分类）：**
+
+- 数组
+- 字符串
+- 其它
+- 线性表
+- 二叉树
+- 堆
+- 图
+
+**专题篇（按照解题算法分类）：**
 
 - 查找（二分，递归，dfs，bfs，回溯）
 - 排序（快排，归并）
 - 其它（分治，贪心，动态规划）
 - 二进制位运算
+- 递归，滑窗，双指针
+- 背包问题
+- KMP
 
 **比较复杂的题目：**
 

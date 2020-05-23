@@ -782,67 +782,85 @@ class Solution():
 
 **解题思路：**
 
-- 直接使用循环完成连乘即可
-- 注意指数为负数的特殊情况
+- 常规思路：循环连乘即可，时间复杂度O(n)，n为输入的指数，复杂度过大
+- 高效思路：利用二分法实现的快速幂运算，时间复杂度O(logn)
+- 注意：指数n为负数的特殊情况，需要取相反数。（但是当n为0x80000000时，即int32下最小的负数，此时取相反数会溢出，可以使用long来处理，另一种方式为使用快速幂运算，不考虑符号位）
 
 **参考代码：**
 
-```python
-class Solution():
-    def Power(self, base, exponent):
-        """
-        直接使用内置运算符号
-        """
-        return base**exponent
-
-    def Power2(self, base, exponent):
-        """
-        自行实现
-        """
-        if exponent == 0:
-            return 1.0
-        
-        sign = False
-        if exponent < 0:
-            sign = True
-            exponent = -exponent
-
-        result = 1.0
-        for i in range(exponent):
-            result *= base
-
-        if sign:
-            result = 1 / result
-
-        return result
-```
-
-```c++
+```cpp
+// cpp
 class Solution {
 public:
-    double Power(double base, int exponent) {
-        if (exponent == 0) {
-            return 1.0;
+    // 暴力循环法，复杂度过大
+    // 没有考虑exponent溢出
+    double Power2(double base, int exponent) {
+        if (base == 0) {
+            return 0;
         }
 
-        bool sign = false;
+        // 处理符号位
+        bool sign = true;
         if (exponent < 0) {
-            sign = true;
+            sign = false;
             exponent = -exponent;
         }
 
-        double result = 1.0;
+        // 获取结果
+        double ret = 1.0;
         for (int i = 0; i < exponent; i++) {
-            result *= base;
+            ret *= base;
         }
 
-        if (sign) {
-            result = 1 / result;
+        return sign ? ret : 1 / ret;
+    }
+    
+    // 快速幂方法
+    // 时间复杂度为o(logn)，不用考虑符号问题
+    double Power3(double base, int exponent) {
+        if (base == 0) {
+            return 0;
         }
 
-        return result;
+        int e = exponent;
+        double ret = 1.0;
+        while (e != 0) {
+            if (e & 1 == 1) { // 奇数无法二分，需要向结果中凑一个base
+                ret *= base;
+            }
+            base *= base;     // base增长为2倍
+            //e >>= 1;        // 指数二分，这种方式要保证符合位，因此结果可能永远为负
+            e /= 2;           // 这种方式不用考虑符号
+        }
+
+        return exponent < 0 ? 1 / ret : ret;
     }
 };
+```
+
+```python
+# python
+class Solution():
+    def Power2(self, base, exponent):
+        """
+        快速幂方法，需要处理符号
+        """
+        if base == 0:
+            return 0
+        
+        ret = 1.0
+        sign = True
+        if exponent < 0:
+            sign = False
+            exponent = - exponent
+
+        while exponent != 0:
+            if exponent & 1 == 1:
+                ret *= base
+            base *= base
+            exponent >>= 1
+        
+        return ret if sign else 1 / ret
 ```
 
 ### 13. 调整数组顺序使奇数位于偶数前面
