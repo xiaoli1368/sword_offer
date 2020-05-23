@@ -589,30 +589,13 @@ class Solution():
 
 **解题思路：**
 
-- 与斐波那契数学的原理一致，区别在于斐波那契数列的前三项为[0, 1, 1]，本题的前三项为[0, 1, 2]
-- 后续都是依次叠加的套路
+- 题目分析：与斐波那契序列类似，区别在于斐波那契数列的前三项为[0, 1, 1]，本题的前三项为[0, 1, 2]
+- 类似解题方法见面试题07
 
 **参考代码：**
 
-```python
-# -*- coding:utf-8 -*-
-class Solution:
-    def jumpFloor(self, n):
-        # write code here
-        if n < 3:
-            return n
-        else:
-            a = 1
-            b = 2
-            c = 3
-            for i in range(n-2):
-                c = a + b
-                a = b
-                b = c
-            return c
-```
-
-```c++
+```cpp
+// cpp
 class Solution {
 public:
     int jumpFloor(int n) {
@@ -629,6 +612,20 @@ public:
         return c;
     }
 };
+```
+
+```python
+# python
+class Solution:
+    def jumpFloor(self, n):
+        if n < 3:
+            return n
+
+        a, b, c = 1, 2, 3
+        for i in range(n - 2):
+            c = a + b
+            a, b = b, c
+        return c
 ```
 
 ### 09. 变态跳台阶
