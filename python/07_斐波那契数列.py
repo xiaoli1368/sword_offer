@@ -1,10 +1,12 @@
 #!/bin/bash python3
 #-*- coding:utf-8 -*-
 
+import time
+
 class Solution():
     def Fibonacci(self, n):
         """
-        迭代的方式，花时间很长
+        递归，时间复杂度较大
         """
         if n < 2:
             return n
@@ -13,7 +15,7 @@ class Solution():
 
     def Fibonacci2(self, n):
         """
-        使用列表存储并迭代的方式
+        动态规划，使用列表存储并迭代
         """
         if n < 2:
             return n
@@ -25,7 +27,7 @@ class Solution():
 
     def Fibonacci3(self, n):
         """
-        参考答案，更加高效的方式
+        动态规划，优化版
         """
         array = [0, 1]
         if n >= 2:
@@ -35,24 +37,37 @@ class Solution():
 
     def Fibonacci4(self, n):
         """
-        另一种方式
+        动态规划，利用临时变量
         """
         if n < 2:
             return n
-        else:
-            a = 0
-            b = 1
-            c = 0
-            for i in range(n-1):
-                c = a + b
-                a = b
-                b = c
-            return c
+        
+        a, b, c = 0, 1, 0
+        for i in range(n-1):
+            c = a + b
+            a, b = b, c
+        return c
+
+    def test(self, n):
+        """
+        测试函数
+        """
+        func_vec = [self.Fibonacci,
+                    self.Fibonacci2,
+                    self.Fibonacci3,
+                    self.Fibonacci4]
+        print("=====")
+        for func in func_vec:
+            start = time.time()
+            result = func(n)
+            end = time.time()
+            print("result: {:d}, time(us): {:>5.2}".format(result, (end - start)*10**6))
 
 
 def main():
     s = Solution()
-    print(s.Fibonacci4(39))
+    for i in range(0, 39, 10):
+        s.test(i)
 
 
 if __name__ == "__main__":

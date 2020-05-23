@@ -520,63 +520,15 @@ class Solution:
 
 **解题思路：**
 
-- 不能使用递归，递归方式编程简单，但是会严重超时
-- 因此只能开始一个新的数组空间，不断迭代并保存值到数组，最终获得结果
-- 更加高效的方式是使用三个临时变量来相互迭代，而不是使用数组
+- 常规思路：递归，编程简单，但是时间复杂度较大O(2^n)，严重超时
+- 动态规划：使用数组自底向上迭代，时间复杂度O(n)，空间复杂度O(n)
+- 动态规划：使用临时变量互相迭代，时间复杂度O(n)，空间复杂度O(1)
+- 注意有可能出想int或long的溢出，可以在迭代内部取余数解决
 
 **参考代码：**
 
-```python
-class Solution():
-    def Fibonacci(self, n):
-        """
-        迭代的方式，花时间很长
-        """
-        if n < 2:
-            return n
-        else:
-            return self.Fibonacci(n-1) + self.Fibonacci(n-2)
-
-    def Fibonacci2(self, n):
-        """
-        使用列表存储并迭代的方式
-        """
-        if n < 2:
-            return n
-        else:
-            array = [0, 1]
-            while len(array) - 1 < n:
-                array.append(array[-2] + array[-1])
-            return array[-1]
-
-    def Fibonacci3(self, n):
-        """
-        参考答案，更加高效的方式
-        """
-        array = [0, 1]
-        if n >= 2:
-            for i in range(2, n + 1):
-                array[i%2] = array[0] + array[1]
-        return array[n%2]
-
-    def Fibonacci4(self, n):
-        """
-        另一种方式
-        """
-        if n < 2:
-            return n
-        else:
-            a = 0
-            b = 1
-            c = 0
-            for i in range(n-1):
-                c = a + b
-                a = b
-                b = c
-            return c
-```
-
-```c++
+```cpp
+// cpp
 class Solution {
 public:
     // 递归的方式
@@ -587,19 +539,7 @@ public:
         return Fibonacci(n-1) + Fibonacci(n-2);
     }
 
-    // 数组存储的方式
-    int Fibonacci2(int n) {
-        if (n < 2) {
-            return n;
-        }
-        std::vector<int> vec = {0, 1};
-        for (int i = 0; i < n-1; i++) {
-            vec.push_back(vec.back() + vec.at(vec.size() - 2));
-        }
-        return vec.back();
-    }
-
-    // 更为高效的方式
+    // 动态规划：临时变量
     int Fibonacci3(int n) {
         if (n < 2) {
             return n;
@@ -613,6 +553,32 @@ public:
         return c;
     }
 }
+```
+
+```python
+# python
+class Solution():
+    def Fibonacci(self, n):
+        """
+        递归，时间复杂度较大
+        """
+        if n < 2:
+            return n
+        else:
+            return self.Fibonacci(n-1) + self.Fibonacci(n-2)
+
+    def Fibonacci4(self, n):
+        """
+        动态规划，利用临时变量
+        """
+        if n < 2:
+            return n
+        
+        a, b, c = 0, 1, 0
+        for i in range(n-1):
+            c = a + b
+            a, b = b, c
+        return c
 ```
 
 ### 08. 跳台阶

@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <stdio.h>
+#include <sys/time.h>
 
 class Solution {
 public:
@@ -11,7 +13,7 @@ public:
         return Fibonacci(n-1) + Fibonacci(n-2);
     }
 
-    // 数组存储的方式
+    // 动态规划：数组存储
     int Fibonacci2(int n) {
         if (n < 2) {
             return n;
@@ -23,7 +25,7 @@ public:
         return vec.back();
     }
 
-    // 更为高效的方式
+    // 动态规划：临时变量
     int Fibonacci3(int n) {
         if (n < 2) {
             return n;
@@ -36,12 +38,51 @@ public:
         }
         return c;
     }
+
+    // 动态规划：处理溢出的大数，考虑求余
+    // 求余规则：(a + b) % c = (a % c + b % c) % c
+    // c可以自行规定，如1000000007
+    int Fibonacci4(int n) {
+        if (n < 2) {
+            return n;
+        }
+        int a = 0, b = 1, c = 0;
+        for (int i = 0; i < n-1; i++) {
+            c = (a + b) % 1000000007;
+            a = b;
+            b = c;
+        }
+        return c;
+    }
+
+    // 测试函数
+    void test(int n) {
+        int result = 0;
+        struct timeval start, end;
+        printf("=====\n");
+        for (auto func : this->func_vec_) {
+            gettimeofday(&start, nullptr);
+            result = (this->*func)(n);
+            gettimeofday(&end, nullptr);
+            printf("result: %d, time(us): %ld\n", result, end.tv_usec - start.tv_usec);
+        }
+    }
+
+private:
+    typedef int (Solution::*func_ptr)(int);
+    std::vector<func_ptr> func_vec_ = {&Solution::Fibonacci,
+                                       &Solution::Fibonacci2,
+                                       &Solution::Fibonacci3,
+                                       &Solution::Fibonacci4};
+
 };
 
 int main(int argc, char* argv[])
 {
     Solution s;
-    std::cout << s.Fibonacci3(39) << std::endl;
+    for (int i = 0; i <= 40; i += 10) {
+        s.test(i);
+    }
 
     return 0;
 }
