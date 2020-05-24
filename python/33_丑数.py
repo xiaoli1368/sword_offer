@@ -1,8 +1,11 @@
 #!/bin/bash python3 
 #-*- coding:utf-8 -*-
 
+import time
+import heapq
+
 class Solution():
-    def GetUglyNumber_Solution(self, index):
+    def GetUglyNumber_Solution1(self, index):
         """
         暴力解法，复杂度较大
         """
@@ -25,9 +28,32 @@ class Solution():
 
         return result
 
-    def GetUglyNumber_Solution2(self, index): 
+    def GetUglyNumber_Solution2(self, index):
         """
-        高效解法
+        优先级队列模拟法
+        """
+        if index <= 0:
+            return 1
+        
+        result = 1
+        s = set()
+        mask = (2, 3, 5)
+        q = []
+
+        for i in range(1, index):
+            for m in mask:
+                tmp = result * m
+                if tmp not in s:
+                    s.add(tmp)
+                    heapq.heappush(q, tmp)
+            result = heapq.heappop(q)
+            s.remove(result)
+
+        return result
+
+    def GetUglyNumber_Solution3(self, index): 
+        """
+        高效解法：三指针
         """
         result = index * [1]
         t2 = t3 = t5 = 0
@@ -41,14 +67,27 @@ class Solution():
             if result[i] == 5 * result[t5]:
                 t5 += 1
         
-        return result[index - 1]
+        return result[-1]
+
+    def test(self, index):
+        """
+        测试函数
+        """
+        func_vec = [self.GetUglyNumber_Solution1,
+                    self.GetUglyNumber_Solution2,
+                    self.GetUglyNumber_Solution3]
+        print("=====")
+        for func in func_vec:
+            start = time.time()
+            result = func(index)
+            end = time.time()
+            print("number: {:d}, result: {:d}, time(us): {:>5.2f}".format(index, result, (end - start)*10**6))
 
 
 def main():
     s = Solution()
-    for i in range(1, 21):
-        print(s.GetUglyNumber_Solution(i),
-              s.GetUglyNumber_Solution2(i))
+    for i in range(1, 801, 100):
+        s.test(i)
 
 
 if __name__ == "__main__":
