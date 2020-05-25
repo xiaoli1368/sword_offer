@@ -3958,16 +3958,38 @@ public:
 
 **解题思路：**
 
-- 本质是数字电路中对加法器的实现
-- 一位加法器：a^b为本位和，(a&b) <<1为进位
-
-- 对每位执行一位加法，整体上可以借助递归实现
-- 注意：本位和与进位之间也是加法的运算
-- 也可以通过循环来实现
+- 题目分析：本质是数字电路中加法器的实现，一位加法器：a^b为本位和，(a&b) <<1为进位
+- 常规思路：对每位执行一位加法，本位和与进位之间也是加法的运算，整体上可以借助递归实现
+- 其它思路：也可以通过循环来实现迭代，递归终止的条件为，进位为0，直接返回本位和
+- 注意：负数的强制左移，需要使用unsigned int进行类型转换，而python对负数的位运算则要麻烦
 
 **参考代码：**
 
+```cpp
+// cpp
+class Solution {
+public:
+    // 递归实现
+    int Add(int a, int b) {
+        return b == 0 ? a : Add(a ^ b, (a & b) << 1);
+    }
+
+    // 循环实现
+    // 注意强制负数向左移位需要类型转换
+    int Add2(int a, int b) {
+        int tmp = 0;
+        while (b != 0) {
+            tmp = a ^ b;
+            b = (unsigned int)(a & b) << 1;
+            a = tmp;
+        }
+        return a;
+    }
+};
+```
+
 ```python
+# python
 class Solution():
     def Add(self, a, b):
         """
@@ -3986,33 +4008,6 @@ class Solution():
             b = ((a & b) << 1) & 0xffffffff
             a = tmp if tmp < 0x7fffffff else ~(tmp ^ 0xffffffff)
         return a
-
-
-def main():
-    s = Solution()
-    print(s.Add(10 ,-12))
-    print(s.Add2(10, -12))
-```
-
-```c++
-class Solution {
-public:
-    // 递归实现
-    int Add(int a, int b) {
-        return b == 0 ? a : Add(a ^ b, (a & b) << 1);
-    }
-
-    // 循环实现
-    int Add2(int a, int b) {
-        int tmp = 0;
-        while (b != 0) {
-            tmp = a ^ b;
-            b = (a & b) << 1;
-            a = tmp;
-        }
-        return a;
-    }
-};
 ```
 
 ### 49. 把字符串转换成整数

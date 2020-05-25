@@ -1,6 +1,8 @@
 #!/bin/bash python3
 #-*- coding:utf-8 -*-
 
+import time
+
 class Solution():
     def Add(self, a, b):
         """
@@ -21,12 +23,24 @@ class Solution():
             b = ((a & b) << 1) & 0xffffffff
             a = tmp if tmp < 0x7fffffff else ~(tmp ^ 0xffffffff)
         return a
+    
+    def test(self, a, b):
+        """
+        测试函数
+        """
+        func_vec = [self.Add, self.Add2]
+        print("=====")
+        for func in func_vec:
+            start = time.time()
+            result = func(a, b)
+            end = time.time()
+            print("result: {}, time(us): {:>5.2f}".format(result, (end - start)*10**6))
 
 
 def main():
     s = Solution()
-    print(s.Add(10 ,-12))
-    print(s.Add2(10, -12))
+    s.test(5, 7)
+    s.test(-5, 7)
 
 
 if __name__ == "__main__":
