@@ -3807,75 +3807,31 @@ class Solution():
 
 **解题思路：**
 
-- 常规思路：使用数组来模拟报数的过程，循环求解。（或者使用链表来求解，单向循环列表，每个结点存储是否被选中的标志bool sign，不断遍历该链表，根据m来选中结点，知道剩下一个结点退出）
-- 本质是一个约瑟夫环的问题，考虑编号为[0, 1, 2, ..., m-1, m, ..., n - 1]的序列，排除编号为[m - 1]后的序列为[0, 1, 2, ..., m, ..., n - 1]。将该序列看做从[m]开始的新序列为[m, ..., n - 1, 0, 1, 2, ..., m - 2]，此时通过可以通过公式映射为新序列[0, 1, 2, ..., m-1, m, ..., n - 2]，由此成为一个新的子问题。
-- 所以可以利用递归或者反向迭代的思路来解决，考虑最终的的递归退出条件为n=1，此时返回0。
-- 考虑递推公式为：s(n) = (s(n-1) + m) % n，这个公式的含义是，将在长度为n-1的解的索引变换到长度为n的序列中的索引。（最终长度为1时的解为0，需要借助该公式不断迭代，得到长度为n时的解）
+- 常规思路：使用数组来模拟报数的过程，循环求解，时间复杂度较大
+
+- 其它思路：使用单向循环链表来求解，每个结点存储是否被选中的标志bool sign，不断遍历该链表，根据间隔m来选中结点，直到剩下最后一个结点退出
+
+- 高效思路：
+
+  > 本质是一个约瑟夫环的问题，考虑编号为[0, 1, 2, ..., m-1, m, ..., n - 1]的序列，排除编号为[m - 1]后的序列为[0, 1, 2, ..., m, ..., n - 1]。将该序列看做从[m]开始的新序列为[m, ..., n - 1, 0, 1, 2, ..., m - 2]，此时可以通过公式映射为新序列[0, 1, 2, ..., m-1, m, ..., n - 2]，由此成为一个新的子问题。（注意子问题中的0映射为父问题中的m）
+  >
+  > s(n, m)表示长为n的序列，依次选中n-1个元素，最后一个元素为解。s(n-1, m)表示长为n-1的序列，依次选中n-2个元素，最后一个元素为解。本次选中的元素，在上一次一定未被选中，相邻两次之间的迭代关系为：s(n, m) = (s(n-1, m) + m) % n
+  >
+  > 这个公式的含义是，将在长度为n-1的解的索引变换到长度为n的序列中的索引。（最终长度为1时的解为0，需要借助该公式不断迭代，得到长度为n时的解）
+
+- 高效思路1：递归，考虑最终的的递归退出条件为n=1，此时返回0
+
+- 高效思路2：动态规划，反向迭代
 
 **参考代码：**
 
-```python
-class Solution:
-    def LastRemaining_Solution(self, n, m):
-        # write code here
-        if n <= 0 or m <= 0:
-            return -1
-        
-        tsum = 0
-        for i in range(2, n + 1) :
-            tsum = (tsum + m) % i
-        
-        return tsum
-```
-
-```c++
+```cpp
+// cpp
 class Solution {
 public:
-    // 暴力枚举
-    int LastRemaining_Solution(int n, int m) {
-        if (n <= 0 || m <= 0) {
-            return -1;
-        }
-
-        int sign[n] = {0};
-        int count = n;
-        int index = -1;
-        int step = 0;
-
-        while (count > 0) { // 全部删除，则最后一个就是待求
-            index++;
-            if (index >= n) { // 确保环形遍历
-                index = 0;
-            }
-            if (sign[index] == 1) { // 跳过删除的元素
-                continue;
-            }
-            step++;
-            if (step == m) { // 确定找到了下一个元素
-                sign[index] = 1;
-                count--;
-                step = 0;
-            }
-        }
-
-        return index;
-    }
-
-    // 其它方法
-    int LastRemaining_Solution2(int n, int m) {
-        if (n == 0) {
-            return -1;
-        }
-
-        int s = 0;
-        for (int i = 2; i <= n; i++) {
-            // 这个公式可以由递归得到
-            s = (s + m) % i;
-        }
-        return s;
-    }
-
-    // 其它方法
+    // 递归法
+    // s(n)表示还剩下n个元素没有选中时的解
+    // 递推公式： s(n) = (s(n-1) + m) % n 
     int LastRemaining_Solution3(int n, int m) {
         if (n == 0) {
             return -1;
@@ -3883,13 +3839,50 @@ public:
         if (n == 1) {
             return 0;
         }
-
         return (LastRemaining_Solution3(n - 1, m) + m) % n;
     }
 
-    // 需补充单向循环链表方法
-    int LastRemaining_Solution4(int n, int m) {}
+    // 动态规划，反向迭代，反向的递推公式
+    int LastRemaining_Solution4(int n, int m) {
+        if (n == 0) {
+            return -1;
+        }
+        int s = 0;
+        for (int i = 2; i <= n; i++) {
+            s = (s + m) % i;
+        }
+        return s;
+    }
 };
+```
+
+```python
+# python
+class Solution:
+    def LastRemaining_Solution1(self, n, m):
+        """
+        暴力枚举
+        """
+        if n <= 0 or m <= 0:
+            return -1
+
+        i = -1
+        step = 0
+        count = n
+        sign = [False] * n
+
+        while count > 0:
+            i = (i + 1) % n
+            if sign[i]:
+                continue
+        
+            step += 1
+            if step == m:
+                sign[i] = True
+                step = 0
+                count -= 1
+    
+        return i 
 ```
 
 ### 47. 前N项正整数求和
