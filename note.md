@@ -3893,46 +3893,34 @@ class Solution:
 
 **解题思路：**
 
-- 根据题目，可以使用的运算符有：加法、减法、移位运算。
-- 由于不能使用if语句，因此正常形式的递归也无法使用，但是可以借助&&的短路特性来实现递归。（暴力累加）
-- 公式法：(n+1)*n/2，需要考虑如何实现乘法，可以利用sizeof(二维数组实现)，也可以利用pow(n, 2) + n，来实现，最终利用右移位实现除法。
+- 根据题目，可以使用的运算符有：加法、减法、移位、逻辑运算。
+- 迭代法累加：无法使用循环，因为for和while无法使用。
+- 递归法累加：由于不能使用if语句，因此正常形式的递归也无法使用，但是可以借助&&的短路特性来实现递归。
+- 公式法：(n+1)*n/2，需要考虑如何实现乘法，可以利用sizeof(二维数组实现)，也可以利用pow(n, 2) + n，来实现，也可以编写快速乘法函数。
 
 **参考代码：**
 
-```python
-class Solution():
-    def Sum_Solution(self, n):
-        """
-        递归解法
-        """
-        tmp = n and self.Sum_Solution(n - 1)
-        return n + tmp
-
-    def Sum_Solution2(self, n):
-        return sum(list(range(1, n + 1)))
-
-    def Sum_Solution3(self, n):
-        return (n**2 + n) >> 1
-```
-
-```c++
+```cpp
+// cpp
 class Solution {
 public:
     // 递归解法
-    int Sum_Solution(int n) {
+    // 利用&&短路特性，代替if条件判断
+    int Sum_Solution1(int n) {
         int sum = n;
-        bool tmp = n > 0 && (sum += Sum_Solution(n - 1)) > 0;
+        bool tmp = n > 0 && (sum += Sum_Solution1(n - 1)) > 0;
         return sum;
     }
 
-    // 其它解法
+    // 无脑sizeof法
     int Sum_Solution2(int n) {
         char tmp[n][n+1];
         return sizeof(tmp) >> 1;
     }
 
-    int Sum_Solution3(int n) {
-        return (int(pow(n, 2)) + n) >> 1;
+    // 快速乘法
+    int Sum_Solution4(int n) {
+        return multiply(n, n + 1) >> 1;
     }
 
     // 自定义乘法
@@ -3943,11 +3931,30 @@ public:
         a && (res += multiply(a, b));
         return res;
     }
-
-    int Sum_Solution4(int n) {
-        return multiply(n, n + 1) >> 1;
-    }
 };
+```
+
+```python
+# python
+class Solution():
+    def Sum_Solution1(self, n):
+        """
+        递归解法
+        """
+        tmp = n and self.Sum_Solution1(n - 1)
+        return n + tmp
+
+    def Sum_Solution2(self, n):
+        """
+        利用sum函数
+        """
+        return sum(list(range(1, n + 1)))
+
+    def Sum_Solution3(self, n):
+        """
+        利用乘方
+        """
+        return (n**2 + n) >> 1
 ```
 
 ### 48. 不用加减乘除做加法
