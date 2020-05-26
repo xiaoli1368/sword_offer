@@ -5211,58 +5211,117 @@ public:
 
 **解题思路：**
 
-- 主要思路：排序，然后找中位数元素，求解
-- 有两种方式，一是借助stl进行排序，二是自行排序
+- 核心难点：如何在添加元素的时候保持有序（从有序序列中查找中位数则很简单）
+
+- 常规思路：利用stl排序
+
+- 其它思路：二分查找，从而实现有序插入
+
+- 高效思路：利用大顶堆和小顶堆数据结构，实现序列有序（在数据量较大时，性能优越）
+
+  > 大顶堆保存较小的一半元素，小顶堆保存较大的一半元素。
+  >
+  > 中位数由两个堆顶元素之中获得（根据总元素个数，当为奇数时返回大顶堆堆顶元素，当为偶数时返回两个堆顶元素的均值）
 
 **参考代码：**
 
+```cpp
+// cpp
+// 优先队列（堆）方法
+class Solution {
+private:
+    std::priority_queue<int> maxQueue; // 大顶堆
+    std::priority_queue<int, std::vector<int>, std::greater<int>> minQueue; // 小顶堆
+public:
+    void Insert(int num) {
+        // 先向大顶堆插入新元素，然后将大顶堆堆顶pop-push进入小顶堆
+        maxQueue.push(num);
+        minQueue.push(maxQueue.top());
+        maxQueue.pop();
+
+        // 从小顶堆向大顶堆回推，保证二者size相等或者相差为1
+        if (maxQueue.size() < minQueue.size()) {
+            maxQueue.push(minQueue.top());
+            minQueue.pop();
+        }
+    }
+
+    double GetMedian() {
+        if (maxQueue.size() > minQueue.size()) {
+            return maxQueue.top();
+        } else {
+            return (maxQueue.top() + minQueue.top()) * 0.5;
+        }
+    }
+};
+```
+
 ```python
-# -*- coding:utf-8 -*-
+# python
+# 其它方法
 class Solution:
     def __init__(self):
         self.data = []
     
-    def Insert(self, num):
-        # write code here
-        self.data.append(num)
-        self.data.sort()
-    
-    def GetMedian(self, not_used):
-        # write code here
-        length = len(self.data)
-        if length == 0:
-            return 0.0
+    def GetMedian1(self):
+        """
+        获取中位数
+        """
+        if self.data == []:
+            return 0
         
+        length = len(self.data)
         if length % 2 == 1:
             return self.data[length // 2]
         else:
-            return float(self.data[length // 2] + self.data[length // 2 - 1]) / 2
-```
+            return (self.data[length // 2] + self.data[length // 2 - 1]) / 2
 
-```C++
-#include <algorithm>
-class Solution {
-public:
-    std::vector<int> data;
+    def Insert1_sort(self, num):
+        """
+        方法一：stl排序
+        """
+        self.data.append(num)
+        self.data.sort()
     
-    void Insert(int num) {
-        data.push_back(num);
-        sort(data.begin(), data.end());
-    }
-
-    double GetMedian() {
-        int length = data.size();
-        if (length == 0) {
-            return 0.0;
-        }
+    def Insert1_find(self, num):
+        """
+        方法二：遍历寻找插入位置，保证插入有序
+        """
+        if self.data == []:
+            self.data.append(num)
+            return
         
-        if (length % 2 == 1) {
-            return data[length / 2];
-        } else {
-            return double(data[length / 2] + data[length / 2 - 1]) / 2;
-        }
-    }
-};
+        i = 0
+        while i < len(self.data) and num > self.data[i]:
+            i += 1
+        
+        self.data.insert(i, num)
+    
+    def Insert1_binSearch(self, num):
+        """
+        方法三：利用二分查找，插入有序
+        """
+        index = self.binarySearch(num)
+        self.data.insert(index, num)
+    
+    def binarySearch(self, num):
+        """
+        二分查找左边界
+        """
+        if self.data == []:
+            return 0
+        
+        l = 0
+        h = len(self.data) - 1
+
+        while l <= h:
+            m = l + (h - l) // 2
+            if num >= self.data[m]:
+                l = m + 1
+            elif num < self.data[m]:
+                h = m - 1
+        
+        return l
 ```
 
 ### 64. 滑动窗口的最大值
