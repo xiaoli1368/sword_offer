@@ -56,7 +56,7 @@ class Solution:
 def main():
     s = Solution()
     s.test(10)
-    s.test(20);
+    s.test(20)
     s.test(30)
 
 
