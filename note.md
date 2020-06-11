@@ -158,60 +158,70 @@ class Solution:
 
 **解题思路：**
 
-- 第一中方式是递归
-- 第二种方式是两次遍历，一次遍历原来的链表反向，之后遍历正序输出
-- 或者直接每次都在vector的头部插入元素就可以了
-- 还有一种方式正序输出到vector，之后将vector反向即可
-- 利用头插法生成反向链表，或者使用堆栈进行反向输出
+1. 递归法，递归时间复杂度O(n)，空间复杂度O(1)
+2. 使用堆栈，递归就是堆栈实现的，时间复杂度O(2n)，空间复杂度O(n)
+3. 头插法形成新的反向链表，然后顺序输出，时间复杂度O(2n)，空间复杂度O(n)
+4. 两次遍历，vec尾部添加，时间复杂度O(2n)，空间复杂度O(1)
+5. 一次遍历，vec头部添加，时间复杂度O(n)，空间复杂度O(1)，需要调用insert
+6. 原链表基础上直接反转，然后顺序输出，其实就是翻转链表了，注意会破坏原有链表，时间复杂度O(2n)，空间复杂度O(1)
 
 **参考代码：**
 
+```cpp
+// cpp
+typedef struct ListNode {
+    int val;
+    ListNode* next;
+    ListNode (int x, ListNode* ptr) : val(x), next(ptr) {}
+} ListNode;
+
+// 2. 使用堆栈，递归就是堆栈实现的
+// 时间复杂度O(2n)，空间复杂度O(n)
+void printListFromTailToHead2(ListNode* head) {
+    if (head == nullptr) {
+        return;
+    }
+
+    std::stack<int> stack;
+    while (head != nullptr) {
+        stack.push(head->val);
+        head = head->next;
+    }
+
+    while (!stack.empty()) {
+        this->vec_.push_back(stack.top());
+        stack.pop();
+    }
+}
+```
+
 ```python
-# 类内递归，函数调用自身需要使用vec
-# 'NoneType' object is not iterable，这个错误一般是函数情况没有考虑好
-# 导致有一种情况默认返回了None，与后续的类型没有匹配
+# python
 class ListNode():
     def __init__(self, x):
         self.val = x
         self.next = None
 
 class Solution:
-    # 返回从尾部到头部的列表值序列，例如[1,2,3]
-    def printListFromTailToHead(self, listNode):
-        # write code here
-        vec = []
-        if listNode is not None:
-            vec += self.printListFromTailToHead(listNode.next)
-            vec.append(listNode.val)
-        return vec
-```
-
-```c++
-// 局部变量被输出了其实是有问题的
-// 除非外部将局部变量完成了赋值（值传递），内层的局部变量自动释放了，此时没有问题
-class Solution {
-public:
-    vector<int> printListFromTailToHead(ListNode* head) {
-        vector<int> vec =　{};
-        vector<int> vec2 = {};
-        if (head != nullptr) {
-            vec2 = printListFromTailToHead(head->next);
-            vec.insert(vec.end(), vec2.begin(), vec2.end());
-            vec.push_back(head->val);
-        }
-        return vec;
-    }
-    
-    // 这样更好，不用递归
-    vector<int> printListFromTailToHead(ListNode* head) {
-        vector<int> vec;
-        while (head != nullptr) {
-            vec.insert(vec.begin(), head->val);
-            head = head->next;
-        }
-        return vec;
-    }
-};
+    def printListFromTailToHead4(self, head):
+        """
+        4. 两次遍历，vec尾部添加
+        """
+        if head == None:
+            return
+        
+        length = 0
+        currhead = head
+        while currhead != None:
+            length += 1
+            currhead = currhead.next
+        
+        index = 1
+        self.vec_ = [0] * length
+        while head != None:
+            self.vec_[length - index] = head.val
+            head = head.next
+            index += 1
 ```
 
 ### 04. 重建二叉树

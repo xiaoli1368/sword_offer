@@ -39,7 +39,7 @@
 |53. 表示数值的字符串|字符串|分类讨论|[牛客网]()|
 |54. 字符流中第一个不重复的字符|字符串|哈希表，队列|[牛客网](https://www.nowcoder.com/practice/00de97733b8e4f97a3fb5c680ee10720?tpId=13&tqId=11207&tPage=3&rp=4&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)|
 |||||
-|03. 从头到尾打印链表|线性表|||
+|03. 从尾到头打印链表|线性表|反向遍历|[牛客网](https://www.nowcoder.com/practice/d0267f7f55b3412ba93bd35cfa8e8035?tpId=13&&tqId=11156&rp=1&ru=/activity/oj&qru=/ta/coding-interviews/question-ranking)|
 |05. 用两个栈实现队列|线性表|||
 |14. 链表倒数第k个结点|线性表|||
 |15. 反转链表|线性表|||
