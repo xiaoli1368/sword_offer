@@ -75,11 +75,18 @@ class ListNode():
             self = self.next
         return ret[1:]
 
-    def listPrint(self):
+    def listPrint(self, ifJumpHead=True, endFormat=" "):
         """
         顺序打印，不包括固定的头指针
+        ifJumpHead: 是否跳过头节点
+        endFormat: 每次打印的结尾标志
         """
-        tmp = self.next
+        if ifJumpHead:
+            tmp = self.next
+        else:
+            tmp = self
+
         while tmp != None:
-            print(tmp.val)
+            print(tmp.val, end=endFormat)
             tmp = tmp.next
+        print()

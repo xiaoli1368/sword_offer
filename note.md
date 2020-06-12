@@ -1044,55 +1044,52 @@ public:
 
 **解题思路：**
 
-- 使用双指针完成，链表相邻节点之间的关系拆除，反向建立链接
+- 两种方式，递归法，迭代法，注意画图使节点关系更加清晰
+- 注意使用双指针完成，链表相邻节点之间的关系拆除，反向建立链接
 - 注意头节点需要特殊对待
 - 注意停止循环的标志
 
 **参考代码：**
 
-```python
-class Solution:
-    # 返回ListNode
-    def ReverseList(self, head):
-        # write code here
-        if head == None:
-            return None
-        
-        p = head
-        q = head.next
-        head.next = None
-        
-        while q != None:
-            tmp = q.next
-            q.next = p
-            p = q
-            q = tmp
-            
-        return p
-```
-
-```c++
+```cpp
+// cpp
 class Solution {
 public:
-    ListNode* ReverseList(ListNode* head) {
-        if (head == nullptr) {
-            return nullptr;
+    // 递归法
+    ListNode* ReverseList3(ListNode* head) {
+        if (head == nullptr || head->next == nullptr) {
+            return head;
         }
-        
-        ListNode* p = head;
-        ListNode* q = head->next;
-        head->next = nullptr;
-        
-        while (q) {
-            ListNode* tmp = q->next;
-            q->next = p;
-            p = q;
-            q = tmp;
-        }
-        
-        return p;
+
+        ListNode* curr = ReverseList3(head->next);
+        head->next->next = head; // 需要画图理解
+        head->next = nullptr;    // 处理头节点
+
+        return curr;
     }
 };
+```
+
+```python
+# python
+class Solution:
+    def ReverseList2(self, head):
+        """
+        迭代法优化版
+        """
+        if head == None or head.next == None:
+            return head
+        
+        p = head.next
+        head.next = None
+
+        while p != None:
+            q = p.next
+            p.next = head
+            head = p
+            p = q
+        
+        return head
 ```
 
 ### 16. 合并两个排序的链表

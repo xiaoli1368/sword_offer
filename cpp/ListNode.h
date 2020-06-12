@@ -79,15 +79,22 @@ std::vector<int> ListNode_saveToVec(ListNode* head) {
 }
 
 // 顺序打印
-void ListNode_print(ListNode* head) {
-    // 第一个为固定头指针，跳过
+// ifJumpHead: 是否跳过头节点
+// printRow: 是否打印为一行，否则打印为一列
+void ListNode_print(ListNode* head, bool ifJumpHead = true, bool printRow = true) {
     if (head == nullptr) {
         return;
     }
-    head = head->next;
+
+    if (ifJumpHead) {
+        head = head->next;
+    }
+
+    std::string argv = "%d";
+    argv += printRow ? " " : "\n";
 
     while (head != nullptr) {
-        printf("%d\n", head->val);
+        printf(argv.c_str(), head->val);
         head = head->next;
     }
 }
