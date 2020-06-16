@@ -989,36 +989,21 @@ class Solution:
 **解题思路：**
 
 - 第一种方式是：使用数组将所有节点存储下来，之后索引倒数第k个
-- 第二种方式是：使用间距为k的两个指针进行遍历，当后一个指针到底尾部的时候，第一个指针刚好到达倒数第k个
+- 第二种方式是：两次遍历，第一次遍历获取总长度，第二次直接找到 length - k 节点
+- 第二种方式是：使用快慢间距为k的两个指针进行遍历，当后一个指针到底尾部的时候，第一个指针刚好到达倒数第k个节点
 
 **参考代码：**
 
-```python
-class Solution:
-    def FindKthToTail(self, head, k):
-        # write code here
-        p = head
-        q = head
-        count = 0
-        
-        while p:
-            count += 1
-            p = p.next
-            if count > k:
-                q = q.next
-        
-        if k < 0 or k > count:
-            q = None
-        return q
-```
-
-```c++
+```cpp
+// cpp
 class Solution {
 public:
-    ListNode* FindKthToTail(ListNode* head, unsigned int k) {
+    // 3. 采用双指针的形式
+    // 时间复杂度O(n)，空间复杂度O(1)
+    ListNode* FindKthToTail3(ListNode* head, unsigned int k) {
         ListNode* p = head;
         ListNode* q = head;
-        
+
         int count = 0;
         while (p) {
             count++;
@@ -1029,11 +1014,56 @@ public:
         }
         
         if (k > count) {
-            q = nullptr;
+            return nullptr;
+        } else {
+            return q;
         }
-        return q;
     }
 };
+```
+
+```python
+# python
+class Solution:
+    def FindKthToTail1(self, head, k):
+        """
+        1. 列表存储所有节点
+        时间复杂度O(n)，空间复杂度O(n)
+        """
+        if head == None or k <= 0:
+            return None
+        
+        ptr = []
+        while head:
+            ptr.append(head)
+            head = head.next
+        
+        if k <= len(ptr):
+            return ptr[-k]
+        else:
+            return None
+    
+    def FindKthToTail2(self, head, k):
+        """
+        2. 两重遍历的方式
+        时间复杂度O(2n - k)，空间复杂度O(1)
+        """
+        if head == None or k <= 0:
+            return None
+        
+        length = 0
+        curr = head
+        while curr != None:
+            length += 1
+            curr = curr.next
+        
+        if k > length:
+            return None
+        
+        for i in range(length - k):
+            head = head.next
+        
+        return head
 ```
 
 ### 15. 反转链表

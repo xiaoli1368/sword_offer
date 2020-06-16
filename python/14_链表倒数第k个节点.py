@@ -1,81 +1,108 @@
 #!/bin/bash python3
 #-*- coding:utf-8 -*-
 
+import time
+import ListNode
+import random
+
+"""
 class ListNode():
-    """
-    定义链表节点
-    """
     def __init__(self, x=0):
         self.val = x
         self.next = None
-
-    def init_use_list(self, xlist):
-        """
-        使用列表进行初始化
-        """
-        tmp = self
-        for i in xlist:
-            while tmp.next != None:
-                tmp = tmp.next
-            tmp.next = ListNode(i)
-
-    def print_listNode(self):
-        """
-        打印当前链表
-        """
-        tmp = self
-        while tmp:
-            print(tmp.val, end=" ")
-            tmp = tmp.next
-        print()
-
+"""
 
 class Solution():
-    def FindKthToTail(self, head, k):
+    def FindKthToTail1(self, head, k):
         """
-        使用列表存储所有节点
+        1. 列表存储所有节点
+        时间复杂度O(n)，空间复杂度O(n)
         """
-        if head == None or k == 0:
+        if head == None or k <= 0:
             return None
         
-        tmp = [head]
-        while head.next:
+        ptr = []
+        while head:
+            ptr.append(head)
             head = head.next
-            tmp.append(head)
         
-        if k <= len(tmp):
-            return tmp[-k]
+        if k <= len(ptr):
+            return ptr[-k]
         else:
             return None
-
+    
     def FindKthToTail2(self, head, k):
         """
-        使用双指针的方式
+        2. 两重遍历的方式
+        时间复杂度O(2n - k)，空间复杂度O(1)
         """
-        p = head
-        q = head
-        count = 0
+        if head == None or k <= 0:
+            return None
+        
+        length = 0
+        curr = head
+        while curr != None:
+            length += 1
+            curr = curr.next
+        
+        if k > length:
+            return None
+        
+        for i in range(length - k):
+            head = head.next
+        
+        return head
 
+    def FindKthToTail3(self, head, k):
+        """
+        3. 双指针的方式
+        时间复杂度O(n)，空间复杂度O(1)
+        """
+        if head == None or k <= 0:
+            return None
+        
+        p, q, count = head, head, 0
         while p != None:
             count += 1
             p = p.next
             if count > k:
                 q = q.next
 
-        if k < 0 or k > count:
-            q = None
-        return q
+        return q if k <= count else None
+    
+    def test(self, head, k):
+        """
+        测试函数
+        """
+        func_vec = [self.FindKthToTail1,
+                    self.FindKthToTail2,
+                    self.FindKthToTail3]
+        print("=====")
+        for func in func_vec:
+            start = time.time()
+            result = func(head, k)
+            end = time.time()
+            print("time(us): {:>5.2f}, result: ".format((end - start)*10**6), end="")
+            if result != None:
+                print(result.val)
+            else:
+                print("None")
 
 
 def main():
-    s = Solution()
-    myNode = ListNode()
-    array = [1, 5, 9, 6, 7, 3]
+    array = [1, 2, 5, 6, 7, 9]
+    head1 = ListNode.ListNode(0)
+    head1.creatFromList(array)
 
-    myNode.init_use_list(array)
-    myNode.print_listNode()
-    print(s.FindKthToTail(myNode, 3).val)
-    print(s.FindKthToTail2(myNode, 3).val)
+    array2 = list(random.sample(range(10000), 10000))
+    head2 = ListNode.ListNode(0)
+    head2.creatFromList(array2)
+
+    s = Solution()
+    s.test(head1, 2)
+    s.test(head1, 10)
+    s.test(head2, 100)
+    s.test(head2, 300)
 
 
 if __name__ == "__main__":
