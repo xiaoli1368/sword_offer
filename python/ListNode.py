@@ -61,6 +61,46 @@ class ListNode():
             self.next = ListNode(i)
             self = self.next
     
+    def getLastNode(self):
+        """
+        返回最后一个非空节点
+        """
+        if self == None:
+            return None
+        
+        while self.next != None:
+            self = self.next
+        return self
+    
+    def getMiddleNode(self):
+        """
+        返回中间位置的节点（偏向头节点）
+        """
+        if self == None:
+            return None
+        
+        fast = self
+        slow = self
+
+        while fast != None and fast.next != None:
+            fast = fast.next.next
+            slow = slow.next
+        return slow
+    
+    def getIndexNode(self, k):
+        """
+        返回第k个节点
+        """
+        if self == None or k <= 0:
+            return None
+        
+        for i in range(1, k):
+            if self != None:
+                self = self.next
+            else:
+                break
+        return self
+    
     def saveToList(self):
         """
         顺序保存到list

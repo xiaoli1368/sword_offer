@@ -47,7 +47,7 @@
 |20. 包含min函数的栈|线性表|||
 |21. 栈的压入弹出序列|线性表|||
 |22. 复杂链表的复制|线性表|||
-|36. 两个链表的第一个公共结点|线性表|||
+|36. 两个链表的第一个公共结点|线性表|哈希表，双指针|[牛客网](https://www.nowcoder.com/practice/6ab1d9a29e88450685099d45c9e31e46?tpId=13&&tqId=11189&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)|
 |55. 链表中环的入口结点|线性表|||
 |56. 删除链表中重复的结点|线性表|||
 |||||

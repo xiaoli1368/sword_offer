@@ -2950,91 +2950,52 @@ class Solution:
 **解题思路：**
 
 - map法：第一次遍历使用map记录第一个链表的键值，第二次遍历第二个链表，寻找map中是否存在
-- 迭代法：相同长度的两个链表，第一次遍历直接找到公共节点；不同长度的情况，第一次遍历找到长度差，第二次以长度差进行遍历比较，直接找到公共节点。
+- 双指针迭代法：相同长度的两个链表，第一次遍历可以直接找到公共节点；不同长度的情况，第一次遍历找到长度差，第二次以长度差进行快慢指针遍历比较，直接找到公共节点。
 
 **参考代码：**
 
+```cpp
+// cpp
+// 1. hash方式
+// 时间复杂度O(n + m)，空间复杂度O(n)
+class Solution {
+public:
+    ListNode* FindFirstCommonNode(ListNode* h1, ListNode* h2) {
+        if (h1 == nullptr || h2 == nullptr) {
+            return nullptr;
+        }
+
+        std::map<ListNode*, int> map;
+        while (h1) {
+            map[h1] = h1->val;
+            h1 = h1->next;
+        }
+
+        while (h2) {
+            if (map.count(h2) == 1) {
+                return h2;
+            }
+            h2 = h2->next;
+        }
+
+        return nullptr;
+    }
+};
+```
+
 ```python
-# -*- coding:utf-8 -*-
-# class ListNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.next = None
+# python
 class Solution:
-    def FindFirstCommonNode(self, h1, h2):
-        # write code here
-        listMap = []
-        
-        tmp = h1
-        while tmp:
-            listMap.append(id(tmp))
-            tmp = tmp.next
-        
-        tmp = h2
-        while tmp:
-            if listMap.count(id(tmp)) == 1:
-                return tmp
-            tmp = tmp.next
-            
-        return None
-    
     def FindFirstCommonNode2(self, h1, h2):
-        # write code here
-        t1 = h1
-        t2 = h2
+        """
+        2. 循环法，高效的迭代解法
+        时间复杂度O(n + m)，空间复杂度O(1)
+        """
+        t1, t2 = h1, h2
         while t1 != t2:
             t1 = t1.next if t1 != None else h2
             t2 = t2.next if t2 != None else h1
         return t1
-```
-
-```c++
-/*
-struct ListNode {
-	int val;
-	struct ListNode *next;
-	ListNode(int x) :
-			val(x), next(NULL) {
-	}
-};*/
-#include <map>
-class Solution {
-public:
-    ListNode* FindFirstCommonNode (ListNode* h1, ListNode* h2) {
-        if (h1 == nullptr || h2 == nullptr) {
-            return nullptr;
-        }
-        
-        map<ListNode*, int> map;
-        
-        ListNode* tmp = h1;
-        while (tmp != nullptr) {
-            map[tmp] = tmp->val;
-            //map.insert(pair<ListNode*, int>(tmp, tmp->val));
-            tmp = tmp->next;
-        }
-        
-        tmp = h2;
-        while (tmp != nullptr) {
-            if (map.count(tmp) == 1) {
-                return tmp;
-            }
-            tmp = tmp->next;
-        }
-        return nullptr;
-    }
-
-// 迭代方法
-    ListNode* FindFirstCommonNode2 (ListNode* h1, ListNode* h2) {
-        ListNode* t1 = h1;
-        ListNode* t2 = h2;
-        while (t1 != t2) {
-            t1 = (t1 == nullptr ? h2 : t1->next);
-            t2 = (t2 == nullptr ? h1 : t2->next);
-        }
-        return t1;
-    }
-};
 ```
 
 ### 37. 数字在排序数组中出现的次数

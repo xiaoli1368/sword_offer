@@ -63,6 +63,52 @@ ListNode* ListNode_creatFromVec(std::vector<int>& vec) {
     return head;
 }
 
+// 返回最后一个非空节点
+ListNode* ListNode_getLastNode(ListNode* head) {
+    if (head == nullptr) {
+        return nullptr;
+    }
+
+    while (head->next != nullptr) {
+        head = head->next;
+    }
+    return head;
+}
+
+// 返回中间位置的节点（偏向头节点）
+ListNode* ListNode_getMiddleNode(ListNode* head) {
+    if (head == nullptr) {
+        return nullptr;
+    }
+
+    ListNode* fast = head;
+    ListNode* slow = head;
+
+    while (fast != nullptr && fast->next != nullptr) {
+        fast = fast->next->next;
+        slow = slow->next;
+    }
+
+    return slow;
+}
+
+// 返回第k个节点
+ListNode* ListNode_getIndexNode(ListNode* head, int k) {
+    if (head == nullptr || k <= 0) {
+        return nullptr;
+    }
+
+    for (int i = 1; i < k; i++) {
+        if (head != nullptr) {
+            head = head->next;
+        } else {
+            break;
+        }
+    }
+
+    return head;
+}
+
 // 顺序保存到vec
 std::vector<int> ListNode_saveToVec(ListNode* head) {
     if (head == nullptr) {
