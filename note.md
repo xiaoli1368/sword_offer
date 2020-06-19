@@ -1131,101 +1131,78 @@ class Solution:
 **解题思路：**
 
 - 递归：分解为更小的两个链表之间的合并问题（这个问题有些类似合并两个有序的列表list，递归更加简单，迭代要考虑各种边界条件）
-- 迭代
+- 循环：直接迭代实现
+- 注意：可以new新的节点，也可以直接在两个元时链表上建立新的链接即可（会破坏原有的结构，delete会出现doubel free）
+- 举一反三：合并K个有序链表（循环迭代，归并排序）
 
 **参考代码：**
 
-```python
-def Merge(self, pp, qq):
-    """
-    合并两个递增的链表，递归法
-    """
-    # 使用深拷贝隔绝对外界的影响
-    p = copy.deepcopy(pp)
-    q = copy.deepcopy(qq)
+```cpp
+// cpp
+class Solution {
+public:
+    // 递归法，创建新的节点
+    ListNode* Merge1(ListNode* p, ListNode* q) {
+        if (p == nullptr) {
+            return q;
+        }
+        if (q == nullptr) {
+            return p;
+        }
 
-    if p == None:
-        return q
-    if q == None:
-        return p
-    if p.val < q.val:
-        p.next = self.Merge(p.next, q)
-        return p
-    else:
-        q.next = self.Merge(p, q.next)
-        return q
+        ListNode* head = new ListNode(0);
+        if (p->val < q->val) {
+            head->val = p->val;
+            head->next = Merge1(p->next, q);
+        } else {
+            head->val = q->val;
+            head->next = Merge1(q->next, p);
+        }
 
-def Merge2(self, pp, qq):
-    """
-    合并两个递增链表，迭代法
-    """
-    # 使用深拷贝隔绝对外界的影响
-    p = copy.deepcopy(pp)
-    q = copy.deepcopy(qq)
-
-    head = ListNode(0)
-    tmp = head
-    while p != None and q != None:
-        if p.val < q.val:
-            tmp.next = p
-            p = p.next
-        else:
-            tmp.next = q
-            q = q.next
-        tmp = tmp.next
-    if p == None:
-        tmp.next = q
-    if q == None:
-        tmp.next = p
-    return head.next
+        return head;
+    }
+    
+    // 递归法，直接构建链接
+    // 这种方式会对原始链表造成破坏
+    ListNode* Merge3(ListNode* p, ListNode* q) {
+        if (p == nullptr) {
+            return q;
+        }
+        if (q == nullptr) {
+            return p;
+        }
+        if (p->val < q->val) {
+            p->next = Merge3(p->next, q);
+            return p;
+        } else {
+            q->next = Merge3(q->next, p);
+            return q;
+        }
+    }
+};
 ```
 
-```c++
-// 合并两个递增链表，递归法
-// 这种方式会对原始链表造成破坏
-ListNode* Merge(ListNode* p, ListNode* q) {
-    if (p == nullptr) {
-        return q;
-    }
-    if (q == nullptr) {
-        return p;
-    }
-    if (p->val < q->val) {
-        p->next = Merge(p->next, q);
-        return p;
-    } else {
-        q->next = Merge(q->next, p);
-        return q;
-    }
+```python
+# python
+class Solution:
+    def Merge3(self, pp, qq):
+        """
+        合并两个递增链表，迭代法，优化版
+        """
+        # 使用深拷贝隔绝对外界的影响
+        p = copy.deepcopy(pp)
+        q = copy.deepcopy(qq)
 
-}
+        head = curr = ListNode.ListNode(0)
+        while p and q:
+            if p.val < q.val:
+                curr.next, p = p, p.next
+            else:
+                curr.next, q = q, q.next
+            curr = curr.next
+        curr.next = p if p else q
 
-// 合并两个递增链表，迭代法
-// 这种方式也会破坏链表
-ListNode* Merge2(ListNode* p, ListNode* q) {
-    ListNode* head = new ListNode(0);
-    ListNode* tmp = head;
-
-    while (p != nullptr && q != nullptr) {
-        if (p->val < q->val) {
-            tmp->next = p;
-            p = p->next;
-        } else {
-            tmp->next = q;
-            q = q->next;
-        }
-        tmp = tmp->next;
-    }
-
-    if (p == nullptr) {
-        tmp->next = q;
-    }
-    if (q == nullptr) {
-        tmp->next = p;
-    }
-
-    return head->next;
-}
+        return head.next
 ```
 
 ### 17. 树的子结构

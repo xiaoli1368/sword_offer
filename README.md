@@ -42,8 +42,8 @@
 |03. 从尾到头打印链表|线性表|反向遍历|[牛客网](https://www.nowcoder.com/practice/d0267f7f55b3412ba93bd35cfa8e8035?tpId=13&&tqId=11156&rp=1&ru=/activity/oj&qru=/ta/coding-interviews/question-ranking)|
 |05. 用两个栈实现队列|线性表|||
 |14. 链表倒数第k个结点|线性表|循环，双指针|[牛客网](https://www.nowcoder.com/practice/529d3ae5a407492994ad2a246518148a?tpId=13&tqId=11167&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking&tPage=1)|
-|15. 反转链表|线性表|迭代，递归|[牛客网](https://www.nowcoder.com/practice/75e878df47f24fdc9dc3e400ec6058ca?tpId=13&&tqId=11168&rp=1&ru=/activity/oj&qru=/ta/coding-interviews/question-ranking)|
-|16. 合并两个排序的链表|线性表|||
+|15. 反转链表|线性表|递归，迭代|[牛客网](https://www.nowcoder.com/practice/75e878df47f24fdc9dc3e400ec6058ca?tpId=13&&tqId=11168&rp=1&ru=/activity/oj&qru=/ta/coding-interviews/question-ranking)|
+|16. 合并两个排序的链表|线性表|递归，循环|[牛客网](https://www.nowcoder.com/practice/d8b6b4358f774294a89de2a6ac4d9337?tpId=13&&tqId=11169&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)|
 |20. 包含min函数的栈|线性表|||
 |21. 栈的压入弹出序列|线性表|||
 |22. 复杂链表的复制|线性表|||
