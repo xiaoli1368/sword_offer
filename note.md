@@ -4451,44 +4451,24 @@ class Solution:
 
 **解题思路：**
 
-- 利用哈希表直接求解，有其他的高效算法解法，需要看一下
+- 基本思路：hash法，使用map记录已经检索过的节点，当下一个节点位于map中时，则找到了环的入口
+- 双指针：快慢指针法，第一次遍历（快2慢1指针在某处相遇），第二次遍历（移动快指针到head，然后二者以速度1遍历），第二次相遇的位置就是环的入口节点。（原理为数学推导）
+- 其它思路：表记法，顺序遍历，对已经遍历过节点，利用val进行标记，缺点是会改变原有数据
 
 **参考代码：**
 
-```python
-# -*- coding:utf-8 -*-
-# class ListNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.next = None
-class Solution:
-    def EntryNodeOfLoop(self, head):
-        # write code here
-        tmp = []
-        while head != None:
-            if tmp.count(head) == 0:
-                tmp.append(head)
-                head = head.next
-            else:
-                return head
-        
-        return None
-```
-
-```C++
-/*
-struct ListNode {
-    int val;
-    struct ListNode *next;
-    ListNode(int x) :
-        val(x), next(NULL) {
-    }
-};
-*/
+```cpp
+// cpp
 class Solution {
 public:
-    std::map<ListNode*, int> map;
-    ListNode* EntryNodeOfLoop(ListNode* head) {
+    // 1. 哈希表解法
+    // 时间复杂度O(n)，空间复杂度O(n)
+    ListNode* EntryNodeOfLoop1(ListNode* head) {
+        if (head == nullptr) {
+            return nullptr;
+        }
+
+        std::map<ListNode*, int> map;
         while (head != nullptr) {
             if (map.count(head) == 0) {
                 map[head] = head->val;
@@ -4500,7 +4480,61 @@ public:
         
         return nullptr;
     }
+
+    // 2. 快慢指针解法
+    // 时间复杂度 > O(n)，空间复杂度O(1)
+    ListNode* EntryNodeOfLoop2(ListNode* head) {
+        if (head == nullptr) {
+            return nullptr;
+        }
+
+        ListNode* p = head;
+        ListNode* q = head;
+        
+        // 第一次快慢追踪相遇
+        while (p && q && q->next) {
+            p = p->next;
+            q = q->next->next;
+            if (p == q) {
+                break;
+            }
+        }
+        // 防止特殊情况
+        if (p != q) {
+            return nullptr;
+        }
+
+        // 移动位置后，第二次同速追踪相遇
+        p = head;
+        while (p != q) {
+            p = p->next;
+            q = q->next;
+        }
+        return p;
+    }
 };
+```
+
+```python
+# python
+class Solution:
+    def EntryNodeOfLoop4(self, head):
+        """
+        4. 标记法，利用链表存储标记
+        时间复杂度O(n)，空间复杂度O(1)
+        缺点是破化了原有数据
+        """
+        if head == None:
+            return None
+        
+        while head:
+            if head.val == 666:
+                return head
+            else:
+                head.val = 666
+                head = head.next
+        
+        return None
 ```
 
 ### 56. 删除链表中重复的结点
