@@ -4545,66 +4545,43 @@ class Solution:
 
 **解题思路：**
 
-- 看似简单，其实很麻烦
-- 需要考虑的几点：检测到重复后需要删除，头部也有可能重复，所以需要新加一个头检测
-- 可以单独写一个函数，用来判断当前结点的后方有多少个是重复的
+- 注意本题在牛客与leetcode的区别，前者删除head链表中重复的节点，后者删除head链表中值为val的节点，显然后者要容易，而前者看似简单，其实很麻烦
+- 需要考虑的几点：检测到重复后需要删除，头部也有可能重复，所以需要加一个辅助的头节点
+- 单独写一个函数，用来判断当前结点的后方有多少个是重复的
 - 注意python中传入参数的引用的使用，另一种思路是函数返回多个值
 
 **参考代码：**
 
-```python
-# -*- coding:utf-8 -*-
-# class ListNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.next = None
-class Solution:
-    def checkSame(self, head):
-        """
-        输入一个结点，输出后边有多个个重复的，以及不重复的那个结点
-        """
-        cnt = 0
-        while head != None and head.next != None:
-            if head.val != head.next.val:
-                return cnt, head.next
-            else:
-                cnt += 1
-                head = head.next
-        
-        return cnt, None
-        
-    def deleteDuplication(self, head):
-        if head == None:
-            return None
-        
-        new_head = ListNode(0)
-        new_head.next = head
-        curr = new_head
-        
-        while curr != None:
-            cnt, tmp = self.checkSame(curr.next)
-            if cnt == 0:
-                curr = curr.next
-            else:
-                curr.next = tmp
-                
-        return new_head.next
-```
-
-```C++
-/*
-struct ListNode {
-    int val;
-    struct ListNode *next;
-    ListNode(int x) :
-        val(x), next(NULL) {
-    }
-};
-*/
+```cpp
+// cpp
 class Solution {
 public:
-    // 输出一个结点，返回从这里开始有多少个重复的结点，next_head为不重复的下一个结点
-    // 这里注意要用引用
+   // 利用辅助函数，检测当前节点后续的重复次数
+    ListNode* deleteDuplication(ListNode* head) {
+        if (head == nullptr) {
+            return nullptr;
+        }
+        
+        // 为了检测head是否存在重复，需要新加一个额外的head
+        ListNode* new_head = new ListNode(0);
+        new_head->next = head;
+        ListNode* curr = new_head;
+        ListNode* tmp = nullptr;
+        
+        while (curr != nullptr) {
+            // 检测接下来有多少个节点相同，如果不同则返回cnt，并修改tmp指针
+            if (checkSame(curr->next, tmp) == 0) {
+                curr = curr->next;
+            } else {
+                curr->next = tmp;
+            }
+        }
+        
+        return new_head->next;
+    }
+
+    // 输出一个结点，返回从这里开始有多少个重复的结点
+    // next_head为不重复的下一个结点，这里注意要用引用
     int checkSame(ListNode* head, ListNode* & next_head) {
         int cnt = 0;
         while (head != nullptr && head->next != nullptr) {
@@ -4620,29 +4597,45 @@ public:
         next_head = nullptr;
         return cnt;
     }
-    
-    ListNode* deleteDuplication(ListNode* head) {
-        if (head == nullptr) {
-            return nullptr;
-        }
-        
-        // 为了检测head是否存在重复，需要新加一个额外的head
-        ListNode* new_head = new ListNode(0);
-        new_head->next = head;
-        ListNode* curr = new_head;
-        ListNode* tmp = nullptr;
-        
-        while (curr != nullptr) {
-            if (checkSame(curr->next, tmp) == 0) {
-                curr = curr->next;
-            } else {
-                curr->next = tmp;
-            }
-        }
-        
-        return new_head->next;
-    }
 };
+```
+
+```python
+# python
+class Solution:
+    def deleteDuplication(self, head):
+        """
+        第一次的方式，利用辅助函数，检测当前节点后续的重复次数
+        """
+        if head == None:
+            return None
+        
+        new_head = ListNode.ListNode(0)
+        new_head.next = head
+        curr = new_head
+        
+        while curr != None:
+            cnt, tmp = self.checkSame(curr.next)
+            if cnt == 0:
+                curr = curr.next
+            else:
+                curr.next = tmp
+                
+        return new_head.next
+
+    def checkSame(self, head):
+        """
+        输入一个结点，输出后边有多个个重复的，以及不重复的那个结点
+        """
+        cnt = 0
+        while head != None and head.next != None:
+            if head.val != head.next.val:
+                return cnt, head.next
+            else:
+                cnt += 1
+                head = head.next
+        
+        return cnt, None
 ```
 
 ### 57. 二叉树的下一个结点

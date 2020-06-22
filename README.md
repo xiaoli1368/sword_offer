@@ -49,7 +49,7 @@
 |22. 复杂链表的复制|线性表|||
 |36. 两个链表的第一个公共结点|线性表|哈希表，双指针|[牛客网](https://www.nowcoder.com/practice/6ab1d9a29e88450685099d45c9e31e46?tpId=13&&tqId=11189&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)|
 |55. 链表中环的入口结点|线性表|哈希表，快慢指针|[牛客网](https://www.nowcoder.com/practice/253d2c59ec3e4bc68da16833f79a38e4?tpId=13&&tqId=11208&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)|
-|56. 删除链表中重复的结点|线性表|||
+|56. 删除链表中重复的结点|线性表|迭代|[牛客网](https://www.nowcoder.com/practice/fc533c45b73a41b0b44ccba763f866ef?tpId=13&&tqId=11209&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)|
 |||||
 |04. 重建二叉树|二叉树|||
 |17. 树的子结构|二叉树|||
