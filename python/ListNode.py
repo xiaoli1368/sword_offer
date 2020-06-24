@@ -2,6 +2,17 @@
 
 """
 定义单链表
+
+这里Node的数据结构和函数封装到了一起，可以尝试分开:
+class Node():
+    def __init__(self, x):
+        # 初始化
+        self.val = x
+        self.next = None
+
+class ListNode():
+    # some function
+    pass
 """
 
 class ListNode():

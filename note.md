@@ -341,95 +341,74 @@ class Solution:
 **解题思路：**
 
 - 使用两个堆栈，借助两次入栈出栈就可以实现一个队列
-- 入列：无脑进入堆栈1即可
+- 入列：直接进入栈1即可
 - 出列：如果堆栈2非空，堆栈2出栈即可，如果堆栈2为空，则将堆栈1的序列循环出栈，并入栈进入堆栈2，然后再调用这个出列函数
-- 注意c++可以调用STL中的\<stack>来实现基本的堆栈操作
-- 注意pop()是出栈操作，但不返回值。top()操作是返回栈顶的值，但是不会出栈
+- 注意c++可以调用STL中的\<stack>来实现基本的堆栈操作，pop()是出栈操作，但不返回值。top()操作是返回栈顶的值，但是不会出栈
+- 举一反三：使用两个队列实现一个栈
 
 **参考代码：**
 
 ```c++
-class Solution
-{
+// cpp
+class Solution {
 public:
+    // ===== 使用stl定义的栈 =====
+    std::stack<int> s1;
+    std::stack<int> s2;
+
     void push(int node) {
-        stack1.push(node);
+        s1.push(node);
     }
 
-    int pop() {
-        if (stack2.size() != 0) {
-            int tmp = stack2.top();
-            stack2.pop();
+    int pop(void) {
+        if (s1.empty() && s2.empty()) {
+            return 0;
+        }
+
+        if (!s2.empty()) {
+            int tmp = s2.top();
+            s2.pop();
             return tmp;
-        }
-        
-        int length = stack1.size();
-        if (length != 0) {
-            for (int i = 0; i < length; i++) {
-                int tmp = stack1.top();
-                stack1.pop();
-                stack2.push(tmp);
-            }
-            return pop();
-        }
-    }
+        } 
 
-private:
-    stack<int> stack1;
-    stack<int> stack2;
+        while (!s1.empty()) {
+            s2.push(s1.top());
+            s1.pop();
+        }
+        return pop();
+    }
 };
 ```
 
 ```python
-# 这种方式是直接实现了一个队列
-# 使用两个栈来实现队列的方式见文件夹下代码
-
-# -*- coding:utf-8 -*-
-class Solution:
-    def __init__(self, value=0):
-        self.val = value
-        self.next = None
-        
-    def push(self, value):
-        newQueue = Solution(value)
-        newQueue.next = self.next
-        self.next = newQueue
-    
-    def pop(self):
-        if self.next == None:
-            return
-        
-        tmpNode = self
-        tmpVal = 0
-        
-        while tmpNode.next.next != None:
-            tmpNode = tmpNode.next
-            
-        tmpVal = tmpNode.next.val
-        tmpNode.next = None
-        return tmpVal
-    
-# 这是参考答案
-class Solution:
-    """
-    用两个栈实现一个队列的高效率版
-    """
+# python
+class Solution():
     def __init__(self):
-        self.stack1 = []
-        self.stack2 = []
+        """
+        初始化，使用list封装
+        """
+        self.s1 = []
+        self.s2 = []
 
-    def push(self, value):
-        self.stack1.append(value)
-
+    def push(self, val):
+        """
+        压入
+        """
+        self.s1.append(val)
+    
     def pop(self):
-        if len(self.stack2) != 0:
-            return self.stack2.pop()
+        """
+        弹出
+        """
+        if self.s1 == [] and self.s2 == []:
+            return 0
         
-        length = len(self.stack1)
-        if length != 0:
-            for i in range(length):
-                self.stack2.append(self.stack1.pop())
-
+        if self.s2 != []:
+            return self.s2.pop(-1)
+        
+        while self.s1:
+            self.s2.append(self.s1.pop(-1))
+        
         return self.pop()
 ```
 
