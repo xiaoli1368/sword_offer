@@ -44,7 +44,7 @@
 |14. 链表倒数第k个结点|线性表|循环，双指针|[牛客网](https://www.nowcoder.com/practice/529d3ae5a407492994ad2a246518148a?tpId=13&tqId=11167&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking&tPage=1)|
 |15. 反转链表|线性表|递归，迭代|[牛客网](https://www.nowcoder.com/practice/75e878df47f24fdc9dc3e400ec6058ca?tpId=13&&tqId=11168&rp=1&ru=/activity/oj&qru=/ta/coding-interviews/question-ranking)|
 |16. 合并两个排序的链表|线性表|递归，循环|[牛客网](https://www.nowcoder.com/practice/d8b6b4358f774294a89de2a6ac4d9337?tpId=13&&tqId=11169&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)|
-|20. 包含min函数的栈|线性表||[牛客网](https://www.nowcoder.com/practice/4c776177d2c04c2494f2555c9fcc1e49?tpId=13&tqId=11173&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking&tPage=1)|
+|20. 包含min函数的栈|线性表|辅助栈|[牛客网](https://www.nowcoder.com/practice/4c776177d2c04c2494f2555c9fcc1e49?tpId=13&tqId=11173&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking&tPage=1)|
 |21. 栈的压入弹出序列|线性表||[牛客网](https://www.nowcoder.com/practice/d77d11405cc7470d82554cb392585106?tpId=13&tqId=11174&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking&tPage=2)|
 |22. 复杂链表的复制|线性表||[牛客网](https://www.nowcoder.com/practice/f836b2c43afc4b35ad6adc41ec941dba?tpId=13&tqId=11178&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking&tPage=2)|
 |36. 两个链表的第一个公共结点|线性表|哈希表，双指针|[牛客网](https://www.nowcoder.com/practice/6ab1d9a29e88450685099d45c9e31e46?tpId=13&&tqId=11189&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)|
@@ -82,15 +82,7 @@
 |67. 剪绳子|其它|贪心，递归，动态规划|[牛客网](https://www.nowcoder.com/practice/57d85990ba5b440ab888fc72b0751bf8?tpId=13&tqId=33257&tPage=4&rp=4&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking)|
 
 
-## 分类汇总
-
-未完，待补充：
-
-**比较复杂的题目：**
-
-- 65
-- 52
-- 31
+## 分类标签
 
 **基础篇（按照数据结构分类）：**
 
@@ -111,4 +103,3 @@
 - 递归，滑窗，双指针
 - 背包问题
 - KMP
-

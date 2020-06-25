@@ -1,9 +1,12 @@
 #include <iostream>
+#include <vector>
 #include <stack>
+#include <stdio.h>
+#include <sys/time.h>
 
-// 这种方式两个栈不是等长的
-// 注意pop一些值之后min是否受到了影响
-// 特殊情况是存在几个值相等，且都是最小值
+#include "my_vector.h"
+
+// 等长最小栈，存在数据冗余
 
 class Solution {
 private:
@@ -12,19 +15,16 @@ private:
 
 public:
     void push(int value) {
-        stack.push(value);
-        if (minStack.empty() || minStack.top() >= value) {
+        if (minStack.empty() || value <= minStack.top()) {
             minStack.push(value);
+        } else {
+            minStack.push(minStack.top());
         } 
+        stack.push(value);
     }
 
     void pop() {
-        if (stack.empty() || minStack.empty()) {
-            return;
-        }
-        if (minStack.top() == stack.top()) {
-            minStack.pop();
-        }
+        minStack.pop();
         stack.pop();
     }
 
@@ -35,22 +35,38 @@ public:
     int min() {
         return minStack.top();
     }
+
+    // 测试函数
+    // push随机数据，中间获取最小值
+    // pop随机数据，中间获取最小值
+    void test(std::vector<int>& vec) {
+        struct timeval start, end;
+        std::vector<int> ret;
+        
+        printf("=====\n");
+        gettimeofday(&start, nullptr);
+        for (auto & i : vec) {
+            push(i);
+            ret.push_back(min());
+        }
+        for (auto & i : vec) {
+            ret.push_back(min());
+            pop();
+        }
+        gettimeofday(&end, nullptr);
+        printf("times(us): %ld, result: ", end.tv_usec - start.tv_usec);
+        printf_1d_vec(ret);
+    }
 };
 
 int main(int argc, char* argv[])
 {
+    std::vector<int> vec = vector_CreatRandom(1, 20, 5);
+    std::vector<int> vec2 = vector_CreatRandom(1, 1000, 100);
+
     Solution s;
+    s.test(vec);
+    s.test(vec2);
 
-    s.push(1);
-    s.push(6);
-    s.push(5);
-    s.pop();
-    s.push(8);
-    s.push(0);
-    s.push(3);
-
-    std::cout << s.top() << std::endl;
-    std::cout << s.min() << std::endl;
-    
     return 0;
 }

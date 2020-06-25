@@ -1458,74 +1458,82 @@ class Solution:
 
 **解题思路：**
 
-- 注意关键点在于限制了min函数的时间复杂度为-1，也就是跟存储数据量的大小没有关系
-- 因此必须额外分配一个数据结构来记录当前的最小值
+- 注意关键点在于限制了min函数的时间复杂度为-1，也就是跟存储数据量的大小没有关系，因此必须额外分配一个数据结构来记录当前的最小值，即辅助的最小栈，最小栈有两种方式。
+- 一是与原始栈等长，每次push数据到stack，同时也比较得出minValue，将其push到minStack。
+- 二是与原始栈不等长，每次push数据到stack，只选择数据小于等于minStack顶部时，将其push到minStack，每次pop时需要判断是否需要对minStack进行pop
 
 **参考代码：**
 
+```cpp
+// cpp
+// 等长最小栈，存在数据冗余
+class Solution {
+private:
+    std::stack<int> stack;
+    std::stack<int> minStack;
+public:
+    void push(int value) {
+        if (minStack.empty() || value <= minStack.top()) {
+            minStack.push(value);
+        } else {
+            minStack.push(minStack.top());
+        } 
+        stack.push(value);
+    }
+
+    void pop() {
+        minStack.pop();
+        stack.pop();
+    }
+
+    int top() {
+        return stack.top();
+    }
+
+    int min() {
+        return minStack.top();
+    }
+};
+```
+
 ```python
+# python
+# 不等长最小栈
 class Solution:
-    """
-    注意最小数必须由一个栈来维护，不能是一个数
-    否则经过pop之后就无法保持最小数是正确的了
-    也就是说需要保持两个栈的对应性
-    """
     def __init__(self):
+        """
+        初始化
+        """
         self.stack = []
         self.minStack = []
 
     def push(self, node):
+        """
+        压入
+        """
         self.stack.append(node)
-        if self.minStack == [] or self.min() > node:
+        if self.minStack == [] or node <= self.min():
             self.minStack.append(node)
-        else:
-            tmp = self.min()
-            self.minStack.append(tmp)
 
     def pop(self):
-        if self.stack == [] or self.minStack == []:
-            return None
+        """
+        弹出
+        """
+        if self.stack[-1] == self.minStack[-1]:
+            self.minStack.pop()
         self.stack.pop()
-        self.minStack.pop()
 
     def top(self):
+        """
+        获取顶部元素
+        """
         return self.stack[-1]
 
     def min(self):
-        if self.stack == [] or self.minStack == []:
-            return None
+        """
+        获取最小元素
+        """
         return self.minStack[-1]
-```
-
-```c++
-#include <stack>
-class Solution {
-private:
-    stack<int> s;
-    stack<int> ms;
-public:
-    void push(int value) {
-        s.push(value);
-        if (ms.empty() || ms.top() >= value) {
-            ms.push(value);
-        }
-    }
-    void pop() {
-        if (s.empty() || ms.empty()) {
-            return;
-        }
-        if (s.top() == ms.top()) {
-            ms.pop();
-        }
-        s.pop();
-    }
-    int top() {
-        return s.top();
-    }
-    int min() {
-        return ms.top();
-    }
-};
 ```
 
 ### 21. 栈的压入弹出序列

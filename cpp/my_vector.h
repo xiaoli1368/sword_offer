@@ -5,6 +5,7 @@
 
 #include <vector>
 #include <stdlib.h>
+#include <stdio.h>
 #include <time.h>
 
 // 创建range形式的vector
@@ -31,6 +32,18 @@ std::vector<int> vector_CreatRandom(int min, int max, int num) {
     }
 
     return ret;
+}
+
+// 打印一维vec
+void printf_1d_vec(std::vector<int>& vec) {
+    if (vec.empty()) {
+        return;
+    }
+
+    for (auto & i : vec) {
+        printf("%d, ", i);
+    }
+    printf("\n");
 }
 
 #endif
