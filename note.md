@@ -1833,111 +1833,20 @@ public:
 
 **解题思路：**
 
-- 看了别人的答案，才把题目看懂，就不能说的明白些吗？要求完全复制，包括那些随机的没有任何意义的链接。
-
-- 问题的关键在于顺序遍历时，那些随机的链接无法同样复制。解决方法有两种。一是多次遍历法：(1) 在旧链表中创建新链表，此时不处理兄弟节点。(2) 根据旧链表的兄弟节点，初始化新链表的兄弟节点。(3) 从旧链表中拆分得到新链表。二是map字典关联。
-
-- 方法一：map关联
-  
-
-首先遍历一遍原链表，创建新链表（赋值label和next），用map关联对应结点；再遍历一遍，更新新链表的random指针。（注意map中应有NULL ----> NULL的映射）
-
-- 方法二：next指针关联
-  
-
-创建新链表的时候，用原结点的next指针指向对应新结点，新结点的next指针指向下一个原结点，以此类推，形成之字形关联。然后，就可以先更新新链表的random指针，再解除next关联，更新next指针。这种方法不需要map来辅助，不管查找next还是random指针都是O(1)的，效率很高。
-
-- 另外，python使用了递归结果是可以的，但是c++使用递归结果就不行，奇怪。
+- 看了别人的答案，才把题目看懂，就不能说的明白些吗？要求完全复制，包括那些随机的没有任何意义的链接。（也就是深拷贝）问题的关键在于顺序遍历时，那些随机的链接无法同样复制。解决方法有多种。
+- map关联：首先遍历一遍原链表，创建新链表（赋值label和next），用map关联对应结点；再遍历一遍，更新新链表的random指针。（注意map中应有NULL ----> NULL的映射）
+- 图遍历：看作一个有向图，每个节点会出去两条边，使用DFS/BFS完成遍历复制
+- 高效迭代法：(1) 在旧链表中创建新链表，此时不处理兄弟节点。(2) 根据旧链表的兄弟节点，初始化新链表的兄弟节点。(3) 从旧链表中拆分得到新链表。（next指针关联，创建新链表的时候，用原结点的next指针指向对应新结点，新结点的next指针指向下一个原结点，以此类推，形成之字形关联。然后，就可以先更新新链表的random指针，再解除next关联，更新next指针。这种方法不需要map来辅助，不管查找next还是random指针都是O(1)的，效率很高。）
+- 其它python方法：直接深拷贝，或者使用了递归仅建立链接
 
 **参考代码：**
 
-```python
-# next指针关联
-class Solution:
-    # 返回 RandomListNode
-    def Clone(self, head):
-        if head == None:
-            return None
-        
-        # 遍历节点并拷贝到后面
-        currNode = head
-        while currNode != None:
-            nextNode = currNode.next
-            newNode = RandomListNode(currNode.label)
-            currNode.next = newNode
-            newNode.next = nextNode
-            currNode = nextNode
-            
-        # 拷贝随机的链接关系
-        currNode = head
-        while currNode != None:
-            currNode.next.random = currNode.random.next if currNode.random else None
-            currNode = currNode.next.next
-            
-        # 从旧链表中分离出新链表
-        currNode = head
-        headClone = head.next
-        while currNode != None:
-            tmp = currNode.next
-            currNode.next  = tmp.next
-            tmp.next = tmp.next.next if tmp.next else None
-            currNode = currNode.next
-            
-        return headClone
-
-# ====================
-# map映射方法
-class Solution:
-    # 返回 RandomListNode
-    def Clone(self, head):
-        if head == None:
-            return None
-        
-        head1 = head
-        head2 = RandomListNode(head1.label)
-        newhead = head2
-        Map = {head1 : head2}
-        
-        # 完全复制并且建立映射
-        while head1 != None:
-            if head1.next != None:
-                head2.next = RandomListNode(head1.next.label)
-                
-            head1 = head1.next
-            head2 = head2.next
-            Map[head1] = head2
-            
-        # 复制随机的链接
-        head1 = head
-        head2 = newhead
-        while head1 != None:
-            head2.random = Map[head1.random]
-            head1 = head1.next
-            head2 = head2.next
-            
-        return newhead
-    
-# ====================
-# 递归法（这种方式，新链表挂载在了旧链表上）
-class Solution:
-    # 返回 RandomListNode
-    def Clone(self, head):
-        # write code here
-        if head == None:
-            return None
-        
-        newhead = RandomListNode(head.label)
-        newhead.random = head.random
-        newhead.next = self.Clone(head.next)
-        
-        return newhead
-```
-
-```c++
-// next指针遍历
+```cpp
+// cpp
 class Solution {
 public:
-    RandomListNode* Clone(RandomListNode* head) {
+    // next指针遍历
+    RandomListNode* Clone5(RandomListNode* head) {
         if (head == nullptr) {
             return nullptr;
         }
@@ -1976,49 +1885,102 @@ public:
         return headClone;
     }
 };
+```
 
-// ====================
-// map映射方法
-#include <map>
-class Solution {
-public:
-    RandomListNode* Clone(RandomListNode* head) {
-        if (head == nullptr) {
-            return nullptr;
-        }
+```python
+# python
+class Solution:
+    def Clone2(self, h1):
+        """
+        dict优化版
+        """
+        if h1 == None:
+            return None
         
-        // map法, 初始化
-        map<RandomListNode*, RandomListNode*> map;
-        RandomListNode* head1 = head;
-        RandomListNode* head2 = new RandomListNode(head1->label);
-        RandomListNode* newhead = head2;
-        map[head1] = head2;
+        h2 = RandomListNode()
+        curr1, curr2 = h1, h2
+        dic = {None: None}
+
+        # 完全建立线性节点以及映射
+        while curr1:
+            curr2.next = RandomListNode(curr1.label)
+            curr2 = curr2.next
+            dic[curr1] = curr2
+            curr1 = curr1.next
         
-        // 完全复制链表并建立map
-        while (head1) {
-            if (head1->next) {
-                head2->next = new RandomListNode(head1->next->label);
-            } else {
-                head2->next = nullptr;
-            }
-            
-            head1 = head1->next;
-            head2 = head2->next;
-            map[head1] = head2;
-        }
+        # 建立随机节点
+        while h1:
+            dic[h1].random = dic[h1.random]
+            h1 = h1.next
         
-        // 复制随机的链接
-        head1 = head;
-        head2 = newhead;
-        while (head1) {
-            head2->random = map[head1->random];
-            head1 = head1->next;
-            head2 = head2->next;
-        }
+        return h2.next
+
+
+    def Clone3(self, head):
+        """
+        dfs图遍历
+        """
+        def dfs(head):
+            if head == None:
+                return None
+            if head in dic:
+                return dic[head]
+            # 创建新节点
+            copy = RandomListNode(head.label)
+            dic[head] = copy
+            copy.next = dfs(head.next)
+            copy.random = dfs(head.random)
+            return copy
         
-        return newhead;
-    }
-};
+        dic = dict()
+        return dfs(head)
+    
+    def Clone4(self, head):
+        """
+        bfs图遍历
+        """
+        def bfs(head):
+            if head == None:
+                return None
+            clone = RandomListNode(head.label)
+            queue = [head]
+            dic = {head : clone, None : None}
+
+            while queue:
+                tmp = queue.pop(0)
+                if tmp.next != None and tmp.next not in dic:
+                    dic[tmp.next] = RandomListNode(tmp.next.label)
+                    queue.append(tmp.next)
+                if tmp.random!= None and tmp.random not in dic:
+                    dic[tmp.random] = RandomListNode(tmp.random.label)
+                    queue.append(tmp.random)
+                dic[tmp].next = dic[tmp.next]
+                dic[tmp].random = dic[tmp.random]
+            return clone
+        
+        return bfs(head)
+
+    def Clone6(self, head):
+        """
+        深拷贝
+        """
+        if head == None:
+            return None
+        return copy.deepcopy(head)
+    
+    def Clone7(self, head):
+        """
+        递归法，新链表挂载在旧链表上
+        其实就是浅拷贝
+        """
+        if head == None:
+            return None
+        
+        newhead = RandomListNode(head.label)
+        newhead.random = head.random
+        newhead.next = self.Clone7(head.next)
+        
+        return newhead
 ```
 
 ### 26. 二叉树搜索树与双向链表
