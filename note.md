@@ -1544,120 +1544,55 @@ class Solution:
 
 **解题思路：**
 
-- 构造一个空栈，实际模拟一下栈的压入和弹出操作
-- 总共的压入次数为pushArray.size()，循环实现这个次数即可，每次循环的内部利用while循环实现弹出操作，判断条件为当前栈非空，并且当前栈的顶部元素等于popArray的首元素，注意当前栈和popArray同步进行弹出的操作
-- 最终判断当前栈是否为空，判断两个序列是否合理
+- 个人思路（较为繁琐）：构造一个空栈，实际模拟一下栈的压入和弹出操作，总共的压入次数为pushArray.size()，循环实现这个次数即可，每次循环的内部利用while循环实现弹出操作，判断条件为当前栈非空，并且当前栈的顶部元素等于popArray的首元素，注意当前栈和popArray同步进行弹出的操作，最终判断当前栈是否为空，判断两个序列是否合理
+- 高效思路：模拟栈的压入弹出，优化细节
 
 **参考代码：**
 
-```python
-class Solution:
-    def IsPopOrder(self, pushV, popV):
-        # write code here
-        if pushV == []:
-            return True
-        
-        length = len(pushV)
-        
-        pair = 0
-        tmp = [pushV[0]]
-        del pushV[0]
-        
-        while pair < length:
-            if tmp[-1] != popV[0]:
-                if pushV != []:
-                    tmp.append(pushV[0])
-                    del pushV[0]
-                else:
-                    return False
-            else:
-                del tmp[-1]
-                del popV[0]
-                pair += 1
-            
-        return True
-    
-    def IsPopOrder(self, pushVec, popVec):
-        """
-        参考答案的方法
-        """
-        if pushVec == [] or popVec == []:
-            return False
-        else:
-            # 进行值传递，排除对外界的影响
-            pushV = pushVec.copy()
-            popV = popVec.copy()
-
-        stack = []
-        for i in pushV:
-            stack.append(i)
-            while stack != [] and stack[-1] == popV[0]:
-                stack.pop()
-                popV.pop(0)
-
-        if stack:
-            return False
-        else:
-            return True
-```
-
-```c++
+```cpp
+// cpp
 class Solution {
 public:
-    // 参考答案
-    bool IsPopOrder(std::vector<int> pushV, std::vector<int> popV) {
-        if (pushV.size() == 0 || popV.size() == 0) {
+    // 高效答案，小细节：使用计数代替出栈
+    bool IsPopOrder3(std::vector<int> pushV, std::vector<int> popV) {
+        if (pushV.empty() || popV.empty()) {
             return false;
         }
 
+        int i = 0;
         std::vector<int> stack;
-        for (auto i : pushV) {
-            stack.push_back(i);
-            while (stack.size() > 0 && stack.back() == popV.front()) {
-                // 删除尾部元素的时候使用迭代器会失效
-                // 删除首部元素好像就可以
-                //stack.erase(std::end(stack));
+        for (auto num : pushV) {
+            stack.push_back(num);
+            while (!stack.empty() && stack.back() == popV[i]) {
+                i++;
                 stack.pop_back();
-                popV.erase(std::begin(popV));
             }
         }
 
-        if (stack.size() == 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    // 自行解法
-    bool IsPopOrder2(std::vector<int> pushV, std::vector<int> popV) {
-        if (pushV.size() == 0 || popV.size() == 0) {
-            return false;
-        }
-
-        int length = pushV.size();
-        int pair = 0;
-        std::vector<int> tmp;
-        tmp.push_back(pushV.front());
-
-        while (pair < length) {
-            if (tmp.back() != popV.front()) {
-                if (pushV.size() > 0) {
-                    tmp.push_back(pushV.front());
-                    pushV.erase(pushV.begin());
-                } else {
-                    return false;
-                }
-            } else {
-                tmp.pop_back();
-                popV.erase(popV.begin());
-                pair++;
-            }
-        }
-
-        return true;
+        return stack.empty();
     }
 };
+```
+
+```python
+# python
+class Solution:
+    def IsPopOrder3(self, pushV, popV):
+        """
+        高效方法优化版，使用计数代替了pop
+        """
+        if pushV == [] or popV == []:
+            return False
+
+        i = 0
+        stack = []
+        for num in pushV:
+            stack.append(num)
+            while stack != [] and stack[-1] == popV[i]:
+                i += 1
+                stack.pop()
+
+        return stack == []
 ```
 
 ### 22. 从上往下打印二叉树
