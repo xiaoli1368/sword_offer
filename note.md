@@ -230,106 +230,78 @@ class Solution:
 
 > 输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。
 
-**解题思路：**
+**基础知识：**
 
 - 明确什么是树，这种数据结构采用c++/python该如何实现
 - 树的三种遍历方式，分别如何编程实现
 - 三种遍历方式中的关系，已知两个顺序，重建整个二叉树
 - 注意题目限制：前序和中序的数字不是重复的
 
-**解题思路2：**
+**解题思路：**
 
-- 设前序数组为pre，中序数组为vin
-- 寻找pre[0]在vin中的位置，这样就能完成一次划分了
+- 设前序数组为pre，中序数组为vin，寻找pre[0]在vin中的位置，这样就能完成一次划分了
 - 将当前的两个数组pre/vin，划分为下一次迭代的四个数组，newLeftPre，newLeftVin，newRightPre，newRightVin
 - 完成对当前根节点的构建和赋值，对左右两个子节点，当对应数组的size不为零时，进行下一次的迭代
 - 整体的退出条件为：当pre和vin的size都为１时，仅构建根节点并退出（两个孩子节点为null）
+- 另外一种高效的思路是，传递数组的引用以及边界索引begin/end，空节点的条件为begin > end
 
 **参考代码：**
 
 ```python
-// 一次就过，nice
-/**
- * Definition for binary tree
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+// cpp
 class Solution {
 public:
-    TreeNode* reConstructBinaryTree(vector<int> pre,vector<int> vin) {
-        TreeNode* newTree = new TreeNode(pre[0]);
-        if (pre.size() == 1 && vin.size() == 1) {
-            return newTree;
+    // 递归优化版
+    TreeNode* reConstructBinaryTree2(std::vector<int> pre, std::vector<int> vin) {
+        if (pre.empty() || vin.empty()) {
+            return nullptr;
+        }
+
+        return reConstructFunc(pre, 0, pre.size() - 1, vin, 0, vin.size() - 1);
+    }
+
+    TreeNode* reConstructFunc(std::vector<int>& pre, int p1, int p2, std::vector<int>& vin, int v1, int v2) {
+        if (p1 > p2 || v1 > v2) {
+            return nullptr;
         }
         
-        int index = 0;
-        for (auto i : vin) {
-            if (i != pre[0]) {
-                index++;
-            } else {
+        // 获取划分点坐标
+        int vinMid = v1;
+        while (vinMid <= v2) {
+            if (vin[vinMid] == pre[p1]) {
                 break;
             }
+            vinMid++;
         }
-        
-        vector<int> newLeftPre, newLeftVin, newRightPre, newRightVin;
-        newLeftPre.assign(pre.begin() + 1, pre.begin() + 1 + index);
-        newRightPre.assign(pre.begin() + 1 + index, pre.end());
-        newLeftVin.assign(vin.begin(), vin.begin() + index);
-        newRightVin.assign(vin.begin() + 1 + index, vin.end());
-        
-        if (newLeftPre.size() != 0) {
-            newTree->left = reConstructBinaryTree(newLeftPre, newLeftVin);
-        }
-        if (newRightPre.size() != 0) {
-            newTree->right = reConstructBinaryTree(newRightPre, newRightVin);
-        }
-        
-        return newTree;
+        int preMid = p1 + vinMid - v1; // 注意二者有可能不是对齐的，所以需要两个mid
+
+        TreeNode* root = new TreeNode(pre[p1]);
+        root->left = reConstructFunc(pre, p1+1, preMid, vin, v1, vinMid-1);
+        root->right = reConstructFunc(pre, preMid+1, p2, vin,vinMid+1, v2);
+
+        return root;
     }
 };
 ```
 
 ```c++
-# -*- coding:utf-8 -*-
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
+# python
 class Solution:
-    # 返回构造的TreeNode根节点
-    def reConstructBinaryTree(self, pre, tin):
-        # write code here
-        newTree = TreeNode(pre[0])
-        newTree.left = None
-        newTree.right = None
+    def reConstructBinaryTree2(self, pre, vin):
+        """
+        递归优化版
+        但是中间重新生成了list，所以低效
+        更加高效的方式是传递list引用，以及索引
+        """
+        if pre == [] or vin == []:
+            return None
         
-        if len(pre) == 1 and len(tin) == 1:
-            return newTree
-        
-        index = 0
-        for i in tin:
-            if i != pre[0]:
-                index += 1
-            else:
-                break
-        
-        newLeftPre = newLeftTin = newRightPre = newRightTin = []
-        newLeftPre = pre[1:1+index]
-        newRightPre = pre[1+index:]
-        newLeftTin = tin[:index]
-        newRightTin = tin[index+1:]
-        
-        if newLeftPre:
-            newTree.left = self.reConstructBinaryTree(newLeftPre, newLeftTin)
-        if newRightPre:
-            newTree.right = self.reConstructBinaryTree(newRightPre, newRightTin)
-        
-        return newTree
+        mid = vin.index(pre[0])
+        root = TreeNode.TreeNode(pre[0])
+        root.left = self.reConstructBinaryTree2(pre[1:mid+1], vin[:mid])
+        root.right = self.reConstructBinaryTree2(pre[mid+1:], vin[mid+1:])
+
+        return root
 ```
 
 ### 05. 用两个栈实现一个队列

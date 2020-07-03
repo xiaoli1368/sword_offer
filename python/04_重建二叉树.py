@@ -1,16 +1,24 @@
 #!/bin/bash python3
 #-*- coding:utf-8 -*-
 
+import time
+import TreeNode
+
+"""
 class TreeNode():
     def __init__(self, x):
         self.val = x
         self.left = None
         self.right = None
-
+"""
 
 class Solution():
-    def reConstructBinaryTree(self, pre, vin):
-        newTree = TreeNode(pre[0])
+    def reConstructBinaryTree1(self, pre, vin):
+        """
+        第一次的方式
+        存在较大的优化空间
+        """
+        newTree = TreeNode.TreeNode(pre[0])
         if len(pre) == 1 and len(vin) == 1:
             return newTree
 
@@ -28,64 +36,49 @@ class Solution():
         newRightVin = vin[1 + index :]
 
         if newLeftPre:
-            newTree.left = self.reConstructBinaryTree(newLeftPre, newLeftVin)
+            newTree.left = self.reConstructBinaryTree1(newLeftPre, newLeftVin)
         if newRightPre:
-            newTree.right = self.reConstructBinaryTree(newRightPre, newRightVin)
+            newTree.right = self.reConstructBinaryTree1(newRightPre, newRightVin)
 
         return newTree
+    
+    def reConstructBinaryTree2(self, pre, vin):
+        """
+        递归优化版
+        但是中间重新生成了list，所以低效
+        更加高效的方式是传递list引用，以及索引
+        """
+        if pre == [] or vin == []:
+            return None
+        
+        mid = vin.index(pre[0])
+        root = TreeNode.TreeNode(pre[0])
+        root.left = self.reConstructBinaryTree2(pre[1:mid+1], vin[:mid])
+        root.right = self.reConstructBinaryTree2(pre[mid+1:], vin[mid+1:])
 
-    def print_front_order(self, tree):
+        return root
+    
+    def test(self, pre, vin):
         """
-        先序列打印二叉树
+        测试函数
         """
-        if tree == None:
-            return
-        print(tree.val, end=" ")
-        self.print_front_order(tree.left)
-        self.print_front_order(tree.right)
-
-    def print_middle_order(self, tree):
-        """
-        中序打印二叉树
-        """
-        if tree == None:
-            return
-        self.print_middle_order(tree.left)
-        print(tree.val, end=" ")
-        self.print_middle_order(tree.right)
-
-    def print_end_order(self, tree):
-        """
-        后序打印二叉树
-        """
-        if tree == None:
-            return
-        self.print_end_order(tree.left)
-        self.print_end_order(tree.right)
-        print(tree.val, end=" ")
-
-    def print_three_order(self, tree):
-        """
-        三种顺序打印二叉树
-        """
-        print("===== three order =====")
-        self.print_front_order(tree)
-        print()
-        self.print_middle_order(tree)
-        print()
-        self.print_end_order(tree)
-        print()
+        func_vec = [self.reConstructBinaryTree1,
+                    self.reConstructBinaryTree2]
+        print("=====")
+        for func in func_vec:
+            start = time.time()
+            root = func(pre, vin)
+            end = time.time()
+            print("times(us): {:>5.2f}, result: ".format((end - start)*10**6))
+            root.printThreeOrder(root)
 
 
 def main():
     pre = [1, 2, 4, 7, 3, 5, 6, 8]
     vin = [4, 7, 2, 1, 5, 3, 8, 6]
+
     s = Solution()
-    tree = s.reConstructBinaryTree(pre, vin)
-
-    # 打印输出
-    s.print_three_order(tree)
-
+    s.test(pre, vin)
 
 
 if __name__ == "__main__":

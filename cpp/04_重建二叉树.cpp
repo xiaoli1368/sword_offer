@@ -4,114 +4,25 @@
 
 #include <iostream>
 #include <vector>
+#include <stdio.h>
+#include <sys/time.h>
 
+#include "TreeNode.h"
+
+/*
 typedef struct TreeNode {
     int val;
     TreeNode* left;
     TreeNode* right;
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {} 
 } TreeNode;
+*/
 
 class Solution {
 public:
-    // 由先序数组，创建完全二叉树，
-    // 输出数组长度必须是一颗完全二叉树的总节点数目
-    // 也没有对错误的情况做出处理
-    void creatTree(std::vector<int> vec, TreeNode* head) {
-        int length = vec.size();
-
-        if (length == 0) {
-            return;
-        }
-
-        head->val = vec[0];
-
-        if (length == 1) {
-            head->left = nullptr;
-            head->right = nullptr;
-        }
-
-        if (length > 1) {
-            head->left = new TreeNode(0);
-            head->right = new TreeNode(0);
-
-            std::vector<int> vec2;
-            vec2.assign(vec.begin() + 1, vec.begin() + 1 + length / 2);
-            creatTree(vec2, head->left);
-
-            vec2.assign(vec.begin() + 1 + length / 2, vec.end());
-            creatTree(vec2, head->right);
-        }
-
-    }
-
-    // 更为高效的构建方式
-    // 传递两个索引值和数组的引用
-    void creatTree2(std::vector<int>& vec, int begin, int end, TreeNode* head) {
-        int length = end - begin + 1;
-        if (length == 0) {
-            return;
-        }
-
-        head->val = vec[begin];
-        // for test
-        //std::cout << head->val << std::endl;
-
-        if (length == 1) {
-            head->left = nullptr;
-            head->right = nullptr;
-        }
-
-        if (length > 1) {
-            head->left = new TreeNode(0);
-            head->right = new TreeNode(0);
-            creatTree2(vec, begin + 1, (begin + end) / 2, head->left);
-            creatTree2(vec, (begin + end) / 2 + 1, end, head->right);
-        }
-    }
-
-    // 先序遍历输出
-    void print_front_order(TreeNode* head) {
-        if (head == nullptr) {
-            return;
-        }
-        std::cout << head->val << " ";
-        print_front_order(head->left);
-        print_front_order(head->right);
-    }
-
-    // 中序遍历输出
-    void print_middle_order(TreeNode* head) {
-        if (head == nullptr) {
-            return;
-        }
-        print_middle_order(head->left);
-        std::cout << head->val << " ";
-        print_middle_order(head->right);
-    }
-
-    // 后序遍历输出
-    void print_end_order(TreeNode* head) {
-        if (head == nullptr) {
-            return;
-        }
-        print_end_order(head->left);
-        print_end_order(head->right);
-        std::cout << head->val << " ";
-    }
-
-    // 将三种遍历格式化输出一遍
-    void print_three_order(TreeNode* head) {
-        std::cout << "===== three orders =====" << std::endl;
-        print_front_order(head);
-        std::cout << std::endl;
-        print_middle_order(head);
-        std::cout << std::endl;
-        print_end_order(head);
-        std::cout << std::endl;
-    }
-
-    TreeNode* reConstructBinaryTree(std::vector<int> pre, std::vector<int> vin) {
+    // 第一次的解法，存在很大的优化空间
+    // 可以看到每次都是传递数组值，效率比较低
+    TreeNode* reConstructBinaryTree1(std::vector<int> pre, std::vector<int> vin) {
         TreeNode* newTree = new TreeNode(pre[0]);
         if (pre.size() == 1 && vin.size() == 1) {
             return newTree;
@@ -133,36 +44,77 @@ public:
         newRightVin.assign(vin.begin() + 1 + index, vin.end());
         
         if (newLeftPre.size() != 0) {
-            newTree->left = reConstructBinaryTree(newLeftPre, newLeftVin);
+            newTree->left = reConstructBinaryTree1(newLeftPre, newLeftVin);
         }
         if (newRightPre.size() != 0) {
-            newTree->right = reConstructBinaryTree(newRightPre, newRightVin);
+            newTree->right = reConstructBinaryTree1(newRightPre, newRightVin);
         }
         
         return newTree;
     }
+
+    // 递归优化版
+    TreeNode* reConstructBinaryTree2(std::vector<int> pre, std::vector<int> vin) {
+        if (pre.empty() || vin.empty()) {
+            return nullptr;
+        }
+
+        return reConstructFunc(pre, 0, pre.size() - 1, vin, 0, vin.size() - 1);
+    }
+
+    TreeNode* reConstructFunc(std::vector<int>& pre, int p1, int p2, std::vector<int>& vin, int v1, int v2) {
+        if (p1 > p2 || v1 > v2) {
+            return nullptr;
+        }
+        
+        // 获取划分点坐标
+        int vinMid = v1;
+        while (vinMid <= v2) {
+            if (vin[vinMid] == pre[p1]) {
+                break;
+            }
+            vinMid++;
+        }
+        int preMid = p1 + vinMid - v1; // 注意二者有可能不是对齐的，所以需要两个mid
+
+        TreeNode* root = new TreeNode(pre[p1]);
+        root->left = reConstructFunc(pre, p1+1, preMid, vin, v1, vinMid-1);
+        root->right = reConstructFunc(pre, preMid+1, p2, vin,vinMid+1, v2);
+
+        return root;
+    }
+
+    // 测试函数
+    void test(std::vector<int>& pre, std::vector<int>& vin) {
+        TreeNode* root = nullptr;
+        struct timeval start, end;
+
+        printf("=====\n");
+        for (auto & func : this->func_vec_) {
+            gettimeofday(&start, nullptr);
+            root = (this->*func)(pre, vin);
+            gettimeofday(&end, nullptr);
+            printf("times(us): %ld, result:\n", end.tv_usec - start.tv_usec);
+            TreeNode_printThreeOrder(root);
+        }
+
+        return;
+    }
+
+private:
+    typedef TreeNode* (Solution::*func_ptr)(std::vector<int>, std::vector<int>);
+    std::vector<func_ptr> func_vec_ = {&Solution::reConstructBinaryTree1,
+                                       &Solution::reConstructBinaryTree2};
 };
 
 int main(int argc, char* argv[])
 {
-    // 注意到这个是完全二叉树
-    // 如果是非完全二叉树，则应该使用null标记，即使是完全的也要标记
-    // {1, 2, 4, null, null, 5, null, null, 3, 6, null, null, 7, null, null}
-    // 因此需要使用null来确定每个节点的位置
-    std::vector<int> vec = {1, 2, 4, 5, 3, 6, 7};
-    Solution s;
-    TreeNode* head = new TreeNode(0);
-
-    //s.creatTree(vec, head);
-    s.creatTree2(vec, 0, vec.size() - 1, head);
-    s.print_three_order(head);
-
-
     // 利用前序数组和中序列数组，重建二叉树
     std::vector<int> pre = {1, 2, 4, 7, 3, 5, 6, 8};
     std::vector<int> vin = {4, 7, 2, 1, 5, 3, 6, 8};
-    TreeNode* myNewTree = s.reConstructBinaryTree(pre, vin);
-    s.print_three_order(myNewTree);
+
+    Solution s;
+    s.test(pre, vin);
 
     return 0;
 }
