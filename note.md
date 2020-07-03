@@ -1164,118 +1164,60 @@ class Solution:
 
 **解题思路：**
 
-- 注意子结构可以只是一部分，而非是剩下的全部
-- 可以使用递归去做，依次比较a和b节点的数据值是否相等，如果相等，则返回 func(a.left, b.left) && func(a.right, b.right)，即继续比较a和b的左右子树是否为包含关系。如果二者不等，则返回 func(a.left, b) || func(a.right, b)，即查看a的左右子树中是否存在一个包含b。
+- 注意子结构可以只是一部分，而非是剩下的全部。可以使用递归去做，依次比较a和b节点的数据值是否相等，如果相等，则返回 func(a.left, b.left) && func(a.right, b.right)，即继续比较a和b的左右子树是否为包含关系。如果二者不等，则返回 func(a.left, b) || func(a.right, b)，即查看a的左右子树中是否存在一个包含b。
 - 问题的难点就在于约定了空树不是任何树的子结构，但是递归到最后，返回的条件恰恰就是空树是任何树的子结构。因此需要处理这种矛盾。
-- 一种解决方式是：保持空树不是任何树的子结构，当两个比较节点的值相等时，根据b的左右子树是否为空树，再进行下一步的比较。
-- 另外一种处理方式为：保持这种约定不变，但是另写一个用于递归的函数。区分开这二者的返回条件。
+- 一种解决方式是：保持空树不是任何树的子结构，当两个比较节点的值相等时，根据b的左右子树是否为空树，再进行下一步的比较。（繁琐）
+- 另外一种处理方式为：保持这种约定不变，但是另写一个用于递归的函数（仅使用该一个函数进行递归）。区分开这二者的返回条件。注意由于只使用一个函数递归，所以需要添加flag变量，用来指示之前是否已经对齐。
+- 高效方式：两个函数递归，外层控制先序遍历，内层检测每个节点是否存在子结构
 
 **参考代码：**
 
+```cpp
+// cpp
+class Solution {
+public:
+    // 3. 两个函数，互相递归，先序遍历（根、左、右）
+    bool HasSubTree3(TreeNode* a, TreeNode* b) {
+        return (a != nullptr && b != nullptr) && (isSubTree3(a, b) || HasSubTree3(a->left, b) || HasSubTree3(a->right, b));
+    }
+
+    // 判断是否是子结构，辅助函数，不进行向下的延伸
+    bool isSubTree3(TreeNode* a, TreeNode* b) {
+        if (b == nullptr) {
+            return true;
+        }
+        if (a == nullptr || a->val != b->val) {
+            return false;
+        }
+        return isSubTree3(a->left, b->left) && isSubTree3(a->right, b->right);
+    }
+};
+```
+
 ```python
+# python
 class Solution:
     def HasSubtree(self, a, b):
         """
-        判断b是否为a的子结构
+        1. 内部定义递归函数
+        注意需要传递flag记录之前是否已经对齐
         """
-        # 定义用于递归的子函数
-        def isSubTree(a, b):
+        def isSubTree(a, b, flag):
             if b == None:
                 return True
             if a == None:
                 return False
-            if a.val == b.val:
-                return isSubTree(a.left, b.left) and isSubTree(a.right, b.right) or isSubTree(a.left, b) or isSubTree(a.right, b)
+            if flag and a.val != b.val: # 如果之前对齐，本次不等
+                return False
+            if a.val == b.val and isSubTree(a.left, b.left, True) and isSubTree(a.right, b.right, True):
+                return True
             else:
-                return isSubTree(a.left, b) or isSubTree(a.right, b)
+                return isSubTree(a.left, b, False) or isSubTree(a.right, b, False)
   
         # 调用子函数
         if a == None or b == None:
             return False
-        return isSubTree(a, b) 
-
-    def HasSubtree2(self, a, b):
-        """
-        不定义子函数的方式
-        """
-        if a == None or b == None:
-            return False
-
-        tmp = False
-        if a.val == b.val:
-            if b.left == b.right == None:
-                return True
-            elif b.left == None and b.right != None:
-                tmp = self.HasSubtree2(a.right, b.right)
-            elif b.left != None and b.right == None:
-                tmp = self.HasSubtree2(a.left, b.left)
-            else:
-                tmp = self.HasSubtree2(a.left, b.left) and self.HasSubtree2(a.right, b.right)
-
-        if tmp:
-            return tmp
-        else:
-            return self.HasSubtree2(a.left, b) or self.HasSubtree2(a.right, b)
-
-```
-
-```c++
-class Solution {
-public:
-    // 定义用于递归调用的函数
-    bool isSubtree(TreeNode* a, TreeNode* b) {
-        if (b == nullptr) {
-            return true;
-        }
-        if (a == nullptr) {
-            return false;
-        }
-        if (a->val == b->val) {
-            return isSubtree(a->left, b->left) && \
-                   isSubtree(a->right, b->right) || \
-                   isSubtree(a->left, b) || \
-                   isSubtree(a->right, b);
-        } else {
-            return isSubtree(a->left, b) || isSubtree(a->right, b);
-        }
-    }
-
-    // 判断b是否为a的子结构
-    bool HasSubtree(TreeNode* a, TreeNode* b) {
-        if (a == nullptr || b == nullptr) {
-            return false;
-        }
-
-        return isSubtree(a, b);
-    }
-
-    // 判断b是否为a的子结构
-    // 不使用递归的方式
-    bool HasSubtree2(TreeNode* a, TreeNode* b) {
-        if (a == nullptr || b == nullptr) {
-            return false;
-        }
-
-        bool tmp = false;
-        if (a->val == b->val) {
-            if (b->left == nullptr && b->right == nullptr) {
-                return true;
-            } else if (b->left == nullptr && b->right != nullptr) {
-                tmp = HasSubtree2(a->right, b->right);
-            } else if (b->right == nullptr && b->left != nullptr) {
-                tmp = HasSubtree2(a->left, b->left);
-            } else {
-                tmp = HasSubtree2(a->left, b->left) && HasSubtree2(a->right, b->right);
-            }
-        }
-
-        if (tmp) {
-            return tmp;
-        } else {
-            return HasSubtree2(a->left, b) || HasSubtree2(a->right, b);
-        }
-    }
-};
+        return isSubTree(a, b, False) 
 ```
 
 ### 18. 二叉树的镜像
