@@ -16,11 +16,14 @@ class TreeNode():
         从先序序列中构建二叉树
         空为-1
         """
+        begin = 0
+
         def creatFunc(vec):
             """
             递归调用的函数
             """
-            if vec == [] or begin > end or vec[begin] == -1:
+            nonlocal begin # 实现函数内修改函数外的变量
+            if vec == [] or begin >= len(vec) or vec[begin] == -1:
                 begin += 1
                 return None
             root = TreeNode(vec[begin])
@@ -29,8 +32,6 @@ class TreeNode():
             root.right = creatFunc(vec)
             return root
         
-        begin = 0
-        end = len(vec) - 1
         return creatFunc(vec)
     
     def printFrontOrder(self, root):

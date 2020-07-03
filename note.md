@@ -2937,25 +2937,12 @@ class Solution:
 **解题思路：**
 
 - 递归直接求解即可
+- 或者层次遍历，BFS求最大层次，当然也可以DFS就是麻烦一些
 
 **参考代码：**
 
-```python
-# python
-class Solution:
-    def TreeDepth(self, root):
-        # write code here
-        if root == None:
-            return 0
-        
-        l = self.TreeDepth(root.left)
-        r = self.TreeDepth(root.right)
-        
-        return 1 + (l if l > r else r)
-        # return 1 + max(l, r)
-```
-
-```c++
+```cpp
+// cpp
 class Solution {
 public:
     int TreeDepth(TreeNode* root) {
@@ -2969,6 +2956,32 @@ public:
         return 1 + (left > right ? left : right);
     }
 };
+```
+
+```python
+# python
+class Solution:
+    def TreeDepth2(self, root):
+        """
+        迭代法，bfs，寻找最深的层次
+        """
+        if root == None:
+            return 0
+        
+        ret = 0
+        last = [root]
+
+        while last:
+            curr = []
+            for node in last:
+                if node.left:
+                    curr.append(node.left)
+                if node.right:
+                    curr.append(node.right)
+            last = curr
+            ret += 1
+        
+        return ret
 ```
 
 ### 39. 平衡二叉树
