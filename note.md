@@ -2936,78 +2936,63 @@ class Solution:
 
 - 平衡二叉树的定义就是：左右子树的高度差小于等于1，而且左右子树也是平衡二叉树
 - 分析定义，只要递归判断各个结点，保证左右子树的高度差小于等于1即可
+- 方法一：先序遍历，自顶向下递归调用，存在优化空间（大量的重复判断）
+- 方法二：后序遍历，当不是平衡树时，提前剪枝
 
 **参考代码：**
 
-```python
-# -*- coding:utf-8 -*-
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
-class Solution():
-    def getTreeHeight(self, root):
-        if root == None:
-            return 0
-        return 1 + max(self.getTreeHeight(root.left), self.getTreeHeight(root.right))
-    
-    def IsBalanced_Solution(self, root):
-        """
-        个人解法
-        """
-        if root == None:
-            return True
-
-        l = self.getTreeHeight(root.left)
-        r = self.getTreeHeight(root.right)
-
-        l, r = max(l, r), min(l, r)
-
-        return l - r <= 1 and self.IsBalanced_Solution(root.left) and self.IsBalanced_Solution(root.right)
-```
-
-```c++
+```cpp
+// cpp
 class Solution {
 public:
-    // 平衡二叉树的定义就是左右子树的高度差小于等于1
-    // 因此在递归获取高度时一旦发现不满足，则应退出保存
-    // 所以需要借助一个类内的全局变量
-    bool isBalanced = true;
-
-    // 首先需要获取高度
-    int getTreeHeight(TreeNode* root) {
-        if (root == nullptr) {
-            return 0;
-        }
-
-        int left = getTreeHeight(root->left);
-        int right = getTreeHeight(root->right);
-
-        // 调整二者大小，使得 left >= right
-        if (left < right) {
-            int tmp = left;
-            left = right;
-            right = tmp;
-        }
-
-        if (left - right > 1) {
-            isBalanced = false;
-        }
-
-        return 1 + left;
-    }
-
-    bool isBalanced_Solution(TreeNode* root) {
+    // 1. 个人解法，先序遍历，自顶向下递归调用，存在优化空间
+    bool isBalanced_Solution1(TreeNode* root) {
         if (root == nullptr) {
             return true;
         }
 
-        getTreeHeight(root);
-        return isBalanced;
+        return abs(depth(root->left) - depth(root->right)) <= 1 && isBalanced_Solution1(root->left) && isBalanced_Solution1(root->right);
+    }
+
+    // 获取树的深度
+    int depth(TreeNode* root) {
+        if (root == nullptr) {
+            return 0;
+        }
+        return 1 + std::max(depth(root->left), depth(root->right));
     }
 };
 
+```
+
+```python
+# python
+class Solution():
+    def isBalanced_Solution2(self, root):
+        """
+        2. 后序遍历，提前剪枝
+        """
+        return self.depthAndJudge(root) != -1
+
+    def depthAndJudge(self, root):
+        """
+        返回当前树的高度，如果是-1，表明是非平衡二叉树
+        """
+        if root == None:
+            return 0
+        
+        left = self.depthAndJudge(root.left)
+        if left == -1:
+            return -1
+        
+        right = self.depthAndJudge(root.right)
+        if right == -1:
+            return -1
+        
+        if abs(left - right) > 1:
+            return -1
+        
+        return 1 + max(left, right)
 ```
 
 ### 40. 数组中只出现一次的数字
