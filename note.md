@@ -1228,42 +1228,79 @@ class Solution:
 
 **解题思路：**
 
-- 递归即可
-- 终止的条件为，遇到了空
+- 递归即可，终止的条件为，遇到了空
+- 注意不同的实现方式，递归or辅助栈，自顶向下or自底向上，原树操作or返回新树
 
 **参考代码：**
 
-```python
-class Solution:
-    # 返回镜像树的根节点
-    def Mirror(self, root):
-        # write code here
-        if root == None:
-            return root
-        
-        root.left, root.right = root.right, root.left
-        self.Mirror(root.left)
-        self.Mirror(root.right)
-        return root
-```
-
-```c++
+```cpp
+// cpp
 class Solution {
 public:
-    void Mirror(TreeNode *root) {
+    // 1. 递归法，自顶向下，在原树上操作
+    TreeNode* Mirror1(TreeNode* root) {
         if (root == nullptr) {
-            return;
+            return nullptr;
         }
-        
+
+        // 左右子树交换
         TreeNode* tmp = root->left;
         root->left = root->right;
         root->right = tmp;
-        
-        Mirror(root->left);
-        Mirror(root->right);
-        return;
+
+        // 递归下一层
+        Mirror1(root->left);
+        Mirror1(root->right);
+
+        return root;
+    }
+
+    // 2. 辅助栈，自顶向下，在原树上操作
+    TreeNode* Mirror2(TreeNode* root) {
+        if (root == nullptr) {
+            return nullptr;
+        }
+
+        std::stack<TreeNode*> stack;
+        stack.push(root);
+
+        while (!stack.empty()) {
+            TreeNode* node = stack.top();
+            stack.pop();
+
+            // 交换左右子树
+            TreeNode* tmp = node->left;
+            node->left = node->right;
+            node->right = tmp;
+
+            // 入栈
+            if (node->left) {
+                stack.push(node->left);
+            }
+            if (node->right) {
+                stack.push(node->right);
+            }
+        }
+
+        return root;
     }
 };
+```
+
+```python
+# python
+class Solution:
+    def Mirror3(self, root):
+        """
+        3. 递归法，自底向上，新建一颗树
+        """
+        if root == None:
+            return None
+        
+        head = TreeNode.TreeNode(root.val)
+        head.left = self.Mirror3(root.right)
+        head.right = self.Mirror3(root.left)
+        return head
 ```
 
 ### 19. 顺时针打印矩阵
