@@ -1554,61 +1554,63 @@ class Solution:
 
 **解题思路：**
 
-- 这个直接看的答案，一开始想的是递归，但是递归好像没法做
-- 关键点是遍历整个树，但是不去打印，第一次遍历只是为了存储各个节点，通过迭代的方式，把所有节点按照层次的方式存储起来
-- 第二次遍历那个存储即可完成打印输出
-- 另外一种形式是使用队列，与第一种形式本质差不多
+- 这个直接看的答案，一开始想的是递归，但是递归好像没法做，关键点是遍历整个树，但是不去打印，第一次遍历只是为了存储各个节点，通过迭代的方式，把所有节点按照层次的方式存储起来，第二次遍历那个存储即可完成打印输出
+- 第一种方式是使用动态数组存储不同层次节点，然后互相迭代。另外一种形式是使用队列，与第一种形式本质差不多
 
 **参考代码：**
 
-```python
-class Solution:
-    # 返回从上到下每个节点值列表，例：[1,2,3]
-    def PrintFromTopToBottom(self, root):
-        # write code here
-        if root == None:
-            return []
-        
-        result = []
-        curr_list = [root]
-        while curr_list:
-            next_list = []
-            for i in curr_list:
-                if i.left:
-                    next_list.append(i.left)
-                if i.right:
-                    next_list.append(i.right)
-                result.append(i.val)
-            curr_list = next_list
-        return result
-```
-
-```c++
+```cpp
+// cpp
 class Solution {
 public:
-    vector<int> PrintFromTopToBottom(TreeNode* root) {
-        vector<int> result;
-        if (root == nullptr) {
-            return result;
+    // 1. 两个向量交替存储法，模拟队列优化版
+    std::vector<int> PrintFromTopToBottom1(TreeNode* head) {
+        if (head == nullptr) {
+            return std::vector<int>{};
         }
-        
-        vector<TreeNode*> queue = {root};
-        while (!queue.empty()) {
-            TreeNode* currNode = queue.front();
-            queue.erase(queue.begin());
-            result.push_back(currNode->val);
-            
-            if (currNode->left) {
-                queue.push_back(currNode->left);
+
+        std::vector<int> result;
+        std::vector<TreeNode*> curr_list = {head};
+
+        while (!curr_list.empty()) {
+            std::vector<TreeNode*> next_list;
+            for (auto & node : curr_list) {
+                result.push_back(node->val);
+                if (node->left) {
+                    next_list.push_back(node->left);
+                }
+                if (node->right) {
+                    next_list.push_back(node->right);
+                }
             }
-            if (currNode->right) {
-                queue.push_back(currNode->right);
-            }
+            curr_list = next_list;
         }
-        
+
         return result;
     }
 };
+```
+
+```python
+# python
+class Solution:
+    def PrintFromTopToBottom2(self, root):
+        """
+        2. 使用list模拟队列的方式
+        """
+        if root == None:
+            return []
+
+        result, queue = [], [root]
+        while queue:
+            currRoot = queue.pop(0)
+            result.append(currRoot.val)
+            if currRoot.left:
+                queue.append(currRoot.left)
+            if currRoot.right:
+                queue.append(currRoot.right)
+
+        return result
 ```
 
 ### 23. 二叉搜索树的后续遍历序列

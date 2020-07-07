@@ -10,6 +10,7 @@ struct TreeNode {
 */
 class Solution {
 public:
+    // 也可以使用stl进行翻转
     vector<vector<int> > Print(TreeNode* root) {
         vector<vector<int>> ret;
         if (root == nullptr) {
