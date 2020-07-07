@@ -4632,78 +4632,29 @@ class Solution:
 
 **参考代码：**
 
-```python
-# -*- coding:utf-8 -*-
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
-class Solution:
-    def Print(self, root):
-        if root == None:
-            return []
-        
-        ret = []
-        curr_list = [root]
-        sign = 0
-        
-        while curr_list:
-            tmp = []
-            next_list = []
-            curr_list.reverse()
-            
-            for i in curr_list:
-                tmp.append(i.val)
-                if sign == 0:
-                    if i.left:
-                        next_list.append(i.left)
-                    if i.right:
-                        next_list.append(i.right)
-                else:
-                    if i.right:
-                        next_list.append(i.right)
-                    if i.left:
-                        next_list.append(i.left)
-            
-            ret.append(tmp)
-            curr_list = next_list
-            sign = 1 - sign
-        
-        return ret
-```
-
-```C++
-/*
-struct TreeNode {
-    int val;
-    struct TreeNode *left;
-    struct TreeNode *right;
-    TreeNode(int x) :
-            val(x), left(NULL), right(NULL) {
-    }
-};
-*/
+```cpp
+// cpp
 class Solution {
 public:
-    vector<vector<int> > Print(TreeNode* root) {
-        vector<vector<int>> ret;
+    // 2. 两个vector迭代，倒序遍历，借助flag翻转
+    std::vector<std::vector<int> > PrintLevelOrder2(TreeNode* root) {
         if (root == nullptr) {
-            return ret;
+            return std::vector<std::vector<int>> {};
         }
-        
+
         int sign = 0; // 表示从左到右
-        vector<TreeNode*> curr_list = {root};
+        std::vector<std::vector<int>> ret;
+        std::vector<TreeNode*> curr_list = {root};
         
         while (!curr_list.empty()) {
-            vector<int> tmp;
-            vector<TreeNode*> next_list;
+            std::vector<int> curr_vec;
+            std::vector<TreeNode*> next_list;
             
             // 永远是倒序遍历
             // 0先右后左添加，1先左后右添加
             for (int j = curr_list.size() - 1; j >= 0; j--) {
                 auto i = curr_list[j];
-                tmp.push_back(i->val);
+                curr_vec.push_back(i->val);
                 if (sign == 0) {
                     if (i->left != nullptr) {
                         next_list.push_back(i->left);
@@ -4720,14 +4671,44 @@ public:
                     }
                 }
             }
-            ret.push_back(tmp);
-            curr_list = next_list;
             sign = 1 - sign;
+            ret.push_back(curr_vec);
+            curr_list = next_list;
         }
         
         return ret;
     }
 };
+```
+
+```python
+# python
+class Solution:
+    def PrintLevelOrder3(self, root):
+        """
+        3. 使用list模拟双端队列，选择不同的插入位置
+        """
+        if root == None:
+            return None
+        
+        ret, queue = [], [root]
+
+        while queue:
+            curr_vec = []
+            last_num = len(queue)
+
+            for _ in range(last_num):
+                node = queue.pop(0)
+                insertIndex = 0 if len(ret) % 2 == 1 else len(ret)
+                curr_vec.insert(insertIndex, node.val)
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+            
+            ret.append(curr_vec)
+            
+        return ret
 ```
 
 ### 60. 把二叉树打印成多行
