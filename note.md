@@ -4566,60 +4566,16 @@ public:
 
 **解题思路：**
 
-- 递归实现，需要注意的点有：
-- 叶节点的left和right都是空
-- 当前val需要对应相等
+- 递归实现，镜像比较，需要注意的点有：叶节点的left和right都是空，当前val需要对应相等
 - 镜像比较的含义是，left与right比较，right与left比较
 
 **参考代码：**
 
-```python
-# -*- coding:utf-8 -*-
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
-class Solution:
-    def isSame(self, a, b):
-        if a == None and b == None:
-            return True
-        elif a != None and b != None:
-            return a.val == b.val and self.isSame(a.left, b.right) and self.isSame(a.right, b.left)
-        else:
-            return False
-    
-    def isSymmetrical(self, root):
-        # write code here
-        if root == None:
-            return True
-        
-        return self.isSame(root.left, root.right)
-```
-
-```C++
-/*
-struct TreeNode {
-    int val;
-    struct TreeNode *left;
-    struct TreeNode *right;
-    TreeNode(int x) :
-            val(x), left(NULL), right(NULL) {
-    }
-};
-*/
+```cpp
+// cpp
 class Solution {
 public:
-    bool isSame(TreeNode* a, TreeNode* b) {
-        if (a == nullptr && b == nullptr) {
-            return true;
-        } else if (a != nullptr && b != nullptr) {
-            return a->val == b->val && isSame(a->left, b->right) && isSame(a->right, b->left);
-        } else {
-            return false;
-        }
-    }
-    
+    // 递归法
     bool isSymmetrical(TreeNode* root) {
         if (root == nullptr) {
             return true;
@@ -4628,7 +4584,37 @@ public:
         return isSame(root->left, root->right);
     }
 
+    bool isSame(TreeNode* a, TreeNode* b) {
+        if (a == nullptr && b == nullptr) {
+            return true;
+        }
+        if (a == nullptr || b == nullptr) {
+            return false;
+        }
+        return a->val == b->val && isSame(a->left, b->right) && isSame(a->right, b->left);
+    }
+
 };
+```
+
+```python
+# python
+class Solution:
+    def isSymmetrical(self, root):
+        """
+        递归法
+        """
+        def isSame(a, b):
+            if a == None and b == None:
+                return True
+            if a == None or b == None:
+                return False
+            return a.val == b.val and isSame(a.left, b.right) and isSame(a.right, b.left)
+
+        if root == None:
+            return False
+        else:
+            return isSame(root.left, root.right)
 ```
 
 ### 59. 按之字形顺序打印二叉树
