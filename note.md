@@ -4738,85 +4738,88 @@ public:
 
 **解题思路：**
 
-- 关键是四个vector，ret : 最终输出，curr_list : 当前层结点，next_list : 下一层非空结点，tmp : 当前层结点val
-- 步骤：１）循环遍历curr_list，２）把每个结点val整合到tmp，最终整合到ret，３）把每个结点的left, right整合到next_list, 然后赋值给curr_list
+- 方法一：双vector迭代法（模拟队列），关键是四个vector，ret : 最终输出，curr_list : 当前层结点，next_list : 下一层非空结点，tmp : 当前层结点val。步骤：１）循环遍历curr_list，２）把每个结点val整合到tmp，最终整合到ret，３）把每个结点的left, right整合到next_list, 然后赋值给curr_list
+- 方法二：队列法（bfs）
+- 方法三：递归法（dfs）
 
 **参考代码：**
 
-```python
-# -*- coding:utf-8 -*-
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
-class Solution:
-    # 返回二维列表[[1,2],[4,5]]
-    def Print(self, root):
-        # write code here
-        ret = []
-        if root == None:
-            return ret
-        
-        curr_list = [root]
-        
-        while curr_list:
-            tmp = []
-            next_list = []
-            for i in curr_list:
-                tmp.append(i.val)
-                if i.left:
-                    next_list.append(i.left)
-                if i.right:
-                    next_list.append(i.right)
-            ret.append(tmp)
-            curr_list = next_list
-            
-        return ret
-```
-
-```C++
-/*
-struct TreeNode {
-    int val;
-    struct TreeNode *left;
-    struct TreeNode *right;
-    TreeNode(int x) :
-            val(x), left(NULL), right(NULL) {
-    }
-};
-*/
+```cpp
+// cpp
 class Solution {
 public:
-        vector<vector<int> > Print(TreeNode* root) {
-            vector<vector<int>> ret;
-            if (root == nullptr) {
-                return ret;
-            }
-            
-            vector<TreeNode*> curr_list = {root};
-            
-            while (!curr_list.empty()) {
-                // 将curr_list内值整理到ret，同时子结点整理到next_list
-                vector<int> tmp;
-                vector<TreeNode*> next_list;
-                for (auto i : curr_list) {
-                    tmp.push_back(i->val);
-                    if (i->left != nullptr) {
-                        next_list.push_back(i->left);
-                    }
-                    if (i->right != nullptr) {
-                        next_list.push_back(i->right);
-                    }
-                }
-                
-                ret.push_back(tmp);
-                curr_list = next_list;
-            }
-            
-            return ret;
+    // 1. 两个向量交替存储
+    std::vector<std::vector<int> > PrintLevelOrder1(TreeNode* root) {
+        if (root == nullptr) {
+            return std::vector<std::vector<int>>{};
         }
+
+        std::vector<std::vector<int>> ret;
+        std::vector<TreeNode*> curr_list = {root};
+        
+        while (!curr_list.empty()) {
+            std::vector<int> curr_vec;
+            std::vector<TreeNode*> next_list;
+            for (auto & i : curr_list) {
+                curr_vec.push_back(i->val);
+                if (i->left != nullptr) {
+                    next_list.push_back(i->left);
+                }
+                if (i->right != nullptr) {
+                    next_list.push_back(i->right);
+                }
+            }
+            ret.push_back(curr_vec);
+            curr_list = next_list;
+        }
+        
+        return ret;
+    }
 };
+```
+
+```python
+# python
+class Solution:
+    def PrintLevelOrder2(self, root):
+        """
+        2. 队列法，bfs
+        """
+        if root == None:
+            return
+        
+        ret, queue = [], [root]
+
+        while queue:
+            curr_vec = []
+            for _ in range(len(queue)):
+                node = queue.pop(0)
+                curr_vec.append(node.val)
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+            ret.append(curr_vec)
+        
+        return ret
+    
+    def PrintLevelOrder3(self, root):
+        """
+        3. 递归法，dfs
+        """
+        def dfs(root, ret, level):
+            if root == None:
+                return
+            if level >= len(ret):
+                ret.append([])
+            ret[level].append(root.val)
+            dfs(root.left, ret, level + 1)
+            dfs(root.right, ret, level + 1)
+            return
+        
+        ret = []
+        dfs(root, ret, 0)
+        return ret
 ```
 
 ### 61. 序列化二叉树

@@ -46,4 +46,18 @@ void printf_1d_vec(std::vector<int>& vec) {
     printf("\n");
 }
 
+// 打印二维vec
+void printf_2d_vec(std::vector<std::vector<int>>& vec) {
+    if (vec.empty()) {
+        return;
+    }
+
+    for (auto & i : vec) {
+        for (auto & j : i) {
+            printf("%d, ", j);
+        }
+        printf("\n");
+    }
+}
+
 #endif
