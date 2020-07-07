@@ -1621,42 +1621,25 @@ class Solution:
 
 **解题思路：**
 
-- 讲道理，这道题连题目都没看懂
-- 二叉搜索树，BST，Binary search Tree，它或者是一棵空树，或者是具有下列性质的[二叉树](https://baike.baidu.com/item/二叉树/1602879)： 若它的左子树不空，则左子树上所有结点的值均小于它的根结点的值； 若它的右子树不空，则右子树上所有结点的值均大于它的根结点的值； 它的左、右子树也分别为[二叉排序树](https://baike.baidu.com/item/二叉排序树/10905079)。
+- 讲道理，这道题连题目都没看懂，二叉搜索树，BST，Binary search Tree，它或者是一棵空树，或者是具有下列性质的[二叉树](https://baike.baidu.com/item/二叉树/1602879)： 若它的左子树不空，则左子树上所有结点的值均小于它的根结点的值； 若它的右子树不空，则右子树上所有结点的值均大于它的根结点的值； 它的左、右子树也分别为[二叉排序树](https://baike.baidu.com/item/二叉排序树/10905079)。
 - 所以关键点在两个地方，一是二叉搜索树满足左<中<右，且左右也都是二叉搜索树。二是后续遍历。
+- 其它方法：单调栈（将数组翻转，则顺序为“根右左”，如果我们使用单调栈存储根节点和右子树，当遇到左子树时，左子树节点肯定比根节点和右子树小，依次出栈，并更新root节点。如果root节点小于即将入栈的元素，说明顺序错误，直接返回失败。为了保证第一个节点入栈时的正确性，root节点初始化为INT_MAX）
 
 **参考代码：**
 
-```python
-# -*- coding:utf-8 -*-
-class Solution:
-    def VerifyBST(self, seq, first, last):
-        if first >= last:
-            return True
-        
-        rootVal = seq[last]
-        cutIndex = first
-        while cutIndex < last and seq[cutIndex] < rootVal:
-            cutIndex += 1
-            
-        for i in range(cutIndex, last):
-            if seq[i] < rootVal:
-                return False
-            
-        return self.VerifyBST(seq, first, cutIndex - 1) and self.VerifyBST(seq, cutIndex, last - 1)
-        
-    def VerifySquenceOfBST(self, seq):
-        # write code here
-        if seq == []:
-            return False
-        
-        return self.VerifyBST(seq, 0, len(seq) - 1)
-```
-
-```c++
+```cpp
+// cpp
 class Solution {
 public:
-    // 递归层次的函数调用
+    // 1. 递归法
+    bool VerifySequenceOfBST(std::vector<int>& seq) {
+        if (seq.empty()) {
+            return false;
+        }
+
+        return VerifyBST(seq, 0, seq.size() - 1);
+    }
+    
     bool VerifyBST(std::vector<int>&seq, int first, int last) {
         if (first >= last) {
             return true;
@@ -1679,16 +1662,29 @@ public:
         // 当前层次已经满足，递归检测下一层次
         return VerifyBST(seq, first, cutIndex - 1) && VerifyBST(seq, cutIndex, last - 1);
     }
-
-    // 顶层的函数调用
-    bool VerifySequenceOfBST(std::vector<int>& seq) {
-        if (seq.empty()) {
-            return false;
-        }
-
-        return VerifyBST(seq, 0, seq.size() - 1);
-    }
 };
+```
+
+```python
+# python
+class Solution:
+    def VerifySeqenceOfBST2(self, seq):
+        """
+        2. 单调栈
+        """
+        if seq== []:
+            return False
+        
+        stack, root = [], float("+inf")
+
+        for i in range(len(seq) - 1, -1, -1):
+            if seq[i] > root:
+                return False
+            while stack and stack[-1] > seq[i]:
+                root = stack.pop()
+            stack.append(seq[i])
+        
+        return True
 ```
 
 ### 24. 二叉树中和为某一值的路径
