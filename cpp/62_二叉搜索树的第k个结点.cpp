@@ -1,84 +1,96 @@
-//思路一：
-//先整体排序，保存到vector，之后输出所以为k-1的元素
+#include <vector>
+#include <stdio.h>
+#include <sys/time.h>
+
+#include "TreeNode.h"
 
 /*
 struct TreeNode {
     int val;
     struct TreeNode *left;
     struct TreeNode *right;
-    TreeNode(int x) :
-            val(x), left(NULL), right(NULL) {
-    }
+    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 */
 class Solution {
 public:
-    std::vector<TreeNode*> tmp;
-    void sortInsert(TreeNode* root) {
+    // 1. 整体中序遍历，返回有序数组节点，输出索引为k-1的元素
+    TreeNode* KthNode1(TreeNode* root, int k) {
+        if (root == nullptr or k <= 0) {
+            return nullptr;
+        }
+
+        std::vector<TreeNode*> vec;
+        getMiddleVec(root, vec);
+
+        if (k > vec.size()) {
+            return nullptr;
+        }
+        return vec[k - 1];
+    }
+
+    // 中序遍历，添加节点到数组中
+    void getMiddleVec(TreeNode* root, std::vector<TreeNode*>& vec) {
         if (root == nullptr) {
             return;
         }
-        
-        sortInsert(root->left);
-        this->tmp.push_back(root);
-        sortInsert(root->right);
+
+        getMiddleVec(root->left, vec);
+        vec.push_back(root);
+        getMiddleVec(root->right, vec);
         return;
     }
-    
-    TreeNode* KthNode(TreeNode* root, int k) {
+
+    // 2. 高效方法：中序遍历第k个即可，利用全局变量来
+    int cnt = 0; // 外部计数变量
+    TreeNode* KthNode2(TreeNode* root, int k) {
         if (root == nullptr or k <= 0) {
             return nullptr;
         }
-        
-        // 按照大小顺序插入排序
-        sortInsert(root);
-        
-        // 返回第三个值
-        if (k > tmp.size()) {
-            return nullptr;
-        }
-        
-        return tmp[k - 1];
-    }
-};
 
-//高效方法：
-//中序遍历第k个即可，利用全局变量来
-
-/*
-struct TreeNode {
-    int val;
-    struct TreeNode *left;
-    struct TreeNode *right;
-    TreeNode(int x) :
-            val(x), left(NULL), right(NULL) {
-    }
-};
-*/
-class Solution {
-public:
-    int index = 0;
-    
-    TreeNode* KthNode(TreeNode* root, int k) {
-        if (root == nullptr or k <= 0) {
-            return nullptr;
+        TreeNode* ret = KthNode2(root->left, k);
+        if (ret != nullptr) {
+            return ret;
         }
         
-        TreeNode* tmp;
-        tmp = KthNode(root->left, k);
-        if (tmp) { // 需要提前检测是否要返回
-            return tmp;
-        }
-        
-        if (++index == k) {
+        if (++cnt == k) {
             return root;
         }
-        
-        tmp = KthNode(root->right, k);
-        if (tmp) { // 需要提前检测是否要返回
-            return tmp;
+
+        ret = KthNode2(root->right, k);
+        if (ret != nullptr) {
+            return ret;
         }
         
         return nullptr; // 如果没有找到
     }
+
+    // 测试函数
+    void test(std::vector<int>& vec, int k) {
+        TreeNode* result = nullptr;
+        TreeNode* root = TreeNode_creatFromFrontOrder(vec);
+        struct timeval start, end;
+
+        printf("=====\n");
+        for (auto & func : this->func_vec_) {
+            gettimeofday(&start, nullptr);
+            result = (this->*func)(root, k);
+            gettimeofday(&end, nullptr);
+            printf("result: %d, time(us): %ld\n", result->val, end.tv_usec - start.tv_usec);
+        }
+    }
+
+private:
+    typedef TreeNode* (Solution::*func_ptr)(TreeNode*, int);
+    std::vector<func_ptr> func_vec_  = {&Solution::KthNode1, &Solution::KthNode2};
 };
+
+int main(int argc, char* argv[])
+{
+    std::vector<int> vec = {5, 3, 2, 1, -1, -1, -1, 4, -1, -1, 6, -1, -1};
+
+    Solution s;
+    s.test(vec, 3);
+
+    return 0;
+}

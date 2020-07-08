@@ -4898,75 +4898,59 @@ class Solution:
 
 **参考代码：**
 
-```python
-# -*- coding:utf-8 -*-
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
-class Solution:
-    def __init__(self):
-        self.index = 0
-    
-    def KthNode(self, root, k):
-        # 返回对应节点TreeNode
-        if root == None or k <= 0:
-            return None
-        
-        tmp = self.KthNode(root.left, k)
-        if tmp:
-            return tmp
-        
-        self.index += 1
-        if self.index == k:
-            return root
-        
-        tmp = self.KthNode(root.right, k)
-        if tmp:
-            return tmp
-        
-        return None
-```
-
-```C++
-/*
-struct TreeNode {
-    int val;
-    struct TreeNode *left;
-    struct TreeNode *right;
-    TreeNode(int x) :
-            val(x), left(NULL), right(NULL) {
-    }
-};
-*/
+```cpp
+// cpp
 class Solution {
 public:
-    int index = 0;
-    
-    TreeNode* KthNode(TreeNode* root, int k) {
+    // 2. 高效方法：中序遍历第k个即可，利用全局变量来
+    int cnt = 0; // 外部计数变量
+    TreeNode* KthNode2(TreeNode* root, int k) {
         if (root == nullptr or k <= 0) {
             return nullptr;
         }
-        
-        TreeNode* tmp;
-        tmp = KthNode(root->left, k);
-        if (tmp) { // 需要提前检测是否要返回
-            return tmp;
+
+        TreeNode* ret = KthNode2(root->left, k);
+        if (ret != nullptr) {
+            return ret;
         }
         
-        if (++index == k) {
+        if (++cnt == k) {
             return root;
         }
-        
-        tmp = KthNode(root->right, k);
-        if (tmp) { // 需要提前检测是否要返回
-            return tmp;
+
+        ret = KthNode2(root->right, k);
+        if (ret != nullptr) {
+            return ret;
         }
         
         return nullptr; // 如果没有找到
     }
 };
+```
+
+```python
+# python
+class Solution:
+    def KthNode1(self, root, k):
+        """
+        1. 整体中序遍历，直接索引
+        """
+        def getMiddleVec(root, vec):
+            if root == None:
+                return
+            else:
+                getMiddleVec(root.left, vec)
+                vec.append(root)
+                getMiddleVec(root.right, vec)
+        
+        if root == None or k <= 0:
+            return None
+        
+        vec = []
+        getMiddleVec(root, vec)
+        if k > len(vec):
+            return None
+        return vec[k - 1]
 ```
 
 ### 63. 数据流中的中位数
