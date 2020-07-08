@@ -1695,83 +1695,71 @@ class Solution:
 
 **解题思路：**
 
-- 使用带记忆的DFS来解决，也就是深度优先的方法。
+- 使用带记忆的DFS来解决，也就是深度优先的方法。可以使用两个函数实现，也可以利用一个函数递归实现。（递归，回溯）
 - 这道题有个bug，结果根本就没有验证是否是路径长的数组靠前。
-- 可以使用两个函数实现，也可以利用一个函数递归实现。
 
 **参考代码：**
 
-```python
-# -*- coding:utf-8 -*-
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
-class Solution:
-    # 返回二维列表，内部每个列表表示找到的路径
-    def __init__(self):
-        self.path = []
-        self.ret = []
-        
-    def FindPath(self, root, target):
-        # write code here
-        if root == None:
-            return self.ret
-        
-        self.path.append(root.val)
-        target -= root.val
-        
-        if target == 0 and root.left == None and root.right == None:
-            tmp = self.path[:]
-            self.ret.append(tmp)
-        else:
-            self.FindPath(root.left, target)
-            self.FindPath(root.right, target)
-            
-        self.path.pop(-1)
-        return self.ret
-```
-
-```c++
-/*
-struct TreeNode {
-    int val;
-    struct TreeNode *left;
-    struct TreeNode *right;
-    TreeNode(int x) :
-            val(x), left(NULL), right(NULL) {
-    }
-};*/
+```cpp
+// cpp
 class Solution {
-private:
-    vector<vector<int>> ret;
-    vector<int> path;
 public:
-    void backTracking(TreeNode* root, int target) {
+    // 递归法
+    std::vector<std::vector<int>> FindPath(TreeNode* root, int target) {
+        std::vector<int> path; // 记录临时的一条路径
+        std::vector<std::vector<int>> ret; // 记录最终结果
+        backTracking(root, path, ret, target);
+        return ret;
+    }
+
+    // 用于递归的函数
+    void backTracking(TreeNode* root, std::vector<int>& path, std::vector<std::vector<int>>& ret, int target) {
         if (root == nullptr) {
             return;
         }
-         
-        path.push_back(root->val);
+
+        path.push_back(root->val); // 打入当前节点
         target -= root->val;
-         
+
         if (target == 0 && root->left == nullptr && root->right == nullptr) {
-            ret.push_back(path);
+            ret.push_back(path); // 找到根节点，并且满足要求
         } else {
-            backTracking(root->left, target);
-            backTracking(root->right, target);
+            backTracking(root->left, path, ret, target); // 遍历下一层
+            backTracking(root->right, path, ret, target);
         }
-         
-        // 关键在于这一句，完成一条路径的遍历之后，path清除最后一个节点
-        path.pop_back();
-    }
-     
-    vector<vector<int> > FindPath(TreeNode* root,int target) {
-        backTracking(root, target);
-        return ret;
+
+        path.pop_back(); // 弹出当前节点
     }
 };
+```
+
+```python
+# python
+class Solution:
+    def FindPath(self, root, target):
+        """
+        递归法
+        """
+        path = [] # 记录临时的一条路径
+        ret = []  # 记录最终的结果
+
+        def backTracking(root, target):
+            if root == None:
+                return
+            
+            path.append(root.val)
+            target -= root.val
+
+            if target == 0 and root.left == root.right == None:
+                ret.append(path[:]) # 拷贝添加
+            else:
+                backTracking(root.left, target)
+                backTracking(root.right, target)
+            
+            path.pop()
+
+        backTracking(root, target)
+        return ret
 ```
 
 ### 25. 复杂链表的复制
