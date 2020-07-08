@@ -4799,115 +4799,90 @@ class Solution:
 
 **解题思路：**
 
-- 分析：（1）思考什么表示结束？#，那么！是用来干什么的？（！用来表示当前结点值结束了，如12！）（2）思考返回值是什么？字符串指针
+- 分析：（1）思考什么表示结束？#，那么标志位逗号 ',' 是用来干什么的？（用来表示当前结点值结束了，如12！）（2）思考返回值是什么？字符串指针
 - 需要另外编写两个函数用来递归调用：c++之所以这样做是考虑，生成的str是局部变量，跳出函数后有可能会清空
 - 注意python函数参数，如果在函数形式参数中传递list时，使用保持list的引用（针对删除列表元素这个操作，不能使用冒号赋值，需要使用del）
 - 更为高效的方式为，每个val或者#后边都加上“，”，这样解析的时候可以直接使用split(",")解析出来“#”或者一个str形式的val
 
 **参考代码：**
 
-```python
-# -*- coding:utf-8 -*-
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
-class Solution:
-    def Serialize(self, root):
-        # write code here
-        if root == None:
-            return "#"
-        
-        return str(root.val) + "!" + self.Serialize(root.left) + self.Serialize(root.right)
-    
-    def my_Deserialize(self, s):
-        # 传递列表更加方便
-        if s[0] == "#":
-            s.pop(0)
-            return None
-        
-        # 获取当前值
-        index = s.index("!")
-        curr_val = int("".join(s[:index]))
-        del s[:index + 1]
-        #s = s[index + 1:] // 这是错误的方式
-        
-        currNode = TreeNode(curr_val)
-        currNode.left = self.my_Deserialize(s)
-        currNode.right = self.my_Deserialize(s)
-        
-        return currNode
-        
-    def Deserialize(self, s):
-        # 注意字符串参数是传值的
-        if s == "":
-            return None
-        
-        tmp = list(s)
-        return self.my_Deserialize(tmp)
-```
-
-```C++
-/*
-struct TreeNode {
-    int val;
-    struct TreeNode *left;
-    struct TreeNode *right;
-    TreeNode(int x) :
-            val(x), left(NULL), right(NULL) {
-    }
-};
-*/
+```cpp
+// cpp
 class Solution {
 public:
-    std::string ret;
-    
-    std::string my_Serialize(TreeNode *root) {
+    // 1. string接口
+    // 序列化，先序遍历
+    // 使用逗号分割，空节点为#
+    std::string Serialize(TreeNode *root) {
         if (root == nullptr) {
-            return "#";
+            return "#,";
         } else {
-            // 先序遍历
-            return std::to_string(root->val) + "!" + my_Serialize(root->left) + my_Serialize(root->right);
+            return std::to_string(root->val) + "," + Serialize(root->left) + Serialize(root->right);
         }
     }
     
-    TreeNode* my_Deserialize(char* &str) {
-        if (*str == '#') {
+    // 反序列化
+    TreeNode* Deserialize(std::string str) {
+        int index = 0;
+        return Des(str, index);
+    }
+
+    // 递归函数
+    TreeNode* Des(std::string& str, int& i) {
+        if (str.empty() || i >= str.size()) { // 防止溢出
             return nullptr;
         }
-        
+
+        if (str[i] == '#') { // 空节点
+            i += 2;
+            return nullptr;
+        }
+
         // 提取当前结点值
         int curr_val = 0;
-        while (*str != '!') {
-            curr_val = curr_val * 10 + (*str - '0');
-            str++;
+        for (; str[i] != ','; i++) {
+            curr_val = curr_val * 10 + (str[i] - '0');
         }
+        i++; // 跳过标志符号','
         
-        TreeNode* currNode = new TreeNode(curr_val);
-        currNode->left = my_Deserialize(++str);
-        currNode->right = my_Deserialize(++str);
-        
-        return currNode;
-    }
-    
-    char* Serialize(TreeNode *root) {    
-        if (root == nullptr) {
-            return nullptr;
-        }
-        
-        this->ret = my_Serialize(root);
-        return (char*)(ret.c_str());
-    }
-    
-    TreeNode* Deserialize(char *str) {
-        if (str == nullptr) {
-            return nullptr;
-        }
-        
-        return my_Deserialize(str);
+        TreeNode* root = new TreeNode(curr_val);
+        root->left = Des(str, i);
+        root->right = Des(str, i);
+        return root;
     }
 };
+```
+
+```python
+# python
+class Solution:
+    def Serialize(self, root):
+        """
+        序列化
+        """
+        if root == None:
+            return "#,"
+        else:
+            return str(root.val) + "," + self.Serialize(root.left) + self.Serialize(root.right)
+    
+    def Deserialize(self, s):
+        """
+        反序列化
+        """
+        def Des(lst):
+            if lst == []:
+                return None
+            val = lst.pop(0)
+            if val == "#":
+                return None
+            else:
+                root = TreeNode.TreeNode(int(val))
+                root.left = Des(lst)
+                root.right = Des(lst)
+                return root
+        
+        lst = s.split(",") # 利用,分割str为list
+        return Des(lst)
 ```
 
 ### 62. 二叉搜索树的第k个结点
