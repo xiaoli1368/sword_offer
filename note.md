@@ -4472,46 +4472,8 @@ class Solution:
 
 **参考代码：**
 
-```python
-# -*- coding:utf-8 -*-
-# class TreeLinkNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
-#         self.next = None
-class Solution:
-    def GetNext(self, p):
-        if p == None:
-            return None
-        
-        if p.right != None:
-            p = p.right
-            while p.left != None:
-                p = p.left
-            return p
-        else:
-            while p.next != None:
-                if p == p.next.left:
-                    return p.next
-                else:
-                    p = p.next
-            
-        return None
-```
-
-```C++
-/*
-struct TreeLinkNode {
-    int val;
-    struct TreeLinkNode *left;
-    struct TreeLinkNode *right;
-    struct TreeLinkNode *next;
-    TreeLinkNode(int x) :val(x), left(NULL), right(NULL), next(NULL) {
-        
-    }
-};
-*/
+```cpp
+// cpp
 class Solution {
 public:
     TreeLinkNode* GetNext(TreeLinkNode* p) {
@@ -4542,6 +4504,34 @@ public:
         return nullptr;
     }
 };
+```
+
+```python
+# python
+class Solution:
+    def GetNext(self, p):
+        """
+        获取当前节点的中序遍历的下一个节点
+        """
+        if p == None:
+            return None
+        
+        if p.right != None: # 右子树非空时，找到右子树的最深左子树即可
+            p = p.right
+            while p.left != None:
+                p = p.left
+            return p
+        else:
+            # 右子树为空时，下一个节点一定在上层的某个双亲节点处
+            # 当前节点来自上一层的左子树，直接返回双亲节点
+            # 当前节点来自上一层的右子树，继续迭代
+            while p.next != None:
+                if p == p.next.left:
+                    return p.next
+                else:
+                    p = p.next
+            
+        return None
 ```
 
 ### 58. 对称的二叉树
