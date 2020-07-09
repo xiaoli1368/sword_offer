@@ -1928,67 +1928,17 @@ class Solution:
 
 **解题思路：**
 
-- 递归进行中序遍历，左中右，但是需要注意的是，递归函数返回的是链表的头，而由于递归过程中需要完成链表的拼接，因此需要记录链表的尾，因此需要额外的变量来记录。
-- 注意对空节点的处理。
+- 递归进行中序遍历，左中右，但是需要注意的是，递归函数返回的是链表的头，而由于递归过程中需要完成链表的拼接，因此需要记录链表的尾，因此需要额外的变量来记录。注意对空节点的处理。
 - 更为高效的方式是，采用逆向的中序遍历，右中左，这样就能节省额外的存储变量空间。
 
 **参考代码：**
 
-```python
-class Solution:
-    def __init__(self):
-        self.head = None
-    def Convert(self, root):
-        # write code here
-        if root == None:
-            return None
-        
-        # 右
-        self.Convert(root.right)
-        
-        # 中
-        root.right = self.head
-        if self.head != None:
-            self.head.left = root
-        self.head = root
-        
-        # 左
-        self.Convert(root.left)
-        
-        return self.head
-```
-
-```c++
-// c++
-TreeNode* head = nullptr;
-TreeNode* Convert(TreeNode* root) {
-    // 中序遍历：右　中　左
-    if (root == nullptr) {
-        return nullptr;
-    }
-    
-    // 右
-    Convert(root->right);
-    
-    // 中
-    root->right = head;
-    if (head != nullptr) {
-        head->left = root;
-    }
-    head = root;
-    
-    // 左
-    Convert(root->left);
-    
-    return head;
-}
-
-// 其它方法
+```cpp
+// cpp
 class Solution {
 public:
     // 中序遍历：左 中　右
     TreeNode* last = nullptr; // 类内变量，记录双链表的尾部
-    
     TreeNode* Convert(TreeNode* root) {
         if (root == nullptr) {
             return nullptr;
@@ -2015,6 +1965,37 @@ public:
         return head;
     }
 };
+```
+
+```python
+# python
+class Solution:
+    def __init__(self):
+        """
+        初始化
+        """
+        self.head = None
+
+    def Convert(self, root):
+        """
+        中序遍历，右中左
+        """
+        if root == None:
+            return None
+        
+        # 右
+        self.Convert(root.right)
+        
+        # 中
+        root.right = self.head
+        if self.head != None:
+            self.head.left = root
+        self.head = root
+        
+        # 左
+        self.Convert(root.left)
+        
+        return self.head
 ```
 
 ### 27. 字符串的排列
