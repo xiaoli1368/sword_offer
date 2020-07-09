@@ -7,6 +7,10 @@
 ## 目录
 [TOC]
 
+## 第一版《剑指offer》
+
+> 以牛客网为准。
+
 ### 01. 二维数组中的查找
 
 **题目描述：**
@@ -5440,3 +5444,561 @@ class Solution:
         return 2**cnt2 * 3**cnt3
 ```
 
+## 第二版《剑指offer》
+
+> 以LeetCode为准，主要摘录了相较第一版新增的题目。
+
+### [17. 打印从1到最大的n位数](https://leetcode-cn.com/problems/da-yin-cong-1dao-zui-da-de-nwei-shu-lcof/)
+
+**题目描述：**
+
+> 输入数字 `n`，按顺序打印出从 1 到最大的 n 位十进制数。比如输入 3，则打印出 1、2、3 一直到最大的 3 位数 999。
+
+**解题思路：**
+
+- 常规思路：循环添加
+- 需要注意的两个问题：一是位数n与循环边界的关系。二是大数溢出的问题，需要转换为字符串解决
+- 全排列：求从`1~pow(10,n)-1`实际上可以转化为`0-9`在`n`个位置上的全排列
+- 用字符串打印需要去除前导0
+
+**参考代码：**
+
+```cpp
+// cpp
+#include <cmath>
+class Solution {
+public:
+    // 1. 循环添加（没有考虑大数溢出）
+    vector<int> printNumbers(int n) {
+        if (n <= 0) {
+            return std::vector<int>{};
+        }
+
+        int max = pow(10, n);
+        std::vector<int> ret(max - 1);
+        for (int i = 1; i < max; i++) {
+            ret[i - 1] = i;
+        }
+
+        return ret;
+    }
+};
+```
+
+```python
+# python
+class Solution:
+    def printNumbers(self, n):
+        """
+        python不用考虑最大int问题
+        """
+        return list(range(1, 10 ** n))
+    
+    def printNumbers(self, n: int) -> [int]:
+        """
+        递归生成全排列
+        """
+        def dfs(x):
+            if x == n: # 终止条件：已固定完所有位
+                s = ''.join(num[self.start:]) # 跳过前置0
+                if s != '0': # 跳过0，从1开始
+                    res.append(int(s))
+                if n - self.start == self.nine:
+                    self.start -= 1
+                return
+            for i in range(10): # 遍历 0 - 9
+                if i == 9:
+                    self.nine += 1
+                num[x] = str(i) # 固定第 x 位为 i
+                dfs(x + 1)      # 开启固定第 x + 1 位
+            self.nine -= 1
+        
+        num, res = ['0'] * n, []
+        self.nine = 0
+        self.start = n - 1
+        dfs(0)
+        return res
+```
+
+### [25. 合并两个排序的链表](https://leetcode-cn.com/problems/he-bing-liang-ge-pai-xu-de-lian-biao-lcof/)
+
+**题目描述：**
+
+> 输入两个递增排序的链表，合并这两个链表并使新链表中的节点仍然是递增排序的。
+
+**解题思路：**
+
+- 常规思路：递归法
+- 高效思路：循环头插法（待补充）
+
+
+**参考代码：**
+
+```cpp
+// cpp
+class Solution {
+public:
+    // 递归法
+    ListNode* mergeTwoLists(ListNode* p, ListNode* q) {
+        if (p == nullptr) {
+            return q;
+        }
+        if (q == nullptr) {
+            return p;
+        }
+
+        ListNode* head = new ListNode(0);
+        if (p->val < q->val) {
+            head->val = p->val;
+            head->next = mergeTwoLists(p->next, q);
+        } else {
+            head->val = q->val;
+            head->next = mergeTwoLists(p, q->next);
+        }
+        return head;
+    }
+};
+```
+
+```python
+# python
+class Solution:
+    def mergeTwoLists(self, p, q):
+        """
+        递归法
+        """
+        if p == None:
+            return q
+        if q == None:
+            return p
+        
+        root = ListNode(min(p.val, q.val))
+        if p.val < q.val:
+            p = p.next
+        else:
+            q = q.next
+        root.next = self.mergeTwoLists(p, q)
+        return root
+```
+
+### [36. 二叉搜索树与双向链表](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-yu-shuang-xiang-lian-biao-lcof/)
+
+**题目描述：**
+
+> 输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的循环双向链表。要求不能创建任何新的节点，只能调整树中节点指针的指向。
+
+**解题思路：**
+
+- 相较与第一版中的题目26，增加了循环的要求
+- 需要在中序遍历递归的时候增加 head tail 两个指针，保存链表的两端，并且最终需要进行头尾链接的处理
+
+
+**参考代码：**
+
+```cpp
+// cpp
+class Solution {
+public:
+    Node* head = nullptr;
+    Node* tail = nullptr;
+
+    // 完成二叉树向循环链表的转化，更新两端端点
+    void conv(Node* root) {
+        if (root == nullptr) {
+            return;
+        }
+
+        conv(root->right);
+        
+        root->right = head;
+        if (head == nullptr) {
+            tail = root;
+        } else {
+            head->left = root;
+        }
+        head = root;
+
+        conv(root->left);
+    }
+
+    Node* treeToDoublyList(Node* root) {
+        conv(root);
+        if (head != nullptr) {
+            head->left = tail;
+        }
+        if (tail != nullptr) {
+            tail->right = head;
+        }
+        return head;
+    }
+};
+```
+
+```python
+# python
+class Solution:
+    def __init__(self):
+        self.head = None
+        self.tail = None
+
+    def treeToDoublyList(self, root):
+        """
+        先递归中序遍历，然后头尾链接
+        """
+        def conv(root):
+            """
+            右中左
+            """
+            if root == None:
+                return
+            conv(root.right)
+            root.right = self.head
+            if self.head == None:
+                self.tail = root
+            else:
+                self.head.left = root
+            self.head = root
+            conv(root.left)
+            return
+        
+        conv(root)
+        if self.head != None:
+            self.head.left = self.tail
+        if self.tail != None:
+            self.tail.right = self.head
+        return self.head
+```
+
+### [44. 数字序列中某一位的数字](https://leetcode-cn.com/problems/shu-zi-xu-lie-zhong-mou-yi-wei-de-shu-zi-lcof/)
+
+**题目描述：**
+
+> 
+
+**解题思路：**
+
+- 常规思路：递归法，动态规划
+
+
+**参考代码：**
+
+```cpp
+// cpp
+class Solution {
+public:
+
+};
+```
+
+```python
+# python
+class Solution:
+
+```
+### [47. 礼物的最大价值](https://leetcode-cn.com/problems/li-wu-de-zui-da-jie-zhi-lcof/)
+
+**题目描述：**
+
+> 
+
+**解题思路：**
+
+- 常规思路：递归法，动态规划
+
+
+**参考代码：**
+
+```cpp
+// cpp
+class Solution {
+public:
+
+};
+```
+
+```python
+# python
+class Solution:
+
+```
+### [48. 最长不含重复字符的子字符串](https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/)
+
+**题目描述：**
+
+> 
+
+**解题思路：**
+
+- 常规思路：递归法，动态规划
+
+
+**参考代码：**
+
+```cpp
+// cpp
+class Solution {
+public:
+
+};
+```
+
+```python
+# python
+class Solution:
+
+```
+
+### [53 - II. 0～n-1中缺失的数字](https://leetcode-cn.com/problems/que-shi-de-shu-zi-lcof/)
+
+**题目描述：**
+
+> 一个长度为n-1的递增排序数组中的所有数字都是唯一的，并且每个数字都在范围0～n-1之内。在范围0～n-1内的n个数字中有且只有一个数字不在该数组中，请找出这个数字。
+>
+
+**解题思路：**
+
+- 对应原题为37，二分折半查找
+
+
+**参考代码：**
+
+```cpp
+// cpp
+class Solution {
+public:
+    // 二分折半查找
+    // nums[m] 与 m 相比，只有两种情况，等于或者大于
+    int missingNumber(vector<int>& nums) {
+        if (nums.empty()) {
+            return 0;
+        }
+
+        int l = 0;
+        int h = nums.size() - 1;
+
+        while (l <= h) {
+            int m = l + (h - l) / 2;
+            if (nums[m] == m) {
+                l = m + 1;
+            } else if (nums[m] > m) {
+                h = m - 1;
+            }
+        }
+
+        return l;
+    }
+};
+```
+
+```python
+# python
+class Solution:
+    def missingNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if nums == []:
+            return 0
+        
+        l = 0
+        h = len(nums) - 1
+
+        while l <= h:
+            m = l + (h - l) // 2
+            if nums[m] == m:
+                l = m + 1
+            elif nums[m] > m:
+                h = m - 1
+        
+        return l
+```
+
+### [56 - II. 数组中数字出现的次数 II](https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-ii-lcof/)
+
+**题目描述：**
+
+> 在一个数组 `nums` 中除一个数字只出现一次之外，其他数字都出现了三次。请找出那个只出现一次的数字。
+
+**解题思路：**
+
+- 统计数组全部元素在int形式下，每个二进制位上1的个数，根据是否可以被3整除，从而确定待求元素在该位上的值为0或1
+- 举一反三：将题目中的3次修改为4次
+
+
+**参考代码：**
+
+```cpp
+// cpp
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        if (nums.size() < 4) {
+            return nums[0];
+        }
+
+        // 移位32次
+        int ret = 0;
+        unsigned int mask = 0x80000000;
+        while (mask > 0) {
+            // 统计每个数位上的个数
+            int cnt = 0;
+            for (auto & num : nums) {
+                if (num & mask) {
+                    cnt++;
+                }
+            }
+
+            // 根据是否整除
+            if (cnt % 3 == 1) {
+                ret += 1;
+            }
+
+            mask >>= 1;
+            if (mask > 0) {
+                ret <<= 1;
+            }
+        }
+
+        return ret;
+    }
+};
+```
+
+```python
+# python
+class Solution:
+    """
+    待补充
+    """
+```
+
+### [59 - II. 队列的最大值](https://leetcode-cn.com/problems/dui-lie-de-zui-da-zhi-lcof/)
+
+**题目描述：**
+
+> 
+
+**解题思路：**
+
+- 常规思路：递归法，动态规划
+
+
+**参考代码：**
+
+```cpp
+// cpp
+class Solution {
+public:
+
+};
+```
+
+```python
+# python
+class Solution:
+
+```
+### [60. n个骰子的点数](https://leetcode-cn.com/problems/nge-tou-zi-de-dian-shu-lcof/)
+
+**题目描述：**
+
+> 
+
+**解题思路：**
+
+- 常规思路：递归法，动态规划
+
+
+**参考代码：**
+
+```cpp
+// cpp
+class Solution {
+public:
+
+};
+```
+
+```python
+# python
+class Solution:
+
+```
+### [63. 股票的最大利润](https://leetcode-cn.com/problems/gu-piao-de-zui-da-li-run-lcof/)
+
+**题目描述：**
+
+> 
+
+**解题思路：**
+
+- 常规思路：递归法，动态规划
+
+
+**参考代码：**
+
+```cpp
+// cpp
+class Solution {
+public:
+
+};
+```
+
+```python
+# python
+class Solution:
+
+```
+### [68 - I. 二叉搜索树的最近公共祖先](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-zui-jin-gong-gong-zu-xian-lcof/)
+
+**题目描述：**
+
+> 
+
+**解题思路：**
+
+- 常规思路：递归法，动态规划
+
+**参考代码：**
+
+```cpp
+// cpp
+class Solution {
+public:
+
+};
+```
+
+```python
+# python
+class Solution:
+
+```
+
+### [68 - II. 二叉树的最近公共祖先](https://leetcode-cn.com/problems/er-cha-shu-de-zui-jin-gong-gong-zu-xian-lcof/)
+
+**题目描述：**
+
+> 
+
+**解题思路：**
+
+- 常规思路：递归法，动态规划
+
+**参考代码：**
+
+```cpp
+// cpp
+class Solution {
+public:
+
+};
+```
+
+```python
+# python
+class Solution:
+
+```
