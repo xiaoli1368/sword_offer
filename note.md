@@ -5673,12 +5673,17 @@ class Solution:
 
 **题目描述：**
 
-> 
+> 数字以0123456789101112131415…的格式序列化到一个字符序列中。在这个序列中，第5位（从下标0开始计数）是5，第13位是1，第19位是4，等等。
+>
+> 请写一个函数，求任意第n位对应的数字。
+>
 
 **解题思路：**
 
-- 常规思路：递归法，动态规划
-
+- 找规律，总结，优化
+- 1.确定第n位数所在数字的位数，如 n = 365，首先由 365 - 9 - 2 * 90 = 176，可得结果是个3位数，且是3位数中的第176个数位
+- 2.确定所求数位所在的数字 num = 100 + 176 / 3 = 158
+- 3.确定所求数位在num的哪一位，由 173 % 3 = 2 得，结果为158的第二位数5
 
 **参考代码：**
 
@@ -5686,24 +5691,126 @@ class Solution:
 // cpp
 class Solution {
 public:
+    int findNthDigit(int n) {
+        long digit = 1, start = 1, count = 9;
+        while (n > count) {
+            n -= count;
+            start *= 10;
+            digit += 1;
+            count = 9 * start * digit;
+        }
 
+        int ret = 0;
+        int num = start + (n - 1) / digit;
+
+        for (int i = 0; i < digit - (n-1) % digit; i++) {
+            ret = num % 10;
+            num /= 10;
+        }
+        return ret;
+    }
 };
 ```
 
 ```python
 # python
 class Solution:
-
+    def findNthDigit(self, n: int) -> int:
+        digit, start, count = 1, 1, 9
+        while n > count: # 1.
+            n -= count
+            start *= 10
+            digit += 1
+            count = 9 * start * digit
+        num = start + (n - 1) // digit # 2.
+        return int(str(num)[(n - 1) % digit]) # 3.
 ```
+### [46. 把数字翻译成字符串](https://leetcode-cn.com/problems/ba-shu-zi-fan-yi-cheng-zi-fu-chuan-lcof/)
+
+**题目描述：**
+
+> 在一个 m*n 的棋盘的每一格都放有一个礼物，每个礼物都有一定的价值（价值大于 0）。你可以从棋盘的左上角开始拿格子里的礼物，并每次向右或者向下移动一格、直到到达棋盘的右下角。给定一个棋盘及其上面的礼物的价值，请计算你最多能拿到多少价值的礼物？
+
+**解题思路：**
+
+- 动态规划
+
+**参考代码：**
+
+```cpp
+// cpp
+class Solution {
+public:
+    // 1. 将输入数字转换为字符串，f(n)表示从n索引开始形成输入数字的解
+    // 2. 使用动态规划求解，递推关系式为：
+    //        f(n) = f(n + 1)            // 如果[n, n + 1]无法被一个字符代替
+    //        f(n) = f(n + 1) + f(n + 2) // 如果[n, n + 1]可以被一个字符代替
+    // 3. 举例，对12258为例:
+    //        f(0) = f(1) + f(2)
+    //             = f(2) + f(3) + f(3) + f(4)
+    //             = 3*f(3) + 2*f(4)
+    //             = 5
+    // 4. 解题流程：
+    //        1) 合法性判断
+    //        2) 初始化前面的两个值
+    //        3) 从尾到头遍历字符串，迭代求解，事实上也可以从头到尾遍历
+
+    int translateNum(int num) {
+        if (num < 0) {
+            return 0;
+        }
+
+        int a = 1;
+        int b = 1;
+        std::string str = std::to_string(num);
+
+        for (int i = 0; i < str.size() - 1; i++) {
+            std::string tmp = str.substr(i, 2);
+            int c = tmp >= "10" && tmp <= "25" ? a + b : b;
+            a = b;
+            b = c;
+        }
+
+        return b;
+};
+```
+
+```python
+# python
+class Solution:
+class Solution(object):
+    def translateNum(self, num):
+        """
+        :type num: int
+        :rtype: int
+        """
+        if num < 0:
+            return 0
+        
+        a = 1
+        b = 1
+        s = str(num)
+
+        for i in range(len(s) - 1):
+            if "10" <= s[i:i+2] <= "25":
+                a, b = b, a + b
+            else:
+                a, b = b, b
+        
+        return b
+```
+
 ### [47. 礼物的最大价值](https://leetcode-cn.com/problems/li-wu-de-zui-da-jie-zhi-lcof/)
 
 **题目描述：**
 
-> 
+> 在一个 m*n 的棋盘的每一格都放有一个礼物，每个礼物都有一定的价值（价值大于 0）。你可以从棋盘的左上角开始拿格子里的礼物，并每次向右或者向下移动一格、直到到达棋盘的右下角。给定一个棋盘及其上面的礼物的价值，请计算你最多能拿到多少价值的礼物？
+>
 
 **解题思路：**
 
-- 常规思路：递归法，动态规划
+- 直接dfs会超时，需要增加剪枝
+- 高效思路，动态规划
 
 
 **参考代码：**
@@ -5712,25 +5819,81 @@ class Solution:
 // cpp
 class Solution {
 public:
+    int maxValue(vector<vector<int>>& grid) {
+        if (grid.empty()) {
+            return 0;
+        }
 
+        int ret = 0;
+        int path = 0;
+        int row = grid.size();
+        int col = grid[0].size();
+        bool* flag = new bool[row * col];
+        memset(flag, false, row * col);
+
+        dfs(grid, ret, flag, path, 0, 0);
+
+        return ret;
+    }
+
+    void dfs(vector<vector<int>>& grid, int& ret, bool* flag, int& path, int i, int j) {
+        int row = grid.size();
+        int col = grid[0].size();
+        int index = i * col + j;
+
+        if (i < 0 || i >= row || j < 0 || j >= col || flag[index]) {
+            return;
+        }
+
+        // 添加当前位置
+        path += grid[i][j];
+        flag[index] = true;
+        if (path > ret) {
+            ret = path;
+        }
+
+        // 进入下一层
+        dfs(grid, ret, flag, path, i + 1, j);
+        dfs(grid, ret, flag, path, i, j + 1);
+
+        // 返回上一层
+        path -= grid[i][j];
+        flag[index] = false;
+        return;
+    }
 };
 ```
 
 ```python
 # python
 class Solution:
-
+    def maxValue(self, grid: List[List[int]]) -> int:
+        """
+        将grid作为原生dp
+        """
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if i == 0 and j == 0:
+                    continue
+                if i == 0:
+                    grid[i][j] += grid[i][j - 1]
+                elif j == 0:
+                    grid[i][j] += grid[i - 1][j]
+                else:
+                    grid[i][j] += max(grid[i][j - 1], grid[i - 1][j])
+        return grid[-1][-1]
 ```
 ### [48. 最长不含重复字符的子字符串](https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/)
 
 **题目描述：**
 
-> 
+> 请从字符串中找出一个最长的不包含重复字符的子字符串，计算该最长子字符串的长度。
 
 **解题思路：**
 
-- 常规思路：递归法，动态规划
-
+- 暴力解法时间复杂度是O(n^3)，结果会超时
+- 常规思路：双指针 + 哈希表
+- 高效思路：动态规划
 
 **参考代码：**
 
@@ -5738,14 +5901,38 @@ class Solution:
 // cpp
 class Solution {
 public:
-
+    // 双指针滑窗 + 哈希表
+    int lengthOfLongestSubstring(string s) {
+        map<char, int> m;
+        int ret = 0, l = 0, r = 0;
+        while (r < s.size()) {
+            if (m.find(s[r]) != m.end()) {
+                l = max(l, m[s[r]] + 1);
+            }
+            m[s[r]] = r;
+            r++;
+            ret = max(r - l, ret);
+        }
+        return ret;
+    }
 };
 ```
 
 ```python
 # python
 class Solution:
-
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        """
+        动态规划 + 哈希表
+        """
+        dic = {}
+        res = tmp = 0
+        for j in range(len(s)):
+            i = dic.get(s[j], -1) # 获取索引 i
+            dic[s[j]] = j # 更新哈希表
+            tmp = tmp + 1 if tmp < j - i else j - i # dp[j - 1] -> dp[j]
+            res = max(res, tmp) # max(dp[j - 1], dp[j])
+        return res
 ```
 
 ### [53 - II. 0～n-1中缺失的数字](https://leetcode-cn.com/problems/que-shi-de-shu-zi-lcof/)
@@ -5877,38 +6064,117 @@ class Solution:
 
 **题目描述：**
 
-> 
+> 请定义一个队列并实现函数 max_value 得到队列里的最大值，要求函数max_value、push_back 和 pop_front 的均摊时间复杂度都是O(1)。
+>
+> 若队列为空，pop_front 和 max_value 需要返回 -1
+>
 
 **解题思路：**
 
-- 常规思路：递归法，动态规划
+- 使用双端队列来保存最大值，递减队列。
+- 每次入队之前，需要情况所有比待入队元素小的值）
+- 每次出队列时需要查看是否为最大值
 
 
 **参考代码：**
 
 ```cpp
 // cpp
-class Solution {
+#include <deque>
+class MaxQueue {
+private:
+    std::deque<int> queue;
+    std::deque<int> maxQue;
 public:
-
+    MaxQueue() {
+    }
+    
+    int max_value() {
+        if (maxQue.empty()) {
+            return -1;
+        } else {
+            return maxQue.front();
+        }
+    }
+    
+    void push_back(int value) {
+        while (!maxQue.empty() && maxQue.back() < value) {
+            maxQue.pop_back();
+        }
+        maxQue.push_back(value);
+        queue.push_back(value);
+    }
+    
+    int pop_front() {
+        if (queue.empty()) {
+            return -1;
+        }
+        int curr = queue.front();
+        queue.pop_front();
+        if (curr == maxQue.front()) {
+            maxQue.pop_front();
+        }
+        return curr;
+    }
 };
 ```
 
 ```python
 # python
-class Solution:
+class MaxQueue(object):
 
+    def __init__(self):
+        self.queue = []
+        self.maxQue = []
+
+
+    def max_value(self):
+        """
+        :rtype: int
+        """
+        if self.maxQue == []:
+            return -1
+        else:
+            return self.maxQue[0]
+
+
+    def push_back(self, value):
+        """
+        :type value: int
+        :rtype: None
+        """
+        while self.maxQue and self.maxQue[-1] < value:
+            self.maxQue.pop()
+        self.maxQue.append(value)
+        self.queue.append(value)
+
+
+    def pop_front(self):
+        """
+        :rtype: int
+        """
+        if self.queue == []:
+            return -1
+        else:
+            curr = self.queue.pop(0)
+            if curr == self.maxQue[0]:
+                self.maxQue.pop(0)
+            return curr
 ```
 ### [60. n个骰子的点数](https://leetcode-cn.com/problems/nge-tou-zi-de-dian-shu-lcof/)
 
 **题目描述：**
 
-> 
+> 把n个骰子扔在地上，所有骰子朝上一面的点数之和为s。输入n，打印出s的所有可能的值出现的概率。
+>
+> 你需要用一个浮点数数组返回答案，其中第 i 个元素代表这 n 个骰子所能掷出的点数集合中第 i 小的那个的概率。
+>
 
 **解题思路：**
 
 - 常规思路：递归法，动态规划
-
+- 对n个骰子可能的取值为[n, 6n]，关键是求组合次数
+- `dp[i][j] = sum(k=1, k=6, dp[i-1][j-k])`，即本次的次数等于上一次的各种情况次数之和（注意本次与上次的联系在于，骰子个数减少1，并且和减少了k，k遍历取值1-6，同时存在隐含条件，骰子个数i不大于当前的点数和j，对上一次有：i - 1 <= j - k）
 
 **参考代码：**
 
@@ -5916,50 +6182,139 @@ class Solution:
 // cpp
 class Solution {
 public:
+    vector<double> twoSum(int n) {
+        if (n <= 0) {
+            return std::vector<double> {};
+        }
 
+        std::vector<double> ret;
+        std::vector<std::vector<int>> dp(n+1, std::vector<int>(6*n+1, 0));
+
+        for (int i = 1; i <= n; i++) { // i为骰子个数
+            for (int j = i; j <= 6*i; j++) { // j为当前的和
+                if (i == 1) {
+                    dp[i][j] = 1; // 初始化
+                    continue;
+                }
+                for (int k = 1; k <= 6; k++) { // dp计算
+                    if (i - 1 <= j - k) {
+                        dp[i][j] += dp[i - 1][j - k];
+                    }
+                }
+            }
+        }
+
+        for (int i = n; i <= 6*n; i++) { //添加
+            ret.push_back(dp[n][i] * pow(1.0 / 6, n));
+        }
+        return ret;
+    }
 };
 ```
 
 ```python
 # python
-class Solution:
+class Solution(object):
+    def twoSum(self, n):
+        """
+        :type n: int
+        :rtype: List[float]
+        """
+        if n == 0:
+            return []
 
+        ret = []
+        dp = [[0] * (6*n+1) for _ in range(n+1)]
+
+        for i in range(1, n+1):
+            for j in range(i, 6*i+1):
+                if i == 1:
+                    dp[i][j] = 1
+                    continue
+                for k in range(1, 7):
+                    if i - 1 <= j - k:
+                        dp[i][j] += dp[i - 1][j - k]
+        
+        for i in range(n, 6*n+1):
+            ret.append(dp[n][i] / 6.0**n) # 注意这里使用6.0
+        
+        return ret
 ```
 ### [63. 股票的最大利润](https://leetcode-cn.com/problems/gu-piao-de-zui-da-li-run-lcof/)
 
 **题目描述：**
 
-> 
+> 给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。
+>
+> 如果你最多只允许完成一笔交易（即买入和卖出一支股票一次），设计一个算法来计算你所能获取的最大利润。
+>
+> 注意：你不能在买入股票前卖出股票。
+>
 
 **解题思路：**
 
-- 常规思路：递归法，动态规划
+- 动态规划
+- 前i天的最大利润 = max(前i-1天的最大利润，当前价格 - 之前i天的最小价格)
 
 
 **参考代码：**
 
 ```cpp
 // cpp
+#define MIN(x, y) ((x) < (y) ? (x) : (y))
+#define MAX(x, y) ((x) > (y) ? (x) : (y))
 class Solution {
 public:
+    int maxProfit(vector<int>& prices) {
+        if (prices.empty()) {
+            return 0;
+        }
 
+        int ret = 0;
+        int minVal = prices[0];
+
+        for (auto & currVal : prices) {
+            minVal = MIN(minVal, currVal);
+            ret = MAX(ret, currVal - minVal);
+        }
+
+        return ret;
+    }
 };
 ```
 
 ```python
 # python
-class Solution:
+class Solution(object):
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        if prices == []:
+            return 0
+        
+        minVal, ret = prices[0], 0
 
+        for currVal in prices:
+            minVal = min(minVal, currVal)
+            ret = max(ret, currVal - minVal)
+        
+        return ret
 ```
 ### [68 - I. 二叉搜索树的最近公共祖先](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-zui-jin-gong-gong-zu-xian-lcof/)
 
 **题目描述：**
 
-> 
+> 给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。
+>
+> 百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”
+>
 
 **解题思路：**
 
-- 常规思路：递归法，动态规划
+- 递归法，思路很简单，如果p和q的值都小于root，则结果在左子树中，若值都大于root，则结果在右子树当中。其它情况，root就是结果
+- 高效思路：将递归转换为迭代
 
 **参考代码：**
 
@@ -5967,25 +6322,59 @@ class Solution:
 // cpp
 class Solution {
 public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        if (root == nullptr || p == nullptr || q == nullptr) {
+            return nullptr;
+        }
 
+        if (p->val < root->val && q->val < root->val) {
+            return lowestCommonAncestor(root->left, p, q);
+        }
+        if (p->val > root->val && q->val > root->val) {
+            return lowestCommonAncestor(root->right, p, q);
+        }
+        return root;
+    }
 };
 ```
 
 ```python
 # python
-class Solution:
-
+class Solution(object):
+    def lowestCommonAncestor(self, root, p, q):
+        """
+        :type root: TreeNode
+        :type p: TreeNode
+        :type q: TreeNode
+        :rtype: TreeNode
+        """
+        if root == None or p == None or q == None:
+            return None
+        
+        while root:
+            if p.val < root.val and q.val < root.val:
+                root = root.left
+            elif p.val > root.val and q.val > root.val:
+                root = root.right
+            else:
+                break
+        
+        return root
 ```
 
 ### [68 - II. 二叉树的最近公共祖先](https://leetcode-cn.com/problems/er-cha-shu-de-zui-jin-gong-gong-zu-xian-lcof/)
 
 **题目描述：**
 
-> 
+> 给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。
+>
+> 百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”
+>
 
 **解题思路：**
 
-- 常规思路：递归法，动态规划
+- 个人思路：获取中序序列，获取辅助的各个节点的深度数组，扫描目标两个节点中间的各个深度值，不满足祖先条件则深度递减，依次迭代
+- 高效思路：递归后序dfs遍历，返回二者p/q节点或空，分别查询左右子树的结果left、right，当二者均有值时，表明p/q位于root两侧，即root为祖先
 
 **参考代码：**
 
@@ -5993,12 +6382,60 @@ class Solution:
 // cpp
 class Solution {
 public:
-
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        if (root == nullptr || root == p || root == q) {
+            return root;
+        }
+        TreeNode* left = lowestCommonAncestor(root->left, p, q);
+        TreeNode* right = lowestCommonAncestor(root->right, p, q);
+        if (left && right) {
+            return root;
+        } else {
+            return left ? left : right;
+        }
+    }
 };
 ```
 
 ```python
 # python
-class Solution:
+class Solution(object):
+    def __init__(self):
+        self.nodeTree = []
+        self.nodeNode = []
+        self.nodeDepth = []
+        self.depth = 0
 
+    def lowestCommonAncestor(self, root, p, q):
+        """
+        :type root: TreeNode
+        :type p: TreeNode
+        :type q: TreeNode
+        :rtype: TreeNode
+        """
+        def mid(root):
+            """
+            中序遍历
+            """
+            if root == None:
+                return
+            self.depth += 1
+            mid(root.left)
+            self.nodeTree.append(root)
+            self.nodeNode.append(root.val)
+            self.nodeDepth.append(self.depth)
+            mid(root.right)
+            self.depth -= 1
+        
+        mid(root)
+        ip = self.nodeTree.index(p)
+        iq = self.nodeTree.index(q)
+        l, h = min(ip, iq), max(ip, iq)
+        currDepth = min(self.nodeDepth[l], self.nodeDepth[h])
+        
+        while self.nodeDepth[l:h+1].count(currDepth) > 1  or self.nodeDepth[l:h+1].count(currDepth - 1):
+            currDepth -= 1
+        
+        return self.nodeTree[l + self.nodeDepth[l:h+1].index(currDepth)]
 ```
+
