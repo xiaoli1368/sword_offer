@@ -55,6 +55,7 @@
 | 二叉树         | 其它             | 将树变换成树的镜像                                           |             |
 | 二叉树         | 其它             | 返回树的最长路径（树深）                                     |             |
 | 二叉树         | 其它             | [863. 二叉树中所有距离为 K 的结点](https://leetcode-cn.com/problems/all-nodes-distance-k-in-binary-tree/) |             |
+| 二叉树         | 其它             | [117. 填充每个节点的下一个右侧节点指针 II](https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node-ii/) |             |
 |                |                  |                                                              |             |
 | **第二部分**   |                  |                                                              |             |
 | 链表           | 翻转             | 递归，迭代，头插法                                           |             |
@@ -76,10 +77,12 @@
 | 链表           | 其它             | 回文链表                                                     |             |
 |                |                  |                                                              |             |
 | **第三部分**   |                  |                                                              |             |
-| 栈与队列       | 其它             | 两个栈实现一个队列                                           |             |
-| 栈与队列       | 其它             | 两个队列实现一个栈                                           |             |
-| 栈与队列       | 其它             | 使用栈实现O(1)时间内找到最小值                               |             |
-| 栈与队列       | 其它             | 判断出栈顺序正不正确，输入入栈顺序和出栈顺序                 |             |
+| 栈与队列       | 其它             | [剑指 Offer 09. 用两个栈实现队列](https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/) |             |
+| 栈与队列       | 其它             | [232. 用栈实现队列](https://leetcode-cn.com/problems/implement-queue-using-stacks/) |             |
+| 栈与队列       | 其它             | [225. 用队列实现栈](https://leetcode-cn.com/problems/implement-stack-using-queues/) |             |
+| 栈与队列       | 其它             | [225. 用队列实现栈](https://leetcode-cn.com/problems/implement-stack-using-queues/) |             |
+| 栈与队列       | 其它             | [剑指 Offer 30. 包含min函数的栈](https://leetcode-cn.com/problems/bao-han-minhan-shu-de-zhan-lcof/) |             |
+| 栈与队列       | 其它             | [剑指 Offer 31. 栈的压入、弹出序列](https://leetcode-cn.com/problems/zhan-de-ya-ru-dan-chu-xu-lie-lcof/) |             |
 | 栈与队列       | 单调栈           | [Leetcode 42：接雨水（超详细的解法！！！）](https://blog.csdn.net/qq_17550379/article/details/84945427) |             |
 | 栈与队列       | 单调栈           | [Leetcode 496：下一个更大元素 I（超详细的解法！！！）](https://blog.csdn.net/qq_17550379/article/details/86501664) |             |
 | 栈与队列       | 单调栈           | [Leetcode 503：下一个更大元素 II（超详细的解法！！！）](https://blog.csdn.net/qq_17550379/article/details/86504595) |             |
@@ -103,6 +106,7 @@
 | 位运算         | 其它             | [面试题 05.06. 整数转换](https://leetcode-cn.com/problems/convert-integer-lcci/) |             |
 | 位运算         | 其它             | [面试题 05.07. 配对交换](https://leetcode-cn.com/problems/exchange-lcci/) |             |
 | 位运算         | 其它             | [面试题 05.08. 绘制直线](https://leetcode-cn.com/problems/draw-line-lcci/) |             |
+| 位运算         | 其它             | [面试题 08.05. 递归乘法](https://leetcode-cn.com/problems/recursive-mulitply-lcci/) |             |
 |                |                  |                                                              |             |
 | **第六部分**   |                  |                                                              |             |
 | 数组           | 一维数组         | 求数组中最小的K个数，并返回这K个数                           |             |
@@ -134,7 +138,9 @@
 |                |                  |                                                              |             |
 | **第九部分**   |                  |                                                              |             |
 | 排序           | 其它             | 合并两个有序数组/链表                                        |             |
+|                |                  | [88. 合并两个有序数组](https://leetcode-cn.com/problems/merge-sorted-array/) |             |
 | 排序           | 其它             | 合并k个有序数组/链表                                         |             |
+|                |                  | [21. 合并两个有序链表](https://leetcode-cn.com/problems/merge-two-sorted-lists/) |             |
 | 排序           | 其它             | 统计逆序对                                                   |             |
 | 排序           | 其它             | topk                                                         |             |
 |                |                  |                                                              |             |
@@ -166,6 +172,8 @@
 | 回溯法/DFS     | 组合             | [216. 组合总和 III](https://leetcode-cn.com/problems/combination-sum-iii/) |             |
 | 回溯法/DFS     | 组合             | [377. 组合总和 Ⅳ](https://leetcode-cn.com/problems/combination-sum-iv/) |             |
 | 回溯法/DFS     | 组合             | [1286. 字母组合迭代器](https://leetcode-cn.com/problems/iterator-for-combination/) |             |
+|                |                  | [面试题 08.09. 括号](https://leetcode-cn.com/problems/bracket-lcci/) |             |
+|                |                  | [面试题 08.10. 颜色填充](https://leetcode-cn.com/problems/color-fill-lcci/) |             |
 |                |                  |                                                              |             |
 | **第十一部分** |                  |                                                              |             |
 | BFS            | 其它             | 二叉树的最小高度                                             |             |
@@ -211,5 +219,6 @@
 | 专题           | 括号问题         | 括号的合法性判断（栈）                                       |             |
 | 专题           | 括号问题         | [1021. 删除最外层的括号](https://leetcode-cn.com/problems/remove-outermost-parentheses/) |             |
 | 专题           | 括号问题         | [301. 删除无效的括号](https://leetcode-cn.com/problems/remove-invalid-parentheses/) |             |
+| 专题           | 括号问题         | [面试题 08.09. 括号](https://leetcode-cn.com/problems/bracket-lcci/) |             |
 | 专题           | 分糖果           |                                                              |             |
 
