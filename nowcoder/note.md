@@ -133,8 +133,10 @@
 | 二分查找       | 其它             | [69. x 的平方根](https://leetcode-cn.com/problems/sqrtx/)    |             |
 | 二分查找       | 其它             | [154. 寻找旋转排序数组中的最小值 II](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii/) |             |
 | 二分查找       | 其它             | [240. 搜索二维矩阵 II](https://leetcode-cn.com/problems/search-a-2d-matrix-ii/) |             |
+|                |                  | [面试题 10.09. 排序矩阵查找](https://leetcode-cn.com/problems/sorted-matrix-search-lcci/) |             |
 | 二分查找       | 其它             | [378. 有序矩阵中第K小的元素](https://leetcode-cn.com/problems/kth-smallest-element-in-a-sorted-matrix/) |             |
 | 二分查找       | 其它             | [475. 供暖器](https://leetcode-cn.com/problems/heaters/)     |             |
+| 二分查找       | 其它             | [面试题 10.05. 稀疏数组搜索](https://leetcode-cn.com/problems/sparse-array-search-lcci/) |             |
 |                |                  |                                                              |             |
 | **第九部分**   |                  |                                                              |             |
 | 排序           | 其它             | 合并两个有序数组/链表                                        |             |
