@@ -62,7 +62,7 @@
 | 链表           | 翻转             | 逆置列表给定的位置，1 ≤ m ≤ n ≤ 链表长度                     |            |
 | 链表           | 翻转             | [25. K 个一组翻转链表](https://leetcode-cn.com/problems/reverse-nodes-in-k-group/) |            |
 | 链表           | 翻转             | 输入一个链表，按链表值从尾到头的顺序返回一个vector           |            |
-| 链表           | 合并             | 合并两个有序链表                                             |            |
+| 链表           | 合并             | [21. 合并两个有序链表](https://leetcode-cn.com/problems/merge-two-sorted-lists/) | cpp,python |
 | 链表           | 合并             | [23. 合并K个升序链表](https://leetcode-cn.com/problems/merge-k-sorted-lists/) |            |
 | 链表           | 双指针           | 求两个链表的交点                                             |            |
 | 链表           | 双指针           | 链表是否有环                                                 |            |
@@ -73,7 +73,7 @@
 | 链表           | 其它             | [86. 分隔链表](https://leetcode-cn.com/problems/partition-list/) |            |
 | 链表           | 其它             | 链表的深度拷贝                                               |            |
 | 链表           | 其它             | 删除重复的节点（保留一个，不保留）                           |            |
-| 链表           | 其它             | [2. 两数相加](https://leetcode-cn.com/problems/add-two-numbers/)，正序 | c++,python |
+| 链表           | 其它             | [2. 两数相加](https://leetcode-cn.com/problems/add-two-numbers/)，正序 | cpp,python |
 | 链表           | 其它             | [445. 两数相加 II](https://leetcode-cn.com/problems/add-two-numbers-ii/)，倒序 | cpp,python |
 | 链表           | 其它             | 回文链表                                                     |            |
 |                |                  |                                                              |            |
@@ -140,11 +140,12 @@
 | 二分查找       | 其它             | [面试题 10.05. 稀疏数组搜索](https://leetcode-cn.com/problems/sparse-array-search-lcci/) |            |
 |                |                  |                                                              |            |
 | **第九部分**   |                  |                                                              |            |
-| 排序           | 其它             | 合并两个有序数组/链表                                        |            |
-|                |                  | [88. 合并两个有序数组](https://leetcode-cn.com/problems/merge-sorted-array/) |            |
-| 排序           | 其它             | 合并k个有序数组/链表                                         |            |
-|                |                  | [21. 合并两个有序链表](https://leetcode-cn.com/problems/merge-two-sorted-lists/) |            |
-| 排序           | 其它             | 统计逆序对                                                   |            |
+| 排序           | 归并             | [88. 合并两个有序数组](https://leetcode-cn.com/problems/merge-sorted-array/) | cpp,python |
+| 排序           | 归并             | [21. 合并两个有序链表](https://leetcode-cn.com/problems/merge-two-sorted-lists/) | cpp,python |
+| 排序           | 归并             | [23. 合并K个升序链表](https://leetcode-cn.com/problems/merge-k-sorted-lists/) | cpp,python |
+| 排序           | 归并             | [148. 排序链表](https://leetcode-cn.com/problems/sort-list/) | cpp,python |
+| 排序           | 归并             | [剑指 Offer 51. 数组中的逆序对](https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/) | cpp,python |
+| 排序           | 插入排序         | [147. 对链表进行插入排序](https://leetcode-cn.com/problems/insertion-sort-list/) |            |
 | 排序           | 其它             | topk                                                         |            |
 |                |                  |                                                              |            |
 | **第十部分**   |                  |                                                              |            |
