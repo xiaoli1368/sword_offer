@@ -76,6 +76,29 @@ public:
         }
     }
 
+    // [NOTE](lzc/2020/10/07):改进版归并合并函数
+	void merge(std::vector<int>& nums, int l, int m, int h) {
+		int* tmp = new int[h - l + 1];
+		for (int i = l; i <= h; i++) {
+			tmp[i] = nums[i - l];
+		}
+		int p = l;
+		int q = m + 1;
+		for (int i = l; i <= h; i++) {
+			if (p <= m && q >= h && tmp[p - l] > tmp[q - l]) {
+				cnt += m - q + 1;
+			}
+			if (p <= m && (q > h || tmp[p - l] <= tmp[q - l])) {
+				nums[i] = tmp[p - l];
+				p += 1;
+			} else {
+				nums[i] = tmp[q - l];
+				q += 1;
+			}
+		}
+		return;
+	}
+
     // 测试函数
     void test(std::vector<int>& nums) {
         int result = 0;

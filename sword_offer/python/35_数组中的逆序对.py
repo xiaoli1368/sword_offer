@@ -60,6 +60,23 @@ class Solution():
 
         # 拷贝数组
         nums[l:h+1] = tmp[:]
+    
+    def merge2(self, nums, l, m, h):
+        """
+        [NOTE](lzc/2020/10/07):改进版归并合并函数
+        """
+        tmp = nums[l:h+1]
+        p, q = l, m + 1
+        for i in range(l, h + 1):
+            if p <= m and q <= h and tmp[p - l] > tmp[q - l]:
+                self.cnt += m - q + 1
+            if p <= m and (q > h or tmp[p - l] <= tmp[q - l]):
+                nums[i] = tmp[p - l]
+                p += 1
+            else:
+                nums[i] = tmp[q - l]
+                q += 1
+        return
 
     def test(self, nums):
         """
