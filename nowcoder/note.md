@@ -146,6 +146,8 @@
 | 排序           | 归并             | [148. 排序链表](https://leetcode-cn.com/problems/sort-list/) | cpp,python |
 | 排序           | 归并             | [剑指 Offer 51. 数组中的逆序对](https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/) | cpp,python |
 | 排序           | 插入排序         | [147. 对链表进行插入排序](https://leetcode-cn.com/problems/insertion-sort-list/) |            |
+| 排序           | 其它             | [75. 颜色分类](https://leetcode-cn.com/problems/sort-colors/) |            |
+| 排序           | 其它             | [324. 摆动排序 II](https://leetcode-cn.com/problems/wiggle-sort-ii/) |            |
 | 排序           | 其它             | topk                                                         |            |
 |                |                  |                                                              |            |
 | **第十部分**   |                  |                                                              |            |
