@@ -230,6 +230,14 @@
 | 专题           | 快速幂（快速模） |                                                              |            |
 | 专题           | 其它             | 寻找递增数组中的缺失元素和重复元素                           |            |
 | 专题           | topk             | [4. 寻找两个正序数组的中位数](https://leetcode-cn.com/problems/median-of-two-sorted-arrays/) | c++,python |
+|                |                  | [剑指 Offer 41. 数据流中的中位数](https://leetcode-cn.com/problems/shu-ju-liu-zhong-de-zhong-wei-shu-lcof/) |            |
+|                |                  | 无序数组，同时找min和max（nowcoder/get_min_max）             | c++,python |
+|                |                  | 无序数组，同时找max和次大值（nowcoder/get_max_max2）         | c++,python |
+|                |                  | 无序数组，找第k大的值（nowcoder/get_topk）                   | c++,python |
+|                |                  | 无序数组，找前k大的值                                        |            |
+|                |                  | [347. 前 K 个高频元素](https://leetcode-cn.com/problems/top-k-frequent-elements/) |            |
+|                |                  | [692. 前K个高频单词](https://leetcode-cn.com/problems/top-k-frequent-words/) |            |
+|                |                  | [347. 前 K 个高频元素](https://leetcode-cn.com/problems/top-k-frequent-elements/) |            |
 | 专题           | 铺瓷砖           | [1240. 铺瓷砖](https://leetcode-cn.com/problems/tiling-a-rectangle-with-the-fewest-squares/) |            |
 | 专题           | 跳跃游戏         | [1345. 跳跃游戏 IV](https://leetcode-cn.com/problems/jump-game-iv/) |            |
 | 专题           | 括号问题         | 括号的生成（回溯）                                           |            |
