@@ -65,10 +65,10 @@
 | 链表           | 合并             | [21. 合并两个有序链表](https://leetcode-cn.com/problems/merge-two-sorted-lists/) | cpp,python |
 | 链表           | 合并             | [23. 合并K个升序链表](https://leetcode-cn.com/problems/merge-k-sorted-lists/) |            |
 | 链表           | 双指针           | 求两个链表的交点                                             |            |
-| 链表           | 双指针           | 链表是否有环                                                 |            |
-| 链表           | 双指针           | 链表有环的话，返回环的起始点                                 |            |
+| 链表           | 双指针           | [141. 环形链表](https://leetcode-cn.com/problems/linked-list-cycle/) | cpp,python |
+| 链表           | 双指针           | [142. 环形链表 II](https://leetcode-cn.com/problems/linked-list-cycle-ii/) | cpp,python |
 | 链表           | 双指针           | 找链表的倒数第K个结点                                        |            |
-| 链表           | 双指针           | 链表的中间节点                                               |            |
+| 链表           | 双指针           | [876. 链表的中间结点](https://leetcode-cn.com/problems/middle-of-the-linked-list/) | cpp,python |
 | 链表           | 其它             | [面试题 02.04. 分割链表](https://leetcode-cn.com/problems/partition-list-lcci/) |            |
 | 链表           | 其它             | [86. 分隔链表](https://leetcode-cn.com/problems/partition-list/) |            |
 | 链表           | 其它             | 链表的深度拷贝                                               |            |
@@ -138,6 +138,7 @@
 | 二分查找       | 其它             | [378. 有序矩阵中第K小的元素](https://leetcode-cn.com/problems/kth-smallest-element-in-a-sorted-matrix/) |            |
 | 二分查找       | 其它             | [475. 供暖器](https://leetcode-cn.com/problems/heaters/)     |            |
 | 二分查找       | 其它             | [面试题 10.05. 稀疏数组搜索](https://leetcode-cn.com/problems/sparse-array-search-lcci/) |            |
+| 二分查找       | 其它             | [4. 寻找两个正序数组的中位数](https://leetcode-cn.com/problems/median-of-two-sorted-arrays/) | c++,python |
 |                |                  |                                                              |            |
 | **第九部分**   |                  |                                                              |            |
 | 排序           | 归并             | [88. 合并两个有序数组](https://leetcode-cn.com/problems/merge-sorted-array/) | cpp,python |
@@ -198,7 +199,11 @@
 | 滑窗法         | 其它             | 数组中两个数相加等于sum,并返回两数乘积最小的两个数           |            |
 |                |                  |                                                              |            |
 | **第十三部分** |                  |                                                              |            |
-| 双指针         | 快慢指针         | 链表是否有环，环的起始位置，中点），中点与链表的归并排序有关 |            |
+| 双指针         | 快慢指针         | [876. 链表的中间结点](https://leetcode-cn.com/problems/middle-of-the-linked-list/) | c++,python |
+| 双指针         | 快慢指针         | [面试题 02.08. 环路检测](https://leetcode-cn.com/problems/linked-list-cycle-lcci/) |            |
+| 双指针         | 快慢指针         | [141. 环形链表](https://leetcode-cn.com/problems/linked-list-cycle/) | c++,python |
+| 双指针         | 快慢指针         | [142. 环形链表 II](https://leetcode-cn.com/problems/linked-list-cycle-ii/) | c++,python |
+| 双指针         | 快慢指针         | [202. 快乐数](https://leetcode-cn.com/problems/happy-number/) | c++,python |
 | 双指针         | 先后指针         | 倒数第k个节点                                                |            |
 | 双指针         | 左右指针         | 二分查找，两数之和，反转数组，滑动窗口                       |            |
 | 双指针         | 其它             | 例题：接雨水，最长回文子串（中心拓展法）                     |            |
@@ -224,7 +229,7 @@
 | 专题           | 素数筛           |                                                              |            |
 | 专题           | 快速幂（快速模） |                                                              |            |
 | 专题           | 其它             | 寻找递增数组中的缺失元素和重复元素                           |            |
-| 专题           | topk             |                                                              |            |
+| 专题           | topk             | [4. 寻找两个正序数组的中位数](https://leetcode-cn.com/problems/median-of-two-sorted-arrays/) | c++,python |
 | 专题           | 铺瓷砖           | [1240. 铺瓷砖](https://leetcode-cn.com/problems/tiling-a-rectangle-with-the-fewest-squares/) |            |
 | 专题           | 跳跃游戏         | [1345. 跳跃游戏 IV](https://leetcode-cn.com/problems/jump-game-iv/) |            |
 | 专题           | 括号问题         | 括号的生成（回溯）                                           |            |
