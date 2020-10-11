@@ -234,7 +234,7 @@
 |                |                  | 无序数组，同时找min和max（nowcoder/get_min_max）             | c++,python |
 |                |                  | 无序数组，同时找max和次大值（nowcoder/get_max_max2）         | c++,python |
 |                |                  | 无序数组，找第k大的值（nowcoder/get_topk）                   | c++,python |
-|                |                  | 无序数组，找前k大的值                                        |            |
+|                |                  | 无序数组，找前k大的值（nowcoder/get_all_topk）               | c++,python |
 |                |                  | [347. 前 K 个高频元素](https://leetcode-cn.com/problems/top-k-frequent-elements/) |            |
 |                |                  | [692. 前K个高频单词](https://leetcode-cn.com/problems/top-k-frequent-words/) |            |
 |                |                  | [347. 前 K 个高频元素](https://leetcode-cn.com/problems/top-k-frequent-elements/) |            |
