@@ -26,7 +26,7 @@ class Solution(object):
         """
         tmp = []
         vec = [-x for x in num] # 拷贝同时取相反数
-        heapq.heapify(vec)      # 构建小顶堆
+        heapq.heapify(vec)      # 构建大顶堆
         for _ in range(k):
             tmp.append(-heapq.heappop(vec))
         return tmp

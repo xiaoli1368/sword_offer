@@ -1,3 +1,10 @@
 {
-    "python.pythonPath": "D:\\Program\\Anaconda\\python.exe"
+    "python.pythonPath": "D:\\Program\\Anaconda\\python.exe",
+    "files.associations": {
+        "array": "cpp",
+        "fstream": "cpp",
+        "optional": "cpp",
+        "sstream": "cpp",
+        "tuple": "cpp"
+    }
 }
