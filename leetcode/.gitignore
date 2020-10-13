@@ -1,4 +1,5 @@
 .vscode/
 cpp/a.out
+cpp/a.exe
 cpp/just_for_test.cpp
 python/__pycache__/
