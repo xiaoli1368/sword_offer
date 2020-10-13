@@ -62,6 +62,7 @@
 | 链表           | 翻转             | 逆置列表给定的位置，1 ≤ m ≤ n ≤ 链表长度                     |            |
 | 链表           | 翻转             | [25. K 个一组翻转链表](https://leetcode-cn.com/problems/reverse-nodes-in-k-group/) |            |
 | 链表           | 翻转             | 输入一个链表，按链表值从尾到头的顺序返回一个vector           |            |
+| 链表           | 交换             | [24. 两两交换链表中的节点](https://leetcode-cn.com/problems/swap-nodes-in-pairs/) | cpp,python |
 | 链表           | 合并             | [21. 合并两个有序链表](https://leetcode-cn.com/problems/merge-two-sorted-lists/) | cpp,python |
 | 链表           | 合并             | [23. 合并K个升序链表](https://leetcode-cn.com/problems/merge-k-sorted-lists/) |            |
 | 链表           | 双指针           | 求两个链表的交点                                             |            |
@@ -84,7 +85,7 @@
 | 栈与队列       | 其它             | [225. 用队列实现栈](https://leetcode-cn.com/problems/implement-stack-using-queues/) |            |
 | 栈与队列       | 其它             | [剑指 Offer 30. 包含min函数的栈](https://leetcode-cn.com/problems/bao-han-minhan-shu-de-zhan-lcof/) |            |
 | 栈与队列       | 其它             | [剑指 Offer 31. 栈的压入、弹出序列](https://leetcode-cn.com/problems/zhan-de-ya-ru-dan-chu-xu-lie-lcof/) |            |
-| 栈与队列       | 单调栈           | [Leetcode 42：接雨水（超详细的解法！！！）](https://blog.csdn.net/qq_17550379/article/details/84945427) |            |
+| 栈与队列       | 单调栈           | [42. 接雨水](https://leetcode-cn.com/problems/trapping-rain-water/) | cpp,python |
 | 栈与队列       | 单调栈           | [Leetcode 496：下一个更大元素 I（超详细的解法！！！）](https://blog.csdn.net/qq_17550379/article/details/86501664) |            |
 | 栈与队列       | 单调栈           | [Leetcode 503：下一个更大元素 II（超详细的解法！！！）](https://blog.csdn.net/qq_17550379/article/details/86504595) |            |
 | 栈与队列       | 单调栈           | [Leetcode 739：每日温度（超详细的解法！！！）](https://blog.csdn.net/qq_17550379/article/details/86494645) |            |
@@ -206,6 +207,7 @@
 | 双指针         | 快慢指针         | [202. 快乐数](https://leetcode-cn.com/problems/happy-number/) | c++,python |
 | 双指针         | 先后指针         | 倒数第k个节点                                                |            |
 | 双指针         | 左右指针         | 二分查找，两数之和，反转数组，滑动窗口                       |            |
+| 双指针         | 左右指针         | [42. 接雨水](https://leetcode-cn.com/problems/trapping-rain-water/) | c++,python |
 | 双指针         | 其它             | 例题：接雨水，最长回文子串（中心拓展法）                     |            |
 |                |                  |                                                              |            |
 | **第十四部分** |                  |                                                              |            |
