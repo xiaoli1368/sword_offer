@@ -5,6 +5,7 @@ My own notes of solving LeetCode problems.（个人LeetCode刷题记录，按照
 | ------------------------------------------------------------ | ---- | -------- | ------------- | ---- | ------------------------------------------------------------ |
 | [2. 两数相加](https://leetcode-cn.com/problems/add-two-numbers/) | 中等 | 链表     | 递归/迭代     | c++  | Python                                                       |
 | [4. 寻找两个正序数组的中位数](https://leetcode-cn.com/problems/median-of-two-sorted-arrays/) | 困难 | 数组     | 归并/二分     | c++  | Python                                                       |
+| [5. 最长回文子串](https://leetcode-cn.com/problems/longest-palindromic-substring/) | 中等 | 字符串   | 迭代/动态规划 | c++  | Python                                                       |
 | [21. 合并两个有序链表](https://leetcode-cn.com/problems/merge-two-sorted-lists/) | 简单 | 链表     | 归并          | c++  | Python                                                       |
 | [23. 合并K个升序链表](https://leetcode-cn.com/problems/merge-k-sorted-lists/) | 困难 | 链表     | 归并          | c++  | Python                                                       |
 | [24. 两两交换链表中的节点](https://leetcode-cn.com/problems/swap-nodes-in-pairs/) | 中等 | 链表     | 递归/迭代     | c++  | Python                                                       |

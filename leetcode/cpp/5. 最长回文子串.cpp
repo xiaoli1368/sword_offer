@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string>
+#include <vector>
 
 class Solution {
 public:
@@ -63,13 +64,40 @@ public:
 		}
 		return s.substr(lastl, maxLen);
 	}
+
+	// 动态规划
+	std::string longestPalidrome3(std::string s) {
+		if (s.empty()) {
+			return std::string();
+		}
+
+		int n = s.size();
+		int maxLen = 0, l = 0, r = 0;
+		std::vector<std::vector<bool>> dp(n, std::vector<bool>(n, false));
+
+		for (int i = n - 1; i >= 0; i--) {
+			for (int j = 0; j < n; j++) {
+				if (i <= j && s[i] == s[j]) {
+					dp[i][j] = i + 1 <= j - 1 ? dp[i + 1][j - 1] : true;
+				}
+				if (dp[i][j] && maxLen < j - i + 1) {
+					maxLen = j - i + 1;
+					l = i;
+					r = j;
+				}
+			}
+		}
+
+		return s.substr(l, maxLen);
+	}
 };
 
 int main(int argc, char* argv[])
 {
 	Solution s;
-	std::string ss = "babad";
+	std::string ss = "babadabsadfl";
 	printf("%s\n", s.longestPalidrome(ss).c_str());
 	printf("%s\n", s.longestPalidrome2(ss).c_str());
+	printf("%s\n", s.longestPalidrome3(ss).c_str());
 	return 0;
 }

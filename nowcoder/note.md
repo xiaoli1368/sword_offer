@@ -127,8 +127,10 @@
 | 字符串         | 其它             | 正则化匹配 匹配* 。                                          |            |
 | 字符串         | 其它             | KMP匹配                                                      |            |
 | 字符串         | 其它             | 阿里面试：敏感词匹配                                         |            |
-|                |                  |                                                              |            |
+| 字符串         | 回文             | [5. 最长回文子串](https://leetcode-cn.com/problems/longest-palindromic-substring/) | cpp,python |
+| 字符串         | 回文             | [647. 回文子串](https://leetcode-cn.com/problems/palindromic-substrings/) |            |
 | **第八部分**   |                  |                                                              |            |
+|                |                  |                                                              |            |
 | 二分查找       | 其它             | [面试题 08.03. 魔术索引](https://leetcode-cn.com/problems/magic-index-lcci/) |            |
 | 二分查找       | 其它             | 寻找单个元素，寻找左边界，寻找右边界                         |            |
 | 二分查找       | 其它             | [33. 搜索旋转排序数组](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/) |            |
@@ -232,14 +234,14 @@
 | 专题           | 快速幂（快速模） |                                                              |            |
 | 专题           | 其它             | 寻找递增数组中的缺失元素和重复元素                           |            |
 | 专题           | topk             | [4. 寻找两个正序数组的中位数](https://leetcode-cn.com/problems/median-of-two-sorted-arrays/) | c++,python |
-|                |                  | [剑指 Offer 41. 数据流中的中位数](https://leetcode-cn.com/problems/shu-ju-liu-zhong-de-zhong-wei-shu-lcof/) |            |
-|                |                  | 无序数组，同时找min和max（nowcoder/get_min_max）             | c++,python |
-|                |                  | 无序数组，同时找max和次大值（nowcoder/get_max_max2）         | c++,python |
-|                |                  | 无序数组，找第k大的值（nowcoder/get_topk）                   | c++,python |
-|                |                  | 无序数组，找前k大的值（nowcoder/get_all_topk）               | c++,python |
-|                |                  | [347. 前 K 个高频元素](https://leetcode-cn.com/problems/top-k-frequent-elements/) |            |
-|                |                  | [692. 前K个高频单词](https://leetcode-cn.com/problems/top-k-frequent-words/) |            |
-|                |                  | [347. 前 K 个高频元素](https://leetcode-cn.com/problems/top-k-frequent-elements/) |            |
+| 专题           | topk             | [剑指 Offer 41. 数据流中的中位数](https://leetcode-cn.com/problems/shu-ju-liu-zhong-de-zhong-wei-shu-lcof/) |            |
+| 专题           | topk             | 无序数组，同时找min和max（nowcoder/get_min_max）             | c++,python |
+| 专题           | topk             | 无序数组，同时找max和次大值（nowcoder/get_max_max2）         | c++,python |
+| 专题           | topk             | 无序数组，找第k大的值（nowcoder/get_topk）                   | c++,python |
+| 专题           | topk             | 无序数组，找前k大的值（nowcoder/get_all_topk）               | c++,python |
+| 专题           | topk             | [347. 前 K 个高频元素](https://leetcode-cn.com/problems/top-k-frequent-elements/) |            |
+| 专题           | topk             | [692. 前K个高频单词](https://leetcode-cn.com/problems/top-k-frequent-words/) |            |
+| 专题           | topk             | [347. 前 K 个高频元素](https://leetcode-cn.com/problems/top-k-frequent-elements/) |            |
 | 专题           | 铺瓷砖           | [1240. 铺瓷砖](https://leetcode-cn.com/problems/tiling-a-rectangle-with-the-fewest-squares/) |            |
 | 专题           | 跳跃游戏         | [1345. 跳跃游戏 IV](https://leetcode-cn.com/problems/jump-game-iv/) |            |
 | 专题           | 括号问题         | 括号的生成（回溯）                                           |            |
