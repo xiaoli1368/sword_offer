@@ -77,6 +77,7 @@
 | 链表           | 其它             | [2. 两数相加](https://leetcode-cn.com/problems/add-two-numbers/)，正序 | cpp,python |
 | 链表           | 其它             | [445. 两数相加 II](https://leetcode-cn.com/problems/add-two-numbers-ii/)，倒序 | cpp,python |
 | 链表           | 其它             | 回文链表                                                     |            |
+| 链表           | 其它             | [116. 填充每个节点的下一个右侧节点指针](https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node/) | cpp,python |
 |                |                  |                                                              |            |
 | **第三部分**   |                  |                                                              |            |
 | 栈与队列       | 其它             | [剑指 Offer 09. 用两个栈实现队列](https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/) |            |
