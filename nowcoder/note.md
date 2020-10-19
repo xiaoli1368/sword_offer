@@ -74,6 +74,7 @@
 | 链表           | 其它             | [86. 分隔链表](https://leetcode-cn.com/problems/partition-list/) |            |
 | 链表           | 其它             | 链表的深度拷贝                                               |            |
 | 链表           | 其它             | 删除重复的节点（保留一个，不保留）                           |            |
+| 链表           | 其它             | [19. 删除链表的倒数第N个节点](https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/) | cpp,python |
 | 链表           | 其它             | [2. 两数相加](https://leetcode-cn.com/problems/add-two-numbers/)，正序 | cpp,python |
 | 链表           | 其它             | [445. 两数相加 II](https://leetcode-cn.com/problems/add-two-numbers-ii/)，倒序 | cpp,python |
 | 链表           | 其它             | 回文链表                                                     |            |
@@ -157,8 +158,8 @@
 | 排序           | 其它             | topk                                                         |            |
 |                |                  |                                                              |            |
 | **第十部分**   |                  |                                                              |            |
-| 回溯法/DFS     | N皇后            | [51. N 皇后](https://leetcode-cn.com/problems/n-queens/)     |            |
-| 回溯法/DFS     | N皇后            | [52. N皇后 II](https://leetcode-cn.com/problems/n-queens-ii/) |            |
+| 回溯法/DFS     | N皇后            | [51. N 皇后](https://leetcode-cn.com/problems/n-queens/)     | cpp,python |
+| 回溯法/DFS     | N皇后            | [52. N皇后 II](https://leetcode-cn.com/problems/n-queens-ii/) | cpp,python |
 | 回溯法/DFS     | N皇后            | [面试题 08.12. 八皇后](https://leetcode-cn.com/problems/eight-queens-lcci/) |            |
 | 回溯法/DFS     | N皇后            | [1222. 可以攻击国王的皇后](https://leetcode-cn.com/problems/queens-that-can-attack-the-king/) |            |
 | 回溯法/DFS     | 数独             | [36. 有效的数独](https://leetcode-cn.com/problems/valid-sudoku/) |            |
@@ -213,6 +214,7 @@
 | 双指针         | 左右指针         | 二分查找，两数之和，反转数组，滑动窗口                       |            |
 | 双指针         | 左右指针         | [42. 接雨水](https://leetcode-cn.com/problems/trapping-rain-water/) | c++,python |
 | 双指针         | 其它             | 例题：接雨水，最长回文子串（中心拓展法）                     |            |
+|                | 其它             | [844. 比较含退格的字符串](https://leetcode-cn.com/problems/backspace-string-compare/) | c++,python |
 |                |                  |                                                              |            |
 | **第十四部分** |                  |                                                              |            |
 | 贪心           | 其它             | 区间调度                                                     |            |
