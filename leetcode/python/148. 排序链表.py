@@ -31,6 +31,18 @@ class Solution(object):
 		midHead = p.next
 		p.next = None
 		return midHead
+
+	def findMiddle_advanced(self, head):
+		"""
+		加强版
+		"""
+		lastp = p = q = head
+		while q and q.next:
+			lastp = p
+			p = p.next
+			q = q.next.next
+		lastp.next = None
+		return p
     
 	def mergeTwo(self, p, q):
 		"""
@@ -57,3 +69,28 @@ class Solution(object):
 		p = self.sortList(head) # 注意排序后head未必是头节点
 		q = self.sortList(midHead)
 		return self.mergeTwo(p, q)
+
+	def sortList2(self, head):
+		"""
+		插入排序
+		虽然插排的时间复杂度为O(n^2)，但是面试有可能考察
+		因此这里加上，但是显然会超时
+		"""
+		newHead = ListNode(float("-inf"))
+		newHead.next = head
+		lastp, p = newHead, head
+		while p:
+			nextp = p.next
+			q = newHead # 表示待插入位置的前一个节点
+			while q and q.next and q.next.val < p.val:
+				q = q.next
+			if q == lastp:
+				lastp = p
+				p = nextp
+				continue
+			tmp = q.next
+			q.next = p
+			p.next = tmp
+			lastp.next = nextp
+			p = nextp
+		return newHead.next

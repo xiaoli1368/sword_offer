@@ -17,6 +17,7 @@ My own notes of solving LeetCode problems.（个人LeetCode刷题记录，按照
 | [116. 填充每个节点的下一个右侧节点指针](https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node/) | 中等 | 链表     | 先序遍历      | c++  | Python                                                       |
 | [141. 环形链表](https://leetcode-cn.com/problems/linked-list-cycle/) | 简单 | 链表     | 双指针        | c++  | Python                                                       |
 | [142. 环形链表 II](https://leetcode-cn.com/problems/linked-list-cycle-ii/) | 中等 | 链表     | 双指针        | c++  | Python                                                       |
+| [143. 重排链表](https://leetcode-cn.com/problems/reorder-list/) | 中等 | 链表     | 迭代          | c++  | Python                                                       |
 | [148. 排序链表](https://leetcode-cn.com/problems/sort-list/) | 中等 | 链表     | 归并          | c++  | Python                                                       |
 | [202. 快乐数](https://leetcode-cn.com/problems/happy-number/) | 简单 | 其它     | 双指针        | c++  | Python                                                       |
 | [401. 二进制手表](https://leetcode-cn.com/problems/binary-watch/) | 简单 | 数组     | 回溯          |      | Python                                                       |

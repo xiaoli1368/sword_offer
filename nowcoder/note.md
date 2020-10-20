@@ -56,15 +56,18 @@
 | 二叉树         | 其它             | 返回树的最长路径（树深）                                     |            |
 | 二叉树         | 其它             | [863. 二叉树中所有距离为 K 的结点](https://leetcode-cn.com/problems/all-nodes-distance-k-in-binary-tree/) |            |
 | 二叉树         | 其它             | [117. 填充每个节点的下一个右侧节点指针 II](https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node-ii/) |            |
+| 链表           | 其它             | [116. 填充每个节点的下一个右侧节点指针](https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node/) | cpp,python |
 |                |                  |                                                              |            |
 | **第二部分**   |                  |                                                              |            |
 | 链表           | 翻转             | 递归，迭代，头插法                                           |            |
 | 链表           | 翻转             | 逆置列表给定的位置，1 ≤ m ≤ n ≤ 链表长度                     |            |
 | 链表           | 翻转             | [25. K 个一组翻转链表](https://leetcode-cn.com/problems/reverse-nodes-in-k-group/) |            |
 | 链表           | 翻转             | 输入一个链表，按链表值从尾到头的顺序返回一个vector           |            |
+| 链表           | 翻转             | [143. 重排链表](https://leetcode-cn.com/problems/reorder-list/) | cpp,python |
 | 链表           | 交换             | [24. 两两交换链表中的节点](https://leetcode-cn.com/problems/swap-nodes-in-pairs/) | cpp,python |
 | 链表           | 合并             | [21. 合并两个有序链表](https://leetcode-cn.com/problems/merge-two-sorted-lists/) | cpp,python |
-| 链表           | 合并             | [23. 合并K个升序链表](https://leetcode-cn.com/problems/merge-k-sorted-lists/) |            |
+| 链表           | 合并             | [23. 合并K个升序链表](https://leetcode-cn.com/problems/merge-k-sorted-lists/) | cpp,python |
+| 链表           | 合并             | [148. 排序链表](https://leetcode-cn.com/problems/sort-list/) | cpp,python |
 | 链表           | 双指针           | 求两个链表的交点                                             |            |
 | 链表           | 双指针           | [141. 环形链表](https://leetcode-cn.com/problems/linked-list-cycle/) | cpp,python |
 | 链表           | 双指针           | [142. 环形链表 II](https://leetcode-cn.com/problems/linked-list-cycle-ii/) | cpp,python |
@@ -78,7 +81,6 @@
 | 链表           | 其它             | [2. 两数相加](https://leetcode-cn.com/problems/add-two-numbers/)，正序 | cpp,python |
 | 链表           | 其它             | [445. 两数相加 II](https://leetcode-cn.com/problems/add-two-numbers-ii/)，倒序 | cpp,python |
 | 链表           | 其它             | 回文链表                                                     |            |
-| 链表           | 其它             | [116. 填充每个节点的下一个右侧节点指针](https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node/) | cpp,python |
 |                |                  |                                                              |            |
 | **第三部分**   |                  |                                                              |            |
 | 栈与队列       | 其它             | [剑指 Offer 09. 用两个栈实现队列](https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/) |            |

@@ -54,4 +54,29 @@ public:
 		ListNode* q = sortList(midHead);
 		return mergeTwo(p, q);
 	}
+
+	// 插入排序
+	ListNode* sortList2(ListNode* head) {
+		ListNode* newHead = new ListNode(0x80000000);
+		newHead->next = head;
+		ListNode *lastp = newHead, *p = head;
+		while (p) {
+			ListNode* nextp = p->next;
+			ListNode* q = newHead; // 表示待插入位置的前一个节点
+			while (q && q->next && q->next->val < p->val) {
+				q = q->next;
+			}
+			if (q == lastp) {
+				lastp = p;
+				p = nextp;
+				continue;
+			}
+			ListNode* tmp = q->next;
+			q->next = p;
+			p->next = tmp;
+			lastp->next = nextp;
+			p = nextp;
+		}
+		return newHead->next;
+	}
 };
