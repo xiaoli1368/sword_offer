@@ -197,6 +197,7 @@
 | BFS            | 其它             | [130. 被围绕的区域](https://leetcode-cn.com/problems/surrounded-regions/) |            |
 | BFS            | 其它             | [200. 岛屿数量](https://leetcode-cn.com/problems/number-of-islands/) |            |
 | BFS            | 其它             | [752. 打开转盘锁](https://leetcode-cn.com/problems/open-the-lock/)（解开密码锁的最小次数） |            |
+| BFS            | 其它             | [994. 腐烂的橘子](https://leetcode-cn.com/problems/rotting-oranges/) |            |
 |                |                  |                                                              |            |
 | **第十二部分** |                  |                                                              |            |
 | 滑窗法         | 其它             | [3. 无重复字符的最长子串](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/) |            |
@@ -229,7 +230,7 @@
 | **第十六部分** |                  |                                                              |            |
 | 专题           | N数之和          | [1. 两数之和](https://leetcode-cn.com/problems/two-sum/)     |            |
 | 专题           | N数之和          | [167. 两数之和 II - 输入有序数组](https://leetcode-cn.com/problems/two-sum-ii-input-array-is-sorted/) |            |
-| 专题           | N数之和          | [653. 两数之和 IV - 输入 BST](https://leetcode-cn.com/problems/two-sum-iv-input-is-a-bst/) |            |
+| 专题           | N数之和          | [653. 两数之和 IV - 输入 BST](https://leetcode-cn.com/problems/two-sum-iv-input-is-a-bst/) | c++,python |
 | 专题           | N数之和          | [15. 三数之和](https://leetcode-cn.com/problems/3sum/)       |            |
 | 专题           | N数之和          | [16. 最接近的三数之和](https://leetcode-cn.com/problems/3sum-closest/) |            |
 | 专题           | N数之和          | [18. 四数之和](https://leetcode-cn.com/problems/4sum/)       |            |
