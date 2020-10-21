@@ -35,7 +35,7 @@
 | 二叉树         | 二叉搜索树       | [235. 二叉搜索树的最近公共祖先](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-search-tree/) |            |
 | 二叉树         | 二叉搜索树       | [236. 二叉树的最近公共祖先](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/) |            |
 | 二叉树         | 二叉搜索树       | [501. 二叉搜索树中的众数](https://leetcode-cn.com/problems/find-mode-in-binary-search-tree/) |            |
-| 二叉树         | 二叉搜索树       | [530. 二叉搜索树的最小绝对差](https://leetcode-cn.com/problems/minimum-absolute-difference-in-bst/) |            |
+| 二叉树         | 二叉搜索树       | [530. 二叉搜索树的最小绝对差](https://leetcode-cn.com/problems/minimum-absolute-difference-in-bst/) | cpp,python |
 | 二叉树         | 二叉搜索树       | [538. 把二叉搜索树转换为累加树](https://leetcode-cn.com/problems/convert-bst-to-greater-tree/) |            |
 | 二叉树         | 二叉搜索树       | [653. 两数之和 IV - 输入 BST](https://leetcode-cn.com/problems/two-sum-iv-input-is-a-bst/) [700. 二叉搜索树中的搜索](https://leetcode-cn.com/problems/search-in-a-binary-search-tree/) |            |
 | 二叉树         | 二叉搜索树       | [701. 二叉搜索树中的插入操作](https://leetcode-cn.com/problems/insert-into-a-binary-search-tree/) |            |
@@ -133,6 +133,7 @@
 | 字符串         | 其它             | 阿里面试：敏感词匹配                                         |            |
 | 字符串         | 回文             | [5. 最长回文子串](https://leetcode-cn.com/problems/longest-palindromic-substring/) | cpp,python |
 | 字符串         | 回文             | [647. 回文子串](https://leetcode-cn.com/problems/palindromic-substrings/) |            |
+|                |                  | [925. 长按键入](https://leetcode-cn.com/problems/long-pressed-name/) |            |
 | **第八部分**   |                  |                                                              |            |
 |                |                  |                                                              |            |
 | 二分查找       | 其它             | [面试题 08.03. 魔术索引](https://leetcode-cn.com/problems/magic-index-lcci/) |            |
@@ -218,7 +219,7 @@
 | 双指针         | 左右指针         | [42. 接雨水](https://leetcode-cn.com/problems/trapping-rain-water/) | c++,python |
 | 双指针         | 其它             | 例题：接雨水，最长回文子串（中心拓展法）                     |            |
 |                | 其它             | [844. 比较含退格的字符串](https://leetcode-cn.com/problems/backspace-string-compare/) | c++,python |
-|                |                  |                                                              |            |
+|                |                  | [925. 长按键入](https://leetcode-cn.com/problems/long-pressed-name/) | c++,python |
 | **第十四部分** |                  |                                                              |            |
 | 贪心           | 其它             | 区间调度                                                     |            |
 | 贪心           | 其它             | 跳跃游戏1/2                                                  |            |
