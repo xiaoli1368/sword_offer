@@ -90,6 +90,7 @@
 | 栈与队列       | 其它             | [剑指 Offer 30. 包含min函数的栈](https://leetcode-cn.com/problems/bao-han-minhan-shu-de-zhan-lcof/) |            |
 | 栈与队列       | 其它             | [剑指 Offer 31. 栈的压入、弹出序列](https://leetcode-cn.com/problems/zhan-de-ya-ru-dan-chu-xu-lie-lcof/) |            |
 | 栈与队列       | 单调栈           | [42. 接雨水](https://leetcode-cn.com/problems/trapping-rain-water/) | cpp,python |
+| 栈与队列       | 其它             | [407. 接雨水 II](https://leetcode-cn.com/problems/trapping-rain-water-ii/)（难，二维，不只是单调栈了） |            |
 | 栈与队列       | 单调栈           | [Leetcode 496：下一个更大元素 I（超详细的解法！！！）](https://blog.csdn.net/qq_17550379/article/details/86501664) |            |
 | 栈与队列       | 单调栈           | [Leetcode 503：下一个更大元素 II（超详细的解法！！！）](https://blog.csdn.net/qq_17550379/article/details/86504595) |            |
 | 栈与队列       | 单调栈           | [Leetcode 739：每日温度（超详细的解法！！！）](https://blog.csdn.net/qq_17550379/article/details/86494645) |            |
@@ -101,6 +102,7 @@
 |                |                  |                                                              |            |
 | **第四部分**   |                  |                                                              |            |
 | 哈希表         | 原地哈希         | [剑指 Offer 03. 数组中重复的数字](https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/) |            |
+| 哈希表         | 原地哈希         | [287. 寻找重复数](https://leetcode-cn.com/problems/find-the-duplicate-number/) |            |
 |                |                  |                                                              |            |
 | **第五部分**   |                  |                                                              |            |
 | 位运算         | 其它             | [剑指 Offer 15. 二进制中1的个数](https://leetcode-cn.com/problems/er-jin-zhi-zhong-1de-ge-shu-lcof/) |            |
@@ -142,8 +144,9 @@
 | 二分查找       | 其它             | [69. x 的平方根](https://leetcode-cn.com/problems/sqrtx/)    |            |
 | 二分查找       | 其它             | [154. 寻找旋转排序数组中的最小值 II](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii/) |            |
 | 二分查找       | 其它             | [240. 搜索二维矩阵 II](https://leetcode-cn.com/problems/search-a-2d-matrix-ii/) |            |
+|                |                  |                                                              |            |
 |                |                  | [面试题 10.09. 排序矩阵查找](https://leetcode-cn.com/problems/sorted-matrix-search-lcci/) |            |
-| 二分查找       | 其它             | [378. 有序矩阵中第K小的元素](https://leetcode-cn.com/problems/kth-smallest-element-in-a-sorted-matrix/) |            |
+| 二分查找       | 其它             | [378. 有序矩阵中第K小的元素](https://leetcode-cn.com/problems/kth-smallest-element-in-a-sorted-matrix/)（难，重点学习） |            |
 | 二分查找       | 其它             | [475. 供暖器](https://leetcode-cn.com/problems/heaters/)     |            |
 | 二分查找       | 其它             | [面试题 10.05. 稀疏数组搜索](https://leetcode-cn.com/problems/sparse-array-search-lcci/) |            |
 | 二分查找       | 其它             | [4. 寻找两个正序数组的中位数](https://leetcode-cn.com/problems/median-of-two-sorted-arrays/) | c++,python |
@@ -159,6 +162,7 @@
 | 排序           | 其它             | [75. 颜色分类](https://leetcode-cn.com/problems/sort-colors/) |            |
 | 排序           | 其它             | [324. 摆动排序 II](https://leetcode-cn.com/problems/wiggle-sort-ii/) |            |
 | 排序           | 其它             | topk                                                         |            |
+|                |                  | [283. 移动零](https://leetcode-cn.com/problems/move-zeroes/) |            |
 |                |                  |                                                              |            |
 | **第十部分**   |                  |                                                              |            |
 | 回溯法/DFS     | N皇后            | [51. N 皇后](https://leetcode-cn.com/problems/n-queens/)     | cpp,python |
@@ -207,6 +211,7 @@
 | 滑窗法         | 其它             | 找所有字母异位词                                             |            |
 | 滑窗法         | 其它             | 求相加等于SUM的连续序列                                      |            |
 | 滑窗法         | 其它             | 数组中两个数相加等于sum,并返回两数乘积最小的两个数           |            |
+| 滑窗法         | 双指针           | [845. 数组中的最长山脉](https://leetcode-cn.com/problems/longest-mountain-in-array/) |            |
 |                |                  |                                                              |            |
 | **第十三部分** |                  |                                                              |            |
 | 双指针         | 快慢指针         | [876. 链表的中间结点](https://leetcode-cn.com/problems/middle-of-the-linked-list/) | c++,python |
@@ -227,7 +232,11 @@
 | **第十五部分** |                  |                                                              |            |
 | 动态规划       | 背包问题         |                                                              |            |
 | 动态规划       | 子序列问题       |                                                              |            |
-| 动态规划       | 其它             |                                                              |            |
+| 动态规划       | 其它             | 85. 最大矩形（建议先做221）                                  |            |
+| 动态规划       | 其它             | 221. 最大正方形                                              |            |
+| 动态规划       | 换零钱           | [322. 零钱兑换](https://leetcode-cn.com/problems/coin-change/) |            |
+| 动态规划       | 换零钱           | [279. 完全平方数](https://leetcode-cn.com/problems/perfect-squares/) |            |
+| 动态规划       | 丑数             | [313. 超级丑数](https://leetcode-cn.com/problems/super-ugly-number/) |            |
 | **第十六部分** |                  |                                                              |            |
 | 专题           | N数之和          | [1. 两数之和](https://leetcode-cn.com/problems/two-sum/)     |            |
 | 专题           | N数之和          | [167. 两数之和 II - 输入有序数组](https://leetcode-cn.com/problems/two-sum-ii-input-array-is-sorted/) |            |
@@ -258,4 +267,9 @@
 | 专题           | 括号问题         | [301. 删除无效的括号](https://leetcode-cn.com/problems/remove-invalid-parentheses/) |            |
 | 专题           | 括号问题         | [面试题 08.09. 括号](https://leetcode-cn.com/problems/bracket-lcci/) |            |
 | 专题           | 分糖果           |                                                              |            |
+| 专题           | 区间最值         | [11. 盛最多水的容器](https://leetcode-cn.com/problems/container-with-most-water/) |            |
+| 专题           | 区间最值         | [42. 接雨水](https://leetcode-cn.com/problems/trapping-rain-water/) |            |
+| 专题           | 区间最值         | 84. 柱状图中最大的矩形                                       |            |
+| 专题           | 区间合并         |                                                              |            |
+| 专题           | 图论             | [207. 课程表](https://leetcode-cn.com/problems/course-schedule/) |            |
 
