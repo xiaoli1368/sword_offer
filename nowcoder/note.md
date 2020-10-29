@@ -162,6 +162,7 @@
 | 排序           | 其它             | [75. 颜色分类](https://leetcode-cn.com/problems/sort-colors/) |            |
 | 排序           | 其它             | [324. 摆动排序 II](https://leetcode-cn.com/problems/wiggle-sort-ii/) |            |
 | 排序           | 其它             | topk                                                         |            |
+| 排序           | 堆排序           | [347. 前 K 个高频元素](https://leetcode-cn.com/problems/top-k-frequent-elements/)（这个也是topk） | c++,python |
 |                |                  | [283. 移动零](https://leetcode-cn.com/problems/move-zeroes/) |            |
 |                |                  |                                                              |            |
 | **第十部分**   |                  |                                                              |            |
@@ -258,6 +259,7 @@
 | 专题           | topk             | 无序数组，找前k大的值（nowcoder/get_all_topk）               | c++,python |
 | 专题           | topk             | [347. 前 K 个高频元素](https://leetcode-cn.com/problems/top-k-frequent-elements/) |            |
 | 专题           | topk             | [692. 前K个高频单词](https://leetcode-cn.com/problems/top-k-frequent-words/) |            |
+| 专题           | topk             | [347. 前 K 个高频元素](https://leetcode-cn.com/problems/top-k-frequent-elements/) |            |
 | 专题           | topk             | [347. 前 K 个高频元素](https://leetcode-cn.com/problems/top-k-frequent-elements/) |            |
 | 专题           | 铺瓷砖           | [1240. 铺瓷砖](https://leetcode-cn.com/problems/tiling-a-rectangle-with-the-fewest-squares/) |            |
 | 专题           | 跳跃游戏         | [1345. 跳跃游戏 IV](https://leetcode-cn.com/problems/jump-game-iv/) |            |
