@@ -20,6 +20,7 @@ My own notes of solving LeetCode problems.（个人LeetCode刷题记录，按照
 | [143. 重排链表](https://leetcode-cn.com/problems/reorder-list/) | 中等 | 链表     | 迭代          | c++  | Python                                                       |
 | [148. 排序链表](https://leetcode-cn.com/problems/sort-list/) | 中等 | 链表     | 归并          | c++  | Python                                                       |
 | [202. 快乐数](https://leetcode-cn.com/problems/happy-number/) | 简单 | 其它     | 双指针        | c++  | Python                                                       |
+| [347. 前 K 个高频元素](https://leetcode-cn.com/problems/top-k-frequent-elements/) | 中等 | 数组     | 堆排序        | c++  | Python                                                       |
 | [401. 二进制手表](https://leetcode-cn.com/problems/binary-watch/) | 简单 | 数组     | 回溯          |      | Python                                                       |
 | [445. 两数相加 II](https://leetcode-cn.com/problems/add-two-numbers-ii/) | 中等 | 链表     | 双栈/迭代     | c++  | Python                                                       |
 | [463. 岛屿的周长](https://leetcode-cn.com/problems/island-perimeter/) | 简单 | 数组     | DFS           | c++  | Python                                                       |
