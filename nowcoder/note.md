@@ -37,7 +37,8 @@
 | 二叉树         | 二叉搜索树       | [501. 二叉搜索树中的众数](https://leetcode-cn.com/problems/find-mode-in-binary-search-tree/) |            |
 | 二叉树         | 二叉搜索树       | [530. 二叉搜索树的最小绝对差](https://leetcode-cn.com/problems/minimum-absolute-difference-in-bst/) | cpp,python |
 | 二叉树         | 二叉搜索树       | [538. 把二叉搜索树转换为累加树](https://leetcode-cn.com/problems/convert-bst-to-greater-tree/) |            |
-| 二叉树         | 二叉搜索树       | [653. 两数之和 IV - 输入 BST](https://leetcode-cn.com/problems/two-sum-iv-input-is-a-bst/) [700. 二叉搜索树中的搜索](https://leetcode-cn.com/problems/search-in-a-binary-search-tree/) |            |
+| 二叉树         | 二叉搜索树       | [653. 两数之和 IV - 输入 BST](https://leetcode-cn.com/problems/two-sum-iv-input-is-a-bst/) |            |
+| 二叉树         | 二叉搜索树       | [700. 二叉搜索树中的搜索](https://leetcode-cn.com/problems/search-in-a-binary-search-tree/) |            |
 | 二叉树         | 二叉搜索树       | [701. 二叉搜索树中的插入操作](https://leetcode-cn.com/problems/insert-into-a-binary-search-tree/) |            |
 | 二叉树         | 二叉搜索树       | [783. 二叉搜索树节点最小距离](https://leetcode-cn.com/problems/minimum-distance-between-bst-nodes/) |            |
 | 二叉树         | 二叉搜索树       | 数组中的序列是否为二叉搜索树的后序遍历                       |            |
@@ -56,7 +57,11 @@
 | 二叉树         | 其它             | 返回树的最长路径（树深）                                     |            |
 | 二叉树         | 其它             | [863. 二叉树中所有距离为 K 的结点](https://leetcode-cn.com/problems/all-nodes-distance-k-in-binary-tree/) |            |
 | 二叉树         | 其它             | [117. 填充每个节点的下一个右侧节点指针 II](https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node-ii/) |            |
-| 链表           | 其它             | [116. 填充每个节点的下一个右侧节点指针](https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node/) | cpp,python |
+| 二叉树         | 其它             | [116. 填充每个节点的下一个右侧节点指针](https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node/) | cpp,python |
+| 二叉树         | 树形dp           | [337. 打家劫舍 III](https://leetcode-cn.com/problems/house-robber-iii/) |            |
+| 二叉树         | 树形dp           | [968. 监控二叉树](https://leetcode-cn.com/problems/binary-tree-cameras/) |            |
+| 二叉树         | 树形dp           | [236. 二叉树的最近公共祖先](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/) |            |
+| 二叉树         | 树形dp           | [1145. 二叉树着色游戏](https://leetcode-cn.com/problems/binary-tree-coloring-game/) |            |
 |                |                  |                                                              |            |
 | **第二部分**   |                  |                                                              |            |
 | 链表           | 翻转             | 递归，迭代，头插法                                           |            |
@@ -136,6 +141,10 @@
 | 字符串         | 回文             | [5. 最长回文子串](https://leetcode-cn.com/problems/longest-palindromic-substring/) | cpp,python |
 | 字符串         | 回文             | [647. 回文子串](https://leetcode-cn.com/problems/palindromic-substrings/) |            |
 |                |                  | [925. 长按键入](https://leetcode-cn.com/problems/long-pressed-name/) |            |
+|                |                  | [140. 单词拆分 II](https://leetcode-cn.com/problems/word-break-ii/) |            |
+|                |                  | [139. 单词拆分](https://leetcode-cn.com/problems/word-break/) |            |
+|                |                  | [472. 连接词](https://leetcode-cn.com/problems/concatenated-words/) |            |
+|                |                  |                                                              |            |
 | **第八部分**   |                  |                                                              |            |
 |                |                  |                                                              |            |
 | 二分查找       | 其它             | [面试题 08.03. 魔术索引](https://leetcode-cn.com/problems/magic-index-lcci/) |            |
@@ -144,8 +153,7 @@
 | 二分查找       | 其它             | [69. x 的平方根](https://leetcode-cn.com/problems/sqrtx/)    |            |
 | 二分查找       | 其它             | [154. 寻找旋转排序数组中的最小值 II](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii/) |            |
 | 二分查找       | 其它             | [240. 搜索二维矩阵 II](https://leetcode-cn.com/problems/search-a-2d-matrix-ii/) |            |
-|                |                  |                                                              |            |
-|                |                  | [面试题 10.09. 排序矩阵查找](https://leetcode-cn.com/problems/sorted-matrix-search-lcci/) |            |
+| 二分查找       | 其它             | [面试题 10.09. 排序矩阵查找](https://leetcode-cn.com/problems/sorted-matrix-search-lcci/) |            |
 | 二分查找       | 其它             | [378. 有序矩阵中第K小的元素](https://leetcode-cn.com/problems/kth-smallest-element-in-a-sorted-matrix/)（难，重点学习） |            |
 | 二分查找       | 其它             | [475. 供暖器](https://leetcode-cn.com/problems/heaters/)     |            |
 | 二分查找       | 其它             | [面试题 10.05. 稀疏数组搜索](https://leetcode-cn.com/problems/sparse-array-search-lcci/) |            |
@@ -230,6 +238,8 @@
 | **第十四部分** |                  |                                                              |            |
 | 贪心           | 其它             | 区间调度                                                     |            |
 | 贪心           | 其它             | 跳跃游戏1/2                                                  |            |
+| 贪心           | 其它             | [12. 整数转罗马数字](https://leetcode-cn.com/problems/integer-to-roman/) | python     |
+| 贪心           | 其它             | [13. 罗马数字转整数](https://leetcode-cn.com/problems/roman-to-integer/) | python     |
 |                |                  |                                                              |            |
 | **第十五部分** |                  |                                                              |            |
 | 动态规划       | 背包问题         |                                                              |            |
@@ -239,6 +249,7 @@
 | 动态规划       | 换零钱           | [322. 零钱兑换](https://leetcode-cn.com/problems/coin-change/) |            |
 | 动态规划       | 换零钱           | [279. 完全平方数](https://leetcode-cn.com/problems/perfect-squares/) |            |
 | 动态规划       | 丑数             | [313. 超级丑数](https://leetcode-cn.com/problems/super-ugly-number/) |            |
+|                |                  |                                                              |            |
 | **第十六部分** |                  |                                                              |            |
 | 专题           | N数之和          | [1. 两数之和](https://leetcode-cn.com/problems/two-sum/)     |            |
 | 专题           | N数之和          | [167. 两数之和 II - 输入有序数组](https://leetcode-cn.com/problems/two-sum-ii-input-array-is-sorted/) |            |
@@ -275,4 +286,9 @@
 | 专题           | 区间最值         | 84. 柱状图中最大的矩形                                       |            |
 | 专题           | 区间合并         |                                                              |            |
 | 专题           | 图论             | [207. 课程表](https://leetcode-cn.com/problems/course-schedule/) |            |
+| 专题           | 山峰数组         | [941. 有效的山脉数组](https://leetcode-cn.com/problems/valid-mountain-array/) |            |
+| 专题           | 山峰数组         | 找最大值，找任意值，找topk                                   |            |
+| 专题           | 山峰数组         | [1095. 山脉数组中查找目标值](https://leetcode-cn.com/problems/find-in-mountain-array/) |            |
+| 专题           | 山峰数组         | [845. 数组中的最长山脉](https://leetcode-cn.com/problems/longest-mountain-in-array/) |            |
+| 专题           | 山峰数组         | [852. 山脉数组的峰顶索引](https://leetcode-cn.com/problems/peak-index-in-a-mountain-array/) |            |
 
