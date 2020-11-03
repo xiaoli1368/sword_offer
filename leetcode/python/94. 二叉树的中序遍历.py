@@ -47,3 +47,18 @@ class Solution(object):
             # 指向右子树
             curr = curr.right
         return ret
+
+    def inorderTraversal3(self, root):
+        """
+        更加高效的迭代法
+        """
+        ret, stack, curr = [], [], root
+        while stack or curr:
+            if curr:
+                stack.append(curr)
+                curr = curr.left # 遍历左子树
+            else:
+                curr = stack.pop() # 遍历根节点
+                ret.append(curr.val)
+                curr = curr.right # 遍历右子树
+        return ret

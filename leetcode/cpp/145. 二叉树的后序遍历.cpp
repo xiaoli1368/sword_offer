@@ -51,6 +51,32 @@ public:
         return ret;
     }
 
-    
-
+	// 更加高效的迭代方法
+	vector<int> postorderTraversal3(TreeNode* root) {
+		std::vector<int> ret;
+		std::stack<TreeNode*> stack;
+		TreeNode* curr = root;
+		TreeNode* prev = nullptr;
+		while (!stack.empty() || curr) {
+			// 遍历左子树
+			while (curr) {
+				stack.push(curr);
+				curr = curr->left;
+			}
+			// 获取根节点
+			curr = stack.top();
+			stack.pop();
+			if (curr->right && curr->right != prev) {
+				// 遍历右子树
+				stack.push(curr);
+				curr = curr->right;
+			} else {
+				// 遍历根节点
+				ret.push_back(curr->val);
+				prev = curr;
+				curr = nullptr;
+			}
+		}
+		return ret;
+	}
 };

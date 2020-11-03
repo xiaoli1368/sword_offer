@@ -54,4 +54,22 @@ public:
 
         return ret;
     }
+
+	// 更加标准的迭代方式
+	vector<int> preorderTraversal3(TreeNode* root) {
+		std::vector<int> ret;
+		std::stack<TreeNode*> stack;
+		TreeNode* curr = root;
+		while (!stack.empty() || curr) {
+			if (curr) {
+				ret.push_back(curr->val); // 遍历根节点
+				stack.push(curr);
+				curr = curr->left; // 遍历左子树
+			} else {
+				curr = stack.top()->right; // 遍历右子树
+				stack.pop();
+			}
+		}
+		return ret;
+	}
 };

@@ -70,3 +70,26 @@ class Solution(object):
             if node.left:
                 stack.append((node.left, 0))
         return ret
+
+    def postorderTraversal4(self, root):
+        """
+        更加高效的迭代法
+        """
+        ret, stack, curr, prev = [], [], root, None
+        while stack or curr:
+            # 遍历左子树
+            while curr:
+                stack.append(curr)
+                curr = curr.left
+            # 获取根节点
+            curr = stack.pop()
+            if curr.right and curr.right != prev:
+                # 遍历右子树
+                stack.append(curr)
+                curr = curr.right
+            else:
+                # 遍历根节点
+                ret.append(curr.val)
+                prev = curr
+                curr = None
+        return ret

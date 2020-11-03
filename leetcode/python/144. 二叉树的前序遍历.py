@@ -44,3 +44,17 @@ class Solution(object):
                 stack.append(node.left)
         
         return ret
+	
+    def preorderTraversal3(self, root):
+        """
+        更加标准的堆栈形式
+        """
+        ret, stack, curr = [], [], root
+        while stack or curr:
+            if curr:
+                ret.append(curr.val) # 遍历根节点
+                stack.append(curr)
+                curr = curr.left # 遍历左子树
+            else:
+                curr = stack.pop().right # 遍历右子树
+        return ret

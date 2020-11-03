@@ -25,7 +25,7 @@ public:
     }
 
     // 迭代法
-    vector<int> inorderTraversal(TreeNode* root) {
+    vector<int> inorderTraversal2(TreeNode* root) {
         vector<int> ret;
         stack<TreeNode*> stack;
         TreeNode* curr = root;
@@ -44,4 +44,23 @@ public:
         }
         return ret;
     }
+
+	// 更加高效的迭代方式
+	vector<int> inorderTraversal3(TreeNode* root) {
+		std::vector<int> ret;
+		std::stack<TreeNode*> stack;
+		TreeNode* curr = root;
+		while (!stack.empty() || curr) {
+			if (curr) {
+				stack.push(curr);
+				curr = curr->left; // 遍历左子树
+			} else {
+				curr = stack.top(); // 遍历根节点
+				stack.pop();
+				ret.push_back(curr->val);
+				curr = curr->right; // 遍历右子树
+			}
+		}
+		return ret;
+	}
 };
