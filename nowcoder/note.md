@@ -108,6 +108,9 @@
 | **第四部分**   |                  |                                                              |            |
 | 哈希表         | 原地哈希         | [剑指 Offer 03. 数组中重复的数字](https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/) |            |
 | 哈希表         | 原地哈希         | [287. 寻找重复数](https://leetcode-cn.com/problems/find-the-duplicate-number/) |            |
+| 哈希表         | 原地哈希         | [448. 找到所有数组中消失的数字](https://leetcode-cn.com/problems/find-all-numbers-disappeared-in-an-array/) | python     |
+| 哈希表         | 原地哈希         | [442. 数组中重复的数据](https://leetcode-cn.com/problems/find-all-duplicates-in-an-array/) | python     |
+| 哈希表         | 原地哈希         | [41. 缺失的第一个正数](https://leetcode-cn.com/problems/first-missing-positive/) | python     |
 |                |                  |                                                              |            |
 | **第五部分**   |                  |                                                              |            |
 | 位运算         | 其它             | [剑指 Offer 15. 二进制中1的个数](https://leetcode-cn.com/problems/er-jin-zhi-zhong-1de-ge-shu-lcof/) |            |
@@ -172,6 +175,7 @@
 | 排序           | 其它             | topk                                                         |            |
 | 排序           | 堆排序           | [347. 前 K 个高频元素](https://leetcode-cn.com/problems/top-k-frequent-elements/)（这个也是topk） | c++,python |
 |                |                  | [283. 移动零](https://leetcode-cn.com/problems/move-zeroes/) |            |
+|                |                  | [1356. 根据数字二进制下 1 的数目排序](https://leetcode-cn.com/problems/sort-integers-by-the-number-of-1-bits/) | c++,python |
 |                |                  |                                                              |            |
 | **第十部分**   |                  |                                                              |            |
 | 回溯法/DFS     | N皇后            | [51. N 皇后](https://leetcode-cn.com/problems/n-queens/)     | cpp,python |
