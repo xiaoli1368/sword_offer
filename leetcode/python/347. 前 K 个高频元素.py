@@ -47,3 +47,59 @@ class Solution(object):
             self.heapify(vec, i, 0)
         
         return ret
+	
+	# ===== 另一种方式 =====
+    def partition(self, vec, l, h):
+        """
+        快排分区函数，从大到小
+        """
+        start = l - 1
+        for i in range(l, h):
+            if vec[i][1] > vec[h][1]:
+                start += 1
+                vec[i], vec[start] = vec[start], vec[i]
+        start += 1
+        vec[h], vec[start] = vec[start], vec[h]
+        return start
+    
+    def quickSort(self, vec, l, h):
+        """
+        快排递归函数
+        """
+        if l >= h:
+            return
+        m = self.partition(vec, l, h)
+        self.quickSort(vec, l, m - 1)
+        self.quickSort(vec, m + 1, h)
+        return
+
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        """
+        先获取频次字典，然后修正为元组列表，排序
+        """
+        if nums == [] or k > len(nums):
+            return []
+        
+        # 获取频次字典
+        d = dict()
+        for i in nums:
+            d[i] = 1 + d.get(i, 0)
+        
+        # 转换为频次元素列表
+        ret = [(num, fre) for num, fre in d.items()]
+
+        # 二分找到第k大元素的位置，找到后对之前的排序
+        index = k - 1
+        l, h = 0, len(ret) - 1
+        while l <= h:
+            m = self.partition(ret, l, h)
+            if m == index:
+                self.quickSort(ret, 0, index)
+                break
+            elif m > index:
+                h = m - 1
+            elif m < index:
+                l = m + 1
+        
+        # 返回结果
+        return [x[0] for x in ret[:k]]

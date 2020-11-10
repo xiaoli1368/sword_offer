@@ -273,10 +273,10 @@
 | 专题           | topk             | 无序数组，同时找max和次大值（nowcoder/get_max_max2）         | c++,python |
 | 专题           | topk             | 无序数组，找第k大的值（nowcoder/get_topk）                   | c++,python |
 | 专题           | topk             | 无序数组，找前k大的值（nowcoder/get_all_topk）               | c++,python |
-| 专题           | topk             | [347. 前 K 个高频元素](https://leetcode-cn.com/problems/top-k-frequent-elements/) |            |
-| 专题           | topk             | [692. 前K个高频单词](https://leetcode-cn.com/problems/top-k-frequent-words/) |            |
-| 专题           | topk             | [347. 前 K 个高频元素](https://leetcode-cn.com/problems/top-k-frequent-elements/) |            |
-| 专题           | topk             | [347. 前 K 个高频元素](https://leetcode-cn.com/problems/top-k-frequent-elements/) |            |
+| 专题           | topk             | [215. 数组中的第K个最大元素](https://leetcode-cn.com/problems/kth-largest-element-in-an-array/) | python     |
+| 专题           | topk             | [347. 前 K 个高频元素](https://leetcode-cn.com/problems/top-k-frequent-elements/) | c++,python |
+| 专题           | topk             | [692. 前K个高频单词](https://leetcode-cn.com/problems/top-k-frequent-words/) | c++,python |
+| 专题           | topk             | [973. 最接近原点的 K 个点](https://leetcode-cn.com/problems/k-closest-points-to-origin/) | c++,python |
 | 专题           | 铺瓷砖           | [1240. 铺瓷砖](https://leetcode-cn.com/problems/tiling-a-rectangle-with-the-fewest-squares/) |            |
 | 专题           | 跳跃游戏         | [1345. 跳跃游戏 IV](https://leetcode-cn.com/problems/jump-game-iv/) |            |
 | 专题           | 括号问题         | 括号的生成（回溯）                                           |            |
