@@ -166,16 +166,18 @@
 | 排序           | 归并             | [88. 合并两个有序数组](https://leetcode-cn.com/problems/merge-sorted-array/) | cpp,python |
 | 排序           | 归并             | [21. 合并两个有序链表](https://leetcode-cn.com/problems/merge-two-sorted-lists/) | cpp,python |
 | 排序           | 归并             | [23. 合并K个升序链表](https://leetcode-cn.com/problems/merge-k-sorted-lists/) | cpp,python |
-| 排序           | 归并             | [148. 排序链表](https://leetcode-cn.com/problems/sort-list/) | cpp,python |
 | 排序           | 归并             | [剑指 Offer 51. 数组中的逆序对](https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/) | cpp,python |
 | 排序           | 归并             | [977. 有序数组的平方](https://leetcode-cn.com/problems/squares-of-a-sorted-array/) | cpp,python |
-| 排序           | 插入排序         | [147. 对链表进行插入排序](https://leetcode-cn.com/problems/insertion-sort-list/) |            |
+| 排序           | 链表排序         | [147. 对链表进行插入排序](https://leetcode-cn.com/problems/insertion-sort-list/) |            |
+| 排序           | 链表排序         | [148. 排序链表](https://leetcode-cn.com/problems/sort-list/) | cpp,python |
 | 排序           | 其它             | [75. 颜色分类](https://leetcode-cn.com/problems/sort-colors/) |            |
 | 排序           | 其它             | [324. 摆动排序 II](https://leetcode-cn.com/problems/wiggle-sort-ii/) |            |
-| 排序           | 其它             | topk                                                         |            |
-| 排序           | 堆排序           | [347. 前 K 个高频元素](https://leetcode-cn.com/problems/top-k-frequent-elements/)（这个也是topk） | c++,python |
-|                |                  | [283. 移动零](https://leetcode-cn.com/problems/move-zeroes/) |            |
-|                |                  | [1356. 根据数字二进制下 1 的数目排序](https://leetcode-cn.com/problems/sort-integers-by-the-number-of-1-bits/) | c++,python |
+| 排序           | 其它             | [283. 移动零](https://leetcode-cn.com/problems/move-zeroes/) |            |
+| 排序           | 其它             | [1356. 根据数字二进制下 1 的数目排序](https://leetcode-cn.com/problems/sort-integers-by-the-number-of-1-bits/) | c++,python |
+| 排序           | 奇偶排序         | [剑指 Offer 21. 调整数组顺序使奇数位于偶数前面](https://leetcode-cn.com/problems/diao-zheng-shu-zu-shun-xu-shi-qi-shu-wei-yu-ou-shu-qian-mian-lcof/) | c++,python |
+| 排序           | 奇偶排序         | [905. 按奇偶排序数组](https://leetcode-cn.com/problems/sort-array-by-parity/) | c++,python |
+| 排序           | 奇偶排序         | [922. 按奇偶排序数组 II](https://leetcode-cn.com/problems/sort-array-by-parity-ii/) | c++,python |
+| 排序           | 其它             | topk（见专题系列）                                           |            |
 |                |                  |                                                              |            |
 | **第十部分**   |                  |                                                              |            |
 | 回溯法/DFS     | N皇后            | [51. N 皇后](https://leetcode-cn.com/problems/n-queens/)     | cpp,python |

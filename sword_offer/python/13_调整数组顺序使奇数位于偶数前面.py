@@ -85,7 +85,7 @@ class Solution():
         """
         return sorted(array, key=lambda x: x%2, reverse=True)
 
-    def reOrderArray(slef, array):
+    def reOrderArray7(self, array):
         """
         高效方式，类似插入排序，不借助额外数组，两层遍历
         """
@@ -109,6 +109,27 @@ class Solution():
                 array[last_odd + 1] = curr_odd
         
         return array
+    
+    def reOrderArray(self, array):
+        """
+        更加高效的方式，双指针（但是这种方式破坏了原来的内部顺序）
+        """
+        if array == []:
+            return array
+        
+        odd, even = 0, len(array) - 1
+        while odd < even:
+            # 找到指向偶数的odd指针
+            while odd < even and array[odd] % 2 == 1:
+                odd += 1
+            # 找到指向奇数的even指针
+            while odd < even and array[even] % 2 == 0:
+                even -= 1
+            # 如果不越界则交换
+            if odd < even:
+                array[odd], array[even] = array[even], array[odd]
+        
+        return array
 
     def test(self, array):
         """
@@ -120,6 +141,7 @@ class Solution():
                     self.reOrderArray4,
                     self.reOrderArray5,
                     self.reOrderArray6,
+                    self.reOrderArray7,
                     self.reOrderArray]
         for func in func_vec:
             # 这里需要建立临时的空间

@@ -119,7 +119,7 @@ public:
 
     // 高效方式，类似插入排序，不借助额外数组，两层遍历
     // 外层遍历依次找到各个奇数，内层遍历实现找到该奇数前的几个偶数，交换当前奇数与该偶数段的位置
-    void reOrderArray(std::vector<int>& array) {
+    void reOrderArray7(std::vector<int>& array) {
         if (array.empty()) {
             return;
         }
@@ -143,6 +143,31 @@ public:
                 array[last_odd + 1] = curr_odd;
             }
         }
+    }
+
+    // 双指针法，更加快速，但是破坏了内部的顺序
+    void reOrderArray(std::vector<int>& array) {
+        if (array.empty()) {
+            return;
+        }
+        int odd = 0, even = array.size() - 1;
+        while (odd < even) {
+            // 找到指向偶数的odd指针
+            while (odd < even && array[odd] % 2 == 1) {
+                odd += 1;
+            }
+            // 找到指向奇数的even指针
+            while (odd < even && array[even] % 2 == 0) {
+                even -= 1;
+            }
+            // 如果不越界则交换
+            if (odd < even) {
+                int tmp = array[odd];
+                array[odd] = array[even];
+                array[even] = tmp;
+            }
+        }
+        return;
     }
     
     // 输入要打印的vec数据
@@ -175,6 +200,7 @@ private:
                                        &Solution::reOrderArray4,
                                        &Solution::reOrderArray5,
                                        &Solution::reOrderArray6,
+                                       &Solution::reOrderArray7,
                                        &Solution::reOrderArray};
 };
 
