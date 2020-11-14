@@ -173,6 +173,7 @@
 | 排序           | 其它             | [75. 颜色分类](https://leetcode-cn.com/problems/sort-colors/) |            |
 | 排序           | 其它             | [324. 摆动排序 II](https://leetcode-cn.com/problems/wiggle-sort-ii/) |            |
 | 排序           | 其它             | [283. 移动零](https://leetcode-cn.com/problems/move-zeroes/) |            |
+| 排序           | 其它             | [1122. 数组的相对排序](https://leetcode-cn.com/problems/relative-sort-array/) | c++,python |
 | 排序           | 其它             | [1356. 根据数字二进制下 1 的数目排序](https://leetcode-cn.com/problems/sort-integers-by-the-number-of-1-bits/) | c++,python |
 | 排序           | 奇偶排序         | [剑指 Offer 21. 调整数组顺序使奇数位于偶数前面](https://leetcode-cn.com/problems/diao-zheng-shu-zu-shun-xu-shi-qi-shu-wei-yu-ou-shu-qian-mian-lcof/) | c++,python |
 | 排序           | 奇偶排序         | [905. 按奇偶排序数组](https://leetcode-cn.com/problems/sort-array-by-parity/) | c++,python |
