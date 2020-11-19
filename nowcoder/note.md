@@ -170,13 +170,14 @@
 | 排序           | 归并             | [977. 有序数组的平方](https://leetcode-cn.com/problems/squares-of-a-sorted-array/) | cpp,python |
 | 排序           | 链表排序         | [147. 对链表进行插入排序](https://leetcode-cn.com/problems/insertion-sort-list/) |            |
 | 排序           | 链表排序         | [148. 排序链表](https://leetcode-cn.com/problems/sort-list/) | cpp,python |
-| 排序           | 其它             | [75. 颜色分类](https://leetcode-cn.com/problems/sort-colors/) |            |
+| 排序           | 快排分区         | [283. 移动零](https://leetcode-cn.com/problems/move-zeroes/) | cpp,python |
+| 排序           | 快排分区         | [27. 移除元素](https://leetcode-cn.com/problems/remove-element/) | cpp,python |
+| 排序           | 快排分区         | [75. 颜色分类](https://leetcode-cn.com/problems/sort-colors/) | cpp,python |
+| 排序           | 奇偶排序         | [剑指 Offer 21. 调整数组顺序使奇数位于偶数前面](https://leetcode-cn.com/problems/diao-zheng-shu-zu-shun-xu-shi-qi-shu-wei-yu-ou-shu-qian-mian-lcof/) | cpp,python |
+| 排序           | 奇偶排序         | [905. 按奇偶排序数组](https://leetcode-cn.com/problems/sort-array-by-parity/) | cpp,python |
+| 排序           | 奇偶排序         | [922. 按奇偶排序数组 II](https://leetcode-cn.com/problems/sort-array-by-parity-ii/) | cpp,python |
+| 排序           | 自定义           | [1356. 根据数字二进制下 1 的数目排序](https://leetcode-cn.com/problems/sort-integers-by-the-number-of-1-bits/) | cpp,python |
 | 排序           | 其它             | [324. 摆动排序 II](https://leetcode-cn.com/problems/wiggle-sort-ii/) |            |
-| 排序           | 其它             | [283. 移动零](https://leetcode-cn.com/problems/move-zeroes/) |            |
-| 排序           | 其它             | [1356. 根据数字二进制下 1 的数目排序](https://leetcode-cn.com/problems/sort-integers-by-the-number-of-1-bits/) | c++,python |
-| 排序           | 奇偶排序         | [剑指 Offer 21. 调整数组顺序使奇数位于偶数前面](https://leetcode-cn.com/problems/diao-zheng-shu-zu-shun-xu-shi-qi-shu-wei-yu-ou-shu-qian-mian-lcof/) | c++,python |
-| 排序           | 奇偶排序         | [905. 按奇偶排序数组](https://leetcode-cn.com/problems/sort-array-by-parity/) | c++,python |
-| 排序           | 奇偶排序         | [922. 按奇偶排序数组 II](https://leetcode-cn.com/problems/sort-array-by-parity-ii/) | c++,python |
 | 排序           | 其它             | topk（见专题系列）                                           |            |
 |                |                  |                                                              |            |
 | **第十部分**   |                  |                                                              |            |
