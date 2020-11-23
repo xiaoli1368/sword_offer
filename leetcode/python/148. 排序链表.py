@@ -151,3 +151,94 @@ class Solution(object):
 		# 进行快排并返回结果
 		self.quickSort(head, tail)
 		return head
+
+	# ===== 三大排序高效优化版 =====
+	def insertSort(self, head):
+		"""
+		链表插入排序优化版
+		"""
+		# 特殊情况
+		if head == None or head.next == None:
+			return head
+		# 初始化头节点，注意头节点没有链接到head，后边是None
+		newHead = ListNode(float("-inf"))
+		while head:
+			next = head.next # 事先保存
+			curr = newHead
+			# 找到小于head的最远节点
+			while curr.next and curr.next.val < head.val:
+				curr = curr.next
+			# 把head插入到curr后面
+			head.next = curr.next
+			curr.next = head
+			head = next
+		return newHead.next
+
+	def quickSort(self, head):
+		"""
+		链表快速排序
+		"""
+		def _quickSort(head, tail):
+			"""
+			链表快排内部递归函数
+			"""
+			# 特殊情况
+			if head == tail or tail.next == head:
+				return
+			# 快排分区，新建头部节点，使用尾部参考节点
+			midLeft = ListNode(0, head)
+			mid = midLeft.next
+			curr = head
+			while curr:
+				if curr.val < tail.val:
+					curr.val, mid.val = mid.val, curr.val
+					midLeft = midLeft.next
+					mid = mid.next
+				curr = curr.next
+			tail.val, mid.val = mid.val, tail.val
+			# 递归进行子链表的排序
+			_quickSort(head, midLeft)
+			_quickSort(mid.next, tail)
+			return
+		# 外部函数，特殊情况
+		if head == None or head.next == None:
+			return head
+		# 得到尾部节点
+		tail = head
+		while tail and tail.next:
+			tail = tail.next
+		# 直接调用递归函数排序
+		_quickSort(head, tail)
+		return head
+
+	def mergeSort(self, head):
+		"""
+		链表归并排序
+		"""
+		# 判断特殊情况
+		if head == None or head.next == None:
+			return head
+		# 寻找中间节点，并且截断
+		fast, slow = head, head
+		while fast and fast.next and fast.next.next:
+			slow = slow.next
+			fast = fast.next.next
+		mid = slow.next
+		slow.next = None
+		# 递归对两个子链表进行排序
+		p = self.mergeSort(head)
+		q = self.mergeSort(mid)
+		# 合并两个有序链表
+		newHead = ListNode(0)
+		curr = newHead
+		while p and q:
+			if p.val < q.val:
+				curr.next = p
+				p = p.next
+			else:
+				curr.next = q
+				q = q.next
+			curr = curr.next
+		curr.next = p if p else q
+		# 返回
+		return newHead.next
