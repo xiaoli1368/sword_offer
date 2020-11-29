@@ -167,6 +167,9 @@
 | 排序           | 归并             | [21. 合并两个有序链表](https://leetcode-cn.com/problems/merge-two-sorted-lists/) | cpp,python |
 | 排序           | 归并             | [23. 合并K个升序链表](https://leetcode-cn.com/problems/merge-k-sorted-lists/) | cpp,python |
 | 排序           | 归并             | [剑指 Offer 51. 数组中的逆序对](https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/) | cpp,python |
+| 排序           | 归并             | [493. 翻转对](https://leetcode-cn.com/problems/reverse-pairs/) | cpp,python |
+| 排序           | 归并             | [315. 计算右侧小于当前元素的个数](https://leetcode-cn.com/problems/count-of-smaller-numbers-after-self/) | cpp,python |
+| 排序           | 归并             | [327. 区间和的个数](https://leetcode-cn.com/problems/count-of-range-sum/) | cpp,python |
 | 排序           | 归并             | [977. 有序数组的平方](https://leetcode-cn.com/problems/squares-of-a-sorted-array/) | cpp,python |
 | 排序           | 链表排序         | [147. 对链表进行插入排序](https://leetcode-cn.com/problems/insertion-sort-list/) |            |
 | 排序           | 链表排序         | [148. 排序链表](https://leetcode-cn.com/problems/sort-list/) | cpp,python |
@@ -298,4 +301,8 @@
 | 专题           | 山峰数组         | [1095. 山脉数组中查找目标值](https://leetcode-cn.com/problems/find-in-mountain-array/) |            |
 | 专题           | 山峰数组         | [845. 数组中的最长山脉](https://leetcode-cn.com/problems/longest-mountain-in-array/) |            |
 | 专题           | 山峰数组         | [852. 山脉数组的峰顶索引](https://leetcode-cn.com/problems/peak-index-in-a-mountain-array/) |            |
+| 专题           | 几何             | [611. 有效三角形的个数](https://leetcode-cn.com/problems/valid-triangle-number/) |            |
+| 专题           | 几何             | [1401. 圆和矩形是否有重叠](https://leetcode-cn.com/problems/circle-and-rectangle-overlapping/) |            |
+| 专题           | 几何             | [812. 最大三角形面积](https://leetcode-cn.com/problems/largest-triangle-area/) |            |
+| 专题           | 几何             | [976. 三角形的最大周长](https://leetcode-cn.com/problems/largest-perimeter-triangle/) |            |
 
