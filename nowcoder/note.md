@@ -104,6 +104,7 @@
 | 栈与队列       | 单调队列         | [Leetcode 239：滑动窗口最大值（超详细的解法！！！）](https://blog.csdn.net/qq_17550379/article/details/88911870) |            |
 | 栈与队列       | 单调队列         | [剑指 Offer 59 - I. 滑动窗口的最大值](https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/) |            |
 | 栈与队列       | 单调队列         | [剑指 Offer 59 - II. 队列的最大值](https://leetcode-cn.com/problems/dui-lie-de-zui-da-zhi-lcof/) |            |
+| 栈与队列       | 队列             | [649. Dota2 参议院](https://leetcode-cn.com/problems/dota2-senate/) | cpp,python |
 |                |                  |                                                              |            |
 | **第四部分**   |                  |                                                              |            |
 | 哈希表         | 原地哈希         | [剑指 Offer 03. 数组中重复的数字](https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/) |            |
@@ -150,6 +151,7 @@
 |                |                  |                                                              |            |
 | **第八部分**   |                  |                                                              |            |
 |                |                  |                                                              |            |
+| 二分查找       | 其它             | [34. 在排序数组中查找元素的第一个和最后一个位置](https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/) | c++,python |
 | 二分查找       | 其它             | [面试题 08.03. 魔术索引](https://leetcode-cn.com/problems/magic-index-lcci/) |            |
 | 二分查找       | 其它             | 寻找单个元素，寻找左边界，寻找右边界                         |            |
 | 二分查找       | 其它             | [33. 搜索旋转排序数组](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/) |            |
