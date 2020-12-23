@@ -292,6 +292,8 @@
 | 专题           | 括号问题         | [1021. 删除最外层的括号](https://leetcode-cn.com/problems/remove-outermost-parentheses/) |            |
 | 专题           | 括号问题         | [301. 删除无效的括号](https://leetcode-cn.com/problems/remove-invalid-parentheses/) |            |
 | 专题           | 括号问题         | [面试题 08.09. 括号](https://leetcode-cn.com/problems/bracket-lcci/) |            |
+| 专题           | 括号问题         | [20. 有效的括号](https://leetcode-cn.com/problems/valid-parentheses/) |            |
+| 专题           | 括号问题         | [32. 最长有效括号](https://leetcode-cn.com/problems/longest-valid-parentheses/) | cpp,python |
 | 专题           | 分糖果           |                                                              |            |
 | 专题           | 区间最值         | [11. 盛最多水的容器](https://leetcode-cn.com/problems/container-with-most-water/) |            |
 | 专题           | 区间最值         | [42. 接雨水](https://leetcode-cn.com/problems/trapping-rain-water/) |            |
