@@ -150,7 +150,6 @@
 |                |                  | [472. 连接词](https://leetcode-cn.com/problems/concatenated-words/) |            |
 |                |                  |                                                              |            |
 | **第八部分**   |                  |                                                              |            |
-|                |                  |                                                              |            |
 | 二分查找       | 其它             | [34. 在排序数组中查找元素的第一个和最后一个位置](https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/) | c++,python |
 | 二分查找       | 其它             | [面试题 08.03. 魔术索引](https://leetcode-cn.com/problems/magic-index-lcci/) |            |
 | 二分查找       | 其它             | 寻找单个元素，寻找左边界，寻找右边界                         |            |
@@ -252,6 +251,10 @@
 | 贪心           | 其它             | 跳跃游戏1/2                                                  |            |
 | 贪心           | 其它             | [12. 整数转罗马数字](https://leetcode-cn.com/problems/integer-to-roman/) | python     |
 | 贪心           | 其它             | [13. 罗马数字转整数](https://leetcode-cn.com/problems/roman-to-integer/) | python     |
+| 贪心           | 其它             | [135. 分发糖果](https://leetcode-cn.com/problems/candy/)     | cpp,python |
+|                |                  | [452. 用最少数量的箭引爆气球](https://leetcode-cn.com/problems/minimum-number-of-arrows-to-burst-balloons/) |            |
+|                |                  | [134. 加油站](https://leetcode-cn.com/problems/gas-station/) |            |
+|                |                  | [455. 分发饼干](https://leetcode-cn.com/problems/assign-cookies/) |            |
 |                |                  |                                                              |            |
 | **第十五部分** |                  |                                                              |            |
 | 动态规划       | 背包问题         |                                                              |            |
