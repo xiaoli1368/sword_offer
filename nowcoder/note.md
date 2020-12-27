@@ -112,6 +112,7 @@
 | 哈希表         | 原地哈希         | [448. 找到所有数组中消失的数字](https://leetcode-cn.com/problems/find-all-numbers-disappeared-in-an-array/) | python     |
 | 哈希表         | 原地哈希         | [442. 数组中重复的数据](https://leetcode-cn.com/problems/find-all-duplicates-in-an-array/) | python     |
 | 哈希表         | 原地哈希         | [41. 缺失的第一个正数](https://leetcode-cn.com/problems/first-missing-positive/) | python     |
+| 哈希表         | 其它             | [205. 同构字符串](https://leetcode-cn.com/problems/isomorphic-strings/) | cpp,python |
 |                |                  |                                                              |            |
 | **第五部分**   |                  |                                                              |            |
 | 位运算         | 其它             | [剑指 Offer 15. 二进制中1的个数](https://leetcode-cn.com/problems/er-jin-zhi-zhong-1de-ge-shu-lcof/) |            |
@@ -259,11 +260,12 @@
 | **第十五部分** |                  |                                                              |            |
 | 动态规划       | 背包问题         |                                                              |            |
 | 动态规划       | 子序列问题       |                                                              |            |
-| 动态规划       | 其它             | 85. 最大矩形（建议先做221）                                  |            |
-| 动态规划       | 其它             | 221. 最大正方形                                              |            |
+| 动态规划       | 最大图形         | [221. 最大正方形](https://leetcode-cn.com/problems/maximal-square/) | cpp,python |
+| 动态规划       | 最大图形         | [85. 最大矩形](https://leetcode-cn.com/problems/maximal-rectangle/) | cpp,python |
 | 动态规划       | 换零钱           | [322. 零钱兑换](https://leetcode-cn.com/problems/coin-change/) |            |
 | 动态规划       | 换零钱           | [279. 完全平方数](https://leetcode-cn.com/problems/perfect-squares/) |            |
 | 动态规划       | 丑数             | [313. 超级丑数](https://leetcode-cn.com/problems/super-ugly-number/) |            |
+|                |                  |                                                              |            |
 |                |                  |                                                              |            |
 | **第十六部分** |                  |                                                              |            |
 | 专题           | N数之和          | [1. 两数之和](https://leetcode-cn.com/problems/two-sum/)     |            |
