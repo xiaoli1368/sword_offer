@@ -95,16 +95,16 @@
 | 栈与队列       | 其它             | [剑指 Offer 30. 包含min函数的栈](https://leetcode-cn.com/problems/bao-han-minhan-shu-de-zhan-lcof/) |            |
 | 栈与队列       | 其它             | [剑指 Offer 31. 栈的压入、弹出序列](https://leetcode-cn.com/problems/zhan-de-ya-ru-dan-chu-xu-lie-lcof/) |            |
 | 栈与队列       | 单调栈           | [42. 接雨水](https://leetcode-cn.com/problems/trapping-rain-water/) | cpp,python |
-| 栈与队列       | 其它             | [407. 接雨水 II](https://leetcode-cn.com/problems/trapping-rain-water-ii/)（难，二维，不只是单调栈了） |            |
-| 栈与队列       | 单调栈           | [Leetcode 496：下一个更大元素 I（超详细的解法！！！）](https://blog.csdn.net/qq_17550379/article/details/86501664) |            |
-| 栈与队列       | 单调栈           | [Leetcode 503：下一个更大元素 II（超详细的解法！！！）](https://blog.csdn.net/qq_17550379/article/details/86504595) |            |
-| 栈与队列       | 单调栈           | [Leetcode 739：每日温度（超详细的解法！！！）](https://blog.csdn.net/qq_17550379/article/details/86494645) |            |
-| 栈与队列       | 单调栈           | [Leetcode 901：股票价格跨度（超详细的解法！！！）](https://blog.csdn.net/qq_17550379/article/details/86498025) |            |
-| 栈与队列       | 单调栈           | [Leetcode 84：柱状图中最大的矩形（超详细的解法！！！）](https://blog.csdn.net/qq_17550379/article/details/85093224) |            |
-| 栈与队列       | 单调队列         | [Leetcode 239：滑动窗口最大值（超详细的解法！！！）](https://blog.csdn.net/qq_17550379/article/details/88911870) |            |
+| 栈与队列       | 单调栈           | [84. 柱状图中最大的矩形](https://leetcode-cn.com/problems/largest-rectangle-in-histogram/) | cpp,python |
+| 栈与队列       | 单调栈           | [739. 每日温度](https://leetcode-cn.com/problems/daily-temperatures/) | cpp,python |
+| 栈与队列       | 单调栈           | [496. 下一个更大元素 I](https://leetcode-cn.com/problems/next-greater-element-i/) | cpp,python |
+| 栈与队列       | 单调栈           | [503. 下一个更大元素 II](https://leetcode-cn.com/problems/next-greater-element-ii/) | cpp,python |
+| 栈与队列       | 单调栈           | [901. 股票价格跨度](https://leetcode-cn.com/problems/online-stock-span/) | cpp,python |
+| 栈与队列       | 单调队列         | [239. 滑动窗口最大值](https://leetcode-cn.com/problems/sliding-window-maximum/) | cpp,python |
 | 栈与队列       | 单调队列         | [剑指 Offer 59 - I. 滑动窗口的最大值](https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/) |            |
 | 栈与队列       | 单调队列         | [剑指 Offer 59 - II. 队列的最大值](https://leetcode-cn.com/problems/dui-lie-de-zui-da-zhi-lcof/) |            |
 | 栈与队列       | 队列             | [649. Dota2 参议院](https://leetcode-cn.com/problems/dota2-senate/) | cpp,python |
+| 栈与队列       | 其它             | [407. 接雨水 II](https://leetcode-cn.com/problems/trapping-rain-water-ii/)（难，二维，不只是单调栈了） |            |
 |                |                  |                                                              |            |
 | **第四部分**   |                  |                                                              |            |
 | 哈希表         | 原地哈希         | [剑指 Offer 03. 数组中重复的数字](https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/) |            |
