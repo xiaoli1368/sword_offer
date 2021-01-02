@@ -145,10 +145,10 @@
 | 字符串         | 其它             | 阿里面试：敏感词匹配                                         |            |
 | 字符串         | 回文             | [5. 最长回文子串](https://leetcode-cn.com/problems/longest-palindromic-substring/) | cpp,python |
 | 字符串         | 回文             | [647. 回文子串](https://leetcode-cn.com/problems/palindromic-substrings/) |            |
-|                |                  | [925. 长按键入](https://leetcode-cn.com/problems/long-pressed-name/) |            |
-|                |                  | [140. 单词拆分 II](https://leetcode-cn.com/problems/word-break-ii/) |            |
-|                |                  | [139. 单词拆分](https://leetcode-cn.com/problems/word-break/) |            |
-|                |                  | [472. 连接词](https://leetcode-cn.com/problems/concatenated-words/) |            |
+| 字符串         | 回文             | [925. 长按键入](https://leetcode-cn.com/problems/long-pressed-name/) |            |
+| 字符串         | 回文             | [140. 单词拆分 II](https://leetcode-cn.com/problems/word-break-ii/) |            |
+| 字符串         | 回文             | [139. 单词拆分](https://leetcode-cn.com/problems/word-break/) |            |
+| 字符串         | 回文             | [472. 连接词](https://leetcode-cn.com/problems/concatenated-words/) |            |
 |                |                  |                                                              |            |
 | **第八部分**   |                  |                                                              |            |
 | 二分查找       | 其它             | [34. 在排序数组中查找元素的第一个和最后一个位置](https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/) | c++,python |
@@ -245,7 +245,7 @@
 | 双指针         | 左右指针         | 二分查找，两数之和，反转数组，滑动窗口                       |            |
 | 双指针         | 左右指针         | [42. 接雨水](https://leetcode-cn.com/problems/trapping-rain-water/) | c++,python |
 | 双指针         | 其它             | 例题：接雨水，最长回文子串（中心拓展法）                     |            |
-|                | 其它             | [844. 比较含退格的字符串](https://leetcode-cn.com/problems/backspace-string-compare/) | c++,python |
+| 双指针         | 其它             | [844. 比较含退格的字符串](https://leetcode-cn.com/problems/backspace-string-compare/) | c++,python |
 |                |                  | [925. 长按键入](https://leetcode-cn.com/problems/long-pressed-name/) | c++,python |
 | **第十四部分** |                  |                                                              |            |
 | 贪心           | 其它             | 区间调度                                                     |            |
@@ -253,9 +253,10 @@
 | 贪心           | 其它             | [12. 整数转罗马数字](https://leetcode-cn.com/problems/integer-to-roman/) | python     |
 | 贪心           | 其它             | [13. 罗马数字转整数](https://leetcode-cn.com/problems/roman-to-integer/) | python     |
 | 贪心           | 其它             | [135. 分发糖果](https://leetcode-cn.com/problems/candy/)     | cpp,python |
-|                |                  | [452. 用最少数量的箭引爆气球](https://leetcode-cn.com/problems/minimum-number-of-arrows-to-burst-balloons/) |            |
-|                |                  | [134. 加油站](https://leetcode-cn.com/problems/gas-station/) |            |
-|                |                  | [455. 分发饼干](https://leetcode-cn.com/problems/assign-cookies/) |            |
+| 贪心           | 其它             | [452. 用最少数量的箭引爆气球](https://leetcode-cn.com/problems/minimum-number-of-arrows-to-burst-balloons/) |            |
+| 贪心           | 其它             | [134. 加油站](https://leetcode-cn.com/problems/gas-station/) |            |
+| 贪心           | 其它             | [455. 分发饼干](https://leetcode-cn.com/problems/assign-cookies/) |            |
+| 贪心           | 其它             | [605. 种花问题](https://leetcode-cn.com/problems/can-place-flowers/) | cpp,python |
 |                |                  |                                                              |            |
 | **第十五部分** |                  |                                                              |            |
 | 动态规划       | 背包问题         |                                                              |            |
@@ -265,7 +266,6 @@
 | 动态规划       | 换零钱           | [322. 零钱兑换](https://leetcode-cn.com/problems/coin-change/) |            |
 | 动态规划       | 换零钱           | [279. 完全平方数](https://leetcode-cn.com/problems/perfect-squares/) |            |
 | 动态规划       | 丑数             | [313. 超级丑数](https://leetcode-cn.com/problems/super-ugly-number/) |            |
-|                |                  |                                                              |            |
 |                |                  |                                                              |            |
 | **第十六部分** |                  |                                                              |            |
 | 专题           | N数之和          | [1. 两数之和](https://leetcode-cn.com/problems/two-sum/)     |            |
@@ -314,4 +314,5 @@
 | 专题           | 几何             | [1401. 圆和矩形是否有重叠](https://leetcode-cn.com/problems/circle-and-rectangle-overlapping/) |            |
 | 专题           | 几何             | [812. 最大三角形面积](https://leetcode-cn.com/problems/largest-triangle-area/) |            |
 | 专题           | 几何             | [976. 三角形的最大周长](https://leetcode-cn.com/problems/largest-perimeter-triangle/) |            |
+| 专题           | 堆               | [1046. 最后一块石头的重量](https://leetcode-cn.com/problems/last-stone-weight/) | cpp,python |
 
