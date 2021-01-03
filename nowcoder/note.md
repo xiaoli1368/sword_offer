@@ -79,7 +79,7 @@
 | 链表           | 双指针           | 找链表的倒数第K个结点                                        |            |
 | 链表           | 双指针           | [876. 链表的中间结点](https://leetcode-cn.com/problems/middle-of-the-linked-list/) | cpp,python |
 | 链表           | 其它             | [面试题 02.04. 分割链表](https://leetcode-cn.com/problems/partition-list-lcci/) |            |
-| 链表           | 其它             | [86. 分隔链表](https://leetcode-cn.com/problems/partition-list/) |            |
+| 链表           | 其它             | [86. 分隔链表](https://leetcode-cn.com/problems/partition-list/) | cpp,python |
 | 链表           | 其它             | 链表的深度拷贝                                               |            |
 | 链表           | 其它             | 删除重复的节点（保留一个，不保留）                           |            |
 | 链表           | 其它             | [19. 删除链表的倒数第N个节点](https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/) | cpp,python |
