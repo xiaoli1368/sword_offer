@@ -132,6 +132,7 @@
 | 数组           | 一维数组         | 求一个数组中某一元素出现的次数是否超过数组长度一半，存在输出该元素，不存在输出0 |            |
 | 数组           | 二维数组         | 顺时针打印矩阵                                               |            |
 | 数组           | 二维数组         | 顺时针旋转90度                                               |            |
+| 数组           | 二维数组         | [Lintcode 38. 搜索二维矩阵 II](https://www.lintcode.com/problem/search-a-2d-matrix-ii/description?_from=ladder&&fromId=6) | python     |
 |                |                  |                                                              |            |
 | **第七部分**   |                  |                                                              |            |
 | 字符串         | 其它             | 将字符串中的空格替换为“%20”                                  |            |
@@ -315,4 +316,5 @@
 | 专题           | 几何             | [812. 最大三角形面积](https://leetcode-cn.com/problems/largest-triangle-area/) |            |
 | 专题           | 几何             | [976. 三角形的最大周长](https://leetcode-cn.com/problems/largest-perimeter-triangle/) |            |
 | 专题           | 堆               | [1046. 最后一块石头的重量](https://leetcode-cn.com/problems/last-stone-weight/) | cpp,python |
+| 专题           | 面向对象         | [Lintcode 208. 赋值运算符重载](https://www.lintcode.com/problem/assignment-operator-overloading-c-only/description?_from=ladder&&fromId=6) | cpp        |
 
