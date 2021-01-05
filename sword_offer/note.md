@@ -6438,4 +6438,3 @@ class Solution(object):
         
         return self.nodeTree[l + self.nodeDepth[l:h+1].index(currDepth)]
 ```
-

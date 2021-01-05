@@ -64,12 +64,11 @@
 | 二叉树         | 树形dp           | [236. 二叉树的最近公共祖先](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/) | cpp,python |
 |                |                  |                                                              |            |
 | **第二部分**   |                  |                                                              |            |
-| 链表           | 翻转             | 递归，迭代，头插法                                           |            |
-| 链表           | 翻转             | 逆置列表给定的位置，1 ≤ m ≤ n ≤ 链表长度                     |            |
+| 链表           | 翻转             | [206. 反转链表](https://leetcode-cn.com/problems/reverse-linked-list/)，递归，迭代，头插法 |            |
+| 链表           | 翻转             | [92. 反转链表 II](https://leetcode-cn.com/problems/reverse-linked-list-ii/)，逆置列表给定的位置，1 ≤ m ≤ n ≤ 链表长度 |            |
 | 链表           | 翻转             | [25. K 个一组翻转链表](https://leetcode-cn.com/problems/reverse-nodes-in-k-group/) |            |
-| 链表           | 翻转             | 输入一个链表，按链表值从尾到头的顺序返回一个vector           |            |
-| 链表           | 翻转             | [143. 重排链表](https://leetcode-cn.com/problems/reorder-list/) | cpp,python |
-| 链表           | 交换             | [24. 两两交换链表中的节点](https://leetcode-cn.com/problems/swap-nodes-in-pairs/) | cpp,python |
+| 链表           | 重排             | [143. 重排链表](https://leetcode-cn.com/problems/reorder-list/) | cpp,python |
+| 链表           | 重排             | [24. 两两交换链表中的节点](https://leetcode-cn.com/problems/swap-nodes-in-pairs/) | cpp,python |
 | 链表           | 合并             | [21. 合并两个有序链表](https://leetcode-cn.com/problems/merge-two-sorted-lists/) | cpp,python |
 | 链表           | 合并             | [23. 合并K个升序链表](https://leetcode-cn.com/problems/merge-k-sorted-lists/) | cpp,python |
 | 链表           | 合并             | [148. 排序链表](https://leetcode-cn.com/problems/sort-list/) | cpp,python |
@@ -235,6 +234,7 @@
 | 滑窗法         | 其它             | 求相加等于SUM的连续序列                                      |            |
 | 滑窗法         | 其它             | 数组中两个数相加等于sum,并返回两数乘积最小的两个数           |            |
 | 滑窗法         | 双指针           | [845. 数组中的最长山脉](https://leetcode-cn.com/problems/longest-mountain-in-array/) |            |
+| 滑窗法         | 双指针           | [830. 较大分组的位置](https://leetcode-cn.com/problems/positions-of-large-groups/) | cpp,python |
 |                |                  |                                                              |            |
 | **第十三部分** |                  |                                                              |            |
 | 双指针         | 快慢指针         | [876. 链表的中间结点](https://leetcode-cn.com/problems/middle-of-the-linked-list/) | c++,python |
