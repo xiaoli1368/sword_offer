@@ -291,6 +291,7 @@
 | 专题           | topk             | [347. 前 K 个高频元素](https://leetcode-cn.com/problems/top-k-frequent-elements/) | c++,python |
 | 专题           | topk             | [692. 前K个高频单词](https://leetcode-cn.com/problems/top-k-frequent-words/) | c++,python |
 | 专题           | topk             | [973. 最接近原点的 K 个点](https://leetcode-cn.com/problems/k-closest-points-to-origin/) | c++,python |
+| 专题           | topk             | [牛客. 出现次数的TopK问题](https://www.nowcoder.com/practice/fd711bdfa0e840b381d7e1b82183b3ee?tpId=117&&tqId=35559&rp=1&ru=/ta/job-code-high&qru=/ta/job-code-high/question-ranking) | python     |
 | 专题           | 铺瓷砖           | [1240. 铺瓷砖](https://leetcode-cn.com/problems/tiling-a-rectangle-with-the-fewest-squares/) |            |
 | 专题           | 跳跃游戏         | [1345. 跳跃游戏 IV](https://leetcode-cn.com/problems/jump-game-iv/) |            |
 | 专题           | 括号问题         | 括号的生成（回溯）                                           |            |
