@@ -318,4 +318,5 @@
 | 专题           | 几何             | [976. 三角形的最大周长](https://leetcode-cn.com/problems/largest-perimeter-triangle/) |            |
 | 专题           | 堆               | [1046. 最后一块石头的重量](https://leetcode-cn.com/problems/last-stone-weight/) | cpp,python |
 | 专题           | 面向对象         | [Lintcode 208. 赋值运算符重载](https://www.lintcode.com/problem/assignment-operator-overloading-c-only/description?_from=ladder&&fromId=6) | cpp        |
+| 专题           | 其它             | [牛客. 回文数字](https://www.nowcoder.com/practice/35b8166c135448c5a5ba2cff8d430c32?tpId=117&&tqId=34977&rp=1&ru=/ta/job-code-high&qru=/ta/job-code-high/question-ranking) | cpp,python |
 
