@@ -302,6 +302,7 @@
 | 专题           | 括号问题         | [面试题 08.09. 括号](https://leetcode-cn.com/problems/bracket-lcci/) |            |
 | 专题           | 括号问题         | [20. 有效的括号](https://leetcode-cn.com/problems/valid-parentheses/) |            |
 | 专题           | 括号问题         | [32. 最长有效括号](https://leetcode-cn.com/problems/longest-valid-parentheses/) | cpp,python |
+| 专题           | 括号问题         | [牛客. 最长的括号子串](https://www.nowcoder.com/practice/45fd68024a4c4e97a8d6c45fc61dc6ad?tpId=117&&tqId=34970&rp=1&ru=/ta/job-code-high&qru=/ta/job-code-high/question-ranking) | cpp,python |
 | 专题           | 分糖果           |                                                              |            |
 | 专题           | 区间最值         | [11. 盛最多水的容器](https://leetcode-cn.com/problems/container-with-most-water/) |            |
 | 专题           | 区间最值         | [42. 接雨水](https://leetcode-cn.com/problems/trapping-rain-water/) |            |
@@ -320,4 +321,5 @@
 | 专题           | 堆               | [1046. 最后一块石头的重量](https://leetcode-cn.com/problems/last-stone-weight/) | cpp,python |
 | 专题           | 面向对象         | [Lintcode 208. 赋值运算符重载](https://www.lintcode.com/problem/assignment-operator-overloading-c-only/description?_from=ladder&&fromId=6) | cpp        |
 | 专题           | 其它             | [牛客. 回文数字](https://www.nowcoder.com/practice/35b8166c135448c5a5ba2cff8d430c32?tpId=117&&tqId=34977&rp=1&ru=/ta/job-code-high&qru=/ta/job-code-high/question-ranking) | cpp,python |
+| 专题           | 取模             | [1018. 可被 5 整除的二进制前缀](https://leetcode-cn.com/problems/binary-prefix-divisible-by-5/) | cpp,python |
 
