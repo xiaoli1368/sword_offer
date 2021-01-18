@@ -55,6 +55,7 @@
 | 二叉树         | 其它             | 是否是子树                                                   |            |
 | 二叉树         | 其它             | 将树变换成树的镜像                                           |            |
 | 二叉树         | 其它             | 返回树的最长路径（树深）                                     |            |
+| 二叉树         | 其它             | [牛客. 输出二叉树的右视图](https://www.nowcoder.com/practice/c9480213597e45f4807880c763ddd5f0?tpId=117&&tqId=35560&rp=1&ru=/ta/job-code-high&qru=/ta/job-code-high/question-ranking) | python     |
 | 二叉树         | 其它             | [863. 二叉树中所有距离为 K 的结点](https://leetcode-cn.com/problems/all-nodes-distance-k-in-binary-tree/) |            |
 | 二叉树         | 其它             | [117. 填充每个节点的下一个右侧节点指针 II](https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node-ii/) |            |
 | 二叉树         | 其它             | [116. 填充每个节点的下一个右侧节点指针](https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node/) |            |
@@ -84,7 +85,7 @@
 | 链表           | 其它             | [19. 删除链表的倒数第N个节点](https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/) | cpp,python |
 | 链表           | 其它             | [2. 两数相加](https://leetcode-cn.com/problems/add-two-numbers/)，正序 | cpp,python |
 | 链表           | 其它             | [445. 两数相加 II](https://leetcode-cn.com/problems/add-two-numbers-ii/)，倒序 | cpp,python |
-| 链表           | 其它             | 回文链表                                                     |            |
+| 链表           | 其它             | [牛客. 判断一个链表是否为回文结构](https://www.nowcoder.com/practice/3fed228444e740c8be66232ce8b87c2f?tpId=117&&tqId=35018&rp=1&ru=/ta/job-code-high&qru=/ta/job-code-high/question-ranking) | cpp,python |
 |                |                  |                                                              |            |
 | **第三部分**   |                  |                                                              |            |
 | 栈与队列       | 其它             | [剑指 Offer 09. 用两个栈实现队列](https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/) |            |
@@ -322,4 +323,5 @@
 | 专题           | 面向对象         | [Lintcode 208. 赋值运算符重载](https://www.lintcode.com/problem/assignment-operator-overloading-c-only/description?_from=ladder&&fromId=6) | cpp        |
 | 专题           | 其它             | [牛客. 回文数字](https://www.nowcoder.com/practice/35b8166c135448c5a5ba2cff8d430c32?tpId=117&&tqId=34977&rp=1&ru=/ta/job-code-high&qru=/ta/job-code-high/question-ranking) | cpp,python |
 | 专题           | 取模             | [1018. 可被 5 整除的二进制前缀](https://leetcode-cn.com/problems/binary-prefix-divisible-by-5/) | cpp,python |
+| 专题           | 递归             | [牛客. 汉诺塔问题](https://www.nowcoder.com/practice/7d6cab7d435048c4b05251bf44e9f185?tpId=117&&tqId=37386&rp=1&ru=/ta/job-code-high&qru=/ta/job-code-high/question-ranking) | python     |
 
