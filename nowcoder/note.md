@@ -1,8 +1,33 @@
-# 牛客网题解笔记
+# 刷题记录
 
 作者：xiaoli1368
-日期：2020/09/16
+日期：2020/09/16 —— 2021/??/??
 邮箱：xiaoli1644@qq.com
+
+## 前言
+
+> 个人刷题记录，主要包括Leetcode、Nowcode、Lintcode、剑指offer等平台。
+
+## 目录
+
+- 二叉树
+- 链表
+- 栈与队列
+- 哈希表
+- 位运算
+- 数组
+- 字符串
+- 二分
+- 排序
+- 回溯
+- DFS/BFS
+- 滑窗
+- 双指针
+- 贪心
+- 动态规划
+- 专题
+
+## 正文
 
 | 类型           | 说明             | 题目链接                                                     | 个人题解   |
 | -------------- | ---------------- | ------------------------------------------------------------ | ---------- |
@@ -255,10 +280,10 @@
 | 贪心           | 其它             | 跳跃游戏1/2                                                  |            |
 | 贪心           | 其它             | [12. 整数转罗马数字](https://leetcode-cn.com/problems/integer-to-roman/) | python     |
 | 贪心           | 其它             | [13. 罗马数字转整数](https://leetcode-cn.com/problems/roman-to-integer/) | python     |
-| 贪心           | 其它             | [135. 分发糖果](https://leetcode-cn.com/problems/candy/)     | cpp,python |
+| 贪心           | 分配问题         | [135. 分发糖果](https://leetcode-cn.com/problems/candy/)     | cpp,python |
 | 贪心           | 其它             | [452. 用最少数量的箭引爆气球](https://leetcode-cn.com/problems/minimum-number-of-arrows-to-burst-balloons/) |            |
 | 贪心           | 其它             | [134. 加油站](https://leetcode-cn.com/problems/gas-station/) |            |
-| 贪心           | 其它             | [455. 分发饼干](https://leetcode-cn.com/problems/assign-cookies/) |            |
+| 贪心           | 分配问题         | [455. 分发饼干](https://leetcode-cn.com/problems/assign-cookies/) | cpp,python |
 | 贪心           | 其它             | [605. 种花问题](https://leetcode-cn.com/problems/can-place-flowers/) | cpp,python |
 |                |                  |                                                              |            |
 | **第十五部分** |                  |                                                              |            |
