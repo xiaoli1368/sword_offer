@@ -139,6 +139,7 @@
 | 哈希表         | 原地哈希         | [41. 缺失的第一个正数](https://leetcode-cn.com/problems/first-missing-positive/) | python     |
 | 哈希表         | 其它             | [205. 同构字符串](https://leetcode-cn.com/problems/isomorphic-strings/) | cpp,python |
 | 哈希表         | 其它             | [128. 最长连续序列](https://leetcode-cn.com/problems/longest-consecutive-sequence/) | cpp,python |
+| 哈希表         | 其它             | [1128. 等价多米诺骨牌对的数量](https://leetcode-cn.com/problems/number-of-equivalent-domino-pairs/) | cpp,python |
 |                |                  |                                                              |            |
 | **第五部分**   |                  |                                                              |            |
 | 位运算         | 其它             | [剑指 Offer 15. 二进制中1的个数](https://leetcode-cn.com/problems/er-jin-zhi-zhong-1de-ge-shu-lcof/) |            |
