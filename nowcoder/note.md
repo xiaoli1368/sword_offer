@@ -276,15 +276,15 @@
 | 双指针         | 其它             | [844. 比较含退格的字符串](https://leetcode-cn.com/problems/backspace-string-compare/) | c++,python |
 |                |                  | [925. 长按键入](https://leetcode-cn.com/problems/long-pressed-name/) | c++,python |
 | **第十四部分** |                  |                                                              |            |
-| 贪心           | 其它             | 区间调度                                                     |            |
+| 贪心           | 分配问题         | [135. 分发糖果](https://leetcode-cn.com/problems/candy/)     | cpp,python |
+| 贪心           | 分配问题         | [455. 分发饼干](https://leetcode-cn.com/problems/assign-cookies/) | cpp,python |
+| 贪心           | 区间问题         | 435                                                          |            |
+| 贪心           | 其它             | [605. 种花问题](https://leetcode-cn.com/problems/can-place-flowers/) | cpp,python |
 | 贪心           | 其它             | 跳跃游戏1/2                                                  |            |
 | 贪心           | 其它             | [12. 整数转罗马数字](https://leetcode-cn.com/problems/integer-to-roman/) | python     |
 | 贪心           | 其它             | [13. 罗马数字转整数](https://leetcode-cn.com/problems/roman-to-integer/) | python     |
-| 贪心           | 分配问题         | [135. 分发糖果](https://leetcode-cn.com/problems/candy/)     | cpp,python |
 | 贪心           | 其它             | [452. 用最少数量的箭引爆气球](https://leetcode-cn.com/problems/minimum-number-of-arrows-to-burst-balloons/) |            |
 | 贪心           | 其它             | [134. 加油站](https://leetcode-cn.com/problems/gas-station/) |            |
-| 贪心           | 分配问题         | [455. 分发饼干](https://leetcode-cn.com/problems/assign-cookies/) | cpp,python |
-| 贪心           | 其它             | [605. 种花问题](https://leetcode-cn.com/problems/can-place-flowers/) | cpp,python |
 |                |                  |                                                              |            |
 | **第十五部分** |                  |                                                              |            |
 | 动态规划       | 背包问题         |                                                              |            |
