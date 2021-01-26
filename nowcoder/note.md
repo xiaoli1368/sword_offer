@@ -253,6 +253,7 @@
 | BFS            | 其它             | [200. 岛屿数量](https://leetcode-cn.com/problems/number-of-islands/) |            |
 | BFS            | 其它             | [752. 打开转盘锁](https://leetcode-cn.com/problems/open-the-lock/)（解开密码锁的最小次数） |            |
 | BFS            | 其它             | [994. 腐烂的橘子](https://leetcode-cn.com/problems/rotting-oranges/) |            |
+| BFS            | 其它             | [542. 01 矩阵](https://leetcode-cn.com/problems/01-matrix/)  | cpp,python |
 |                |                  |                                                              |            |
 | **第十二部分** |                  |                                                              |            |
 | 滑窗法         | 其它             | [3. 无重复字符的最长子串](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/) |            |
@@ -284,7 +285,7 @@
 | 贪心           | 其它             | 跳跃游戏1/2                                                  |            |
 | 贪心           | 其它             | [12. 整数转罗马数字](https://leetcode-cn.com/problems/integer-to-roman/) | python     |
 | 贪心           | 其它             | [13. 罗马数字转整数](https://leetcode-cn.com/problems/roman-to-integer/) | python     |
-| 贪心           | 其它             | [452. 用最少数量的箭引爆气球](https://leetcode-cn.com/problems/minimum-number-of-arrows-to-burst-balloons/) |            |
+| 贪心           | 其它             | [452. 用最少数量的箭引爆气球](https://leetcode-cn.com/problems/minimum-number-of-arrows-to-burst-balloons/) | cpp,python |
 | 贪心           | 其它             | [134. 加油站](https://leetcode-cn.com/problems/gas-station/) |            |
 |                |                  |                                                              |            |
 | **第十五部分** |                  |                                                              |            |
