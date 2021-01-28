@@ -41,11 +41,11 @@
 | [763. 划分字母区间](https://leetcode-cn.com/problems/partition-labels/) | medium | cpp,python  | 区间问题 |
 | [122. 买卖股票的最佳时机 II](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/) | easy   | cpp,python  | 其它     |
 | [665. 非递减数列](https://leetcode-cn.com/problems/non-decreasing-array/) | easy   | cpp,python  | 其它     |
-| [406. 根据身高重建队列](https://leetcode-cn.com/problems/queue-reconstruction-by-height/) |        |             |          |
-|                                                              |        |             |          |
-| [860. 柠檬水找零](https://leetcode-cn.com/problems/lemonade-change/) |        |             |          |
+| [406. 根据身高重建队列](https://leetcode-cn.com/problems/queue-reconstruction-by-height/) | medium | cpp,python  | 其它     |
+| 后续待刷的题目：                                             |        |             |          |
+| [860. 柠檬水找零](https://leetcode-cn.com/problems/lemonade-change/) | easy   |             | 其它     |
 | [402. 移掉K位数字](https://leetcode-cn.com/problems/remove-k-digits/) |        |             |          |
-| [1288. 删除被覆盖区间](https://leetcode-cn.com/problems/remove-covered-intervals/) |        |             |          |
+| [1288. 删除被覆盖区间](https://leetcode-cn.com/problems/remove-covered-intervals/) |        |             | 区间问题 |
 | [649. Dota2 参议院](https://leetcode-cn.com/problems/dota2-senate/) |        |             |          |
 | [316. 去除重复字母](https://leetcode-cn.com/problems/remove-duplicate-letters/) |        |             |          |
 | [55. 跳跃游戏](https://leetcode-cn.com/problems/jump-game/)  |        |             |          |
