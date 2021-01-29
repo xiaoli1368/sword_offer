@@ -20,6 +20,25 @@ class Solution(object):
 				num1[i] = num2[n]
 				n -= 1
 
+	def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+		"""
+		Do not return anything, modify nums1 in-place instead.
+		从后往前合并，增加提前退出的机制
+		当n指针用完后直接退出即可
+		"""
+		m -= 1
+		n -= 1
+		for i in range(m + n + 1, -1, -1): # 注意m/n值已改变，所以要+1
+			if n < 0:
+				break
+			elif m >= 0 and nums1[m] >= nums2[n]:
+				nums1[i] = nums1[m]
+				m -= 1
+			else:
+				nums1[i] = nums2[n]
+				n -= 1
+		return
+
 if __name__ == "__main__":
 	m, n = 3, 3
 	num1 = [1, 2, 3, 0, 0, 0]

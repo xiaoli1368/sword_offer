@@ -51,7 +51,7 @@ class Solution(object):
                 break
         # 确定是否有环
         if p != q or (p and p.next == None):
-            return False
+            return None
         # 有环确定入口
         p = head
         while p != q:

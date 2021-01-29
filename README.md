@@ -25,7 +25,17 @@
 
 ## 第一部分：数据结构
 
+### 常见数据结构
 
+### 字符串
+
+### 链表
+
+### 树
+
+### 图
+
+### 更加复杂的数据结构
 
 ## 第二部分：算法
 
@@ -52,7 +62,46 @@
 | [134. 加油站](https://leetcode-cn.com/problems/gas-station/) |        |             |          |
 | 石子游戏                                                     |        |             |          |
 
+### 双指针
 
+| 题目链接                                                     | 难度   | 个人题解   | 说明     |
+| ------------------------------------------------------------ | ------ | ---------- | -------- |
+| [167. 两数之和 II - 输入有序数组](https://leetcode-cn.com/problems/two-sum-ii-input-array-is-sorted/) | easy   | cpp,python | 两数之和 |
+| [633. 平方数之和](https://leetcode-cn.com/problems/sum-of-square-numbers/) | medium | cpp,python | 两数之和 |
+| [88. 合并两个有序数组](https://leetcode-cn.com/problems/merge-sorted-array/) | easy   | cpp,python | 归并排序 |
+| [142. 环形链表 II](https://leetcode-cn.com/problems/linked-list-cycle-ii/) | medium | cpp,python | 快慢指针 |
+| [76. 最小覆盖子串](https://leetcode-cn.com/problems/minimum-window-substring/) | hard   | cpp,python | 滑动窗口 |
+| 340. 至多包含 K 个不同字符的最长子串                         | hard   | cpp,python | 滑动窗口 |
+| [125. 验证回文串](https://leetcode-cn.com/problems/valid-palindrome/) | easy   | cpp,python | 回文串   |
+| [680. 验证回文字符串 Ⅱ](https://leetcode-cn.com/problems/valid-palindrome-ii/) | easy   | cpp,python | 回文串   |
+| [524. 通过删除字母匹配到字典里最长单词](https://leetcode-cn.com/problems/longest-word-in-dictionary-through-deleting/) | medium | cpp,python | 字符串   |
+| 添加一些滑窗题目                                             |        |            |          |
+|                                                              |        |            |          |
+
+### 二分查找
+
+| 题目链接                                                     | 难度 | 个人题解 | 说明 |
+| ------------------------------------------------------------ | ---- | -------- | ---- |
+| [69. x 的平方根](https://leetcode-cn.com/problems/sqrtx/)    |      |          |      |
+| [34. 在排序数组中查找元素的第一个和最后一个位置](https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/) |      |          |      |
+| [81. 搜索旋转排序数组 II](https://leetcode-cn.com/problems/search-in-rotated-sorted-array-ii/) |      |          |      |
+| [154. 寻找旋转排序数组中的最小值 II](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii/) |      |          |      |
+| [540. 有序数组中的单一元素](https://leetcode-cn.com/problems/single-element-in-a-sorted-array/) |      |          |      |
+| [4. 寻找两个正序数组的中位数](https://leetcode-cn.com/problems/median-of-two-sorted-arrays/) |      |          |      |
+|                                                              |      |          |      |
+
+
+
+### 排序
+
+### 搜索
+
+### 动态规划
+
+### 分治法
 
 ## 第三部分：数学
 
+### 数学问题
+
+### 位运算
