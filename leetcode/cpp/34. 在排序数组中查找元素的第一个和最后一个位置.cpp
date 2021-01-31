@@ -32,4 +32,29 @@ public:
         ret[0] = left, ret[1] = right;
         return ret;
     }
+
+	// ===== 更加简便的方法 =====
+    // 找到大于等于target的最小索引，注意结果有可能越界
+    int binarySearch(vector<int>& nums, int target, int l, int h) {
+        while (l < h) {
+            int m = l + (h - l) / 2;
+            if (nums[m] < target) {
+                l = m + 1;
+            } else {
+                h = m;
+            }
+        }
+        return (l >= nums.size() || nums[l] >= target ? l : l + 1);
+    }
+
+    vector<int> searchRange(vector<int>& nums, int target) {
+        int n = nums.size();
+        int left = binarySearch(nums, target, 0, n - 1);
+        int right = binarySearch(nums, target + 1, left, n - 1);
+        if (left < n && nums[left] == target) {
+            return vector<int>{left, right - 1};
+        } else {
+            return vector<int>{-1, -1};
+        }
+    }
 };

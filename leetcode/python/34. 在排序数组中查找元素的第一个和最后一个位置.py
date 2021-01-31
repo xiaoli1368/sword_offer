@@ -3,9 +3,11 @@
 34. 在排序数组中查找元素的第一个和最后一个位置
 
 思路：
-二分查找左边界
-然后查找右边界（可以二分，也可以普通查找）
-注意各种特殊情况
+有序数组里的查找，所以是经典的二分方法
+1. 暴力枚举，记录出现target的最小索引和最大索引，O(n)
+2. 二分查找左边界，然后暴力枚举右边界，O(logn + n)
+3. 二分查找左边界，然后在此基础上二分查找右边界，O(2logn)
+4. 复用函数二分查找左边界，然后查找target和target+1，代码量减少
 """
 
 class Solution(object):
@@ -70,3 +72,26 @@ class Solution(object):
             right += 1
         # 返回结果
         return [left, right]
+
+	# ===== 更加简便的方法 =====
+    def binarySearch(self, nums, target, l, h):
+        """
+        寻找数组中大于等于target的最小索引
+        注意返回结果有可能大于数组有效索引
+        """
+        while l < h:
+            m = (l + h) // 2
+            if nums[m] < target:
+                l = m + 1
+            else:
+                h = m
+        return l if l >= len(nums) or nums[l] >= target else l + 1
+
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        """
+        二分法
+        """
+        n = len(nums)
+        left = self.binarySearch(nums, target, 0, n - 1)
+        right = self.binarySearch(nums, target + 1, left, n - 1)
+        return [left, right - 1] if left < len(nums) and nums[left] == target else [-1, -1]
