@@ -140,6 +140,42 @@ public:
         // 输出结果
         return (m + n % 2 == 1) ? median1 : (median1 + median2) / 2.0;
     }
+
+	// 更加简洁的方法（以下建议全文背诵）
+	double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+        // 保证先小后大的顺序
+        int n1 = nums1.size();
+        int n2 = nums2.size();
+        if (n1 > n2) {
+            return findMedianSortedArrays(nums2, nums1);
+        }
+
+        // 初始化并进行二分
+        int l = 0, h = n1, m1, m2;
+        int k = (n1 + n2 + 1) / 2;
+        while (l < h) {
+            m1 = l + (h - l) / 2;
+            m2 = k - m1;
+            if (nums1[m1] < nums2[m2 - 1]) {
+                l = m1 + 1;
+            } else {
+                h = m1;
+            }
+        }
+        m1 = l;
+        m2 = k - l;
+
+        // 获取中间的两个元素
+        int left1 = (m1 > 0 ? nums1[m1 - 1] : INT_MIN);
+        int left2 = (m2 > 0 ? nums2[m2 - 1] : INT_MIN);
+        int right1 = (m1 < n1 ? nums1[m1] : INT_MAX);
+        int right2 = (m2 < n2 ? nums2[m2] : INT_MAX);
+        int left = max(left1, left2);
+        int right = min(right1, right2);
+
+        // 更加总元素个数，返回结果
+        return (n1 + n2) % 2 == 1 ? left : (left + right) / 2.0;
+    }
 };
 
 int main(int argc, char* argv[])

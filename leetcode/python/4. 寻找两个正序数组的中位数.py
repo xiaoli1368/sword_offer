@@ -158,6 +158,50 @@ class Solution(object):
 		# 输出结果
 		return (median1 + median2) / 2 if (m + n) % 2 == 0 else median1
 
+	# ===== 更加简洁的解法（建议全文背诵） =====
+	# 参考：https://leetcode-cn.com/problems/median-of-two-sorted-arrays/solution/shuang-zhi-zhen-by-powcai/
+    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+        """
+        1. 暴力方法：直接合并然后排序，找到topk
+        2. 归并排序：进行有序数组的merge，O(logm + logn)，O(m + n)
+        3. 二分查找：关键是在两个有序数组中二分
+        """
+        # 保证第一个数组长度更小，确保最终复杂度为O(log(min(m, n)))
+        # 同时为了保证后续的k-m1-1非负
+        n1, n2 = len(nums1), len(nums2)
+        if n1 > n2:
+            return self.findMedianSortedArrays(nums2, nums1)
+        
+        # 初始化
+        # 这里topk表示第k小的数，并且中位数靠前，例如3个数，k=2，4个数，k=2
+        # 这样找到topk后，可以很快找到top(k-1)
+        l, h = 0, n1
+        k = (n1 + n2 + 1) // 2
+
+        # 对第一个数组进行二分，找到分割边界[m1, m2]
+        # 两个分割边界保证左侧分割的元素个数为k
+        # 最终分割线应满足：max(nums1[m1-1], nums2[m2-1]) <= min(nums1[m1], nums2[m2])
+        # 因此对m1则不满足的条件是：nums1[m1-1] > nums2[m2] || nums2[m2-1] > nums1[m1]
+        while l < h:
+            m1 = (l + h) // 2 # 第一个数组中索引为m1的元素，左侧有m1个元素
+            m2 = k - m1       # 第二个数组中索引为m2的元素，左侧有k-m1=m2个元素
+            if nums1[m1] < nums2[m2 - 1]:
+                l = m1 + 1
+            else:
+                h = m1
+        m1, m2 = l, k - l
+        
+        # 获取两个数组各自中间的两个元素
+        left1 = nums1[m1 - 1] if m1 > 0 else float("-inf")
+        left2 = nums2[m2 - 1] if m2 > 0 else float("-inf")
+        right1 = nums1[m1] if m1 < n1 else float("+inf")
+        right2 = nums2[m2] if m2 < n2 else float("+inf")
+        left = max(left1, left2)
+        right = min(right1, right2)
+
+        # 根据元素总个数，获取中位数
+        return left if (n1 + n2) % 2 == 1 else (left + right) / 2
+
 if __name__ == "__main__":
 	s = Solution()
 	nums1 = [1, 2]

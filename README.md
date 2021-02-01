@@ -100,19 +100,31 @@
 | ------------------------------------------------------------ | ------ | ---------- | -------- |
 | [69. x 的平方根](https://leetcode-cn.com/problems/sqrtx/)    | easy   | cpp,python | 常规二分 |
 | [34. 在排序数组中查找元素的第一个和最后一个位置](https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/) | medium | cpp,python | 区间二分 |
-| [33. 搜索旋转排序数组](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/) |        |            |          |
-| [81. 搜索旋转排序数组 II](https://leetcode-cn.com/problems/search-in-rotated-sorted-array-ii/) |        |            |          |
-| [153. 寻找旋转排序数组中的最小值](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/) |        |            |          |
-| [154. 寻找旋转排序数组中的最小值 II](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii/) |        |            |          |
-| [540. 有序数组中的单一元素](https://leetcode-cn.com/problems/single-element-in-a-sorted-array/) |        |            |          |
-| [4. 寻找两个正序数组的中位数](https://leetcode-cn.com/problems/median-of-two-sorted-arrays/) |        |            |          |
+| [33. 搜索旋转排序数组](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/) | medium | cpp,python | 旋转二分 |
+| [81. 搜索旋转排序数组 II](https://leetcode-cn.com/problems/search-in-rotated-sorted-array-ii/) | medium | cpp,python | 旋转二分 |
+| [153. 寻找旋转排序数组中的最小值](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/) | medium | cpp,python | 旋转二分 |
+| [154. 寻找旋转排序数组中的最小值 II](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii/) | hard   | cpp,python | 旋转二分 |
+| [540. 有序数组中的单一元素](https://leetcode-cn.com/problems/single-element-in-a-sorted-array/) | medium | cpp,python | 按值二分 |
+| [4. 寻找两个正序数组的中位数](https://leetcode-cn.com/problems/median-of-two-sorted-arrays/) | hard   | cpp,python | 两路二分 |
 | [240. 搜索二维矩阵 II](https://leetcode-cn.com/problems/search-a-2d-matrix-ii/) |        |            |          |
 | [378. 有序矩阵中第K小的元素](https://leetcode-cn.com/problems/kth-smallest-element-in-a-sorted-matrix/)（难，重点学习） |        |            |          |
 | [475. 供暖器](https://leetcode-cn.com/problems/heaters/)     |        |            |          |
-| 牛客比赛中出现的二分题目                                     |        |            |          |
+| [牛客比赛中出现的二分题目](https://blog.csdn.net/qq_44900959/article/details/110284829?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.control) |        |            |          |
 | 寻找单个元素，寻找左边界，寻找右边界                         |        |            |          |
 
 ### 排序
+
+| 题目链接 | 难度 | 个人题解 | 说明     |
+| -------- | ---- | -------- | -------- |
+| 215      |      |          | 快速排序 |
+| 347      |      |          | 桶排序   |
+| 451      |      |          | 桶排序   |
+| 75       |      |          | 荷兰国旗 |
+|          |      |          | topk     |
+|          |      |          | 归并     |
+|          |      |          | 奇偶排序 |
+|          |      |          | 链表排序 |
+|          |      |          |          |
 
 ### 搜索
 
@@ -124,6 +136,8 @@
 
 ### 数学问题
 
+- 快速幂
+
 ### 位运算
 
 ## 第四部分：专题
@@ -133,4 +147,5 @@
 |          |      |          | 股票买卖 |
 |          |      |          | 石子游戏 |
 |          |      |          | N数之和  |
+|          |      |          | 铺瓷砖   |
 

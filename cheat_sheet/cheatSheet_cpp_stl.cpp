@@ -5,6 +5,7 @@
 #include <vector>
 #include <algorithm>
 #include <numeric>
+#include <cmath>
 
 int main(int argc, char* argv[])
 {
@@ -21,11 +22,27 @@ int main(int argc, char* argv[])
 	// 求和
 	std::accumulate(vec.begin(), vec.end(), 0); // 0表示初始sum=0
 
+	// 求极值（先求迭代器，后解引用）
+	int minVal = *std::min_element(vec.begin(), vec.end());
+	int maxVal = *std::max_element(vec.begin(), vec.end());
+
+	// 搜索
+	int target = 10;
+	std::find(vec.begin(), vec.end(), target) != vec.end(); // 不等于末尾，表示搜索到了
+	// 指定区间搜索
+	int l = 1, h = 5;
+	auto it = vec.begin();
+	std::find(it + l, it + h, target) != it + h; // 特别注意这里的末尾应该是与h有关的
+
 	// ===== map ==================================================
 	std::map<int, int> map;
 
 	// 判断是否存在
 	map.count(5); // 不存在则返回0
+
+	// ===== 其它 =================================================
+	int int_min = INT_MIN; // 最小整形
+	int int_max = INT_MAX; // 最大整形
 	
 	return 0;
 }
