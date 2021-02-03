@@ -15,6 +15,31 @@ class Solution(object):
         """
         :type nums: List[int]
         :rtype: None Do not return anything, modify nums in-place instead.
+		两次快排，效率不高
+        """
+        if nums == []:
+            return
+        n = len(nums)
+        
+        # 两次快排分区
+        t0 = -1
+        for i in range(n):
+            if nums[i] == 0:
+                t0 += 1
+                nums[i], nums[t0] = nums[t0], nums[i]
+        
+        t2 = n
+        for i in range(n - 1, -1, -1):
+            if nums[i] == 2:
+                t2 -= 1
+                nums[i], nums[t2] = nums[t2], nums[i]
+        
+        return
+
+    def sortColors(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: None Do not return anything, modify nums in-place instead.
         计数排序
         """
         if nums == []:
@@ -80,6 +105,7 @@ class Solution(object):
         :type nums: List[int]
         :rtype: None Do not return anything, modify nums in-place instead.
         类似于快排分区，两端三指针
+		这个效率最好，建议全文背诵
         p0表示已经排好的0的尾部，向右延申
         p2表示已经排好的2的尾部，向左延申
         p1表示当前正在遍历的元素

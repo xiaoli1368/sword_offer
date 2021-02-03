@@ -114,19 +114,57 @@
 
 ### 排序
 
-| 题目链接 | 难度 | 个人题解 | 说明     |
-| -------- | ---- | -------- | -------- |
-| 215      |      |          | 快速排序 |
-| 347      |      |          | 桶排序   |
-| 451      |      |          | 桶排序   |
-| 75       |      |          | 荷兰国旗 |
-|          |      |          | topk     |
-|          |      |          | 归并     |
-|          |      |          | 奇偶排序 |
-|          |      |          | 链表排序 |
-|          |      |          |          |
+| 题目链接                                                     | 难度   | 个人题解   | 说明             |
+| ------------------------------------------------------------ | ------ | ---------- | ---------------- |
+| [215. 数组中的第K个最大元素](https://leetcode-cn.com/problems/kth-largest-element-in-an-array/) | medium | cpp,python | topk, 快排, 二分 |
+| [347. 前 K 个高频元素](https://leetcode-cn.com/problems/top-k-frequent-elements/) | medium | cpp,python | topk, 桶排序     |
+| [692. 前K个高频单词](https://leetcode-cn.com/problems/top-k-frequent-words/) |        |            | topk             |
+| [973. 最接近原点的 K 个点](https://leetcode-cn.com/problems/k-closest-points-to-origin/) |        |            | topk             |
+| [牛客. 出现次数的TopK问题](https://www.nowcoder.com/practice/fd711bdfa0e840b381d7e1b82183b3ee?tpId=117&&tqId=35559&rp=1&ru=/ta/job-code-high&qru=/ta/job-code-high/question-ranking) |        |            | topk, 二分       |
+| [4. 寻找两个正序数组的中位数](https://leetcode-cn.com/problems/median-of-two-sorted-arrays/) |        |            | topk             |
+| 无序数组，找min和max（nowcoder/get_min_max）                 |        |            | topk             |
+| 无序数组，找max和max2（nowcoder/get_max_max2）               |        |            | topk             |
+| 无序数组，找第k大的值（nowcoder/get_topk）                   |        |            | topk             |
+| 无序数组，找前k大的值（nowcoder/get_all_topk）               |        |            | topk             |
+| [451. 根据字符出现频率排序](https://leetcode-cn.com/problems/sort-characters-by-frequency/) | medium | cpp,python | 快排，桶排序     |
+| [75. 颜色分类](https://leetcode-cn.com/problems/sort-colors/) | medium | cpp,python | 快排，荷兰国旗   |
+| [283. 移动零](https://leetcode-cn.com/problems/move-zeroes/) |        |            | 快排，荷兰国旗   |
+| [27. 移除元素](https://leetcode-cn.com/problems/remove-element/) |        |            | 快排，快排分区   |
+| [88. 合并两个有序数组](https://leetcode-cn.com/problems/merge-sorted-array/) |        |            | 归并排序         |
+| [21. 合并两个有序链表](https://leetcode-cn.com/problems/merge-two-sorted-lists/) |        |            | 归并排序         |
+| [23. 合并K个升序链表](https://leetcode-cn.com/problems/merge-k-sorted-lists/) |        |            | 归并排序         |
+| [剑指 Offer 51. 数组中的逆序对](https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/) |        |            | 归并排序         |
+| [493. 翻转对](https://leetcode-cn.com/problems/reverse-pairs/) |        |            | 归并排序         |
+| [315. 计算右侧小于当前元素的个数](https://leetcode-cn.com/problems/count-of-smaller-numbers-after-self/) |        |            | 归并排序         |
+| [327. 区间和的个数](https://leetcode-cn.com/problems/count-of-range-sum/) |        |            | 归并排序         |
+| [977. 有序数组的平方](https://leetcode-cn.com/problems/squares-of-a-sorted-array/) |        |            | 归并排序         |
+| [147. 对链表进行插入排序](https://leetcode-cn.com/problems/insertion-sort-list/) |        |            | 链表排序         |
+| [148. 排序链表](https://leetcode-cn.com/problems/sort-list/) |        |            | 链表排序         |
+| [剑指 Offer 21. 调整数组顺序使奇数位于偶数前面](https://leetcode-cn.com/problems/diao-zheng-shu-zu-shun-xu-shi-qi-shu-wei-yu-ou-shu-qian-mian-lcof/) |        |            | 奇偶排序         |
+| [905. 按奇偶排序数组](https://leetcode-cn.com/problems/sort-array-by-parity/) |        |            | 奇偶排序         |
+| [922. 按奇偶排序数组 II](https://leetcode-cn.com/problems/sort-array-by-parity-ii/) |        |            | 奇偶排序         |
+| [1356. 根据数字二进制下 1 的数目排序](https://leetcode-cn.com/problems/sort-integers-by-the-number-of-1-bits/) |        |            | 其它             |
+| [324. 摆动排序 II](https://leetcode-cn.com/problems/wiggle-sort-ii/) |        |            | 其它             |
 
 ### 搜索
+
+| 题目链接 | 难度 | 个人题解 | 说明 |
+| -------- | ---- | -------- | ---- |
+| 695      |      |          |      |
+| 547      |      |          |      |
+| 417      |      |          |      |
+| 46       |      |          |      |
+| 77       |      |          |      |
+| 79       |      |          |      |
+| 51       |      |          |      |
+| 934      |      |          |      |
+| 126      |      |          |      |
+| 130      |      |          |      |
+| 257      |      |          |      |
+| 47       |      |          |      |
+| 40       |      |          |      |
+| 37       |      |          |      |
+| 310      |      |          |      |
 
 ### 动态规划
 

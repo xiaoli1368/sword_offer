@@ -125,4 +125,37 @@ public:
         }
         return tmp;
 	}
+
+    // ===== 桶排序 =====
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        // 特殊情况
+        if (nums.empty() || k > nums.size()) {
+            return nums;
+        }
+
+        // 完成hash统计，并得到最大频次
+        int max_cnt = 0;
+        unordered_map<int, int> d;
+        for (const auto & i : nums) {
+            max_cnt = max(max_cnt, ++d[i]);
+        }
+
+        // 进行桶排序
+        vector<vector<int>> buckets(max_cnt + 1);
+        for (const auto & it : d) {
+            buckets[it.second].push_back(it.first);
+        }
+
+        // 从后向前遍历，找到topk
+        vector<int> ret;
+        for (int i = max_cnt; i >= 0 && ret.size() < k; i--) {
+            for (const auto & num : buckets[i]) {
+                ret.push_back(num);
+                if (ret.size() == k) {
+                    break;
+                }
+            }
+        }
+        return ret;
+    }
 };

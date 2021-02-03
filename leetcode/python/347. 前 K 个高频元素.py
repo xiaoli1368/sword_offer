@@ -47,8 +47,8 @@ class Solution(object):
             self.heapify(vec, i, 0)
         
         return ret
-	
-	# ===== 另一种方式 =====
+
+    # ===== 另一种方式 =====
     def partition(self, vec, l, h):
         """
         快排分区函数，从大到小
@@ -103,3 +103,33 @@ class Solution(object):
         
         # 返回结果
         return [x[0] for x in ret[:k]]
+
+    # ===== 桶排序 =====
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        """
+        按照频次，桶排序
+        """
+        # 特殊情况
+        if nums == [] or k > len(nums):
+            return nums
+        
+        # 生成hash并且统计出现次数最大的频次
+        max_cnt, d = 0, dict()
+        for i in nums:
+            d[i] = 1 + d.get(i, 0)
+            max_cnt = max(max_cnt, d[i])
+        
+        # 进行桶排序
+        # 注意可能会有不同元素出现了相同频次
+        buckets = [[] for _ in range(max_cnt + 1)]
+        for num, cnt in d.items():
+            buckets[cnt].append(num)
+        
+        # 从后往前找到topk
+        ret = []
+        for i in range(max_cnt, -1, -1):
+            for num in buckets[i]:
+                ret.append(num)
+                if len(ret) == k:
+                    return ret
+        return ret

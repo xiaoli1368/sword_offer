@@ -23,7 +23,7 @@ public:
 
     // ===== 快排方式 =====
 
-    // 分区函数
+    // 交换函数
     inline void swap(vector<int>& nums, int a, int b) {
         int tmp = nums[a];
         nums[a] = nums[b];
@@ -51,6 +51,32 @@ public:
                 swap(nums, p2, p1);
             }
         }
+        return;
+	}
+
+    // 两次快排，效率不高
+    void sortColors(vector<int>& nums) {
+        // 特殊情况
+        if (nums.empty()) {
+            return;
+        }
+
+        // 快排分区
+        // 先从左往右遍历，把0放到左侧，然后从右往左遍历，把2放到右侧
+        int t0 = -1;
+        for (int i = 0; i < nums.size(); i++) {
+            if (nums[i] == 0) {
+                swap(nums, i, ++t0);
+            }
+        }
+
+        int t2 = nums.size();
+        for (int i = nums.size() - 1; i >= 0; i--) {
+            if (nums[i] == 2) {
+                swap(nums, i, --t2);
+            }
+        }
+
         return;
     }
 };
