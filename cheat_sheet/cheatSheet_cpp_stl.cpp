@@ -1,11 +1,15 @@
 // 用来记录cpp_stl中常见的用法
 
 #include <map>
+#include <set>
 #include <unordered_map>
+#include <unordered_set>
+#include <queue>
 #include <vector>
 #include <algorithm>
 #include <numeric>
 #include <cmath>
+#include <iostream>
 
 int main(int argc, char* argv[])
 {
@@ -34,11 +38,52 @@ int main(int argc, char* argv[])
 	auto it = vec.begin();
 	std::find(it + l, it + h, target) != it + h; // 特别注意这里的末尾应该是与h有关的
 
+	// 迭代器遍历
+	for (const auto & p : vec) {
+		std::cout << p << std::endl;
+	}
+
 	// ===== map ==================================================
 	std::map<int, int> map;
 
 	// 判断是否存在
 	map.count(5); // 不存在则返回0
+
+	// 遍历
+	for (const auto & p : map) {
+		std::cout << p.first << " " << p.second << std::endl;
+	}
+	for (auto it = map.begin(); it != map.end(); it++) {
+		std::cout << it->first << " " << it->second << std::endl;
+	}
+	for (auto it = map.cbegin(); it != map.cend(); it++) {
+		std::cout << it->first << " " << it->second << std::endl;
+	}
+
+	// ===== set =================================================
+	std::set<int> set;
+
+	// 插入
+	set.insert(10);
+
+	// 删除
+	set.erase(10);
+
+	// 弹出第一个元素
+	int first = *set.begin();
+
+	// 判断是否存在
+	set.count(10); // 不存在则返回0
+
+	// ===== queue ===============================================
+	std::queue<int> queue;
+
+	// 压入
+	queue.push(10);
+
+	// 获取并弹出头部
+	int first = queue.front();
+	queue.pop();
 
 	// ===== 其它 =================================================
 	int int_min = INT_MIN; // 最小整形

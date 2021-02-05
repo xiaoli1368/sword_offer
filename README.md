@@ -84,6 +84,7 @@
 | [3. 无重复字符的最长子串](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/) |        |            | 滑动窗口 |
 | [76. 最小覆盖子串](https://leetcode-cn.com/problems/minimum-window-substring/) | hard   | cpp,python | 滑动窗口 |
 | 340. 至多包含 K 个不同字符的最长子串                         | hard   | cpp,python | 滑动窗口 |
+| [1208. 尽可能使字符串相等](https://leetcode-cn.com/problems/get-equal-substrings-within-budget/) | medium | 已AC       | 滑动窗口 |
 | [125. 验证回文串](https://leetcode-cn.com/problems/valid-palindrome/) | easy   | cpp,python | 回文串   |
 | [680. 验证回文字符串 Ⅱ](https://leetcode-cn.com/problems/valid-palindrome-ii/) | easy   | cpp,python | 回文串   |
 | [524. 通过删除字母匹配到字典里最长单词](https://leetcode-cn.com/problems/longest-word-in-dictionary-through-deleting/) | medium | cpp,python | 字符串   |
@@ -148,29 +149,29 @@
 
 ### 搜索
 
-| 题目链接                                                     | 难度   | 个人题解   | 说明          |
-| ------------------------------------------------------------ | ------ | ---------- | ------------- |
-| [463. 岛屿的周长](https://leetcode-cn.com/problems/island-perimeter/) | simple | cpp,python | DFS，岛屿问题 |
-| [200. 岛屿数量](https://leetcode-cn.com/problems/number-of-islands/) | medium | cpp,python | DFS，岛屿问题 |
-| 岛屿数量2，没权限                                            | hard   |            | DFS，岛屿问题 |
-| [695. 岛屿的最大面积](https://leetcode-cn.com/problems/max-area-of-island/) | medium | cpp,python | DFS，岛屿问题 |
-| 547                                                          |        |            |               |
-| 417                                                          |        |            |               |
-| 46                                                           |        |            |               |
-| 77                                                           |        |            |               |
-| 79                                                           |        |            |               |
-| 51                                                           |        |            |               |
-| 934                                                          |        |            |               |
-| 126                                                          |        |            |               |
-| 130                                                          |        |            |               |
-| 257                                                          |        |            |               |
-| 47                                                           |        |            |               |
-| 40                                                           |        |            |               |
-| 37                                                           |        |            |               |
-| 310                                                          |        |            |               |
-| 其它题目                                                     |        |            |               |
-| [733. 图像渲染](https://leetcode-cn.com/problems/flood-fill/) |        |            |               |
-| [1034. 边框着色](https://leetcode-cn.com/problems/coloring-a-border/) |        |            |               |
+| 题目链接                                                     | 难度   | 个人题解   | 说明            |
+| ------------------------------------------------------------ | ------ | ---------- | --------------- |
+| [463. 岛屿的周长](https://leetcode-cn.com/problems/island-perimeter/) | simple | cpp,python | DFS，岛屿问题   |
+| [200. 岛屿数量](https://leetcode-cn.com/problems/number-of-islands/) | medium | cpp,python | DFS，岛屿问题   |
+| 岛屿数量2，没权限                                            | hard   |            | DFS，岛屿问题   |
+| [695. 岛屿的最大面积](https://leetcode-cn.com/problems/max-area-of-island/) | medium | cpp,python | DFS，岛屿问题   |
+| [547. 省份数量](https://leetcode-cn.com/problems/number-of-provinces/) | medium | cpp,python | DFS，连通域个数 |
+| [417. 太平洋大西洋水流问题](https://leetcode-cn.com/problems/pacific-atlantic-water-flow/) | medium | cpp,python | DFS             |
+| 46                                                           |        |            |                 |
+| 77                                                           |        |            |                 |
+| 79                                                           |        |            |                 |
+| 51                                                           |        |            |                 |
+| 934                                                          |        |            |                 |
+| 126                                                          |        |            |                 |
+| 130                                                          |        |            |                 |
+| 257                                                          |        |            |                 |
+| 47                                                           |        |            |                 |
+| 40                                                           |        |            |                 |
+| 37                                                           |        |            |                 |
+| 310                                                          |        |            |                 |
+| 其它题目                                                     |        |            |                 |
+| [733. 图像渲染](https://leetcode-cn.com/problems/flood-fill/) |        |            |                 |
+| [1034. 边框着色](https://leetcode-cn.com/problems/coloring-a-border/) |        |            |                 |
 
 ### 动态规划
 
