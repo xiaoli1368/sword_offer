@@ -159,15 +159,16 @@
 | [695. 岛屿的最大面积](https://leetcode-cn.com/problems/max-area-of-island/) | medium | cpp,python | DFS，岛屿问题           |
 | [547. 省份数量](https://leetcode-cn.com/problems/number-of-provinces/) | medium | cpp,python | DFS，连通域个数         |
 | [417. 太平洋大西洋水流问题](https://leetcode-cn.com/problems/pacific-atlantic-water-flow/) | medium | cpp,python | DFS，其它               |
-| [46. 全排列](https://leetcode-cn.com/problems/permutations/) |        |            | DFS，回溯法             |
-| [47. 全排列 II](https://leetcode-cn.com/problems/permutations-ii/) |        |            | DFS，回溯法             |
+| [46. 全排列](https://leetcode-cn.com/problems/permutations/) | medium | cpp,python | DFS，回溯法             |
+| [47. 全排列 II](https://leetcode-cn.com/problems/permutations-ii/) | medium | cpp,python | DFS，回溯法             |
+| [784. 字母大小写全排列](https://leetcode-cn.com/problems/letter-case-permutation/) | medium | cpp,python | DFS，回溯法             |
+| [78. 子集](https://leetcode-cn.com/problems/subsets/)        | medium | cpp,python | DFS，回溯法             |
+| [90. 子集 II](https://leetcode-cn.com/problems/subsets-ii/)  | medium | cpp,python | DFS，回溯法             |
 | [77. 组合](https://leetcode-cn.com/problems/combinations/)   |        |            | DFS，回溯法             |
 | [39. 组合总和](https://leetcode-cn.com/problems/combination-sum/) |        |            | DFS，回溯法             |
 | [40. 组合总和 II](https://leetcode-cn.com/problems/combination-sum-ii/) |        |            | DFS，回溯法             |
 | [216. 组合总和 III](https://leetcode-cn.com/problems/combination-sum-iii/) |        |            | DFS，回溯法             |
 | [377. 组合总和 Ⅳ](https://leetcode-cn.com/problems/combination-sum-iv/) |        |            | DFS，回溯法             |
-| [78. 子集](https://leetcode-cn.com/problems/subsets/)        |        |            | DFS，回溯法             |
-| [90. 子集 II](https://leetcode-cn.com/problems/subsets-ii/)  |        |            | DFS，回溯法             |
 | [79. 单词搜索](https://leetcode-cn.com/problems/word-search/) | medium | cpp,python | DFS，回溯法             |
 | [212. 单词搜索 II](https://leetcode-cn.com/problems/word-search-ii/) | hard   |            | DFS，回溯法，难但有思路 |
 | 51                                                           |        |            | DFS，N皇后              |
