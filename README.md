@@ -94,6 +94,8 @@
 | [42. 接雨水](https://leetcode-cn.com/problems/trapping-rain-water/) |        |            |          |
 | [844. 比较含退格的字符串](https://leetcode-cn.com/problems/backspace-string-compare/) |        |            |          |
 | [925. 长按键入](https://leetcode-cn.com/problems/long-pressed-name/) |        |            |          |
+| [1423. 可获得的最大点数](https://leetcode-cn.com/problems/maximum-points-you-can-obtain-from-cards/) |        |            | 滑动窗口 |
+| [978. 最长湍流子数组](https://leetcode-cn.com/problems/longest-turbulent-subarray/) | medium | cpp,python | 滑动窗口 |
 
 ### 二分查找
 
@@ -149,29 +151,36 @@
 
 ### 搜索
 
-| 题目链接                                                     | 难度   | 个人题解   | 说明            |
-| ------------------------------------------------------------ | ------ | ---------- | --------------- |
-| [463. 岛屿的周长](https://leetcode-cn.com/problems/island-perimeter/) | simple | cpp,python | DFS，岛屿问题   |
-| [200. 岛屿数量](https://leetcode-cn.com/problems/number-of-islands/) | medium | cpp,python | DFS，岛屿问题   |
-| 岛屿数量2，没权限                                            | hard   |            | DFS，岛屿问题   |
-| [695. 岛屿的最大面积](https://leetcode-cn.com/problems/max-area-of-island/) | medium | cpp,python | DFS，岛屿问题   |
-| [547. 省份数量](https://leetcode-cn.com/problems/number-of-provinces/) | medium | cpp,python | DFS，连通域个数 |
-| [417. 太平洋大西洋水流问题](https://leetcode-cn.com/problems/pacific-atlantic-water-flow/) | medium | cpp,python | DFS             |
-| 46                                                           |        |            |                 |
-| 77                                                           |        |            |                 |
-| 79                                                           |        |            |                 |
-| 51                                                           |        |            |                 |
-| 934                                                          |        |            |                 |
-| 126                                                          |        |            |                 |
-| 130                                                          |        |            |                 |
-| 257                                                          |        |            |                 |
-| 47                                                           |        |            |                 |
-| 40                                                           |        |            |                 |
-| 37                                                           |        |            |                 |
-| 310                                                          |        |            |                 |
-| 其它题目                                                     |        |            |                 |
-| [733. 图像渲染](https://leetcode-cn.com/problems/flood-fill/) |        |            |                 |
-| [1034. 边框着色](https://leetcode-cn.com/problems/coloring-a-border/) |        |            |                 |
+| 题目链接                                                     | 难度   | 个人题解   | 说明                    |
+| ------------------------------------------------------------ | ------ | ---------- | ----------------------- |
+| [463. 岛屿的周长](https://leetcode-cn.com/problems/island-perimeter/) | simple | cpp,python | DFS，岛屿问题           |
+| [200. 岛屿数量](https://leetcode-cn.com/problems/number-of-islands/) | medium | cpp,python | DFS，岛屿问题           |
+| 岛屿数量2，没权限                                            | hard   |            | DFS，岛屿问题           |
+| [695. 岛屿的最大面积](https://leetcode-cn.com/problems/max-area-of-island/) | medium | cpp,python | DFS，岛屿问题           |
+| [547. 省份数量](https://leetcode-cn.com/problems/number-of-provinces/) | medium | cpp,python | DFS，连通域个数         |
+| [417. 太平洋大西洋水流问题](https://leetcode-cn.com/problems/pacific-atlantic-water-flow/) | medium | cpp,python | DFS，其它               |
+| [46. 全排列](https://leetcode-cn.com/problems/permutations/) |        |            | DFS，回溯法             |
+| [47. 全排列 II](https://leetcode-cn.com/problems/permutations-ii/) |        |            | DFS，回溯法             |
+| [77. 组合](https://leetcode-cn.com/problems/combinations/)   |        |            | DFS，回溯法             |
+| [39. 组合总和](https://leetcode-cn.com/problems/combination-sum/) |        |            | DFS，回溯法             |
+| [40. 组合总和 II](https://leetcode-cn.com/problems/combination-sum-ii/) |        |            | DFS，回溯法             |
+| [216. 组合总和 III](https://leetcode-cn.com/problems/combination-sum-iii/) |        |            | DFS，回溯法             |
+| [377. 组合总和 Ⅳ](https://leetcode-cn.com/problems/combination-sum-iv/) |        |            | DFS，回溯法             |
+| [78. 子集](https://leetcode-cn.com/problems/subsets/)        |        |            | DFS，回溯法             |
+| [90. 子集 II](https://leetcode-cn.com/problems/subsets-ii/)  |        |            | DFS，回溯法             |
+| [79. 单词搜索](https://leetcode-cn.com/problems/word-search/) | medium | cpp,python | DFS，回溯法             |
+| [212. 单词搜索 II](https://leetcode-cn.com/problems/word-search-ii/) | hard   |            | DFS，回溯法，难但有思路 |
+| 51                                                           |        |            | DFS，N皇后              |
+| 37                                                           |        |            | DFS，数独               |
+| 934                                                          |        |            | BFS                     |
+| 126                                                          |        |            | BFS                     |
+| 130                                                          |        |            |                         |
+| 257                                                          |        |            |                         |
+| 310                                                          |        |            |                         |
+| 其它题目                                                     |        |            |                         |
+| [967. 连续差相同的数字](https://leetcode-cn.com/problems/numbers-with-same-consecutive-differences/) | medium | cpp,python | DFS                     |
+| [733. 图像渲染](https://leetcode-cn.com/problems/flood-fill/) |        |            |                         |
+| [1034. 边框着色](https://leetcode-cn.com/problems/coloring-a-border/) |        |            |                         |
 
 ### 动态规划
 
@@ -187,10 +196,11 @@
 
 ## 第四部分：专题
 
-| 题目链接 | 难度 | 个人题解 | 说明     |
-| -------- | ---- | -------- | -------- |
-|          |      |          | 股票买卖 |
-|          |      |          | 石子游戏 |
-|          |      |          | N数之和  |
-|          |      |          | 铺瓷砖   |
+| 题目链接 | 难度 | 个人题解 | 说明               |
+| -------- | ---- | -------- | ------------------ |
+|          |      |          | 股票买卖           |
+|          |      |          | 石子游戏           |
+|          |      |          | N数之和            |
+|          |      |          | 铺瓷砖             |
+|          |      |          | 全排列，组合，子集 |
 
