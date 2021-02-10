@@ -67,36 +67,37 @@
 
 ### 双指针
 
-| 题目链接                                                     | 难度   | 个人题解                                                     | 说明     |
-| ------------------------------------------------------------ | ------ | ------------------------------------------------------------ | -------- |
-| [1. 两数之和](https://leetcode-cn.com/problems/two-sum/)     |        |                                                              | N数之和  |
-| [167. 两数之和 II - 输入有序数组](https://leetcode-cn.com/problems/two-sum-ii-input-array-is-sorted/) | easy   | cpp,python                                                   | N数之和  |
-| [633. 平方数之和](https://leetcode-cn.com/problems/sum-of-square-numbers/) | medium | cpp,python                                                   | N数之和  |
-| [15. 三数之和](https://leetcode-cn.com/problems/3sum/)       |        |                                                              | N数之和  |
-| [16. 最接近的三数之和](https://leetcode-cn.com/problems/3sum-closest/) |        |                                                              | N数之和  |
-| [18. 四数之和](https://leetcode-cn.com/problems/4sum/)       |        |                                                              | N数之和  |
-| [454. 四数相加 II](https://leetcode-cn.com/problems/4sum-ii/) |        |                                                              | N数之和  |
-| [142. 环形链表 II](https://leetcode-cn.com/problems/linked-list-cycle-ii/) | medium | cpp,python                                                   | 快慢指针 |
-| [141. 环形链表](https://leetcode-cn.com/problems/linked-list-cycle/) |        |                                                              | 快慢指针 |
-| [876. 链表的中间结点](https://leetcode-cn.com/problems/middle-of-the-linked-list/) |        |                                                              | 快慢指针 |
-| [202. 快乐数](https://leetcode-cn.com/problems/happy-number/) |        |                                                              | 快慢指针 |
-| 倒数第k个节点                                                |        |                                                              | 快慢指针 |
-| [3. 无重复字符的最长子串](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/) |        |                                                              | 滑动窗口 |
-| [76. 最小覆盖子串](https://leetcode-cn.com/problems/minimum-window-substring/) | hard   | cpp,python                                                   | 滑动窗口 |
-| 340. 至多包含 K 个不同字符的最长子串                         | hard   | cpp,python                                                   | 滑动窗口 |
-| [1208. 尽可能使字符串相等](https://leetcode-cn.com/problems/get-equal-substrings-within-budget/) | medium | 已AC                                                         | 滑动窗口 |
-| [125. 验证回文串](https://leetcode-cn.com/problems/valid-palindrome/) | easy   | cpp,python                                                   | 回文串   |
-| [680. 验证回文字符串 Ⅱ](https://leetcode-cn.com/problems/valid-palindrome-ii/) | easy   | cpp,python                                                   | 回文串   |
-| [524. 通过删除字母匹配到字典里最长单词](https://leetcode-cn.com/problems/longest-word-in-dictionary-through-deleting/) | medium | cpp,python                                                   | 字符串   |
-| [88. 合并两个有序数组](https://leetcode-cn.com/problems/merge-sorted-array/) | easy   | cpp,python                                                   | 归并排序 |
-| [845. 数组中的最长山脉](https://leetcode-cn.com/problems/longest-mountain-in-array/) |        |                                                              |          |
-| [830. 较大分组的位置](https://leetcode-cn.com/problems/positions-of-large-groups/) |        |                                                              |          |
-| [42. 接雨水](https://leetcode-cn.com/problems/trapping-rain-water/) |        |                                                              |          |
-| [844. 比较含退格的字符串](https://leetcode-cn.com/problems/backspace-string-compare/) |        |                                                              |          |
-| [925. 长按键入](https://leetcode-cn.com/problems/long-pressed-name/) |        |                                                              |          |
-| [1423. 可获得的最大点数](https://leetcode-cn.com/problems/maximum-points-you-can-obtain-from-cards/) |        |                                                              | 滑动窗口 |
-| [978. 最长湍流子数组](https://leetcode-cn.com/problems/longest-turbulent-subarray/) | medium | cpp,python                                                   | 滑动窗口 |
-| [992. K 个不同整数的子数组](https://leetcode-cn.com/problems/subarrays-with-k-different-integers/) | hard   | [把这个题解看了](https://leetcode-cn.com/problems/subarrays-with-k-different-integers/solution/k-ge-bu-tong-zheng-shu-de-zi-shu-zu-by-l-ud34/) | 滑动窗口 |
+| 题目链接                                                     | 难度   | 个人题解                                                     | 说明      |
+| ------------------------------------------------------------ | ------ | ------------------------------------------------------------ | --------- |
+| [1. 两数之和](https://leetcode-cn.com/problems/two-sum/)     |        |                                                              | N数之和   |
+| [167. 两数之和 II - 输入有序数组](https://leetcode-cn.com/problems/two-sum-ii-input-array-is-sorted/) | easy   | cpp,python                                                   | N数之和   |
+| [633. 平方数之和](https://leetcode-cn.com/problems/sum-of-square-numbers/) | medium | cpp,python                                                   | N数之和   |
+| [15. 三数之和](https://leetcode-cn.com/problems/3sum/)       |        |                                                              | N数之和   |
+| [16. 最接近的三数之和](https://leetcode-cn.com/problems/3sum-closest/) |        |                                                              | N数之和   |
+| [18. 四数之和](https://leetcode-cn.com/problems/4sum/)       |        |                                                              | N数之和   |
+| [454. 四数相加 II](https://leetcode-cn.com/problems/4sum-ii/) |        |                                                              | N数之和   |
+| [142. 环形链表 II](https://leetcode-cn.com/problems/linked-list-cycle-ii/) | medium | cpp,python                                                   | 快慢指针  |
+| [141. 环形链表](https://leetcode-cn.com/problems/linked-list-cycle/) |        |                                                              | 快慢指针  |
+| [876. 链表的中间结点](https://leetcode-cn.com/problems/middle-of-the-linked-list/) |        |                                                              | 快慢指针  |
+| [202. 快乐数](https://leetcode-cn.com/problems/happy-number/) |        |                                                              | 快慢指针  |
+| 倒数第k个节点                                                |        |                                                              | 快慢指针  |
+| [3. 无重复字符的最长子串](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/) |        |                                                              | 滑动窗口  |
+| [76. 最小覆盖子串](https://leetcode-cn.com/problems/minimum-window-substring/) | hard   | cpp,python                                                   | 滑动窗口  |
+| 340. 至多包含 K 个不同字符的最长子串                         | hard   | cpp,python                                                   | 滑动窗口  |
+| [1208. 尽可能使字符串相等](https://leetcode-cn.com/problems/get-equal-substrings-within-budget/) | medium | 已AC                                                         | 滑动窗口  |
+| [125. 验证回文串](https://leetcode-cn.com/problems/valid-palindrome/) | easy   | cpp,python                                                   | 回文串    |
+| [680. 验证回文字符串 Ⅱ](https://leetcode-cn.com/problems/valid-palindrome-ii/) | easy   | cpp,python                                                   | 回文串    |
+| [524. 通过删除字母匹配到字典里最长单词](https://leetcode-cn.com/problems/longest-word-in-dictionary-through-deleting/) | medium | cpp,python                                                   | 字符串    |
+| [88. 合并两个有序数组](https://leetcode-cn.com/problems/merge-sorted-array/) | easy   | cpp,python                                                   | 归并排序  |
+| [845. 数组中的最长山脉](https://leetcode-cn.com/problems/longest-mountain-in-array/) |        |                                                              |           |
+| [830. 较大分组的位置](https://leetcode-cn.com/problems/positions-of-large-groups/) |        |                                                              |           |
+| [42. 接雨水](https://leetcode-cn.com/problems/trapping-rain-water/) |        |                                                              |           |
+| [844. 比较含退格的字符串](https://leetcode-cn.com/problems/backspace-string-compare/) |        |                                                              |           |
+| [925. 长按键入](https://leetcode-cn.com/problems/long-pressed-name/) |        |                                                              |           |
+| [1423. 可获得的最大点数](https://leetcode-cn.com/problems/maximum-points-you-can-obtain-from-cards/) |        |                                                              | 滑动窗口  |
+| [978. 最长湍流子数组](https://leetcode-cn.com/problems/longest-turbulent-subarray/) | medium | cpp,python                                                   | 滑动窗口  |
+| [992. K 个不同整数的子数组](https://leetcode-cn.com/problems/subarrays-with-k-different-integers/) | hard   | [把这个题解看了](https://leetcode-cn.com/problems/subarrays-with-k-different-integers/solution/k-ge-bu-tong-zheng-shu-de-zi-shu-zu-by-l-ud34/) | 滑动窗口  |
+| [567. 字符串的排列](https://leetcode-cn.com/problems/permutation-in-string/) | medium | cpp,python                                                   | 滑窗+哈希 |
 
 ### 二分查找
 
@@ -152,37 +153,39 @@
 
 ### 搜索
 
-| 题目链接                                                     | 难度   | 个人题解   | 说明                    |
-| ------------------------------------------------------------ | ------ | ---------- | ----------------------- |
-| [463. 岛屿的周长](https://leetcode-cn.com/problems/island-perimeter/) | simple | cpp,python | DFS，岛屿问题           |
-| [200. 岛屿数量](https://leetcode-cn.com/problems/number-of-islands/) | medium | cpp,python | DFS，岛屿问题           |
-| 岛屿数量2，没权限                                            | hard   |            | DFS，岛屿问题           |
-| [695. 岛屿的最大面积](https://leetcode-cn.com/problems/max-area-of-island/) | medium | cpp,python | DFS，岛屿问题           |
-| [547. 省份数量](https://leetcode-cn.com/problems/number-of-provinces/) | medium | cpp,python | DFS，连通域个数         |
-| [417. 太平洋大西洋水流问题](https://leetcode-cn.com/problems/pacific-atlantic-water-flow/) | medium | cpp,python | DFS，其它               |
-| [46. 全排列](https://leetcode-cn.com/problems/permutations/) | medium | cpp,python | DFS，回溯法             |
-| [47. 全排列 II](https://leetcode-cn.com/problems/permutations-ii/) | medium | cpp,python | DFS，回溯法             |
-| [784. 字母大小写全排列](https://leetcode-cn.com/problems/letter-case-permutation/) | medium | cpp,python | DFS，回溯法             |
-| [78. 子集](https://leetcode-cn.com/problems/subsets/)        | medium | cpp,python | DFS，回溯法             |
-| [90. 子集 II](https://leetcode-cn.com/problems/subsets-ii/)  | medium | cpp,python | DFS，回溯法             |
-| [77. 组合](https://leetcode-cn.com/problems/combinations/)   | medium | cpp,python | DFS，回溯法             |
-| [39. 组合总和](https://leetcode-cn.com/problems/combination-sum/) | medium | cpp,python | DFS，回溯法             |
-| [40. 组合总和 II](https://leetcode-cn.com/problems/combination-sum-ii/) | medium | cpp,python | DFS，回溯法             |
-| [216. 组合总和 III](https://leetcode-cn.com/problems/combination-sum-iii/) | medium | cpp,pytho  | DFS，回溯法             |
-| [377. 组合总和 Ⅳ](https://leetcode-cn.com/problems/combination-sum-iv/) | medium | cpp,pytho  | DFS，回溯法             |
-| [79. 单词搜索](https://leetcode-cn.com/problems/word-search/) | medium | cpp,python | DFS，回溯法             |
-| [212. 单词搜索 II](https://leetcode-cn.com/problems/word-search-ii/) | hard   |            | DFS，回溯法，难但有思路 |
-| 51                                                           |        |            | DFS，N皇后              |
-| 37                                                           |        |            | DFS，数独               |
-| 934                                                          |        |            | BFS                     |
-| 126                                                          |        |            | BFS                     |
-| 130                                                          |        |            |                         |
-| 257                                                          |        |            |                         |
-| 310                                                          |        |            |                         |
-| 其它题目                                                     |        |            |                         |
-| [967. 连续差相同的数字](https://leetcode-cn.com/problems/numbers-with-same-consecutive-differences/) | medium | cpp,python | DFS                     |
-| [733. 图像渲染](https://leetcode-cn.com/problems/flood-fill/) |        |            |                         |
-| [1034. 边框着色](https://leetcode-cn.com/problems/coloring-a-border/) |        |            |                         |
+| 题目链接                                                     | 难度   | 个人题解   | 说明            |
+| ------------------------------------------------------------ | ------ | ---------- | --------------- |
+| [463. 岛屿的周长](https://leetcode-cn.com/problems/island-perimeter/) | simple | cpp,python | DFS，岛屿问题   |
+| [200. 岛屿数量](https://leetcode-cn.com/problems/number-of-islands/) | medium | cpp,python | DFS，岛屿问题   |
+| 岛屿数量2，没权限                                            | hard   |            | DFS，岛屿问题   |
+| [695. 岛屿的最大面积](https://leetcode-cn.com/problems/max-area-of-island/) | medium | cpp,python | DFS，岛屿问题   |
+| [547. 省份数量](https://leetcode-cn.com/problems/number-of-provinces/) | medium | cpp,python | DFS，连通域个数 |
+| [417. 太平洋大西洋水流问题](https://leetcode-cn.com/problems/pacific-atlantic-water-flow/) | medium | cpp,python | DFS，其它       |
+| [46. 全排列](https://leetcode-cn.com/problems/permutations/) | medium | cpp,python | DFS，回溯法     |
+| [47. 全排列 II](https://leetcode-cn.com/problems/permutations-ii/) | medium | cpp,python | DFS，回溯法     |
+| [784. 字母大小写全排列](https://leetcode-cn.com/problems/letter-case-permutation/) | medium | cpp,python | DFS，回溯法     |
+| [78. 子集](https://leetcode-cn.com/problems/subsets/)        | medium | cpp,python | DFS，回溯法     |
+| [90. 子集 II](https://leetcode-cn.com/problems/subsets-ii/)  | medium | cpp,python | DFS，回溯法     |
+| [77. 组合](https://leetcode-cn.com/problems/combinations/)   | medium | cpp,python | DFS，回溯法     |
+| [39. 组合总和](https://leetcode-cn.com/problems/combination-sum/) | medium | cpp,python | DFS，回溯法     |
+| [40. 组合总和 II](https://leetcode-cn.com/problems/combination-sum-ii/) | medium | cpp,python | DFS，回溯法     |
+| [216. 组合总和 III](https://leetcode-cn.com/problems/combination-sum-iii/) | medium | cpp,pytho  | DFS，回溯法     |
+| [377. 组合总和 Ⅳ](https://leetcode-cn.com/problems/combination-sum-iv/) | medium | cpp,pytho  | DFS，回溯法     |
+| [79. 单词搜索](https://leetcode-cn.com/problems/word-search/) | medium | cpp,python | DFS，回溯法     |
+| [212. 单词搜索 II](https://leetcode-cn.com/problems/word-search-ii/) | hard   | 难但有思路 | DFS，回溯法     |
+| [51. N 皇后](https://leetcode-cn.com/problems/n-queens/)     | hard   |            | DFS，N皇后      |
+| [52. N皇后 II](https://leetcode-cn.com/problems/n-queens-ii/) | hard   |            | DFS，N皇后      |
+| [36. 有效的数独](https://leetcode-cn.com/problems/valid-sudoku/) | medium |            | DFS，数独       |
+| [37. 解数独](https://leetcode-cn.com/problems/sudoku-solver/) | medium |            | DFS，数独       |
+| 934                                                          |        |            | BFS             |
+| 126                                                          |        |            | BFS             |
+| [130. 被围绕的区域](https://leetcode-cn.com/problems/surrounded-regions/) |        |            | DFS             |
+| [257. 二叉树的所有路径](https://leetcode-cn.com/problems/binary-tree-paths/) |        |            | DFS，二叉树     |
+| [310. 最小高度树](https://leetcode-cn.com/problems/minimum-height-trees/) |        |            | DFS，图         |
+| 其它题目                                                     |        |            |                 |
+| [967. 连续差相同的数字](https://leetcode-cn.com/problems/numbers-with-same-consecutive-differences/) | medium | cpp,python | DFS             |
+| [733. 图像渲染](https://leetcode-cn.com/problems/flood-fill/) |        |            |                 |
+| [1034. 边框着色](https://leetcode-cn.com/problems/coloring-a-border/) |        |            |                 |
 
 ### 动态规划
 
