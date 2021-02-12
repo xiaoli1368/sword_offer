@@ -179,7 +179,7 @@
 | [37. 解数独](https://leetcode-cn.com/problems/sudoku-solver/) | medium |            | DFS，数独       |
 | 934                                                          |        |            | BFS             |
 | 126                                                          |        |            | BFS             |
-| [130. 被围绕的区域](https://leetcode-cn.com/problems/surrounded-regions/) |        |            | DFS             |
+| [130. 被围绕的区域](https://leetcode-cn.com/problems/surrounded-regions/) | medium | cpp,python | DFS             |
 | [257. 二叉树的所有路径](https://leetcode-cn.com/problems/binary-tree-paths/) |        |            | DFS，二叉树     |
 | [310. 最小高度树](https://leetcode-cn.com/problems/minimum-height-trees/) |        |            | DFS，图         |
 | 其它题目                                                     |        |            |                 |
