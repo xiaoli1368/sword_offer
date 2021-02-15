@@ -105,6 +105,43 @@ public:
         }
     }
 
+    // ===== leetcode中的解法 =====
+    int getVal(int x, int y) {
+        int ret = 0;
+        while (x || y) {
+            ret += x % 10 + y % 10;
+            x /= 10;
+            y /= 10;
+        }
+        return ret;
+    }
+
+    void dfs(vector<vector<bool>>& flag, vector<vector<int>>& dires, int& ret, int row, int col, int k, int i, int j) {
+        if (i >= 0 && i < row && j >= 0 && j < col && flag[i][j] == false) {
+            flag[i][j] = true;
+            if (getVal(i, j) <= k) {
+                ret += 1;
+                for (const auto & d : dires) {
+                    int x = i + d[0];
+                    int y = j + d[1];
+                    dfs(flag, dires, ret, row, col, k, x, y);
+                }
+            }
+        }
+        return;
+    }
+
+    int movingCount(int m, int n, int k) {
+        if (m <= 0 || n <= 0 || k < 0) {
+            return 0;
+        }
+        int ret = 0;
+        vector<vector<bool>> flag(m, vector<bool>(n, false));
+        vector<vector<int>> dires = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+        dfs(flag, dires, ret, m, n, k, 0, 0);
+        return ret;
+    }
+
 private:
     typedef int (Solution::*func_ptr)(int, int, int);
     std::vector<func_ptr> func_vec_ = {&Solution::movingCount1, &Solution::movingCount};

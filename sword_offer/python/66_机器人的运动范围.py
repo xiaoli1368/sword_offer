@@ -101,6 +101,49 @@ class Solution:
             result = func(threshold, rows, cols)
             end = time.time()
             print("result: {:d}, time(us): {:>5.2f}".format(result, (end - start)*10**6))
+    
+    # ===== leetcode中的解法 =====
+    def getVal(self, x, y):
+        """
+        获取两数的坐标和
+        """
+        ret = 0
+        while x or y:
+            ret += x % 10 + y % 10
+            x //= 10
+            y //= 10
+        return ret
+
+    def dfs(self, flag, dires, row, col, k, i, j):
+        """
+        回溯法
+        """
+        # 没有越界，且没有访问过
+        if 0 <= i < row and 0 <= j < col and flag[i][j] == False:
+            # 处理当前层
+            flag[i][j] = True
+            if self.getVal(i, j) <= k:
+                self.ret += 1
+                # 处理下一层
+                for d in dires:
+                    x, y = i + d[0], j + d[1]
+                    self.dfs(flag, dires, row, col, k, x, y)
+        return
+        
+    def movingCount(self, m, n, k):
+        """
+        :type m: int
+        :type n: int
+        :type k: int
+        :rtype: int
+        """
+        if m <= 0 or n <= 0 or k < 0:
+            return 0
+        self.ret = 0
+        flag = [[False] * n for _ in range(m)]
+        dires = ((0, 1), (0, -1), (1, 0), (-1, 0))
+        self.dfs(flag, dires, m, n, k, 0, 0)
+        return self.ret
         
  
 def main():

@@ -53,6 +53,45 @@ class Solution:
         end = time.time()
         print("result: {:d}, time(us): {:>5.2f}".format(result, (end - start)*10**6))
 
+    # ===== leetcode中的解法 =====
+    def exist(self, board, word):
+        """
+        :type board: List[List[str]]
+        :type word: str
+        :rtype: bool
+        """
+        def dfs(board, word, flag, dires, row, col, n, i, j, index):
+            """
+            回溯法
+            """
+            # 已经找到了
+            if index >= n:
+                return True
+            # 越界，或者已经访问过，或者不匹配
+            if i < 0 or j < 0 or i >= row or j >= col or flag[i][j] == True or board[i][j] != word[index]:
+                return False
+            # 没有越界，没有访问过，当前匹配，则进行标记，然后进入下一层
+            flag[i][j] = True
+            for d in dires:
+                x, y = i + d[0], j + d[1]
+                if dfs(board, word, flag, dires, row, col, n, x, y, index + 1):
+                    return True
+            flag[i][j] = False
+            return False
+        # ===========================
+        if board == []:
+            return False
+        n = len(word)
+        row = len(board)
+        col = len(board[0])
+        flag = [[False] * col for _ in range(row)]
+        dires = ((0, 1), (0, -1), (1, 0), (-1, 0))
+        for i in range(row):
+            for j in range(col):
+                if dfs(board, word, flag, dires, row, col, n, i, j, 0):
+                    return True
+        return False
+
 
 def main():
     matrix = "aa"

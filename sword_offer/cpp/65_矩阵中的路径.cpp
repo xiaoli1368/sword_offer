@@ -121,6 +121,48 @@ public:
         }
     }
 
+	// ===== leetcode中的解法 =====
+	bool dfs(const vector<vector<char>>& board, const string& word, vector<vector<bool>>& flag, const vector<vector<int>>& dires, int row, int col, int n, int i, int j, int index) {
+        if (index >= n) {
+            return true;
+        }
+        if (i < 0 || j < 0 || i >= row || j >= col || flag[i][j] == true || board[i][j] != word[index]) {
+            return false;
+        }
+        flag[i][j] = true;
+        for (const auto & d : dires) {
+            int x = i + d[0];
+            int y = j + d[1];
+            if (dfs(board, word, flag, dires, row, col, n, x, y, index + 1)) {
+                return true;
+            }
+        }
+        flag[i][j] = false;
+        return false;
+    }
+
+    bool exist(vector<vector<char>>& board, string word) {
+        if (word.empty()) {
+            return true;
+        }
+        if (board.empty()) {
+            return false;
+        }
+        int n = word.size();
+        int row = board.size();
+        int col = board[0].size();
+        vector<vector<bool>> flag(row, vector<bool>(col, false));
+        vector<vector<int>> dires = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (dfs(board, word, flag, dires, row, col, n, i, j, 0)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 private:
     typedef bool (Solution::*func_ptr)(char*, int, int, char*);
     std::vector<func_ptr> func_vec_ = {&Solution::hasPath1, &Solution::hasPath};
