@@ -189,9 +189,9 @@
 | [1219. 黄金矿工](https://leetcode-cn.com/problems/path-with-maximum-gold/) | medium |            | DFS，回溯法     |
 | [51. N 皇后](https://leetcode-cn.com/problems/n-queens/)     | hard   | cpp,python | DFS，回溯法     |
 | [52. N皇后 II](https://leetcode-cn.com/problems/n-queens-ii/) | hard   | cpp,python | DFS，回溯法     |
-| [37. 解数独](https://leetcode-cn.com/problems/sudoku-solver/) | medium |            | DFS，回溯法     |
-| [剑指 Offer 12. 矩阵中的路径](https://leetcode-cn.com/problems/ju-zhen-zhong-de-lu-jing-lcof/) | medium |            | DFS，回溯法     |
-| [剑指 Offer 13. 机器人的运动范围](https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/) | medium |            | DFS，回溯法     |
+| [37. 解数独](https://leetcode-cn.com/problems/sudoku-solver/) | medium | cpp,python | DFS，回溯法     |
+| [剑指 Offer 12. 矩阵中的路径](https://leetcode-cn.com/problems/ju-zhen-zhong-de-lu-jing-lcof/) | medium | cpp,python | DFS，回溯法     |
+| [剑指 Offer 13. 机器人的运动范围](https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/) | medium | cpp,python | DFS，回溯法     |
 | [967. 连续差相同的数字](https://leetcode-cn.com/problems/numbers-with-same-consecutive-differences/) | medium | cpp,python | DFS，其它       |
 | [733. 图像渲染](https://leetcode-cn.com/problems/flood-fill/) |        |            | DFS，其它       |
 | [1034. 边框着色](https://leetcode-cn.com/problems/coloring-a-border/) |        |            | DFS，其它       |
@@ -199,6 +199,7 @@
 | [310. 最小高度树](https://leetcode-cn.com/problems/minimum-height-trees/) |        |            | DFS，图         |
 | 934                                                          |        |            | BFS             |
 | 126                                                          |        |            | BFS             |
+| 127                                                          |        |            | BFS             |
 | [752. 打开转盘锁](https://leetcode-cn.com/problems/open-the-lock/)（解开密码锁的最小次数） |        |            | BFS             |
 | [994. 腐烂的橘子](https://leetcode-cn.com/problems/rotting-oranges/) |        |            | BFS             |
 | [542. 01 矩阵](https://leetcode-cn.com/problems/01-matrix/)  |        |            | BFS             |

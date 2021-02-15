@@ -43,6 +43,13 @@ int main(int argc, char* argv[])
 		std::cout << p << std::endl;
 	}
 
+	// ===== string ==============================================
+	std::string s = "123";
+
+	// 字符串和数字互相转换
+	std::string s = std::to_string(123);
+	int val = std::stoi(s);
+
 	// ===== map ==================================================
 	std::map<int, int> map;
 
