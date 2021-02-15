@@ -59,6 +59,37 @@ public:
 			}
 		}
 	}
+
+	// ===== 更加高效的方式 =====
+    void dfs(vector<string>& board, vector<bool>& cols, vector<bool>& ldiags, vector<bool>& rdiags, vector<vector<string>>& ret, int n, int i) {
+        if (i >= n) {
+            ret.push_back(board);
+            return;
+        }
+        for (int j = 0; j < n; j++) {
+            int l = n - 1 - i + j, r = i + j;
+            if (!cols[j] && !ldiags[l] && !rdiags[r]) {
+                board[i][j] = 'Q';
+                cols[j] = ldiags[l] = rdiags[r] = true;
+                dfs(board, cols, ldiags, rdiags, ret, n, i + 1);
+                cols[j] = ldiags[l] = rdiags[r] = false;
+                board[i][j] = '.';
+            }
+        }
+        return;
+    }
+
+    vector<vector<string>> solveNQueens(int n) {
+        vector<vector<string>> ret;
+        if (n > 0) {
+            vector<string> board(n, string(n, '.'));
+            vector<bool> cols(n, false);
+            vector<bool> ldiags(2 * n - 1, false);
+            vector<bool> rdiags(2 * n - 1, false);
+            dfs(board, cols, ldiags, rdiags, ret, n, 0);
+        }
+        return ret;
+    }
 };
 
 int main(int argc, char* argv[])

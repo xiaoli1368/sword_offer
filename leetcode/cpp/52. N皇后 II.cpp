@@ -49,6 +49,35 @@ public:
 		backTracking(board, chess, n, 0);
 		return this->cnt;
 	}
+
+	// ===== 更加高效的方式 =====
+    void dfs(vector<bool>& cols, vector<bool>& ldiags, vector<bool>& rdiags, int& ret, int n, int i) {
+        if (i >= n) {
+            ret += 1;
+            return;
+        }
+        for (int j = 0; j < n; j++) {
+            int l = n - 1 - i + j, r = i + j;
+            if (!cols[j] && !ldiags[l] && !rdiags[r]) {
+                cols[j] = ldiags[l] = rdiags[r] = true;
+                dfs(cols, ldiags, rdiags, ret, n, i + 1);
+                cols[j] = ldiags[l] = rdiags[r] = false;
+            }
+        }
+        return;
+    }
+
+    int totalNQueens(int n) {
+        if (n <= 0) {
+            return 0;
+        }
+        int ret = 0;
+        vector<bool> cols(n, false);
+        vector<bool> ldiags(2 * n - 1, false);
+        vector<bool> rdiags(2 * n - 1, false);
+        dfs(cols, ldiags, rdiags, ret, n, 0);
+        return ret;
+    }
 };
 
 int main(int argc, char* argv[])

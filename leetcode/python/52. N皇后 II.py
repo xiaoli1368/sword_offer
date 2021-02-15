@@ -72,6 +72,38 @@ class Solution(object):
 		board = [["."] * n for _ in range(n)]
 		self.backTracking(board, chess, n, 0)
 		return self.cnt
+	
+	# ===== 更加高效的方法 =====
+    def totalNQueens(self, n: int) -> int:
+        """
+        更加高效的方式，使用辅助三个数组
+        对行进行遍历，三个数组记录列、左对角线和右对角线上是否有皇后
+		注意到不需要使用Board这个棋盘数组
+        """
+        def dfs(cols, ldiags, rdiags, ret, n, i):
+            """
+            i表示正在遍历第i行
+            [i,j]位置的左右对角线索引为：[n - 1 - i + j, i + j]
+            """
+            if i >= n:
+                ret[0] += 1
+                return
+            for j in range(n):
+                l, r = n - 1 - i + j, i + j
+                if not cols[j] and not ldiags[l] and not rdiags[r]:
+                    cols[j] = ldiags[l] = rdiags[r] = True
+                    dfs(cols, ldiags, rdiags, ret, n, i + 1)
+                    cols[j] = ldiags[l] = rdiags[r] = False
+            return
+        # ===== 调用 =====
+        if n <= 0:
+            return 0
+        ret = [0]
+        cols = [False] * n
+        ldiags = [False] * (2 * n - 1)
+        rdiags = [False] * (2 * n - 1)
+        dfs(cols, ldiags, rdiags, ret, n, 0)
+        return ret[0]
 
 if __name__ == "__main__":
 	s = Solution()
