@@ -8,9 +8,9 @@ DFS，但是有两种思路
 """
 
 class Solution(object):
-    def bfs(self, board, flag, point, row, col, i, j):
+    def dfs(self, board, flag, point, row, col, i, j):
         """
-        广度优先遍历，找到与(i, j)相连的最大连通域，坐标添加到point
+        深度优先遍历，找到与(i, j)相连的最大连通域，坐标添加到point
         返回结果表示该连通域是否为封闭的
         如果是封闭的则外部将所有的point置O
         如果不是封闭的则将所有的point的flag标记为已经遍历
@@ -25,10 +25,10 @@ class Solution(object):
         point.append((i, j))
 
         # 如果四个方向都闭合
-        a = self.bfs(board, flag, point, row, col, i + 1, j)
-        b = self.bfs(board, flag, point, row, col, i - 1, j)
-        c = self.bfs(board, flag, point, row, col, i, j + 1)
-        d = self.bfs(board, flag, point, row, col, i, j - 1)
+        a = self.dfs(board, flag, point, row, col, i + 1, j)
+        b = self.dfs(board, flag, point, row, col, i - 1, j)
+        c = self.dfs(board, flag, point, row, col, i, j + 1)
+        d = self.dfs(board, flag, point, row, col, i, j - 1)
         if a and b and c and d:
            return True
         else:
@@ -50,7 +50,7 @@ class Solution(object):
         for i in range(1, row - 1):
             for j in range(1, col - 1):
                 point = []
-                if self.bfs(board, flag, point, row, col, i, j):
+                if self.dfs(board, flag, point, row, col, i, j):
                     for p in point:
                         board[p[0]][p[1]] = "X"
         return
@@ -95,5 +95,54 @@ class Solution(object):
         for i in range(row):
             for j in range(col):
                 if flag[i][j] == False:
+                    board[i][j] = "X"
+        return
+
+    # ===== BFS的方式 =====
+    def bfs(self, board, dires, row, col, i, j):
+        """
+        从当前节点开始对O进行BFS标记
+        """
+        if board[i][j] != "O":
+            return
+        queue = [(i, j)]
+        board[i][j] = "A"
+        while queue:
+            i, j = queue.pop(0)
+            for d in dires:
+                x, y = i + d[0], j + d[1]
+                if 0 <= x < row and 0 <= y < col and board[x][y] == "O":
+                    board[x][y] = "A"
+                    queue.append((x, y))
+        return
+
+    def solve(self, board):
+        """
+        :type board: List[List[str]]
+        :rtype: None Do not return anything, modify board in-place instead.
+        思考字母O要想不被包围，那么就必须位于边界上，或者与边界相连
+        因此从边界上的O进行BFS遍历标记即可，将位于边界上的O标记为A
+        最终需要遍历整个二维矩阵，把A还原为O，把O标记为X
+        """
+        # 特殊情况
+        if board == []:
+            return
+        
+        # 初始化，从边界上进行BFS
+        row, col = len(board), len(board[0])
+        dires = ((0, 1), (0, -1), (1, 0), (-1, 0))
+        for i in range(col):
+            self.bfs(board, dires, row, col, 0, i)
+            self.bfs(board, dires, row, col, row - 1, i)
+        for i in range(row):
+            self.bfs(board, dires, row, col, i, 0)
+            self.bfs(board, dires, row, col, i, col - 1)
+        
+        # 二维遍历
+        for i in range(row):
+            for j in range(col):
+                if board[i][j] == "A":
+                    board[i][j] = "O"
+                elif board[i][j] == "O":
                     board[i][j] = "X"
         return

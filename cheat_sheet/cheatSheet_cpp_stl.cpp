@@ -95,6 +95,10 @@ int main(int argc, char* argv[])
 	// ===== 其它 =================================================
 	int int_min = INT_MIN; // 最小整形
 	int int_max = INT_MAX; // 最大整形
+
+	// 交换
+	std::unordered_set<int> sa, sb;
+	std::swap(sa, sb);
 	
 	return 0;
 }

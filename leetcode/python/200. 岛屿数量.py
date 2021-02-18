@@ -46,3 +46,42 @@ class Solution(object):
                     ret += 1
                     self.dfs(grid, flag, row, col, i, j)
         return ret
+
+    # ===== BFS的方式 =====
+    def bfs(self, grid, dires, row, col, i, j):
+        """
+        进行BFS
+        确保进入的位置为1
+        """
+        grid[i][j] = "2"
+        queue = [(i, j)]
+        while queue:
+            i, j = queue.pop(0)
+            for d in dires:
+                x, y = i + d[0], j + d[1]
+                if 0 <= x < row and 0 <= y < col and grid[x][y] == "1":
+                    grid[x][y] = "2"
+                    queue.append((x, y))
+        return
+
+    def numIslands(self, grid: List[List[str]]) -> int:
+        """
+        BFS
+        0表示水，1表示未遍历过的岛屿，2表示已经遍历过的岛屿
+        """
+        # 特殊情况
+        if grid == []:
+            return 0
+        
+        # 初始化
+        cnt = 0
+        row, col = len(grid), len(grid[0])
+        dires = ((0, 1), (0, -1), (1, 0), (-1, 0))
+
+        # 二重循环并进行BFS
+        for i in range(row):
+            for j in range(col):
+                if grid[i][j] == "1":
+                    cnt += 1
+                    self.bfs(grid, dires, row, col, i, j)
+        return cnt

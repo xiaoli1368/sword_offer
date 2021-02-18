@@ -155,3 +155,43 @@ class Solution(object):
         
         # 返回结果
         return ret
+
+    # ===== 个人优化版本 =====
+    def updateMatrix(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: List[List[int]]
+        反向洪水填充，水漫金山，记录每个位置的水漫高度
+        1. 二重循环遍历，找到所有的0位置
+        2. 开始BFS对1进行水漫金山，同时更新高度
+        其它高效方法：DP
+        """
+        # 特殊情况
+        if matrix == []:
+            return []
+        
+        # 初始化
+        step, queue = 0, []
+        row, col = len(matrix), len(matrix[0])
+        ret = [[0] * col for _ in range(row)]
+        flag = [[False] * col for _ in range(row)]
+        dires = ((0, 1), (0, -1), (1, 0), (-1, 0))
+        for i in range(row):
+            for j in range(col):
+                if matrix[i][j] == 0:
+                    flag[i][j] = True
+                    queue.append((i, j))
+        
+        # BFS
+        while queue:
+            step += 1
+            size = len(queue)
+            for _ in range(size):
+                i, j = queue.pop(0)
+                for d in dires:
+                    x, y = i + d[0], j + d[1]
+                    if 0 <= x < row and 0 <= y < col and flag[x][y] == False:
+                        ret[x][y] = step
+                        flag[x][y] = True
+                        queue.append((x, y))
+        return ret

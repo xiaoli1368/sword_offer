@@ -60,4 +60,54 @@ public:
         // 返回结果
         return ret;
     }
+
+    // ===== 个人优化版本 =====
+	typedef struct Point {
+        int x;
+        int y;
+        Point(int x=0, int y=0) : x(x), y(y) {}
+    } Point;
+
+    vector<vector<int>> updateMatrix(vector<vector<int>>& matrix) {
+        // 特殊情况
+        if (matrix.empty()) {
+            return vector<vector<int>>{};
+        }
+
+        // 初始化
+        queue<Point> queue;
+        int row = matrix.size(), col = matrix[0].size();
+        vector<Point> dires = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+        vector<vector<int>> ret(row, vector<int>(col, 0));
+        vector<vector<bool>> flag(row, vector<bool>(col, false));
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (matrix[i][j] == 0) {
+                    flag[i][j] = true;
+                    queue.push(Point(i, j));
+                }
+            }
+        }
+
+        // BFS
+        int step = 0, size, x, y;
+        while (!queue.empty()) {
+            step += 1;
+            size = queue.size();
+            for (int k = 0; k < size; k++) {
+                auto node = queue.front();
+                queue.pop();
+                for (const auto & d : dires) {
+                    x = node.x + d.x;
+                    y = node.y + d.y;
+                    if (x >= 0 && x < row && y >= 0 && y < col && flag[x][y] == false) {
+                        ret[x][y] = step;
+                        flag[x][y] = true;
+                        queue.push(Point(x, y));
+                    }
+                }
+            }
+        }
+        return ret;
+    }
 };
