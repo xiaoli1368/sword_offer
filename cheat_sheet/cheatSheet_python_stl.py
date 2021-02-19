@@ -50,3 +50,9 @@ from collections import deque
 queue = deque()
 queue.append(5)
 queue.popleft()
+
+# ===== 其它 ===============================================
+# 序列解包
+a = 1
+b = 2
+a, b = b, a + b # 赋值后[a, b]分别为[2, 3]，不会影响，因为右侧先封装包，再左侧解包
