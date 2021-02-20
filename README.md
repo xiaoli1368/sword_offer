@@ -27,6 +27,14 @@
 
 ### 常见数据结构
 
+### 哈希表
+
+| 题目链接                                                     | 难度 | 个人题解   | 说明 |
+| ------------------------------------------------------------ | ---- | ---------- | ---- |
+| [697. 数组的度](https://leetcode-cn.com/problems/degree-of-an-array/) | easy | cpp,python | 哈希 |
+|                                                              |      |            |      |
+|                                                              |      |            |      |
+
 ### 字符串
 
 ### 链表
@@ -228,12 +236,12 @@
 | [198. 打家劫舍](https://leetcode-cn.com/problems/house-robber/) | medium | cpp,python | DP，一维，打家劫舍 |
 | [213. 打家劫舍 II](https://leetcode-cn.com/problems/house-robber-ii/) | medium | cpp,python | DP，一维，打家劫舍 |
 | [413. 等差数列划分](https://leetcode-cn.com/problems/arithmetic-slices/) | medium | cpp,python | DP，一维           |
-| [64. 最小路径和](https://leetcode-cn.com/problems/minimum-path-sum/) | medium |            | DP，二维           |
-| [542. 01 矩阵](https://leetcode-cn.com/problems/01-matrix/)  | medium |            | DP，二维           |
-| [221. 最大正方形](https://leetcode-cn.com/problems/maximal-square/) | medium |            | DP，二维           |
-| [85. 最大矩形](https://leetcode-cn.com/problems/maximal-rectangle/) |        |            |                    |
-| [62. 不同路径](https://leetcode-cn.com/problems/unique-paths/) | medium |            | DP，二维迷宫       |
-| [63. 不同路径 II](https://leetcode-cn.com/problems/unique-paths-ii/) | medium |            | DP，二维迷宫       |
+| [64. 最小路径和](https://leetcode-cn.com/problems/minimum-path-sum/) | medium | cpp,python | DP，二维           |
+| [62. 不同路径](https://leetcode-cn.com/problems/unique-paths/) | medium | cpp,python | DP，二维           |
+| [63. 不同路径 II](https://leetcode-cn.com/problems/unique-paths-ii/) | medium | cpp,python | DP，二维           |
+| [542. 01 矩阵](https://leetcode-cn.com/problems/01-matrix/)  | medium | cpp,python | DP，二维           |
+| [221. 最大正方形](https://leetcode-cn.com/problems/maximal-square/) | medium | cpp,python | DP，二维           |
+| [85. 最大矩形](https://leetcode-cn.com/problems/maximal-rectangle/) | hard   | cpp,python | DP，二维           |
 | [279. 完全平方数](https://leetcode-cn.com/problems/perfect-squares/) | medium |            | DP，分割类型       |
 | [91. 解码方法](https://leetcode-cn.com/problems/decode-ways/) | medium |            | DP，分割类型       |
 | [139. 单词拆分](https://leetcode-cn.com/problems/word-break/) | medium |            | DP，分割类型       |
@@ -615,7 +623,7 @@
 >         self.res = 0
 >         if dfs(root) == 0:
 >             self.res += 1
->         
+>                     
 >         return self.res
 >
 > 如果改变题意，每台相机只能监控自己，或者直接子对象呢？

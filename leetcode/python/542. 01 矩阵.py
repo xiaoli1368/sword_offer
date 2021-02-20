@@ -3,7 +3,8 @@
 542. 01 矩阵
 
 思路：
-
+1. DFS/BFS
+2. 动态规划
 """
 
 class Solution(object):
@@ -195,3 +196,84 @@ class Solution(object):
                         flag[x][y] = True
                         queue.append((x, y))
         return ret
+
+    # ===== 四个方向遍历 =====
+    def updateMatrix(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: List[List[int]]
+		思路：
+		1. 对于一维的01数组，找到每个元素最近的0，方法是左右遍历
+		2. 对于二维的01数组，找到每个元素最近的0，方法是先左右遍历，再上下遍历
+		思考这样方式的准确性，每个位置处的元素，都综合了四个方向上的信息
+		首先按行遍历，获取了横向上能到达的最近的0的距离，然后进行纵向上的遍历
+		这里的关键点在于：对位置[x,y]进行纵向遍历时，前y列已经完成update，但是后col-y列还没有更新
+		并且之后也没有机会来更新前y列了，那么此时能够保证前y列的结果一定准确吗？答案是一定的
+		例如正在进行[x4, y5]的列遍历，对于已经遍历的位置[x2, y3]，所有的行信息已经获取并汇总到第y3列
+		那么[x2, y3]再在第y3列上汇总，得到的就是全局的最佳信息
+        尝试一下四个方向的遍历
+        """
+        if matrix == []:
+            return []
+        
+        row, col = len(matrix), len(matrix[0])
+        dp = [[float("+inf")] * col for _ in range(row)]
+
+        # 行
+        for i in range(row):
+            # 从左到右（注意这里需要对0的初始化）
+            for j in range(col):
+                if matrix[i][j] == 0:
+                    dp[i][j] = 0
+                elif matrix[i][j] == 1 and j >= 1:
+                    dp[i][j] = 1 + dp[i][j - 1]
+            # 从右到左
+            for j in range(col - 2, -1, -1):
+                if matrix[i][j] == 1:
+                    dp[i][j] = min(dp[i][j], 1 + dp[i][j + 1])
+        
+        # 列
+        for j in range(col):
+            # 从上到下
+            for i in range(1, row):
+                if matrix[i][j] == 1:
+                    dp[i][j] = min(dp[i][j], 1 + dp[i - 1][j])
+            # 从下到上
+            for i in range(row - 2, -1, -1):
+                if matrix[i][j] == 1:
+                    dp[i][j] = min(dp[i][j], 1 + dp[i + 1][j])
+        
+        return dp
+
+    # ===== 从对角线方向遍历 =====
+    def updateMatrix(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: List[List[int]]
+        改进版：划分为左上和右下两部分，两次遍历即可
+        """
+        if matrix == []:
+            return []
+        
+        row, col = len(matrix), len(matrix[0])
+        dp = [[float("+inf")] * col for _ in range(row)]
+
+        # 从左上到右下
+        for i in range(row):
+            for j in range(col):
+                if matrix[i][j] == 0: # 这里需要对0的初始化
+                    dp[i][j] = 0
+                    continue
+                top = dp[i - 1][j] if i >= 1 else float("+inf")
+                lef = dp[i][j - 1] if j >= 1 else float("+inf")
+                dp[i][j] = min(dp[i][j], 1 + top, 1 + lef)
+        
+        # 从右下到左上
+        for i in range(row - 1, -1, -1):
+            for j in range(col - 1, -1, -1):
+                if matrix[i][j] == 1:
+                    bot = dp[i + 1][j] if i <= row - 2 else float("+inf")
+                    rig = dp[i][j + 1] if j <= col - 2 else float("+inf")
+                    dp[i][j] = min(dp[i][j], 1 + bot, 1 + rig)
+        
+        return dp

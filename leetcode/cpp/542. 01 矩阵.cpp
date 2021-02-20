@@ -110,4 +110,84 @@ public:
         }
         return ret;
     }
+
+	// ===== 四个方向遍历 =====
+    // 由于矩阵中至少含有一个0，因此所有元素初始化为最大值
+    // 为了防止int越界，元素初始化最大值不选择INT_MAX，而选取row+col
+    vector<vector<int>> updateMatrix(vector<vector<int>>& matrix) {
+        if (matrix.empty()) {
+            return matrix;
+        }
+        int row = matrix.size(), col = matrix[0].size();
+        vector<vector<int>> dp(row, vector<int>(col, row + col));
+        
+        // 行
+        for (int i = 0; i < row; i++) {
+            // 从左到右
+            for (int j = 0; j < col; j++) {
+                if (matrix[i][j] == 0) {
+                    dp[i][j] = 0;
+                } else if (matrix[i][j] == 1 && j >= 1) {
+                    dp[i][j] = 1 + dp[i][j - 1];
+                }
+            }
+            // 从右到左
+            for (int j = col - 2; j >= 0; j--) {
+                if (matrix[i][j] == 1) {
+                    dp[i][j] = min(dp[i][j], 1 + dp[i][j + 1]);
+                }
+            }
+        }
+
+        // 列
+        for (int j = 0; j < col; j++) {
+            // 从上到下
+            for (int i = 1; i < row; i++) {
+                if (matrix[i][j] == 1) {
+                    dp[i][j] = min(dp[i][j], 1 + dp[i - 1][j]);
+                }
+            }
+            // 从下到上
+            for (int i = row - 2; i >= 0; i--) {
+                if (matrix[i][j] == 1) {
+                    dp[i][j] = min(dp[i][j], 1 + dp[i + 1][j]);
+                }
+            }
+        }
+        return dp;
+    }
+
+	// ===== 从对角线方向遍历 =====
+    vector<vector<int>> updateMatrix(vector<vector<int>>& matrix) {
+        if (matrix.empty()) {
+            return matrix;
+        }
+        int row = matrix.size(), col = matrix[0].size();
+        vector<vector<int>> dp(row, vector<int>(col, row + col));
+        
+        // 从左上到右下
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (matrix[i][j] == 0) {
+                    dp[i][j] = 0;
+                    continue;
+                }
+                if (i >= 1) dp[i][j] = min(dp[i][j], 1 + dp[i - 1][j]);
+                if (j >= 1) dp[i][j] = min(dp[i][j], 1 + dp[i][j - 1]);
+            }
+        }
+        
+        // 从右下到左上
+        for (int i = row - 1; i >= 0; i--) {
+            for (int j = col - 1; j >= 0; j--) {
+                if (matrix[i][j] == 0) {
+                    continue;
+                }
+                if (i <= row - 2) dp[i][j] = min(dp[i][j], 1 + dp[i + 1][j]);
+                if (j <= col - 2) dp[i][j] = min(dp[i][j], 1 + dp[i][j + 1]);
+            }
+        }
+
+        return dp;
+    }
 };

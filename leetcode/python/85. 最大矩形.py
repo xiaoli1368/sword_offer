@@ -41,6 +41,29 @@ class Solution(object):
         
         return ret
 
+    # ===== 二维DP优化版 =====
+    def maximalRectangle(self, matrix: List[List[str]]) -> int:
+        """
+        dp[i][j]表示以[i,j]为右端的最大连续1的长度
+        dp[i][j] = maxWidth * maxHeight
+        需要统计每个元素左侧的连续为1的长度
+        然后向上遍历，得到最好可能的矩形面积，更新最大值
+        """
+        if matrix == []:
+            return 0
+        area, row, col = 0, len(matrix), len(matrix[0])
+        dp = [[0] * col for _ in range(row)]
+        for i in range(row):
+            for j in range(col):
+                if matrix[i][j] == "1":
+                    width = dp[i][j] = (1 if j == 0 else 1 + dp[i][j - 1])
+                    for k in range(i, -1, -1):
+                        if dp[k][j] == 0: break
+                        width = min(width, dp[k][j])
+                        height = i - k + 1
+                        area = max(area, width * height)
+        return area
+
     def maximalRectangle(self, matrix: List[List[str]]) -> int:
         """
         三维dp高效方法

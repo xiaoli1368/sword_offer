@@ -41,4 +41,28 @@ public:
 
         return ret;
     }
+
+	// ===== 二维DP优化版 =====
+    int maximalRectangle(vector<vector<char>>& matrix) {
+        if (matrix.empty() || matrix[0].empty()) {
+            return 0;
+        }
+
+        int width, height, area = 0, row = matrix.size(), col = matrix[0].size();
+        vector<vector<int>> dp(row, vector<int>(col, 0));
+
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (matrix[i][j] == '1') {
+                    width = dp[i][j] = (j == 0 ? 1 : 1 + dp[i][j - 1]);
+                    for (int k = i; k >= 0 && dp[k][j] > 0; k--) {
+                        height = i - k + 1;
+                        width = min(width, dp[k][j]);
+                        area = max(area, width * height);
+                    }
+                }
+            }
+        }
+        return area;
+    }
 };

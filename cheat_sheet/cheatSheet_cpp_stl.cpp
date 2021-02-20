@@ -67,6 +67,9 @@ int main(int argc, char* argv[])
 		std::cout << it->first << " " << it->second << std::endl;
 	}
 
+	// 自定义key/value
+	// 注意value可以自定义为struct，但是key自定义后需要重载运算符，否则编译报错
+
 	// ===== set =================================================
 	std::set<int> set;
 
