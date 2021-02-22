@@ -120,6 +120,7 @@
 | [978. 最长湍流子数组](https://leetcode-cn.com/problems/longest-turbulent-subarray/) | medium | cpp,python                                                   | 滑动窗口  |
 | [992. K 个不同整数的子数组](https://leetcode-cn.com/problems/subarrays-with-k-different-integers/) | hard   | [把这个题解看了](https://leetcode-cn.com/problems/subarrays-with-k-different-integers/solution/k-ge-bu-tong-zheng-shu-de-zi-shu-zu-by-l-ud34/) | 滑动窗口  |
 | [567. 字符串的排列](https://leetcode-cn.com/problems/permutation-in-string/) | medium | cpp,python                                                   | 滑窗+哈希 |
+| [1438. 绝对差不超过限制的最长连续子数组](https://leetcode-cn.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/) | medium | cpp,python                                                   | 滑窗+ST   |
 | [228. 汇总区间](https://leetcode-cn.com/problems/summary-ranges/) |        |                                                              | 区间问题  |
 
 ### 二分查找
@@ -167,6 +168,7 @@
 | [75. 颜色分类](https://leetcode-cn.com/problems/sort-colors/) | medium | cpp,python | 快排，荷兰国旗   |
 | [283. 移动零](https://leetcode-cn.com/problems/move-zeroes/) |        |            | 快排，荷兰国旗   |
 | [27. 移除元素](https://leetcode-cn.com/problems/remove-element/) |        |            | 快排，快排分区   |
+| [1768. 交替合并字符串](https://leetcode-cn.com/problems/merge-strings-alternately/) |        |            | 归并排序         |
 | [88. 合并两个有序数组](https://leetcode-cn.com/problems/merge-sorted-array/) |        |            | 归并排序         |
 | [21. 合并两个有序链表](https://leetcode-cn.com/problems/merge-two-sorted-lists/) |        |            | 归并排序         |
 | [23. 合并K个升序链表](https://leetcode-cn.com/problems/merge-k-sorted-lists/) |        |            | 归并排序         |
@@ -242,11 +244,12 @@
 | [542. 01 矩阵](https://leetcode-cn.com/problems/01-matrix/)  | medium | cpp,python | DP，二维           |
 | [221. 最大正方形](https://leetcode-cn.com/problems/maximal-square/) | medium | cpp,python | DP，二维           |
 | [85. 最大矩形](https://leetcode-cn.com/problems/maximal-rectangle/) | hard   | cpp,python | DP，二维           |
-| [279. 完全平方数](https://leetcode-cn.com/problems/perfect-squares/) | medium |            | DP，分割类型       |
-| [91. 解码方法](https://leetcode-cn.com/problems/decode-ways/) | medium |            | DP，分割类型       |
-| [139. 单词拆分](https://leetcode-cn.com/problems/word-break/) | medium |            | DP，分割类型       |
-| [343. 整数拆分](https://leetcode-cn.com/problems/integer-break/) |        |            |                    |
-| [313. 超级丑数](https://leetcode-cn.com/problems/super-ugly-number/) |        |            |                    |
+| [279. 完全平方数](https://leetcode-cn.com/problems/perfect-squares/) | medium | cpp,python | DP，分割类型       |
+| [91. 解码方法](https://leetcode-cn.com/problems/decode-ways/) | medium | cpp,python | DP，分割类型       |
+| [139. 单词拆分](https://leetcode-cn.com/problems/word-break/) | medium | cpp,python | DP，分割类型       |
+| [140. 单词拆分 II](https://leetcode-cn.com/problems/word-break-ii/) | hard   |            |                    |
+| [343. 整数拆分](https://leetcode-cn.com/problems/integer-break/) | medium |            |                    |
+| [313. 超级丑数](https://leetcode-cn.com/problems/super-ugly-number/) | medium |            |                    |
 | [300. 最长递增子序列](https://leetcode-cn.com/problems/longest-increasing-subsequence/) | medium |            | DP，子序列问题     |
 | [1143. 最长公共子序列](https://leetcode-cn.com/problems/longest-common-subsequence/) | medium |            | DP，子序列问题     |
 | [53. 最大子序和](https://leetcode-cn.com/problems/maximum-subarray/) |        |            |                    |
@@ -254,6 +257,7 @@
 | [646. 最长数对链](https://leetcode-cn.com/problems/maximum-length-of-pair-chain/) |        |            |                    |
 | [376. 摆动序列](https://leetcode-cn.com/problems/wiggle-subsequence/) |        |            |                    |
 | [446. 等差数列划分 II - 子序列](https://leetcode-cn.com/problems/arithmetic-slices-ii-subsequence/) | hard   |            |                    |
+| [1771. 由子序列构造的最长回文串的长度](https://leetcode-cn.com/problems/maximize-palindrome-length-from-subsequences/) |        |            |                    |
 | [416. 分割等和子集](https://leetcode-cn.com/problems/partition-equal-subset-sum/) | medium |            | DP，背包问题       |
 | [474. 一和零](https://leetcode-cn.com/problems/ones-and-zeroes/) | medium |            | DP，背包问题       |
 | [322. 零钱兑换](https://leetcode-cn.com/problems/coin-change/) | medium |            | DP，背包问题       |
@@ -265,6 +269,8 @@
 | [188. 买卖股票的最佳时机 IV](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iv/) | hard   |            | DP，股票交易       |
 | [309. 最佳买卖股票时机含冷冻期](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/) | medium |            | DP，股票交易       |
 | [714. 买卖股票的最佳时机含手续费](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/) |        |            |                    |
+|                                                              |        |            |                    |
+| [1770. 执行乘法运算的最大分数](https://leetcode-cn.com/problems/maximum-score-from-performing-multiplication-operations/) |        |            |                    |
 
 ### 分治法
 
@@ -289,6 +295,16 @@
 |                        |        |          | 全排列，组合，子集 |
 | 普通数组，两个有序数组 | 数据流 | 滑动窗口 | 中位数             |
 |                        |        |          | LRU                |
+
+
+
+前缀和：
+
+- [1769. 移动所有球到每个盒子所需的最小操作数](https://leetcode-cn.com/problems/minimum-number-of-operations-to-move-all-balls-to-each-box/)
+
+
+
+
 
 **其它待整理：**
 
@@ -623,7 +639,7 @@
 >         self.res = 0
 >         if dfs(root) == 0:
 >             self.res += 1
->                     
+>                         
 >         return self.res
 >
 > 如果改变题意，每台相机只能监控自己，或者直接子对象呢？

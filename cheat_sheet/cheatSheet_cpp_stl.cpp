@@ -2,9 +2,10 @@
 
 #include <map>
 #include <set>
+#include <queue>
+#include <deque>
 #include <unordered_map>
 #include <unordered_set>
-#include <queue>
 #include <vector>
 #include <algorithm>
 #include <numeric>
@@ -50,6 +51,9 @@ int main(int argc, char* argv[])
 	std::string s = std::to_string(123);
 	int val = std::stoi(s);
 
+	// 提取子串
+	auto tmp = s.substr(1, 2); // 提取区间[start, start + size]
+
 	// ===== map ==================================================
 	std::map<int, int> map;
 
@@ -94,6 +98,23 @@ int main(int argc, char* argv[])
 	// 获取并弹出头部
 	int first = queue.front();
 	queue.pop();
+
+	// queue常见的几个用法：
+	queue.front();
+	queue.back();
+	queue.push(10);
+	queue.pop();
+	queue.size();
+	queue.empty();
+
+	// deque常见用法：
+	std::deque<int> deque;
+	deque.front();
+	deque.back();
+	deque.push_front(10);
+	deque.push_back(10);
+	deque.pop_front();
+	deque.pop_back();
 
 	// ===== 其它 =================================================
 	int int_min = INT_MIN; // 最小整形
