@@ -121,6 +121,7 @@
 | [992. K 个不同整数的子数组](https://leetcode-cn.com/problems/subarrays-with-k-different-integers/) | hard   | [把这个题解看了](https://leetcode-cn.com/problems/subarrays-with-k-different-integers/solution/k-ge-bu-tong-zheng-shu-de-zi-shu-zu-by-l-ud34/) | 滑动窗口  |
 | [567. 字符串的排列](https://leetcode-cn.com/problems/permutation-in-string/) | medium | cpp,python                                                   | 滑窗+哈希 |
 | [1438. 绝对差不超过限制的最长连续子数组](https://leetcode-cn.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/) | medium | cpp,python                                                   | 滑窗+ST   |
+| [1052. 爱生气的书店老板](https://leetcode-cn.com/problems/grumpy-bookstore-owner/) | medium | cpp,python                                                   | 滑动窗口  |
 | [228. 汇总区间](https://leetcode-cn.com/problems/summary-ranges/) |        |                                                              | 区间问题  |
 
 ### 二分查找
@@ -216,6 +217,7 @@
 | [37. 解数独](https://leetcode-cn.com/problems/sudoku-solver/) | medium     | cpp,python | DFS，回溯法        |
 | [剑指 Offer 12. 矩阵中的路径](https://leetcode-cn.com/problems/ju-zhen-zhong-de-lu-jing-lcof/) | medium     | cpp,python | DFS，回溯法        |
 | [剑指 Offer 13. 机器人的运动范围](https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/) | medium     | cpp,python | DFS，回溯法        |
+| [140. 单词拆分 II](https://leetcode-cn.com/problems/word-break-ii/) | hard       | cpp,python | DFS，回溯法        |
 | [《回溯法总结分析》](https://leetcode-cn.com/problems/permutations/solution/hui-su-suan-fa-python-dai-ma-java-dai-ma-by-liweiw/) |            |            |                    |
 | [967. 连续差相同的数字](https://leetcode-cn.com/problems/numbers-with-same-consecutive-differences/) | medium     | cpp,python | DFS，其它          |
 | [733. 图像渲染](https://leetcode-cn.com/problems/flood-fill/) |            |            | DFS，其它          |
@@ -247,9 +249,8 @@
 | [279. 完全平方数](https://leetcode-cn.com/problems/perfect-squares/) | medium | cpp,python | DP，分割类型       |
 | [91. 解码方法](https://leetcode-cn.com/problems/decode-ways/) | medium | cpp,python | DP，分割类型       |
 | [139. 单词拆分](https://leetcode-cn.com/problems/word-break/) | medium | cpp,python | DP，分割类型       |
-| [140. 单词拆分 II](https://leetcode-cn.com/problems/word-break-ii/) | hard   |            |                    |
-| [343. 整数拆分](https://leetcode-cn.com/problems/integer-break/) | medium |            |                    |
-| [313. 超级丑数](https://leetcode-cn.com/problems/super-ugly-number/) | medium |            |                    |
+| [343. 整数拆分](https://leetcode-cn.com/problems/integer-break/) | medium | cpp,python | DP，分割类型       |
+| [313. 超级丑数](https://leetcode-cn.com/problems/super-ugly-number/) | medium | cpp,python | DP，分割类型       |
 | [300. 最长递增子序列](https://leetcode-cn.com/problems/longest-increasing-subsequence/) | medium |            | DP，子序列问题     |
 | [1143. 最长公共子序列](https://leetcode-cn.com/problems/longest-common-subsequence/) | medium |            | DP，子序列问题     |
 | [53. 最大子序和](https://leetcode-cn.com/problems/maximum-subarray/) |        |            |                    |
@@ -639,7 +640,7 @@
 >         self.res = 0
 >         if dfs(root) == 0:
 >             self.res += 1
->                         
+>                             
 >         return self.res
 >
 > 如果改变题意，每台相机只能监控自己，或者直接子对象呢？

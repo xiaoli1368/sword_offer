@@ -44,6 +44,14 @@ int main(int argc, char* argv[])
 		std::cout << p << std::endl;
 	}
 
+	// 拼接内部字符串
+	// 要求内部单词之间以空格拼接，最后一处没有空格
+	std::string tmp;
+	std::vector<std::string> wordDict = {"adb", "fasdf", "fsad"}
+	for (int i = 0; i < wordDict.size(); i++) {
+		tmp += (i < wordDict.size() - 1 ? wordDict[i] + " " : wordDict[i]);
+	}
+
 	// ===== string ==============================================
 	std::string s = "123";
 
