@@ -68,6 +68,7 @@
 | [122. 买卖股票的最佳时机 II](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/) | easy   | cpp,python  | 其它     |
 | [665. 非递减数列](https://leetcode-cn.com/problems/non-decreasing-array/) | easy   | cpp,python  | 其它     |
 | [406. 根据身高重建队列](https://leetcode-cn.com/problems/queue-reconstruction-by-height/) | medium | cpp,python  | 其它     |
+| [300. 最长递增子序列](https://leetcode-cn.com/problems/longest-increasing-subsequence/) | medium | cpp,python  | DP+贪心  |
 | 后续待刷的题目：                                             |        |             |          |
 | [860. 柠檬水找零](https://leetcode-cn.com/problems/lemonade-change/) | easy   |             | 其它     |
 | [402. 移掉K位数字](https://leetcode-cn.com/problems/remove-k-digits/) |        |             |          |
@@ -103,6 +104,7 @@
 | [3. 无重复字符的最长子串](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/) |        |                                                              | 滑动窗口  |
 | [76. 最小覆盖子串](https://leetcode-cn.com/problems/minimum-window-substring/) | hard   | cpp,python                                                   | 滑动窗口  |
 | 340. 至多包含 K 个不同字符的最长子串                         | hard   | cpp,python                                                   | 滑动窗口  |
+| [395. 至少有 K 个重复字符的最长子串](https://leetcode-cn.com/problems/longest-substring-with-at-least-k-repeating-characters/) | medium |                                                              |           |
 | [1208. 尽可能使字符串相等](https://leetcode-cn.com/problems/get-equal-substrings-within-budget/) | medium | 已AC                                                         | 滑动窗口  |
 | [485. 最大连续1的个数](https://leetcode-cn.com/problems/max-consecutive-ones/) | simple | cpp,python                                                   | 滑动窗口  |
 | [487. 最大连续1的个数 II](https://leetcode-cn.com/problems/max-consecutive-ones-ii/) | medium | 没有权限                                                     | 滑动窗口  |
@@ -251,18 +253,21 @@
 | [139. 单词拆分](https://leetcode-cn.com/problems/word-break/) | medium | cpp,python | DP，分割类型       |
 | [343. 整数拆分](https://leetcode-cn.com/problems/integer-break/) | medium | cpp,python | DP，分割类型       |
 | [313. 超级丑数](https://leetcode-cn.com/problems/super-ugly-number/) | medium | cpp,python | DP，分割类型       |
-| [300. 最长递增子序列](https://leetcode-cn.com/problems/longest-increasing-subsequence/) | medium |            | DP，子序列问题     |
-| [1143. 最长公共子序列](https://leetcode-cn.com/problems/longest-common-subsequence/) | medium |            | DP，子序列问题     |
-| [53. 最大子序和](https://leetcode-cn.com/problems/maximum-subarray/) |        |            |                    |
-| [583. 两个字符串的删除操作](https://leetcode-cn.com/problems/delete-operation-for-two-strings/) |        |            |                    |
+| [53. 最大子序和](https://leetcode-cn.com/problems/maximum-subarray/) | easy   | cpp,python | DP，子序列问题     |
+| [300. 最长递增子序列](https://leetcode-cn.com/problems/longest-increasing-subsequence/) | medium | cpp,python | DP，子序列问题     |
+| [1143. 最长公共子序列](https://leetcode-cn.com/problems/longest-common-subsequence/) | medium | cpp,python | DP，子序列问题     |
+| [516. 最长回文子序列](https://leetcode-cn.com/problems/longest-palindromic-subsequence/) | medium | cpp,python | DP，子序列问题     |
+| [1771. 由子序列构造的最长回文串的长度](https://leetcode-cn.com/problems/maximize-palindrome-length-from-subsequences/) | hard   | cpp,python | DP，子序列问题     |
+| [1218. 最长定差子序列](https://leetcode-cn.com/problems/longest-arithmetic-subsequence-of-given-difference/) | medium | cpp,python | DP，子序列问题     |
+| [446. 等差数列划分 II - 子序列](https://leetcode-cn.com/problems/arithmetic-slices-ii-subsequence/) | hard   | cpp,python | DP，子序列问题     |
 | [646. 最长数对链](https://leetcode-cn.com/problems/maximum-length-of-pair-chain/) |        |            |                    |
 | [376. 摆动序列](https://leetcode-cn.com/problems/wiggle-subsequence/) |        |            |                    |
-| [446. 等差数列划分 II - 子序列](https://leetcode-cn.com/problems/arithmetic-slices-ii-subsequence/) | hard   |            |                    |
-| [1771. 由子序列构造的最长回文串的长度](https://leetcode-cn.com/problems/maximize-palindrome-length-from-subsequences/) |        |            |                    |
 | [416. 分割等和子集](https://leetcode-cn.com/problems/partition-equal-subset-sum/) | medium |            | DP，背包问题       |
 | [474. 一和零](https://leetcode-cn.com/problems/ones-and-zeroes/) | medium |            | DP，背包问题       |
 | [322. 零钱兑换](https://leetcode-cn.com/problems/coin-change/) | medium |            | DP，背包问题       |
 | [494. 目标和](https://leetcode-cn.com/problems/target-sum/)  |        |            |                    |
+| [583. 两个字符串的删除操作](https://leetcode-cn.com/problems/delete-operation-for-two-strings/) | medium | cpp,python | DP，字符串编辑     |
+| [712. 两个字符串的最小ASCII删除和](https://leetcode-cn.com/problems/minimum-ascii-delete-sum-for-two-strings/) | medium | cpp,python | DP，字符串编辑     |
 | [72. 编辑距离](https://leetcode-cn.com/problems/edit-distance/) | medium |            | DP，字符串编辑     |
 | [650. 只有两个键的键盘](https://leetcode-cn.com/problems/2-keys-keyboard/) | medium |            | DP，字符串编辑     |
 | [10. 正则表达式匹配](https://leetcode-cn.com/problems/regular-expression-matching/) | hard   |            | DP，字符串编辑     |
@@ -271,7 +276,7 @@
 | [309. 最佳买卖股票时机含冷冻期](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/) | medium |            | DP，股票交易       |
 | [714. 买卖股票的最佳时机含手续费](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/) |        |            |                    |
 |                                                              |        |            |                    |
-| [1770. 执行乘法运算的最大分数](https://leetcode-cn.com/problems/maximum-score-from-performing-multiplication-operations/) |        |            |                    |
+| [1770. 执行乘法运算的最大分数](https://leetcode-cn.com/problems/maximum-score-from-performing-multiplication-operations/) |        |            | 其它               |
 
 ### 分治法
 
@@ -640,7 +645,7 @@
 >         self.res = 0
 >         if dfs(root) == 0:
 >             self.res += 1
->                             
+>                                     
 >         return self.res
 >
 > 如果改变题意，每台相机只能监控自己，或者直接子对象呢？

@@ -47,7 +47,7 @@ int main(int argc, char* argv[])
 	// 拼接内部字符串
 	// 要求内部单词之间以空格拼接，最后一处没有空格
 	std::string tmp;
-	std::vector<std::string> wordDict = {"adb", "fasdf", "fsad"}
+	std::vector<std::string> wordDict = {"adb", "fasdf", "fsad"};
 	for (int i = 0; i < wordDict.size(); i++) {
 		tmp += (i < wordDict.size() - 1 ? wordDict[i] + " " : wordDict[i]);
 	}
@@ -125,12 +125,23 @@ int main(int argc, char* argv[])
 	deque.pop_back();
 
 	// ===== 其它 =================================================
+	// 整数边界
 	int int_min = INT_MIN; // 最小整形
 	int int_max = INT_MAX; // 最大整形
 
 	// 交换
 	std::unordered_set<int> sa, sb;
 	std::swap(sa, sb);
-	
+
+	// 二分查找
+	// lower_bound, upper_bound, equal_range, binary_search
+	// 在 [first, last) 区域内查找不小于 val 的元素
+	// ForwardIterator lower_bound (ForwardIterator first, ForwardIterator last, const T& val);
+	// 在 [first, last) 区域内查找第一个不符合 comp 规则的元素
+	// ForwardIterator lower_bound (ForwardIterator first, ForwardIterator last, const T& val, Compare comp);
+	std::vector<int> vec3 = {1, 3, 5, 6, 9};
+	auto itr = std::lower_bound(vec3.begin(), vec3.end(), 4); // 返回迭代器，可以使用*itr
+
+	// 退出
 	return 0;
 }
