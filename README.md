@@ -70,6 +70,7 @@
 | [406. 根据身高重建队列](https://leetcode-cn.com/problems/queue-reconstruction-by-height/) | medium | cpp,python  | 其它     |
 | [300. 最长递增子序列](https://leetcode-cn.com/problems/longest-increasing-subsequence/) | medium | cpp,python  | DP+贪心  |
 | 后续待刷的题目：                                             |        |             |          |
+| [5691. 通过最少操作次数使数组的和相等](https://leetcode-cn.com/problems/equal-sum-arrays-with-minimum-number-of-operations/) | medium | cpp,python  | 其它     |
 | [860. 柠檬水找零](https://leetcode-cn.com/problems/lemonade-change/) | easy   |             | 其它     |
 | [402. 移掉K位数字](https://leetcode-cn.com/problems/remove-k-digits/) |        |             |          |
 | [1288. 删除被覆盖区间](https://leetcode-cn.com/problems/remove-covered-intervals/) |        |             | 区间问题 |
@@ -126,23 +127,37 @@
 | [1052. 爱生气的书店老板](https://leetcode-cn.com/problems/grumpy-bookstore-owner/) | medium | cpp,python                                                   | 滑动窗口  |
 | [228. 汇总区间](https://leetcode-cn.com/problems/summary-ranges/) |        |                                                              | 区间问题  |
 
+滑窗法经典问题：
+
+- 【至多/至少】+【k个不同/k个相同/每个字符出现k次】+【最长/最短】+字符串
+- 至多包括k个不同字符的最长字符串（leetcode340，滑窗法）
+- 至多包括k个不同字符的最短字符串（0，无意义）
+- 至多包括k个相同字符的最长字符串（其实就是每个字符至多出现k次，滑窗法，leetcode3的拓展）
+- 至多包括k个相同字符的最短字符串（0，无意义）
+- 至少包括k个不同字符的最长字符串（不存在，或者str.size()）
+- 至少包括k个不同字符的最短字符串（滑窗法）
+- 至少包括k个相同字符的最长字符串（不存在，或者str.size()）
+- 至少包括k个相同字符的最短字符串（滑窗法）
+- 每个字符至少出现k次的最长字符串（leetcode395，这个比较特殊）
+
 ### 二分查找
 
-| 题目链接                                                     | 难度   | 个人题解   | 说明     |
-| ------------------------------------------------------------ | ------ | ---------- | -------- |
-| [69. x 的平方根](https://leetcode-cn.com/problems/sqrtx/)    | easy   | cpp,python | 常规二分 |
-| [34. 在排序数组中查找元素的第一个和最后一个位置](https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/) | medium | cpp,python | 区间二分 |
-| [33. 搜索旋转排序数组](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/) | medium | cpp,python | 旋转二分 |
-| [81. 搜索旋转排序数组 II](https://leetcode-cn.com/problems/search-in-rotated-sorted-array-ii/) | medium | cpp,python | 旋转二分 |
-| [153. 寻找旋转排序数组中的最小值](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/) | medium | cpp,python | 旋转二分 |
-| [154. 寻找旋转排序数组中的最小值 II](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii/) | hard   | cpp,python | 旋转二分 |
-| [540. 有序数组中的单一元素](https://leetcode-cn.com/problems/single-element-in-a-sorted-array/) | medium | cpp,python | 按值二分 |
-| [4. 寻找两个正序数组的中位数](https://leetcode-cn.com/problems/median-of-two-sorted-arrays/) | hard   | cpp,python | 两路二分 |
-| [240. 搜索二维矩阵 II](https://leetcode-cn.com/problems/search-a-2d-matrix-ii/) |        |            |          |
-| [378. 有序矩阵中第K小的元素](https://leetcode-cn.com/problems/kth-smallest-element-in-a-sorted-matrix/)（难，重点学习） |        |            |          |
-| [475. 供暖器](https://leetcode-cn.com/problems/heaters/)     |        |            |          |
-| [牛客比赛中出现的二分题目](https://blog.csdn.net/qq_44900959/article/details/110284829?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.control) |        |            |          |
-| 寻找单个元素，寻找左边界，寻找右边界                         |        |            |          |
+| 题目链接                                                     | 难度   | 个人题解   | 说明       |
+| ------------------------------------------------------------ | ------ | ---------- | ---------- |
+| [69. x 的平方根](https://leetcode-cn.com/problems/sqrtx/)    | easy   | cpp,python | 常规二分   |
+| [34. 在排序数组中查找元素的第一个和最后一个位置](https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/) | medium | cpp,python | 区间二分   |
+| [33. 搜索旋转排序数组](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/) | medium | cpp,python | 旋转二分   |
+| [81. 搜索旋转排序数组 II](https://leetcode-cn.com/problems/search-in-rotated-sorted-array-ii/) | medium | cpp,python | 旋转二分   |
+| [153. 寻找旋转排序数组中的最小值](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/) | medium | cpp,python | 旋转二分   |
+| [154. 寻找旋转排序数组中的最小值 II](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii/) | hard   | cpp,python | 旋转二分   |
+| [540. 有序数组中的单一元素](https://leetcode-cn.com/problems/single-element-in-a-sorted-array/) | medium | cpp,python | 按值二分   |
+| [4. 寻找两个正序数组的中位数](https://leetcode-cn.com/problems/median-of-two-sorted-arrays/) | hard   | cpp,python | 两路二分   |
+| [240. 搜索二维矩阵 II](https://leetcode-cn.com/problems/search-a-2d-matrix-ii/) |        |            |            |
+| [378. 有序矩阵中第K小的元素](https://leetcode-cn.com/problems/kth-smallest-element-in-a-sorted-matrix/)（难，重点学习） |        |            |            |
+| [475. 供暖器](https://leetcode-cn.com/problems/heaters/)     |        |            |            |
+| [162. 寻找峰值](https://leetcode-cn.com/problems/find-peak-element/) |        |            | 有空做一下 |
+| [牛客比赛中出现的二分题目](https://blog.csdn.net/qq_44900959/article/details/110284829?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.control) |        |            |            |
+| 寻找单个元素，寻找左边界，寻找右边界                         |        |            |            |
 
 ### 排序
 
@@ -255,6 +270,7 @@
 | [313. 超级丑数](https://leetcode-cn.com/problems/super-ugly-number/) | medium | cpp,python | DP，分割类型       |
 | [53. 最大子序和](https://leetcode-cn.com/problems/maximum-subarray/) | easy   | cpp,python | DP，子序列问题     |
 | [300. 最长递增子序列](https://leetcode-cn.com/problems/longest-increasing-subsequence/) | medium | cpp,python | DP，子序列问题     |
+| [354. 俄罗斯套娃信封问题](https://leetcode-cn.com/problems/russian-doll-envelopes/) | hard   | cpp,python | DP，子序列问题     |
 | [1143. 最长公共子序列](https://leetcode-cn.com/problems/longest-common-subsequence/) | medium | cpp,python | DP，子序列问题     |
 | [516. 最长回文子序列](https://leetcode-cn.com/problems/longest-palindromic-subsequence/) | medium | cpp,python | DP，子序列问题     |
 | [1771. 由子序列构造的最长回文串的长度](https://leetcode-cn.com/problems/maximize-palindrome-length-from-subsequences/) | hard   | cpp,python | DP，子序列问题     |
@@ -268,9 +284,9 @@
 | [494. 目标和](https://leetcode-cn.com/problems/target-sum/)  |        |            |                    |
 | [583. 两个字符串的删除操作](https://leetcode-cn.com/problems/delete-operation-for-two-strings/) | medium | cpp,python | DP，字符串编辑     |
 | [712. 两个字符串的最小ASCII删除和](https://leetcode-cn.com/problems/minimum-ascii-delete-sum-for-two-strings/) | medium | cpp,python | DP，字符串编辑     |
-| [72. 编辑距离](https://leetcode-cn.com/problems/edit-distance/) | medium |            | DP，字符串编辑     |
-| [650. 只有两个键的键盘](https://leetcode-cn.com/problems/2-keys-keyboard/) | medium |            | DP，字符串编辑     |
-| [10. 正则表达式匹配](https://leetcode-cn.com/problems/regular-expression-matching/) | hard   |            | DP，字符串编辑     |
+| [72. 编辑距离](https://leetcode-cn.com/problems/edit-distance/) | hard   | cpp,python | DP，字符串编辑     |
+| [650. 只有两个键的键盘](https://leetcode-cn.com/problems/2-keys-keyboard/) | medium | cpp,python | DP，字符串编辑     |
+| [10. 正则表达式匹配](https://leetcode-cn.com/problems/regular-expression-matching/) | hard   | cpp,python | DP，字符串编辑     |
 | [121. 买卖股票的最佳时机](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/) | easy   |            | DP，股票交易       |
 | [188. 买卖股票的最佳时机 IV](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iv/) | hard   |            | DP，股票交易       |
 | [309. 最佳买卖股票时机含冷冻期](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/) | medium |            | DP，股票交易       |
@@ -304,11 +320,20 @@
 
 
 
-前缀和：
+**前缀和：**
 
-- [1769. 移动所有球到每个盒子所需的最小操作数](https://leetcode-cn.com/problems/minimum-number-of-operations-to-move-all-balls-to-each-box/)
+| 题目链接                                                     | 难度   | 个人题解   | 说明       |
+| ------------------------------------------------------------ | ------ | ---------- | ---------- |
+| [303. 区域和检索 - 数组不可变](https://leetcode-cn.com/problems/range-sum-query-immutable/) | easy   | cpp,python | 一维前缀和 |
+| [304. 二维区域和检索 - 矩阵不可变](https://leetcode-cn.com/problems/range-sum-query-2d-immutable/) | medium | cpp,python | 二维前缀和 |
+| [308. 二维区域和检索 - 可变](https://michael.blog.csdn.net/article/details/107417676?utm_medium=distribute.pc_relevant.none-task-blog-searchFromBaidu-8.control&dist_request_id=&depth_1-utm_source=distribute.pc_relevant.none-task-blog-searchFromBaidu-8.control) | medium | 有思路     | 无权限     |
+| [1769. 移动所有球到每个盒子所需的最小操作数](https://leetcode-cn.com/problems/minimum-number-of-operations-to-move-all-balls-to-each-box/) |        |            |            |
 
 
+
+其它待整理：
+
+- 131. 分割回文串（思路是先生成可能成为回文串的区间，然后回溯法。简单的版本是判断有多少个回文子串，进阶版本是找到所有可能的分割方法。对于判断某个区间是否回文，有两种思路，一是dp遍历所有区间，dp(i,j)由dp(i+1,j-1)决定），第二种思路是中心延拓法。
 
 
 
@@ -645,7 +670,7 @@
 >         self.res = 0
 >         if dfs(root) == 0:
 >             self.res += 1
->                                     
+>                                                 
 >         return self.res
 >
 > 如果改变题意，每台相机只能监控自己，或者直接子对象呢？

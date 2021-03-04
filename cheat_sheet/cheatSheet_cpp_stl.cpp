@@ -52,6 +52,10 @@ int main(int argc, char* argv[])
 		tmp += (i < wordDict.size() - 1 ? wordDict[i] + " " : wordDict[i]);
 	}
 
+	// 改变大小（注意resize和reverve的区别）
+	std::vector<int> vec2;
+	vec2.resize(10, 0); // 改变size为10，并且使用0初始化
+
 	// ===== string ==============================================
 	std::string s = "123";
 
