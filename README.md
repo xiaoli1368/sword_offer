@@ -222,8 +222,8 @@
 | [77. 组合](https://leetcode-cn.com/problems/combinations/)   | medium     | cpp,python | DFS，回溯法        |
 | [39. 组合总和](https://leetcode-cn.com/problems/combination-sum/) | medium     | cpp,python | DFS，回溯法        |
 | [40. 组合总和 II](https://leetcode-cn.com/problems/combination-sum-ii/) | medium     | cpp,python | DFS，回溯法        |
-| [216. 组合总和 III](https://leetcode-cn.com/problems/combination-sum-iii/) | medium     | cpp,pytho  | DFS，回溯法        |
-| [377. 组合总和 Ⅳ](https://leetcode-cn.com/problems/combination-sum-iv/) | medium     | cpp,pytho  | DFS，回溯法        |
+| [216. 组合总和 III](https://leetcode-cn.com/problems/combination-sum-iii/) | medium     | cpp,python | DFS，回溯法        |
+| [377. 组合总和 Ⅳ](https://leetcode-cn.com/problems/combination-sum-iv/) | medium     | cpp,python | DFS，回溯法        |
 | [79. 单词搜索](https://leetcode-cn.com/problems/word-search/) | medium     | cpp,python | DFS，回溯法        |
 | [212. 单词搜索 II](https://leetcode-cn.com/problems/word-search-ii/) | hard       | 难但有思路 | DFS，回溯法        |
 | [17. 电话号码的字母组合](https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/) | medium     |            | DFS，回溯法        |
@@ -278,10 +278,13 @@
 | [446. 等差数列划分 II - 子序列](https://leetcode-cn.com/problems/arithmetic-slices-ii-subsequence/) | hard   | cpp,python | DP，子序列问题     |
 | [646. 最长数对链](https://leetcode-cn.com/problems/maximum-length-of-pair-chain/) |        |            |                    |
 | [376. 摆动序列](https://leetcode-cn.com/problems/wiggle-subsequence/) |        |            |                    |
-| [416. 分割等和子集](https://leetcode-cn.com/problems/partition-equal-subset-sum/) | medium |            | DP，背包问题       |
-| [474. 一和零](https://leetcode-cn.com/problems/ones-and-zeroes/) | medium |            | DP，背包问题       |
-| [322. 零钱兑换](https://leetcode-cn.com/problems/coin-change/) | medium |            | DP，背包问题       |
-| [494. 目标和](https://leetcode-cn.com/problems/target-sum/)  |        |            |                    |
+| [416. 分割等和子集](https://leetcode-cn.com/problems/partition-equal-subset-sum/) | medium | cpp,python | DP，背包问题       |
+| [474. 一和零](https://leetcode-cn.com/problems/ones-and-zeroes/) | medium | cpp,python | DP，背包问题       |
+| [322. 零钱兑换](https://leetcode-cn.com/problems/coin-change/) | medium | cpp,python | DP，背包问题       |
+| [518. 零钱兑换 II](https://leetcode-cn.com/problems/coin-change-2/) | medium | cpp,python | DP，背包问题       |
+| [494. 目标和](https://leetcode-cn.com/problems/target-sum/)  | medium | cpp,python | DP，背包问题       |
+| [377. 组合总和 Ⅳ](https://leetcode-cn.com/problems/combination-sum-iv/) | medium | cpp,python | DP，背包问题       |
+| [背包问题总结](https://leetcode-cn.com/problems/combination-sum-iv/solution/xi-wang-yong-yi-chong-gui-lu-gao-ding-bei-bao-wen-/) |        |            |                    |
 | [583. 两个字符串的删除操作](https://leetcode-cn.com/problems/delete-operation-for-two-strings/) | medium | cpp,python | DP，字符串编辑     |
 | [712. 两个字符串的最小ASCII删除和](https://leetcode-cn.com/problems/minimum-ascii-delete-sum-for-two-strings/) | medium | cpp,python | DP，字符串编辑     |
 | [72. 编辑距离](https://leetcode-cn.com/problems/edit-distance/) | hard   | cpp,python | DP，字符串编辑     |
@@ -290,7 +293,7 @@
 | [121. 买卖股票的最佳时机](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/) | easy   |            | DP，股票交易       |
 | [188. 买卖股票的最佳时机 IV](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iv/) | hard   |            | DP，股票交易       |
 | [309. 最佳买卖股票时机含冷冻期](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/) | medium |            | DP，股票交易       |
-| [714. 买卖股票的最佳时机含手续费](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/) |        |            |                    |
+| [714. 买卖股票的最佳时机含手续费](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/) | medium |            | DP，股票交易       |
 |                                                              |        |            |                    |
 | [1770. 执行乘法运算的最大分数](https://leetcode-cn.com/problems/maximum-score-from-performing-multiplication-operations/) |        |            | 其它               |
 
@@ -670,7 +673,7 @@
 >         self.res = 0
 >         if dfs(root) == 0:
 >             self.res += 1
->                                                 
+>                                                     
 >         return self.res
 >
 > 如果改变题意，每台相机只能监控自己，或者直接子对象呢？
