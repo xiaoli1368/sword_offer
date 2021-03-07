@@ -45,11 +45,11 @@
 
 ### 图
 
-| 题目链接                                                     | 难度 | 个人题解 | 说明   |
-| ------------------------------------------------------------ | ---- | -------- | ------ |
-| [765. 情侣牵手](https://leetcode-cn.com/problems/couples-holding-hands/) |      |          | 并查集 |
-|                                                              |      |          |        |
-|                                                              |      |          |        |
+| 题目链接                                                     | 难度   | 个人题解   | 说明   |
+| ------------------------------------------------------------ | ------ | ---------- | ------ |
+| [765. 情侣牵手](https://leetcode-cn.com/problems/couples-holding-hands/) |        |            | 并查集 |
+| [131. 分割回文串](https://leetcode-cn.com/problems/palindrome-partitioning/) | medium | cpp,python | 回文串 |
+| [132. 分割回文串 II](https://leetcode-cn.com/problems/palindrome-partitioning-ii/) | hard   | cpp,python | 回文串 |
 
 ### 更加复杂的数据结构
 
@@ -290,10 +290,14 @@
 | [72. 编辑距离](https://leetcode-cn.com/problems/edit-distance/) | hard   | cpp,python | DP，字符串编辑     |
 | [650. 只有两个键的键盘](https://leetcode-cn.com/problems/2-keys-keyboard/) | medium | cpp,python | DP，字符串编辑     |
 | [10. 正则表达式匹配](https://leetcode-cn.com/problems/regular-expression-matching/) | hard   | cpp,python | DP，字符串编辑     |
-| [121. 买卖股票的最佳时机](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/) | easy   |            | DP，股票交易       |
-| [188. 买卖股票的最佳时机 IV](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iv/) | hard   |            | DP，股票交易       |
-| [309. 最佳买卖股票时机含冷冻期](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/) | medium |            | DP，股票交易       |
-| [714. 买卖股票的最佳时机含手续费](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/) | medium |            | DP，股票交易       |
+| [131. 分割回文串](https://leetcode-cn.com/problems/palindrome-partitioning/) | medium | cpp,python | DP，回文串         |
+| [132. 分割回文串 II](https://leetcode-cn.com/problems/palindrome-partitioning-ii/) | hard   | cpp,python | DP，回文串         |
+| [121. 买卖股票的最佳时机](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/) | easy   | cpp,python | DP，股票交易       |
+| [122. 买卖股票的最佳时机 II](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/) | easy   | cpp,python | DP，股票交易       |
+| [123. 买卖股票的最佳时机 III](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iii/) | hard   | cpp,python | DP，股票交易       |
+| [188. 买卖股票的最佳时机 IV](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iv/) | hard   | cpp,python | DP，股票交易       |
+| [309. 最佳买卖股票时机含冷冻期](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/) | medium | cpp,python | DP，股票交易       |
+| [714. 买卖股票的最佳时机含手续费](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/) | medium | cpp,python | DP，股票交易       |
 |                                                              |        |            |                    |
 | [1770. 执行乘法运算的最大分数](https://leetcode-cn.com/problems/maximum-score-from-performing-multiplication-operations/) |        |            | 其它               |
 
@@ -320,6 +324,24 @@
 |                        |        |          | 全排列，组合，子集 |
 | 普通数组，两个有序数组 | 数据流 | 滑动窗口 | 中位数             |
 |                        |        |          | LRU                |
+
+团灭股票买卖：
+
+[121. 买卖股票的最佳时机](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/)  easy  cpp,python  DP，股票交易  
+
+[122. 买卖股票的最佳时机 II](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/)  easy  cpp,python  DP，股票交易 
+
+[123. 买卖股票的最佳时机 III](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iii/)  hard  cpp,python  DP，股票交易  
+
+[188. 买卖股票的最佳时机 IV](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iv/)  hard  cpp,python  DP，股票交易  
+
+[309. 最佳买卖股票时机含冷冻期](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/)  medium  cpp,python  DP，股票交易  
+
+[714. 买卖股票的最佳时机含手续费](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/)  medium  cpp,python  DP，股票交易
+
+分析有三种情况：1. 买卖次数（有限k次，或者无限次数），2. 冷冻期（卖出后冷冻k天，或者无），3. 手续费（每次卖出后收费，或者无）
+
+解决思路：列出所有情况的状态机，然后分析状态跳转，完成动态规划，进行空间优化
 
 
 
@@ -673,7 +695,7 @@
 >         self.res = 0
 >         if dfs(root) == 0:
 >             self.res += 1
->                                                     
+>                                                         
 >         return self.res
 >
 > 如果改变题意，每台相机只能监控自己，或者直接子对象呢？
