@@ -37,11 +37,43 @@
 
 ### 字符串
 
+| 题目链接 | 难度 | 个人题解 | 说明       |
+| -------- | ---- | -------- | ---------- |
+| 242      |      |          | 字符串比较 |
+| 205      |      |          |            |
+| 647      |      |          |            |
+| 696      |      |          |            |
+| 227      |      |          | 字符串理解 |
+| 28       |      |          | 字符串匹配 |
+|          |      |          |            |
+| 409      |      |          |            |
+| 3        |      |          |            |
+| 772      |      |          |            |
+| 5        |      |          |            |
+
+
+
 ### 链表
 
 ### 树
 
-[1046. 最后一块石头的重量](https://leetcode-cn.com/problems/last-stone-weight/)，堆（https://mp.weixin.qq.com/s?__biz=MzI4MzUxNjI3OA==&mid=2247486985&idx=1&sn=4c0275e5ef02e0b9b8e4e99ba57b58dc&chksm=eb88c210dcff4b062cf5d72d86733e7b0ec087adbc714e112db083c683161320e3dcbf1d87f7&token=706287068&lang=zh_CN#rd）
+| 题目链接                                                     | 难度   | 个人题解   | 说明 |
+| ------------------------------------------------------------ | ------ | ---------- | ---- |
+| [331. 验证二叉树的前序序列化](https://leetcode-cn.com/problems/verify-preorder-serialization-of-a-binary-tree/) | medium | cpp,python | 堆栈 |
+|                                                              |        |            |      |
+|                                                              |        |            |      |
+
+
+
+### 堆
+
+| 题目链接                                                     | 难度   | 个人题解   | 说明   |
+| ------------------------------------------------------------ | ------ | ---------- | ------ |
+| [1046. 最后一块石头的重量](https://leetcode-cn.com/problems/last-stone-weight/) | simple | cpp,python | 大顶堆 |
+|                                                              |        |            |        |
+| [堆总结](https://mp.weixin.qq.com/s?__biz=MzI4MzUxNjI3OA==&mid=2247486985&idx=1&sn=4c0275e5ef02e0b9b8e4e99ba57b58dc&chksm=eb88c210dcff4b062cf5d72d86733e7b0ec087adbc714e112db083c683161320e3dcbf1d87f7&token=706287068&lang=zh_CN#rd) |        |            |        |
+
+
 
 ### 图
 
@@ -274,11 +306,13 @@
 | [1143. 最长公共子序列](https://leetcode-cn.com/problems/longest-common-subsequence/) | medium | cpp,python | DP，子序列问题     |
 | [516. 最长回文子序列](https://leetcode-cn.com/problems/longest-palindromic-subsequence/) | medium | cpp,python | DP，子序列问题     |
 | [1771. 由子序列构造的最长回文串的长度](https://leetcode-cn.com/problems/maximize-palindrome-length-from-subsequences/) | hard   | cpp,python | DP，子序列问题     |
+| [115. 不同的子序列](https://leetcode-cn.com/problems/distinct-subsequences/) | hard   | cpp,python | DP，子序列问题     |
 | [1218. 最长定差子序列](https://leetcode-cn.com/problems/longest-arithmetic-subsequence-of-given-difference/) | medium | cpp,python | DP，子序列问题     |
 | [446. 等差数列划分 II - 子序列](https://leetcode-cn.com/problems/arithmetic-slices-ii-subsequence/) | hard   | cpp,python | DP，子序列问题     |
 | [646. 最长数对链](https://leetcode-cn.com/problems/maximum-length-of-pair-chain/) |        |            |                    |
 | [376. 摆动序列](https://leetcode-cn.com/problems/wiggle-subsequence/) |        |            |                    |
 | [416. 分割等和子集](https://leetcode-cn.com/problems/partition-equal-subset-sum/) | medium | cpp,python | DP，背包问题       |
+| [1049. 最后一块石头的重量 II](https://leetcode-cn.com/problems/last-stone-weight-ii/) | medium | cpp,python | DP，背包问题       |
 | [474. 一和零](https://leetcode-cn.com/problems/ones-and-zeroes/) | medium | cpp,python | DP，背包问题       |
 | [322. 零钱兑换](https://leetcode-cn.com/problems/coin-change/) | medium | cpp,python | DP，背包问题       |
 | [518. 零钱兑换 II](https://leetcode-cn.com/problems/coin-change-2/) | medium | cpp,python | DP，背包问题       |
@@ -298,14 +332,18 @@
 | [188. 买卖股票的最佳时机 IV](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iv/) | hard   | cpp,python | DP，股票交易       |
 | [309. 最佳买卖股票时机含冷冻期](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/) | medium | cpp,python | DP，股票交易       |
 | [714. 买卖股票的最佳时机含手续费](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/) | medium | cpp,python | DP，股票交易       |
-|                                                              |        |            |                    |
 | [1770. 执行乘法运算的最大分数](https://leetcode-cn.com/problems/maximum-score-from-performing-multiplication-operations/) |        |            | 其它               |
 
 ### 分治法
 
-## 第三部分：数学
+| 题目链接                                                     | 难度   | 个人题解   | 说明             |
+| ------------------------------------------------------------ | ------ | ---------- | ---------------- |
+| [241. 为运算表达式设计优先级](https://leetcode-cn.com/problems/different-ways-to-add-parentheses/) | medium | cpp,python | 分治，区间DP     |
+| [932. 漂亮数组](https://leetcode-cn.com/problems/beautiful-array/) | medium | cpp,python | 分治，记忆化递归 |
+| [312. 戳气球](https://leetcode-cn.com/problems/burst-balloons/) | hard   | cpp,python | 分治，区间DP     |
+| [1000. 合并石头的最低成本](https://leetcode-cn.com/problems/minimum-cost-to-merge-stones/) | hard   | cpp,python | 分治，区间DP     |
 
-### 数学问题
+## 第三部分：数学问题
 
 - 快速幂
 
@@ -314,6 +352,32 @@
 - 常见位运算操作
 
 ## 第四部分：专题
+
+### 团灭股票买卖
+
+| 题目链接                                                     | 难度   | 个人题解   | 说明         |
+| ------------------------------------------------------------ | ------ | ---------- | ------------ |
+| [121. 买卖股票的最佳时机](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/) | easy   | cpp,python | DP，股票交易 |
+| [122. 买卖股票的最佳时机 II](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/) | easy   | cpp,python | DP，股票交易 |
+| [123. 买卖股票的最佳时机 III](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iii/) | hard   | cpp,python | DP，股票交易 |
+| [188. 买卖股票的最佳时机 IV](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iv/) | hard   | cpp,python | DP，股票交易 |
+| [309. 最佳买卖股票时机含冷冻期](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/) | medium | cpp,python | DP，股票交易 |
+| [714. 买卖股票的最佳时机含手续费](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/) | medium | cpp,python | DP，股票交易 |
+
+分析有三种情况：1. 买卖次数（有限k次，或者无限次数），2. 冷冻期（卖出后冷冻k天，或者无），3. 手续费（每次卖出后收费，或者无）
+
+解决思路：列出所有情况的状态机，然后分析状态跳转，完成动态规划，进行空间优化
+
+### 前缀和
+
+| 题目链接                                                     | 难度   | 个人题解   | 说明       |
+| ------------------------------------------------------------ | ------ | ---------- | ---------- |
+| [303. 区域和检索 - 数组不可变](https://leetcode-cn.com/problems/range-sum-query-immutable/) | easy   | cpp,python | 一维前缀和 |
+| [304. 二维区域和检索 - 矩阵不可变](https://leetcode-cn.com/problems/range-sum-query-2d-immutable/) | medium | cpp,python | 二维前缀和 |
+| [308. 二维区域和检索 - 可变](https://michael.blog.csdn.net/article/details/107417676?utm_medium=distribute.pc_relevant.none-task-blog-searchFromBaidu-8.control&dist_request_id=&depth_1-utm_source=distribute.pc_relevant.none-task-blog-searchFromBaidu-8.control) | medium | 有思路     | 无权限     |
+| [1769. 移动所有球到每个盒子所需的最小操作数](https://leetcode-cn.com/problems/minimum-number-of-operations-to-move-all-balls-to-each-box/) |        |            |            |
+
+### 其它待整理
 
 | 题目链接               | 难度   | 个人题解 | 说明               |
 | ---------------------- | ------ | -------- | ------------------ |
@@ -324,39 +388,6 @@
 |                        |        |          | 全排列，组合，子集 |
 | 普通数组，两个有序数组 | 数据流 | 滑动窗口 | 中位数             |
 |                        |        |          | LRU                |
-
-团灭股票买卖：
-
-[121. 买卖股票的最佳时机](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/)  easy  cpp,python  DP，股票交易  
-
-[122. 买卖股票的最佳时机 II](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/)  easy  cpp,python  DP，股票交易 
-
-[123. 买卖股票的最佳时机 III](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iii/)  hard  cpp,python  DP，股票交易  
-
-[188. 买卖股票的最佳时机 IV](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iv/)  hard  cpp,python  DP，股票交易  
-
-[309. 最佳买卖股票时机含冷冻期](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/)  medium  cpp,python  DP，股票交易  
-
-[714. 买卖股票的最佳时机含手续费](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/)  medium  cpp,python  DP，股票交易
-
-分析有三种情况：1. 买卖次数（有限k次，或者无限次数），2. 冷冻期（卖出后冷冻k天，或者无），3. 手续费（每次卖出后收费，或者无）
-
-解决思路：列出所有情况的状态机，然后分析状态跳转，完成动态规划，进行空间优化
-
-
-
-**前缀和：**
-
-| 题目链接                                                     | 难度   | 个人题解   | 说明       |
-| ------------------------------------------------------------ | ------ | ---------- | ---------- |
-| [303. 区域和检索 - 数组不可变](https://leetcode-cn.com/problems/range-sum-query-immutable/) | easy   | cpp,python | 一维前缀和 |
-| [304. 二维区域和检索 - 矩阵不可变](https://leetcode-cn.com/problems/range-sum-query-2d-immutable/) | medium | cpp,python | 二维前缀和 |
-| [308. 二维区域和检索 - 可变](https://michael.blog.csdn.net/article/details/107417676?utm_medium=distribute.pc_relevant.none-task-blog-searchFromBaidu-8.control&dist_request_id=&depth_1-utm_source=distribute.pc_relevant.none-task-blog-searchFromBaidu-8.control) | medium | 有思路     | 无权限     |
-| [1769. 移动所有球到每个盒子所需的最小操作数](https://leetcode-cn.com/problems/minimum-number-of-operations-to-move-all-balls-to-each-box/) |        |            |            |
-
-
-
-其它待整理：
 
 - 131. 分割回文串（思路是先生成可能成为回文串的区间，然后回溯法。简单的版本是判断有多少个回文子串，进阶版本是找到所有可能的分割方法。对于判断某个区间是否回文，有两种思路，一是dp遍历所有区间，dp(i,j)由dp(i+1,j-1)决定），第二种思路是中心延拓法。
 
@@ -695,7 +726,7 @@
 >         self.res = 0
 >         if dfs(root) == 0:
 >             self.res += 1
->                                                         
+>                                                                                 
 >         return self.res
 >
 > 如果改变题意，每台相机只能监控自己，或者直接子对象呢？
@@ -913,7 +944,7 @@
 >
 > https://cloud.tencent.com/developer/article/1111758
 
-## 第五部分：其它
+## 第五部分：智力题
 
 ### 智力题
 

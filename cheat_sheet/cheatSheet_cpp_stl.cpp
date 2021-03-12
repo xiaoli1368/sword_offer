@@ -11,6 +11,7 @@
 #include <numeric>
 #include <cmath>
 #include <iostream>
+#include<functional>
 
 int main(int argc, char* argv[])
 {
@@ -128,14 +129,29 @@ int main(int argc, char* argv[])
 	deque.pop_front();
 	deque.pop_back();
 
+	// ===== heap ================================================
+	// #include<functional>   堆算法中要用的到greater函数
+	// less<int>()
+	// greater<int>()
+	int new_val = 10;
+	std::vector<int> v;
+	make_heap(v.begin(), v.end()); // 在v上创建堆，默认大顶堆
+	make_heap(v.begin(), v.end(), std::less<int>()); // 显示声明大顶堆
+	v.push_back(new_val);
+	push_heap(v.begin(), v.end()); // 这样添加新元素
+	pop_heap(v.begin(), v.end()); // 把堆首元素交换到末尾，不需要调整了
+	v.pop_back(); // 这样再清除掉
+
 	// ===== 其它 =================================================
 	// 整数边界
 	int int_min = INT_MIN; // 最小整形
 	int int_max = INT_MAX; // 最大整形
 
 	// 交换
+	std::vector<int> vec3 = {1, 2, 3};
 	std::unordered_set<int> sa, sb;
 	std::swap(sa, sb);
+	std::swap(vec3[0], vec3[2]);
 
 	// 二分查找
 	// lower_bound, upper_bound, equal_range, binary_search
