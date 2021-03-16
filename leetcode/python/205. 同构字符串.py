@@ -3,10 +3,11 @@
 205. 同构字符串
 
 思路：
-两个hash结构，分别判断两个字符串中是否已经出现重复字符
+hash
 """
 
-class Solution(object):
+class Solution:
+    # ===== 第一版 =====
     def isIsomorphic(self, s, t):
         """
         :type s: str
@@ -30,4 +31,21 @@ class Solution(object):
             else:
                 if d[si] != ti:
                     return False
+        return True
+
+    # ===== 第二版 =====
+    def isIsomorphic2(self, s, t):
+        """
+        需要两个hash
+        """
+        ss, tt = dict(), set()
+        for i in range(len(s)):
+            si, ti = s[i], t[i]
+            if si not in ss and ti not in tt:
+                ss[si] = ti
+                tt.add(ti)
+            elif si not in ss and ti in tt:
+                return False
+            elif si in ss and ti != ss[si]:
+                return False
         return True

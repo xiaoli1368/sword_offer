@@ -25,63 +25,189 @@
 
 ## 第一部分：数据结构
 
-### 常见数据结构
+### 字符串
+
+| 题目链接                                                     | 难度   | 个人题解   | 说明                    |
+| ------------------------------------------------------------ | ------ | ---------- | ----------------------- |
+| [242. 有效的字母异位词](https://leetcode-cn.com/problems/valid-anagram/) | easy   | cpp,python | 字符串比较，哈希        |
+| [205. 同构字符串](https://leetcode-cn.com/problems/isomorphic-strings/) | easy   | cpp,python | 字符串比较，哈希        |
+| [647. 回文子串](https://leetcode-cn.com/problems/palindromic-substrings/) | medium | cpp,python | 回文串，中心延拓DP      |
+| [409. 最长回文串](https://leetcode-cn.com/problems/longest-palindrome/) | easy   | cpp,python | 回文串，中心延拓DP      |
+| [5. 最长回文子串](https://leetcode-cn.com/problems/longest-palindromic-substring/) | medium | cpp,python | 回文串，中心延拓DP      |
+| [696. 计数二进制子串](https://leetcode-cn.com/problems/count-binary-substrings/) | easy   | cpp,python | 其它                    |
+| [224. 基本计算器](https://leetcode-cn.com/problems/basic-calculator/) | hard   |            | 字符串理解（跳过）      |
+| [227. 基本计算器 II](https://leetcode-cn.com/problems/basic-calculator-ii/) | medium |            | 字符串理解（跳过）      |
+| 772（基本计算器3，没有权限）                                 | medium |            | 字符串理解（跳过）      |
+| [28. 实现 strStr()](https://leetcode-cn.com/problems/implement-strstr/) | easy   |            | 字符串匹配，KMP（跳过） |
+| [3. 无重复字符的最长子串](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/) | medium | cpp,python | 子串，滑窗              |
+
+### 数组
+
+| 题目链接                                                     | 难度   | 个人题解   | 说明     |
+| ------------------------------------------------------------ | ------ | ---------- | -------- |
+| [448. 找到所有数组中消失的数字](https://leetcode-cn.com/problems/find-all-numbers-disappeared-in-an-array/) | easy   | cpp,python | 原地hash |
+| [287. 寻找重复数](https://leetcode-cn.com/problems/find-the-duplicate-number/) | medium | cpp,python | 原地hash |
+| [442. 数组中重复的数据](https://leetcode-cn.com/problems/find-all-duplicates-in-an-array/) | medium | cpp,python | 原地hash |
+| [41. 缺失的第一个正数](https://leetcode-cn.com/problems/first-missing-positive/) | hard   | cpp,python | 原地hash |
+| [48. 旋转图像](https://leetcode-cn.com/problems/rotate-image/) | medium | cpp,python | 二维数组 |
+| [54. 螺旋矩阵](https://leetcode-cn.com/problems/spiral-matrix/) | medium | cpp,python | 二维数组 |
+| [59. 螺旋矩阵 II](https://leetcode-cn.com/problems/spiral-matrix-ii/) | medium | cpp,python | 二维数组 |
+| [885. 螺旋矩阵 III](https://leetcode-cn.com/problems/spiral-matrix-iii/) | medium | cpp,python | 二维数组 |
+| [566. 重塑矩阵](https://leetcode-cn.com/problems/reshape-the-matrix/) | easy   | cpp,python | 二维数组 |
+| [769. 最多能完成排序的块](https://leetcode-cn.com/problems/max-chunks-to-make-sorted/) | medium | cpp,python | 其它     |
+
+### 前缀和与积分图
+
+| 题目链接                                                     | 难度   | 个人题解   | 说明       |
+| ------------------------------------------------------------ | ------ | ---------- | ---------- |
+| [303. 区域和检索 - 数组不可变](https://leetcode-cn.com/problems/range-sum-query-immutable/) | easy   | cpp,python | 一维前缀和 |
+| [304. 二维区域和检索 - 矩阵不可变](https://leetcode-cn.com/problems/range-sum-query-2d-immutable/) | medium | cpp,python | 二维前缀和 |
+| 560                                                          |        |            |            |
+| 307                                                          |        |            |            |
+| [308. 二维区域和检索 - 可变](https://michael.blog.csdn.net/article/details/107417676?utm_medium=distribute.pc_relevant.none-task-blog-searchFromBaidu-8.control&dist_request_id=&depth_1-utm_source=distribute.pc_relevant.none-task-blog-searchFromBaidu-8.control) | medium | 有思路     | 无权限     |
+| [1769. 移动所有球到每个盒子所需的最小操作数](https://leetcode-cn.com/problems/minimum-number-of-operations-to-move-all-balls-to-each-box/) |        |            |            |
+
+### 栈和队列
+
+| 题目链接                                                     | 难度   | 个人题解 | 说明     |
+| ------------------------------------------------------------ | ------ | -------- | -------- |
+| [232. 用栈实现队列](https://leetcode-cn.com/problems/implement-queue-using-stacks/) |        |          |          |
+| [225. 用队列实现栈](https://leetcode-cn.com/problems/implement-stack-using-queues/) |        |          |          |
+| 155                                                          |        |          |          |
+| 20                                                           |        |          |          |
+| 225                                                          |        |          |          |
+| 870                                                          |        |          |          |
+| [649. Dota2 参议院](https://leetcode-cn.com/problems/dota2-senate/) |        |          | 普通队列 |
+| [735. 行星碰撞](https://leetcode-cn.com/problems/asteroid-collision/) | medium |          | 普通栈   |
+| [42. 接雨水](https://leetcode-cn.com/problems/trapping-rain-water/) |        |          | 单调栈   |
+| 盛最多水的容器                                               |        |          | 单调栈   |
+| [84. 柱状图中最大的矩形](https://leetcode-cn.com/problems/largest-rectangle-in-histogram/) |        |          | 单调栈   |
+| [739. 每日温度](https://leetcode-cn.com/problems/daily-temperatures/) |        |          | 单调栈   |
+| [496. 下一个更大元素 I](https://leetcode-cn.com/problems/next-greater-element-i/) |        |          | 单调栈   |
+| [503. 下一个更大元素 II](https://leetcode-cn.com/problems/next-greater-element-ii/) |        |          | 单调栈   |
+| [901. 股票价格跨度](https://leetcode-cn.com/problems/online-stock-span/) |        |          | 单调栈   |
+| [1793. 好子数组的最大分数](https://leetcode-cn.com/problems/maximum-score-of-a-good-subarray/) |        |          | 单调栈   |
+| [239. 滑动窗口最大值](https://leetcode-cn.com/problems/sliding-window-maximum/) |        |          | 双端队列 |
+
+2.给一个数组和阈值x，求区间里最大值和最小值的差不大于x的最大区间长度。（单调栈+双指针，两个栈记录最小和最大）
+（两个指针同时从0的位置发，同时向右遍历，期间维护单调栈来以O(1)的时间获取最大值和最小值）
+（感觉可以滑窗法，维护单调队列来获取最大值和最小值）
+（参考这里：https://zhuanlan.zhihu.com/p/79532243）
+dp求让每个区间长度*区间最大值的和最大
+https://www.paincker.com/leetcode-intervals
+
+> 单调栈问题：
+>
+> 42. 接雨水
+>     当前位置的雨水只跟min(max(left), max(right))有关
+>
+> 43. 盛最多水的容器
+>     当前区间盛水量的多少，只跟区间左右两端点的最小值有关
+>     跟区间内部的最大值和最小值是无关的
+>     因此可以双指针（双指针事实上是不能保证遍历所有可能的区间的，只有O(n^2)才能遍历所有）
+>     （之所以双指针能够凑效，是因为双指针可以保证一些区间不用遍历，因为他一定不满足要求）
+>     （这个不满足要求的条件判断，也就是双指针更新移动的关键点）
+>         ret = 0
+>         l, r = 0, len(height) - 1
+>         while l < r:
+>             ret = max(ret, (r - l) * min(height[l], height[r]))
+>             if height[l] < height[r]:
+>                 l += 1
+>             else:
+>                 r -= 1
+>         return ret
+>
+>
+> 84. 柱状图中最大的矩形
+>     当前区间的最大矩形，与区间长度以及区间最小值有关
+>     暴力法是：中间选定高度，两端遍历，后者事先记录好每个元素两侧的最大值最小值
+>     高效方法是：单调栈，因为要取最小值，因此维持一个单调递增的栈
+>     每次只要满足单调性就push，不满足则说明出现了一个可以确定的状态
+>     当前矩形的高度可以确定，宽度就是高度位置的在单调递增栈中的左右两侧
+>     因为此时，左侧一定是小的，右侧因此还没push且也是小的，因此可以确定宽度
+>     注意：左侧有可能为空，需要指定左侧的索引为-1，右侧有可能到头，因此需要控制多循环一次
+>     def largestRectangleArea(self, heights: List[int]) -> int:
+>         """
+>         单调递增栈，保存下标，对应元素是递增的
+>         """
+>         ret = 0
+>         stack = []
+>         for i in range(len(heights) + 1):
+>             while stack != [] and (i == len(heights) or heights[i] < heights[stack[-1]]):
+>                 top = stack.pop()
+>                 left = stack[-1] if stack else -1
+>                 ret = max(ret, heights[top] * (i - left - 1))
+>             if i < len(heights):
+>                 stack.append(i)      
+>         return ret
+>
+>
+> leetcode239. 滑动窗口最大值
+> （见note.md）
+
+### 堆/优先队列
+
+| 题目链接                                                     | 难度 | 个人题解   | 说明   |
+| ------------------------------------------------------------ | ---- | ---------- | ------ |
+| 23                                                           |      |            |        |
+| 218                                                          |      |            |        |
+| 313                                                          |      |            |        |
+| [1792. 最大平均通过率](https://leetcode-cn.com/problems/maximum-average-pass-ratio/) |      |            |        |
+| [1046. 最后一块石头的重量](https://leetcode-cn.com/problems/last-stone-weight/) | easy | cpp,python | 大顶堆 |
+| [堆总结](https://mp.weixin.qq.com/s?__biz=MzI4MzUxNjI3OA==&mid=2247486985&idx=1&sn=4c0275e5ef02e0b9b8e4e99ba57b58dc&chksm=eb88c210dcff4b062cf5d72d86733e7b0ec087adbc714e112db083c683161320e3dcbf1d87f7&token=706287068&lang=zh_CN#rd) |      |            |        |
 
 ### 哈希表
 
-| 题目链接                                                     | 难度 | 个人题解   | 说明 |
-| ------------------------------------------------------------ | ---- | ---------- | ---- |
-| [697. 数组的度](https://leetcode-cn.com/problems/degree-of-an-array/) | easy | cpp,python | 哈希 |
-|                                                              |      |            |      |
-|                                                              |      |            |      |
-
-### 字符串
-
-| 题目链接 | 难度 | 个人题解 | 说明       |
-| -------- | ---- | -------- | ---------- |
-| 242      |      |          | 字符串比较 |
-| 205      |      |          |            |
-| 647      |      |          |            |
-| 696      |      |          |            |
-| 227      |      |          | 字符串理解 |
-| 28       |      |          | 字符串匹配 |
-|          |      |          |            |
-| 409      |      |          |            |
-| 3        |      |          |            |
-| 772      |      |          |            |
-| 5        |      |          |            |
-
-
+| 题目链接                                                     | 难度 | 个人题解   | 说明           |
+| ------------------------------------------------------------ | ---- | ---------- | -------------- |
+| [697. 数组的度](https://leetcode-cn.com/problems/degree-of-an-array/) | easy | cpp,python | 哈希           |
+| [705. 设计哈希集合](https://leetcode-cn.com/problems/design-hashset/) | easy | cpp,python | 手写哈希       |
+| 1                                                            |      |            |                |
+| 128                                                          |      |            |                |
+| 149                                                          |      |            |                |
+| 217                                                          |      |            |                |
+| 697                                                          |      |            |                |
+| 594                                                          |      |            |                |
+| 287                                                          |      |            |                |
+| 332                                                          |      |            | 多重集合和映射 |
 
 ### 链表
+
+| 题目链接    | 难度 | 个人题解 | 说明 |
+| ----------- | ---- | -------- | ---- |
+| leetcode143 |      |          |      |
+| leetcode148 |      |          |      |
+|             |      |          |      |
+|             |      |          |      |
+|             |      |          |      |
+|             |      |          |      |
+|             |      |          |      |
 
 ### 树
 
 | 题目链接                                                     | 难度   | 个人题解   | 说明 |
 | ------------------------------------------------------------ | ------ | ---------- | ---- |
 | [331. 验证二叉树的前序序列化](https://leetcode-cn.com/problems/verify-preorder-serialization-of-a-binary-tree/) | medium | cpp,python | 堆栈 |
-|                                                              |        |            |      |
-|                                                              |        |            |      |
 
-
-
-### 堆
-
-| 题目链接                                                     | 难度   | 个人题解   | 说明   |
-| ------------------------------------------------------------ | ------ | ---------- | ------ |
-| [1046. 最后一块石头的重量](https://leetcode-cn.com/problems/last-stone-weight/) | simple | cpp,python | 大顶堆 |
-|                                                              |        |            |        |
-| [堆总结](https://mp.weixin.qq.com/s?__biz=MzI4MzUxNjI3OA==&mid=2247486985&idx=1&sn=4c0275e5ef02e0b9b8e4e99ba57b58dc&chksm=eb88c210dcff4b062cf5d72d86733e7b0ec087adbc714e112db083c683161320e3dcbf1d87f7&token=706287068&lang=zh_CN#rd) |        |            |        |
-
-
+23.二叉树查找两个节点的最近公共祖先。
+（如果是二叉搜索树，怎么查找最近公共祖先。）
+（见236. 二叉树的最近公共祖先）
+（根据递归去做）
+class Solution(object):
+    def lowestCommonAncestor(self, root, p, q):
+        if root == None or root == p or root == q:
+            return root
+        left = self.lowestCommonAncestor(root.left, p, q)
+        right = self.lowestCommonAncestor(root.right, p, q)
+        if not left: return right
+        if not right: return left
+        return root
 
 ### 图
 
-| 题目链接                                                     | 难度   | 个人题解   | 说明   |
-| ------------------------------------------------------------ | ------ | ---------- | ------ |
-| [765. 情侣牵手](https://leetcode-cn.com/problems/couples-holding-hands/) |        |            | 并查集 |
-| [131. 分割回文串](https://leetcode-cn.com/problems/palindrome-partitioning/) | medium | cpp,python | 回文串 |
-| [132. 分割回文串 II](https://leetcode-cn.com/problems/palindrome-partitioning-ii/) | hard   | cpp,python | 回文串 |
+| 题目链接                                                     | 难度 | 个人题解 | 说明   |
+| ------------------------------------------------------------ | ---- | -------- | ------ |
+| [765. 情侣牵手](https://leetcode-cn.com/problems/couples-holding-hands/) |      |          | 并查集 |
 
 ### 更加复杂的数据结构
 
@@ -91,9 +217,9 @@
 
 | 题目链接                                                     | 难度   | 个人题解    | 说明     |
 | ------------------------------------------------------------ | ------ | ----------- | -------- |
-| [605. 种花问题](https://leetcode-cn.com/problems/can-place-flowers/) | simple | cpp, python | 分配问题 |
+| [605. 种花问题](https://leetcode-cn.com/problems/can-place-flowers/) | easy   | cpp, python | 分配问题 |
 | [135. 分发糖果](https://leetcode-cn.com/problems/candy/)     | hard   | cpp, python | 分配问题 |
-| [455. 分发饼干](https://leetcode-cn.com/problems/assign-cookies/) | simple | cpp, python | 分配问题 |
+| [455. 分发饼干](https://leetcode-cn.com/problems/assign-cookies/) | easy   | cpp, python | 分配问题 |
 | [435. 无重叠区间](https://leetcode-cn.com/problems/non-overlapping-intervals/) | medium | cpp,python  | 区间问题 |
 | [452. 用最少数量的箭引爆气球](https://leetcode-cn.com/problems/minimum-number-of-arrows-to-burst-balloons/) | medium | cpp,python  | 区间问题 |
 | [763. 划分字母区间](https://leetcode-cn.com/problems/partition-labels/) | medium | cpp,python  | 区间问题 |
@@ -118,6 +244,9 @@
 | [1363. 形成三的最大倍数](https://leetcode-cn.com/problems/largest-multiple-of-three/) | hard   |             |          |
 | [767. 重构字符串](https://leetcode-cn.com/problems/reorganize-string/) |        |             |          |
 
+27.比较经典的贪心题
+（以leetcode 跳跃游戏为例吧）
+
 ### 双指针
 
 | 题目链接                                                     | 难度   | 个人题解                                                     | 说明      |
@@ -134,12 +263,12 @@
 | [876. 链表的中间结点](https://leetcode-cn.com/problems/middle-of-the-linked-list/) |        |                                                              | 快慢指针  |
 | [202. 快乐数](https://leetcode-cn.com/problems/happy-number/) |        |                                                              | 快慢指针  |
 | 倒数第k个节点                                                |        |                                                              | 快慢指针  |
-| [3. 无重复字符的最长子串](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/) |        |                                                              | 滑动窗口  |
+| [3. 无重复字符的最长子串](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/) | medium | cpp,python                                                   | 滑动窗口  |
 | [76. 最小覆盖子串](https://leetcode-cn.com/problems/minimum-window-substring/) | hard   | cpp,python                                                   | 滑动窗口  |
 | 340. 至多包含 K 个不同字符的最长子串                         | hard   | cpp,python                                                   | 滑动窗口  |
 | [395. 至少有 K 个重复字符的最长子串](https://leetcode-cn.com/problems/longest-substring-with-at-least-k-repeating-characters/) | medium |                                                              |           |
 | [1208. 尽可能使字符串相等](https://leetcode-cn.com/problems/get-equal-substrings-within-budget/) | medium | 已AC                                                         | 滑动窗口  |
-| [485. 最大连续1的个数](https://leetcode-cn.com/problems/max-consecutive-ones/) | simple | cpp,python                                                   | 滑动窗口  |
+| [485. 最大连续1的个数](https://leetcode-cn.com/problems/max-consecutive-ones/) | easy   | cpp,python                                                   | 滑动窗口  |
 | [487. 最大连续1的个数 II](https://leetcode-cn.com/problems/max-consecutive-ones-ii/) | medium | 没有权限                                                     | 滑动窗口  |
 | [1004. 最大连续1的个数 III](https://leetcode-cn.com/problems/max-consecutive-ones-iii/) | medium | cpp,python                                                   | 滑动窗口  |
 | [125. 验证回文串](https://leetcode-cn.com/problems/valid-palindrome/) | easy   | cpp,python                                                   | 回文串    |
@@ -174,22 +303,24 @@
 
 ### 二分查找
 
-| 题目链接                                                     | 难度   | 个人题解   | 说明       |
-| ------------------------------------------------------------ | ------ | ---------- | ---------- |
-| [69. x 的平方根](https://leetcode-cn.com/problems/sqrtx/)    | easy   | cpp,python | 常规二分   |
-| [34. 在排序数组中查找元素的第一个和最后一个位置](https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/) | medium | cpp,python | 区间二分   |
-| [33. 搜索旋转排序数组](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/) | medium | cpp,python | 旋转二分   |
-| [81. 搜索旋转排序数组 II](https://leetcode-cn.com/problems/search-in-rotated-sorted-array-ii/) | medium | cpp,python | 旋转二分   |
-| [153. 寻找旋转排序数组中的最小值](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/) | medium | cpp,python | 旋转二分   |
-| [154. 寻找旋转排序数组中的最小值 II](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii/) | hard   | cpp,python | 旋转二分   |
-| [540. 有序数组中的单一元素](https://leetcode-cn.com/problems/single-element-in-a-sorted-array/) | medium | cpp,python | 按值二分   |
-| [4. 寻找两个正序数组的中位数](https://leetcode-cn.com/problems/median-of-two-sorted-arrays/) | hard   | cpp,python | 两路二分   |
-| [240. 搜索二维矩阵 II](https://leetcode-cn.com/problems/search-a-2d-matrix-ii/) |        |            |            |
-| [378. 有序矩阵中第K小的元素](https://leetcode-cn.com/problems/kth-smallest-element-in-a-sorted-matrix/)（难，重点学习） |        |            |            |
-| [475. 供暖器](https://leetcode-cn.com/problems/heaters/)     |        |            |            |
-| [162. 寻找峰值](https://leetcode-cn.com/problems/find-peak-element/) |        |            | 有空做一下 |
-| [牛客比赛中出现的二分题目](https://blog.csdn.net/qq_44900959/article/details/110284829?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.control) |        |            |            |
-| 寻找单个元素，寻找左边界，寻找右边界                         |        |            |            |
+| 题目链接                                                     | 难度   | 个人题解   | 说明        |
+| ------------------------------------------------------------ | ------ | ---------- | ----------- |
+| [69. x 的平方根](https://leetcode-cn.com/problems/sqrtx/)    | easy   | cpp,python | 常规二分    |
+| [34. 在排序数组中查找元素的第一个和最后一个位置](https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/) | medium | cpp,python | 区间二分    |
+| [33. 搜索旋转排序数组](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/) | medium | cpp,python | 旋转二分    |
+| [81. 搜索旋转排序数组 II](https://leetcode-cn.com/problems/search-in-rotated-sorted-array-ii/) | medium | cpp,python | 旋转二分    |
+| [153. 寻找旋转排序数组中的最小值](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/) | medium | cpp,python | 旋转二分    |
+| [154. 寻找旋转排序数组中的最小值 II](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii/) | hard   | cpp,python | 旋转二分    |
+| [540. 有序数组中的单一元素](https://leetcode-cn.com/problems/single-element-in-a-sorted-array/) | medium | cpp,python | 按值二分    |
+| [4. 寻找两个正序数组的中位数](https://leetcode-cn.com/problems/median-of-two-sorted-arrays/) | hard   | cpp,python | 两路二分    |
+| [74. 搜索二维矩阵](https://leetcode-cn.com/problems/search-a-2d-matrix/) | medium | cpp,python | coo二维数组 |
+| [240. 搜索二维矩阵 II](https://leetcode-cn.com/problems/search-a-2d-matrix-ii/) | medium | cpp,python | 二维数组    |
+| [378. 有序矩阵中第K小的元素](https://leetcode-cn.com/problems/kth-smallest-element-in-a-sorted-matrix/)（难，重点学习） |        |            |             |
+| [475. 供暖器](https://leetcode-cn.com/problems/heaters/)     |        |            |             |
+| [162. 寻找峰值](https://leetcode-cn.com/problems/find-peak-element/) |        |            | 有空做一下  |
+| [牛客比赛中出现的二分题目](https://blog.csdn.net/qq_44900959/article/details/110284829?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.control) |        |            |             |
+| 寻找单个元素，寻找左边界，寻找右边界                         |        |            |             |
+| [总结](https://leetcode-cn.com/problems/search-a-2d-matrix/solution/yi-wen-dai-ni-gao-ding-duo-ge-er-fen-cha-2hl9/) |        |            |             |
 
 ### 排序
 
@@ -209,7 +340,7 @@
 | [973. 最接近原点的 K 个点](https://leetcode-cn.com/problems/k-closest-points-to-origin/) |        |            | topk             |
 | [牛客. 出现次数的TopK问题](https://www.nowcoder.com/practice/fd711bdfa0e840b381d7e1b82183b3ee?tpId=117&&tqId=35559&rp=1&ru=/ta/job-code-high&qru=/ta/job-code-high/question-ranking) |        |            | topk, 二分       |
 | [4. 寻找两个正序数组的中位数](https://leetcode-cn.com/problems/median-of-two-sorted-arrays/) | hard   | cpp,python | topk             |
-| [703. 数据流中的第 K 大元素](https://leetcode-cn.com/problems/kth-largest-element-in-a-stream/) | simple | cpp,python | topk             |
+| [703. 数据流中的第 K 大元素](https://leetcode-cn.com/problems/kth-largest-element-in-a-stream/) | easy   | cpp,python | topk             |
 | 无序数组，找min和max（nowcoder/get_min_max）                 |        |            | topk             |
 | 无序数组，找max和max2（nowcoder/get_max_max2）               |        |            | topk             |
 | 无序数组，找第k大的值（nowcoder/get_topk）                   |        |            | topk             |
@@ -239,7 +370,7 @@
 
 | 题目链接                                                     | 难度       | 个人题解   | 说明               |
 | ------------------------------------------------------------ | ---------- | ---------- | ------------------ |
-| [463. 岛屿的周长](https://leetcode-cn.com/problems/island-perimeter/) | simple     | cpp,python | DFS，岛屿问题      |
+| [463. 岛屿的周长](https://leetcode-cn.com/problems/island-perimeter/) | easy       | cpp,python | DFS，岛屿问题      |
 | [200. 岛屿数量](https://leetcode-cn.com/problems/number-of-islands/) | medium     | cpp,python | DFS，岛屿问题，BFS |
 | 岛屿数量2，没权限                                            | hard       |            | DFS，岛屿问题      |
 | [695. 岛屿的最大面积](https://leetcode-cn.com/problems/max-area-of-island/) | medium     | cpp,python | DFS，岛屿问题      |
@@ -334,7 +465,22 @@
 | [714. 买卖股票的最佳时机含手续费](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/) | medium | cpp,python | DP，股票交易       |
 | [1770. 执行乘法运算的最大分数](https://leetcode-cn.com/problems/maximum-score-from-performing-multiplication-operations/) |        |            | 其它               |
 
+20.给定一个二维01矩阵，返回其中全为1的正方形个数
+（首先明确，全为1的概念）
+（暴力法，利用滑窗的概念，类似目标检测，设置大小分别为1，2，3等的滑窗边长，进行搜索，判断窗口内是否全为1）
+（高效方法，二维dp，同下）
+（拓展：输入一个二维01矩阵，判断矩阵中全为1的正方形的最大边长，解决方法是二维dp，dp表示以该点为正方形右下角的结果）
+（参考这个：https://www.jianshu.com/p/173b9339a0cd）
+
+区间问题：
+
+区间动态规划
+石子合并
+能量项链
+
 ### 分治法
+
+这里也包括了“递归”的一些题目。
 
 | 题目链接                                                     | 难度   | 个人题解   | 说明             |
 | ------------------------------------------------------------ | ------ | ---------- | ---------------- |
@@ -355,6 +501,19 @@
 
 ### 团灭股票买卖
 
+**考虑三个条件限制：**
+
+- 买卖次数（有限k次，或者无限次数）
+- 冷冻期（卖出后冷冻k天，或者无）
+- 手续费（每次卖出后收费，或者无）
+
+**解决思路：**
+
+- 列出所有情况的状态机
+- 分析状态跳转
+- 完成动态规划
+- 进行空间优化
+
 | 题目链接                                                     | 难度   | 个人题解   | 说明         |
 | ------------------------------------------------------------ | ------ | ---------- | ------------ |
 | [121. 买卖股票的最佳时机](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/) | easy   | cpp,python | DP，股票交易 |
@@ -364,610 +523,378 @@
 | [309. 最佳买卖股票时机含冷冻期](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/) | medium | cpp,python | DP，股票交易 |
 | [714. 买卖股票的最佳时机含手续费](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/) | medium | cpp,python | DP，股票交易 |
 
-分析有三种情况：1. 买卖次数（有限k次，或者无限次数），2. 冷冻期（卖出后冷冻k天，或者无），3. 手续费（每次卖出后收费，或者无）
-
-解决思路：列出所有情况的状态机，然后分析状态跳转，完成动态规划，进行空间优化
-
-### 前缀和
-
-| 题目链接                                                     | 难度   | 个人题解   | 说明       |
-| ------------------------------------------------------------ | ------ | ---------- | ---------- |
-| [303. 区域和检索 - 数组不可变](https://leetcode-cn.com/problems/range-sum-query-immutable/) | easy   | cpp,python | 一维前缀和 |
-| [304. 二维区域和检索 - 矩阵不可变](https://leetcode-cn.com/problems/range-sum-query-2d-immutable/) | medium | cpp,python | 二维前缀和 |
-| [308. 二维区域和检索 - 可变](https://michael.blog.csdn.net/article/details/107417676?utm_medium=distribute.pc_relevant.none-task-blog-searchFromBaidu-8.control&dist_request_id=&depth_1-utm_source=distribute.pc_relevant.none-task-blog-searchFromBaidu-8.control) | medium | 有思路     | 无权限     |
-| [1769. 移动所有球到每个盒子所需的最小操作数](https://leetcode-cn.com/problems/minimum-number-of-operations-to-move-all-balls-to-each-box/) |        |            |            |
-
 ### 其它待整理
 
-| 题目链接               | 难度   | 个人题解 | 说明               |
-| ---------------------- | ------ | -------- | ------------------ |
-|                        |        |          | 股票买卖           |
-|                        |        |          | 石子游戏           |
-|                        |        |          | N数之和            |
-|                        |        |          | 铺瓷砖             |
-|                        |        |          | 全排列，组合，子集 |
-| 普通数组，两个有序数组 | 数据流 | 滑动窗口 | 中位数             |
-|                        |        |          | LRU                |
+| 题目链接               | 难度   | 个人题解 | 说明     |
+| ---------------------- | ------ | -------- | -------- |
+|                        |        |          | 石子游戏 |
+|                        |        |          | N数之和  |
+|                        |        |          | 铺瓷砖   |
+| 普通数组，两个有序数组 | 数据流 | 滑动窗口 | 中位数   |
+|                        |        |          | LRU      |
 
-- 131. 分割回文串（思路是先生成可能成为回文串的区间，然后回溯法。简单的版本是判断有多少个回文子串，进阶版本是找到所有可能的分割方法。对于判断某个区间是否回文，有两种思路，一是dp遍历所有区间，dp(i,j)由dp(i+1,j-1)决定），第二种思路是中心延拓法。
+### 待搞定的题目
 
+- 基本计算器，224，227
+- KMP算法，28
+- 马拉车算法，回文串
+- 单源最短路径Dijkstra算法，图论方面的问题
+- 打家劫舍
+- 跳跃游戏
+- 敏感词匹配
 
+### Leetcode周赛
 
-**其它待整理：**
+**第232场周赛：**
 
-微软面经中的一道题，https://www.nowcoder.com/discuss/537549?type=post&order=time&pos=&page=1&channel=1009&source_id=search_post，（给一个由0和1构成的数组，计算0和1个数相等的最长子数组，返回其长度）
+- [1790. 仅执行一次字符串交换能否使两个字符串相等](https://leetcode-cn.com/problems/check-if-one-string-swap-can-make-strings-equal/)
+- [1791. 找出星型图的中心节点](https://leetcode-cn.com/problems/find-center-of-star-graph/)
+- [1792. 最大平均通过率](https://leetcode-cn.com/problems/maximum-average-pass-ratio/)
+- [1793. 好子数组的最大分数](https://leetcode-cn.com/problems/maximum-score-of-a-good-subarray/)
 
-- 一开始想错了，以为是直接滑窗法就完事了，结果不是
-- https://blog.csdn.net/yellowxz/article/details/11763045?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-3.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-3.control
-- https://blog.csdn.net/qq_16234613/article/details/89382379?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-3.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-3.control
-- https://blog.csdn.net/qq_16234613/article/details/89382379
-- 有空总结所有的滑窗法，以及最值序列字串问题
+### 来自面经
 
----
+1. 微软面经中的一道题，https://www.nowcoder.com/discuss/537549?type=post&order=time&pos=&page=1&channel=1009&source_id=search_post，（给一个由0和1构成的数组，计算0和1个数相等的最长子数组，返回其长度）
 
-- dfs序专题：https://www.nowcoder.com/discuss/559210?type=101&channel=1009&source_id=discuss_terminal_discuss_jinghua
+   > 一开始想错了，以为是直接滑窗法就完事了，结果不是
+   >
+   > https://blog.csdn.net/yellowxz/article/details/11763045?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-3.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-3.control
+   >
+   > https://blog.csdn.net/qq_16234613/article/details/89382379?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-3.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-3.control
 
-- 总结16号的每日一题：https://leetcode-cn.com/problems/queue-reconstruction-by-height/（完成leetcode一类题目的总结，参考这篇题解：https://leetcode-cn.com/problems/queue-reconstruction-by-height/solution/onlogncshuang-bai-jie-fa-shu-zhuang-shu-zu-28ms11m/）
-  - 16号的题解：（需要重点学习一下）
+2. dfs序专题：https://www.nowcoder.com/discuss/559210?type=101&channel=1009&source_id=discuss_terminal_discuss_jinghua
 
-  - 首先明确，这个题的类型并不是贪心，因为题目有唯一解，如何按怎样的顺序来复原，结果都是唯一的区别就是复原的过程不同，有的复杂，有的简单（先排序，再放置，要简单）
-  - 第一种思路是，按值从大到小排序，然后从大到小插入，因为后续元素没有更大的了，因此可以只根据当前的元素来插入。（缺点是，每一次插入都不能确定元素的最终位置）
-  - 第二种思路，按值从小到大排序，然后从小到大插入，此时后续元素没有更小的了，因此可以唯一确定当前元素的位置（保证之前有k空位即可，需要从前往后的O(n)遍历）
-  - 第三种思路，线段树，对树状数组进行初始化，a[i]表示以i为根的树中空座位数量（基础知识见：https://zhuanlan.zhihu.com/p/29876526）
-- 其它leetcode题目：
-  - https://leetcode-cn.com/problems/remove-k-digits/solution/yi-zhao-chi-bian-li-kou-si-dao-ti-ma-ma-zai-ye-b-5/
-  - https://leetcode-cn.com/problems/remove-duplicate-letters/
-- 昨天在牛客上，做了一道螺旋数组的问题，可以跟之前的打印二维数组类比，还有旋转90度矩阵（个人举一反三，实现二维矩阵的斜向遍历，从左上到右下角）
+3. 总结16号的每日一题
 
-其它：
+   > https://leetcode-cn.com/problems/queue-reconstruction-by-height/（完成leetcode一类题目的总结，参考这篇题解：https://leetcode-cn.com/problems/queue-reconstruction-by-height/solution/onlogncshuang-bai-jie-fa-shu-zhuang-shu-zu-28ms11m/）
+   >
+   > 16号的题解：（需要重点学习一下）
+   >
+   > 首先明确，这个题的类型并不是贪心，因为题目有唯一解，如何按怎样的顺序来复原，结果都是唯一的区别就是复原的过程不同，有的复杂，有的简单（先排序，再放置，要简单）
+   >
+   > 第一种思路是，按值从大到小排序，然后从大到小插入，因为后续元素没有更大的了，因此可以只根据当前的元素来插入。（缺点是，每一次插入都不能确定元素的最终位置）
+   >
+   > 第二种思路，按值从小到大排序，然后从小到大插入，此时后续元素没有更小的了，因此可以唯一确定当前元素的位置（保证之前有k空位即可，需要从前往后的O(n)遍历）
+   >
+   > 第三种思路，线段树，对树状数组进行初始化，a[i]表示以i为根的树中空座位数量（基础知识见：https://zhuanlan.zhihu.com/p/29876526）
 
-> 算法题：
->
-> 1.字符串是否符合规范，有日期和时间还有一些别的判断，非常复杂，写代码写了30分钟。
-> （参考剑指offer，表示数值的字符串）
->
-> 2.给一个数组和阈值x，求区间里最大值和最小值的差不大于x的最大区间长度。（单调栈+双指针，两个栈记录最小和最大）
-> （两个指针同时从0的位置发，同时向右遍历，期间维护单调栈来以O(1)的时间获取最大值和最小值）
-> （感觉可以滑窗法，维护单调队列来获取最大值和最小值）
-> （参考这里：https://zhuanlan.zhihu.com/p/79532243）
-> dp求让每个区间长度*区间最大值的和最大
-> https://www.paincker.com/leetcode-intervals
->
-> 3.给会议的start和end，求能开最多的会，蠡口原题。
-> 1353. 最多可以参加的会议数目
-> 贪心的思想。在每一天，从这一天可以去的会议中，选择结束时间最早的那一场去。
->
-> 4.一个全是0和1的二维矩阵，判断其中所有的1能不能构成一个等腰直角三角形，需要将三角形里所有的位置填充满，包括三条边和里面。这题写了好久，不太会，后来面试官改简单了一点，直角顶点朝向左下。
-> 首先询问是否只有一个1的连通域
-> （1，从左上角开始BFS，找到第一个1）
-> （2，从第一个1开始进行洪水填充BFS，找到该连通域的所有边界）
-> （3，通过这些边界点，判断是否为三角形，并返回三个顶点）（使用聚类法，找斜率，获取边和顶点，顶点是不同类的交集）
-> （4，利用三个顶点判断是否等腰直角三角形）
->
-> 5.给出三角形的三个顶点，判断一个点是否在三角形中。数学题。
-> 多种方法
-> （面积法，大三角形面积，等于三个小三角形面积之和，注意浮点数，面积由海伦公式求解）
-> （求直线方程，判断点位于三条直线的什么方向）
-> （矢量叉乘，判断点是否在线段AB的左侧）
->
-> 6.单链表按头->尾->头->尾排序，也是蠡口原题。
-> （leetcode143，ok）
->
-> 7.给出一些父节点到子节点的路径，判断这个图是不是一个二叉树。写的时候没想太好，写的非常复杂，最后好像过了。
-> （二叉树的定义：每一个节点只有两个子节点，并且子节点不能指向祖先节点）
->
-> 8.n位数的递增数有多少个，递增数是123,123456,34789这样的，1334不算。
-> （感觉可以二维dp，dp[n][start]表示当第n位数可以从start开始变化的时候，n位及后续位数的总变化情况个数）
-> （dp[n][start] = dp[n][start + 1] + dp[n + 1][start + 1]）
-> （注意从右下角往左上角填充，并且注意首位不能为0，并且一些特殊情况不可取，如倒数第二位是9则不合理）
->
-> 9.如何在圆内随机取点，蠡口原题。
-> （Leetcode:478. 在圆内随机生成点，利用极坐标，一个半径，一个角度）
->
-> 10.前序遍历和后序遍历能否确定二叉树。
-> （ok，至少需要中序遍历，才能够具备区分左右子树的能力）
->
-> 11.手撕代码题是通过a+2,a*3+2这两种计算方式的任意组合，验证能否由a变成b，我当时写了个回溯的方法。
-> （优先明确，是否ab都为正数，是否a小于b）
-> （可以回溯，两条路两种运算，一个是乘加，一个是加，优先DFS遍历乘加，直到a的值大于了b，则回溯到上一步，改为相加）
->
-> 12.手撕代码是对链表进行插入排序。
-> （leetcode148，ok）
->
-> 13.用c语言实现：给定一个字符串str和另一个字符串sub，统计str中sub出现的次数。不能使用库函数。
-> （暴力方法，或者KMP匹配，再不行就是滑窗法，dp）
->
-> 14.至少去除数组中多少个数能使数组成为单调序列。类似leetcode300
-> （动态规划 + 二分查找）
->
-> 15.编程题是一道链表相关的和归并排序、快速排序。
-> （ok，leetcode148排序链表）
->
-> 16.电话面: 一道算法题，BFS变形，但当时用了dijikstra，更好的算法是我在系统地学完算法之后才想出来的，大概是用了BFS的最小边数搜索性质，具体可见算法导论
->
-> 17.一道二叉搜索树
->
-> 18.计算几何，现场被教。不过还好之前有了解一些，最后现场推出来了(所以之后还系统把算法导论计算几何看了一遍)。链表排序。
->
-> 19.请实现一个单向链表（包括append等常规操作），并外加实现一个setAll(T value)方法，将链表中所有已插入”元素置为同一特定值，后插入元素不受影响。
->
-> 20.给定一个二维01矩阵，返回其中全为1的正方形个数
-> （首先明确，全为1的概念）
-> （暴力法，利用滑窗的概念，类似目标检测，设置大小分别为1，2，3等的滑窗边长，进行搜索，判断窗口内是否全为1）
-> （高效方法，二维dp，同下）
-> （拓展：输入一个二维01矩阵，判断矩阵中全为1的正方形的最大边长，解决方法是二维dp，dp表示以该点为正方形右下角的结果）
-> （参考这个：https://www.jianshu.com/p/173b9339a0cd）
->
-> 21.有一个二维字符矩阵，共有四种字符：#——墙，不可行走，X——每个人的起点，*——迷宫出口，.——地面，可以行走，求每个人走到出口的最短路径（保证每个人都可以走到出口）
-> （可以BFS）
->
-> 22.二叉树由前序遍历和后序遍历能不能构造出这棵树。
-> （ok，至少需要中序遍历，才能够具备区分左右子树的能力）
->
-> 23.二叉树查找两个节点的最近公共祖先。
-> （如果是二叉搜索树，怎么查找最近公共祖先。）
-> （见236. 二叉树的最近公共祖先）
-> （根据递归去做）
-> class Solution(object):
->     def lowestCommonAncestor(self, root, p, q):
->         if root == None or root == p or root == q:
->             return root
->         left = self.lowestCommonAncestor(root.left, p, q)
->         right = self.lowestCommonAncestor(root.right, p, q)
->         if not left: return right
->         if not right: return left
->         return root
->
-> 24.经典算法题：汉诺塔
-> （https://www.nowcoder.com/discuss/250029?type=2&order=0&pos=9&page=1&channel=-2&source_id=discuss_tag）
-> def han(n,fom,to,buffer):
->     if n ==1:     
->         x = fom.pop()
->         to.append(x)
->         print('%s->%s:%s'%(fom[0],to[0],x))
->         return
->     han(n-1,fom,buffer,to) # 首先需要借助to 把 n-1个牌都移动到buffer
->     han(1,fom,to,buffer)    # 然后移动一个把要移动的移动过去
->     han(n-1,buffer,to,fom) # 然后把 n-1个从buffer 移动到to
->
-> 25.快排求区间第k小
-> （ok，见get_topk.py）
->
-> 26.01背包（完全背包）
-> （待定）
->
-> 27.比较经典的贪心题
-> （以leetcode 跳跃游戏为例吧）
->
-> 28.已有两个能生成0到1之间的数，并且这些数是均匀分布的随机生成器，给定一个任意的三角形，如何能在三角形内等概率随机的生成一个点(然后对于多边形呢)
-> （感觉先可以在外接圆生成一个随机点，然后排除在三角形外的点）
-> （正解：三角形翻倍映射为平行四边形，平行四边形映射为矩形，两个随机数分别表示在矩形长宽上的采样）
->
-> 29.给定n*n的正方形，每个点都有权值，有些点是障碍物，问从左上角走到右下角的最小花费
-> （回溯法，或者dp）
->
-> 30.二维前缀差分问题 (比较easy)
-> （二维前缀和：a[i][j]+=a[i][j-1]+a[i-1][j]-a[i-1][j-1]）
-> （参考：https://blog.csdn.net/Love_Jacques/article/details/105628100?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param）
->
-> 31.链表反转
-> （ok，多种方法，多种类型，见leetcode）
->
-> 32.给定一个链表 执行三类操作：（1.将链表的权值都修改成x; 2.链表后面加入新节点；3.打印链表(注意 修改不能遍历所有节点 解法就类似于线段树的lazy标记吧)）
->
-> 33.已知有一颗n(n<=1e9)个节点的完全二叉树 每一层编号从左到右以此递增 比如 第一层的节点编号为1 第二层为2、3，现在询问插入的第n+1个节点的父亲的编号 (确定所在层的编号区间 二分答案 然后每次log的复杂度去check合法性)
->
-> 34.纯代码面，手撕两道编程题。记得其中一道与flood fill类似。
-> （733. 图像渲染）
->
-> 35.两道代码题，一道是用类来实现一个计时器。另一道是动态规划题。
->
-> 36.多个有序链表合并成一个有序链表，写代码。
-> （ok，leetcode23）
->
-> 37.字符串匹配 A串长n B串长为m 以A每个位置为起点长为m的子串 排序后与B串做精确匹配，问有多少次精确匹配
-> （暴力法，KMP）
->
-> 38.给定整数数组a,要求数组b，b[i]定义为a[i]左边离自己最近的比自己小的数字的下标：单调栈，如果用跳表时间复杂度和正确性证明
-> （https://www.jianshu.com/p/9e3416a7a97b）
->
-> 39.有n个数，能不能分成两部分，每部分数的和相同（转换为背包问题）
->
-> 40.给出前序遍历、后序遍历有多少种符合的树结构（可被百度）
->
-> 41.有序序列，N个数，随机替换其中的K个，求排序算法让序列仍然有序（merge k list很像，或者用堆）
->
-> 42.判断二叉搜索树（98. 验证二叉搜索树，高效方法，judge(root, mmin, mmax)）
->
-> 43.旋转二维矩阵（leetcode48）
->
-> 44.已知二叉树的前序序列，叶子节点为数字，其余节点为运算符，求根最后运算得到的结果
-> 首先明确，如果是单枝树怎么办？一个节点是None，另一个非空，如何处理？
-> 其次，运算符都有哪些，是不是都是双目运算？
-> 还有，如果只知道前序序列，如何区分左子树和右子树
-> （感觉跟使用一个栈，依次弹出计算结果然后弹入，类似计算表达式，逆波兰表达式，即后缀表达式）
-> （这个题是前缀表达式，运算符放在了字符前边）
->
-> 45.按字典序输出1-n之间的数，如n=10时，输出1,10,2,3,4,5,6,7,8,9
-> 暴力方法是转换为字符串，然后字典序排序
-> 正确方式是回溯法，（以下个人测试已通过）
-> def func(n):
-> 	"""
-> 	输入n，输出按字典序排列的1-n，是个list
-> 	"""
-> 	ret = []
-> 	path = [] # 内部暂时存储字符串
-> 	def backTracking(n):
-> 		"""
-> 		n表示最大值，i表示当前正在遍历第i位数字
-> 		"""
-> 		# 退出的情况，当前值已经大于n
-> 		if path:
-> 			val = int("".join(path))
-> 			if val > n:
-> 				return
-> 			ret.append(val)
-> 		start = 0 if path else 1
-> 		for j in range(start, 10):
-> 			path.append(str(j))
-> 			backTracking(n)
-> 			path.pop()
-> 	backTracking(n)
-> 	return ret
->
-> 46.给出一个数组，把所有的0移动到最前面，同时其它数组的顺序保持不变（稳定排序，直接冒泡，把0冒泡到前方）（leetcode，283. 移动零）
->
-> 47.如何求树的直径（见leetcode543）
-> 首先明确，树的直径的定义（一棵二叉树的直径长度是任意两个结点路径长度中的最大值。这条路径可能穿过也可能不穿过根结点。）
->     def diameterOfBinaryTree(self, root: TreeNode) -> int:
->         self.ret = 0
->         def getHeight(root):
->             """
->             后续遍历，获取root的高度，同时更新最大直径
->             """
->             if root == None:
->                 return 0
->             left = getHeight(root.left)
->             right = getHeight(root.right)
->             self.ret = max(self.ret, left + right)
->             return 1 + max(left, right)
->         getHeight(root)
->         return self.ret
->
-> 48.给定一个数组，如[7864, 284, 347, 7732, 8498]，现在需要将数组中的数字拼接起来，返回最大的可以拼接出的数字
-> （自定义排序，a > b 的判断表达式为：a拼接b > b拼接a）
-> （使用字符串要更加方便进行拼接，以及拼接后的判断）
-> （最后一个要注意的点就是在快排里，完成这个自定义的排序）
->
-> 49.丑数
-> （三指针法，其实也是动态规划，pi表示有资格与i相乘的最小丑数的索引）
-> （核心的跳转逻辑为：if dp[i] == dp[p2] * 2: p2 += 1）
->
-> 50.股票买卖
-> 难，共6道题，简单情况可以双指针一次遍历，复杂情况则需要动态规划，见（https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iii/solution/wu-chong-shi-xian-xiang-xi-tu-jie-123mai-mai-gu-pi/）
->
-> 51.打家劫舍（337. 打家劫舍 III）
-> 树形dp，错解如下：
-> class Solution:
->     def rob(self, root: TreeNode) -> int:
->         def back(root):
->             """
->             后续遍历，自底向上，返回孙子们，儿子们偷的钱，以及自己最大偷的钱
->             """
->             if root == None:
->                 return 0, 0, 0
->             lchild, lson, lself = back(root.left)
->             rchild, rson, rself = back(root.right)
->             return lson + rson, lself + rself, root.val + max(lson + rson, lchild + rchild)
->         return max(back(root))
->
-> 正解如下：
-> （两个状态，dp[node][0]以及dp[node][1]）
-> class Solution:
->     def rob(self, root: TreeNode) -> int:
->         def back(root):
->             """
->             后续遍历，自底向上，返回当前节点偷或者不偷能得到的最大值
->             """
->             if root == None:
->                 return 0, 0
->             ldo, lnot = back(root.left)
->             rdo, rnot = back(root.right)
->             mdo = root.val + lnot + rnot
->             mnot = max(ldo, lnot) + max(rdo, rnot)
->             return mdo, mnot
->         return max(back(root))
->
-> 52.监控二叉树（968. 监控二叉树）
-> 同树形dp，三种状态，dp[node][0, 1, 2]分别表示，放置摄像头，不放置但已覆盖，不放置且未覆盖，但是这种方式不太好写，错解：
-> class Solution:
->     def minCameraCover(self, root: TreeNode) -> int:
->         def back(root):
->             """
->             后续遍历，返回三个状态下的数量
->             012表示，已放置，未放置已覆盖，未放置未覆盖
->             """
->             if root == None:
->                 return 0, 0, 0
->             lset, lcover, lnot = back(root.left)
->             rset, rcover, rnot = back(root.right)
->             mset = 1 + lnot + rnot
->             mcover = min(lset + rcover, rset + lcover)
->             mnot = lcover + rcover
->             print(mset, mcover, mnot)
->             return mset, mcover, mnot
->         return min(back(root))
->
-> （这是一个贪心的策略，假定从底向上可以获取最优解）正解如下：
-> class Solution(object):
->     def minCameraCover(self, root):
->         """
->         :type root: TreeNode
->         :rtype: int
->         左右中，后续遍历
->         3种状态
->             0:未覆盖
->             1:已覆盖
->             2:装有相机
->         """
->         def dfs(root):
->             if root == None:
->                 return 1
->             left = dfs(root.left)
->             right = dfs(root.right)
->             if left == 0 or right == 0:
->                 self.res += 1
->                 return 2
->             elif left == 1 and right == 1:
->                 return 0
->             elif left + right >= 3:
->                 return 1
->        
->         self.res = 0
->         if dfs(root) == 0:
->             self.res += 1
->                                                                                 
->         return self.res
->
-> 如果改变题意，每台相机只能监控自己，或者直接子对象呢？
-> 那就是两个状态了，0表示已经放置相机，1表示未放置相机，待覆盖
->
-> 53.频率topk问题（347. 前 K 个高频元素）
-> 使用快排，生成【出现频次】数组排序，然后二分找到topk
->
-> 54.给你一连串的括号。一对括号()的基准分数是1分。一对括号()里面如果嵌套了x对括号，那么这对括号值2x分。
-> （）：1分
-> （（））：3分
-> （（）（））：6分
-> （（）（））（）：7分
-> （（）（（）））（（））：11分
-> def score(s):
->     n = 0
->     empty = 0
->     level = 0
->     for c in s:
->         if c == '(':
->             if level:
->                 n += 2
->             empty = 1
->             level += 1
->         else:
->             n += empty
->             empty = 0
->             level -= 1
->     return n
->
-> 55.Leetcode139. 单词拆分
-> dfs回溯法，记忆化搜索
->
-> 单源最短路径Dijkstra算法，图论方面的问题
->
-> 动态规划类问题：
-> 股票买卖
-> 打家劫舍
-> 戳气球
-> （首先要思考的就是：如何穷举出所有可能的结果？使用回溯全排列，时间复杂度是n!）
-> （运用动态规划算法的一个重要条件：子问题必须独立。所以对于这个戳气球问题，如果想用动态规划，必须巧妙地定义 dp 数组的含义，避免子问题产生相关性，才能推出合理的状态转移方程。）
-> （dp[i][j] = x 表示，戳破气球 i 和气球 j 之间（开区间，不包括 i 和 j）的所有气球，可以获得的最高分数为 x。）
-> （最后一个戳破k，dp[i][j] = dp[i][k] + dp[k][j] + points[i]*points[k]*points[j]）
->
-> 
->
-> 与八皇后的同类问题：
-> 37. 解数独
-> 679. 24 点游戏
-> 529. 扫雷游戏
-> 488. 祖玛游戏
->
-> 这个链接最终的题型总结和经典
-> https://leetcode-cn.com/problems/permutations/solution/hui-su-suan-fa-python-dai-ma-java-dai-ma-by-liweiw/
->
-> 关于回溯的各种剪枝方法：
-> https://leetcode-cn.com/problems/4sum/solution/you-yi-dao-ti-kan-hui-su-fa-de-ge-chong-jian-zhi-j/
->
->
-> 笔试真题：
-> https://www.nowcoder.com/discuss/266311?type=2&order=0&pos=10&page=1&channel=-2&source_id=discuss_tag
->
->
-> 其它：
-> 要和面试官保持良好的交流，即使不会做题也要让面试官看到你的思路
-> 面试官说可以和hr谈想去哪里
-> 顶级独角兽小马的笔试面试体验都挺好的，是我感觉最“嵌入式”的体验，无奈自己硬实力不够。
-> 小马主要是写代码和做数学题
-> 是挺难的，我也没法全部做出来，但是你可以和面试官说你的思路然后一起讨论，应该可以加一点分
-> 能请问一下楼主几次面试之间大概间隔了多久吗（一周左右）
-> 一面不分岗位统一面试
-> 非常nice的一个公司，无论是技术能力还是技术氛围，都称得上是一流水平。
-> 具体内容有些记不清了，反正就是写写写写写代码，代码要求真的高。
->
->
-> ===================================
-> 单链表快排（比较重要）
->
-> 山峰数组，求topk，本来想无脑堆排序，面试官说不要排序，我就想了好久，面试官就一点点引导我，然后写出来，面试官又让优化，听了好久他是让用二分法找山峰，于是又写了一个二分法，然后代码题结束。接着聊人生，然后反问环节。（个人思路：找到最大值，从中间向两边遍历都是有序数组，归并两个有序数组得到topk）（其中这道题很类似leetcode4，两个有序数组求中位数）
->
-> 对于给定的数组A，每次可以取出任意一个数A[i]，同时要删除数组内所有等于A[i]-1和A[i]+1的数，直到数组为空，可以取出所有数的最大和为多少
-> 我当时是这样写的
-> 1.首先，数组从小到大排序  因为要找出和最大的 ，所以应该优先挑大的 有点类似于贪心的做法 
-> 2. 把数值相同的数求和，然后还要保留原始的数值 比如[8,8,7,5,5,5]会变成了一个新的数组 S [(16,8),(7,7),(15,5)]这样 
-> 3 到这里就很像leetcode的抢家夺舍了 ，用dp来写 如果i 个i-1不相连 比如S 里面的 7 和5 就直接加上去 dpi =dpi-1 + si  如果相连 就变成了 dpi=max（dpi-2 +si ,dpi-1） 让后取dp的最后一个值就是最大值 这样子
->
-> ===================================
-> 当前尚未掌握的几种类型的题目：
->
-> 栈：
-> [42. 接雨水](https://leetcode-cn.com/problems/trapping-rain-water/)
-> 接雨水 II
->
-> [Leetcode 496：下一个更大元素 I（超详细的解法！！！）](https://blog.csdn.net/qq_17550379/article/details/86501664)
-> [Leetcode 503：下一个更大元素 II（超详细的解法！！！）](https://blog.csdn.net/qq_17550379/article/details/86504595)
-> [Leetcode 739：每日温度（超详细的解法！！！）](https://blog.csdn.net/qq_17550379/article/details/86494645)
-> [Leetcode 901：股票价格跨度（超详细的解法！！！）](https://blog.csdn.net/qq_17550379/article/details/86498025)
-> [Leetcode 84：柱状图中最大的矩形（超详细的解法！！！）](https://blog.csdn.net/qq_17550379/article/details/85093224)
->
-> 队列：
-> [Leetcode 239：滑动窗口最大值（超详细的解法！！！）](https://blog.csdn.net/qq_17550379/article/details/88911870)
-> [剑指 Offer 59 - I. 滑动窗口的最大值](https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/)
-> [剑指 Offer 59 - II. 队列的最大值](https://leetcode-cn.com/problems/dui-lie-de-zui-da-zhi-lcof/)
->
-> 字符串匹配
-> KMP
-> 正则化匹配
-> 敏感词匹配
->
-> 二分查找
-> [33. 搜索旋转排序数组](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/)
-> [475. 供暖器](https://leetcode-cn.com/problems/heaters/)
-> [4. 寻找两个正序数组的中位数](https://leetcode-cn.com/problems/median-of-two-sorted-arrays/)
->
-> 排序
-> [75. 颜色分类](https://leetcode-cn.com/problems/sort-colors/)
-> [324. 摆动排序 II](https://leetcode-cn.com/problems/wiggle-sort-ii/)
-> 链表快排
->
-> 回溯法
-> 子集，集合
-> 排列，组合
->
-> 滑窗法
-> [3. 无重复字符的最长子串](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/)
-> [76. 最小覆盖子串](https://leetcode-cn.com/problems/minimum-window-substring/)
->
-> 贪心
-> 区间调度
-> 跳跃游戏1/2
->
-> 动态规划
-> 子串，子数组，子序列
-> 编辑距离
->
-> 专题
-> N数之和
-> 前缀和
-> [1240. 铺瓷砖](https://leetcode-cn.com/problems/tiling-a-rectangle-with-the-fewest-squares/)
-> 括号问题
-> 区间类问题：https://www.paincker.com/leetcode-intervals
->
-> 区间求最值的问题
->
->
-> 单调栈问题：
-> 42. 接雨水
-> 当前位置的雨水只跟min(max(left), max(right))有关
->
-> 11. 盛最多水的容器
-> 当前区间盛水量的多少，只跟区间左右两端点的最小值有关
-> 跟区间内部的最大值和最小值是无关的
-> 因此可以双指针（双指针事实上是不能保证遍历所有可能的区间的，只有O(n^2)才能遍历所有）
-> （之所以双指针能够凑效，是因为双指针可以保证一些区间不用遍历，因为他一定不满足要求）
-> （这个不满足要求的条件判断，也就是双指针更新移动的关键点）
->         ret = 0
->         l, r = 0, len(height) - 1
->         while l < r:
->             ret = max(ret, (r - l) * min(height[l], height[r]))
->             if height[l] < height[r]:
->                 l += 1
->             else:
->                 r -= 1
->         return ret
->
->
-> 84. 柱状图中最大的矩形
-> 当前区间的最大矩形，与区间长度以及区间最小值有关
-> 暴力法是：中间选定高度，两端遍历，后者事先记录好每个元素两侧的最大值最小值
-> 高效方法是：单调栈，因为要取最小值，因此维持一个单调递增的栈
-> 每次只要满足单调性就push，不满足则说明出现了一个可以确定的状态
-> 当前矩形的高度可以确定，宽度就是高度位置的在单调递增栈中的左右两侧
-> 因为此时，左侧一定是小的，右侧因此还没push且也是小的，因此可以确定宽度
-> 注意：左侧有可能为空，需要指定左侧的索引为-1，右侧有可能到头，因此需要控制多循环一次
->     def largestRectangleArea(self, heights: List[int]) -> int:
->         """
->         单调递增栈，保存下标，对应元素是递增的
->         """
->         ret = 0
->         stack = []
->         for i in range(len(heights) + 1):
->             while stack != [] and (i == len(heights) or heights[i] < heights[stack[-1]]):
->                 top = stack.pop()
->                 left = stack[-1] if stack else -1
->                 ret = max(ret, heights[top] * (i - left - 1))
->             if i < len(heights):
->                 stack.append(i)      
->         return ret
->
-> 85. 最大矩形
-> 先进行一个维度的遍历，依次按行累计，转化为84题
-> 高效方法是三维dp
->
->
-> leetcode239. 滑动窗口最大值
-> （见note.md）
->
-> 区间问题：
->
-> 区间动态规划
-> 石子合并
-> 能量项链
->
->
-> Leetcode-HOT100
->
-> https://blog.csdn.net/zr459927180/article/details/51932655?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param
->
-> 动态规划：
-> 221. 最大正方形
-> 85. 最大矩形
->
-> 关于旋转数组
-> https://imageslr.github.io/2020/03/06/leetcode-33.html
->
-> https://cloud.tencent.com/developer/article/1111758
+4. 其它leetcode题目：https://leetcode-cn.com/problems/remove-k-digits/solution/yi-zhao-chi-bian-li-kou-si-dao-ti-ma-ma-zai-ye-b-5/，（https://leetcode-cn.com/problems/remove-duplicate-letters/）
+
+5. 昨天在牛客上，做了一道螺旋数组的问题，可以跟之前的打印二维数组类比，还有旋转90度矩阵（个人举一反三，实现二维矩阵的斜向遍历，从左上到右下角）
+
+6. 字符串是否符合规范，有日期和时间还有一些别的判断，非常复杂，写代码写了30分钟。（参考剑指offer，表示数值的字符串）
+
+7. 给会议的start和end，求能开最多的会，蠡口原题。最多可以参加的会议数目。贪心的思想。在每一天，从这一天可以去的会议中，选择结束时间最早的那一场去。
+
+8. 一个全是0和1的二维矩阵，判断其中所有的1能不能构成一个等腰直角三角形，需要将三角形里所有的位置填充满，包括三条边和里面。这题写了好久，不太会，后来面试官改简单了一点，直角顶点朝向左下。
+
+   > 首先询问是否只有一个1的连通域
+   > （1，从左上角开始BFS，找到第一个1）
+   > （2，从第一个1开始进行洪水填充BFS，找到该连通域的所有边界）
+   > （3，通过这些边界点，判断是否为三角形，并返回三个顶点）（使用聚类法，找斜率，获取边和顶点，顶点是不同类的交集）
+   > （4，利用三个顶点判断是否等腰直角三角形）
+
+9. 给出一些父节点到子节点的路径，判断这个图是不是一个二叉树。写的时候没想太好，写的非常复杂，最后好像过了。（二叉树的定义：每一个节点只有两个子节点，并且子节点不能指向祖先节点）
+
+10. n位数的递增数有多少个，递增数是123,123456,34789这样的，1334不算。
+
+    > （感觉可以二维dp，dpn表示当第n位数可以从start开始变化的时候，n位及后续位数的总变化情况个数）
+    > （dpn = dpn + dpn + 1）
+    > （注意从右下角往左上角填充，并且注意首位不能为0，并且一些特殊情况不可取，如倒数第二位是9则不合理）
+
+11. 手撕代码题是通过a+2,a*3+2这两种计算方式的任意组合，验证能否由a变成b，我当时写了个回溯的方法。
+
+    > （优先明确，是否ab都为正数，是否a小于b）
+    > （可以回溯，两条路两种运算，一个是乘加，一个是加，优先DFS遍历乘加，直到a的值大于了b，则回溯到上一步，改为相加）
+
+12. 用c语言实现：给定一个字符串str和另一个字符串sub，统计str中sub出现的次数。不能使用库函数。
+    （暴力方法，或者KMP匹配，再不行就是滑窗法，dp）
+
+13. 至少去除数组中多少个数能使数组成为单调序列。类似leetcode300
+    （动态规划 + 二分查找）
+
+14. 电话面: 一道算法题，BFS变形，但当时用了dijikstra，更好的算法是我在系统地学完算法之后才想出来的，大概是用了BFS的最小边数搜索性质，具体可见算法导论
+
+15. 请实现一个单向链表（包括append等常规操作），并外加实现一个setAll(T value)方法，将链表中所有已插入”元素置为同一特定值。
+
+16. 字符串是否符合规范，有日期和时间还有一些别的判断，非常复杂，写代码写了30分钟。
+    （参考剑指offer，表示数值的字符串）
+
+17. 给会议的start和end，求能开最多的会，蠡口原题。（1353最多可以参加的会议数目，贪心的思想。在每一天，从这一天可以去的会议中，选择结束时间最早的那一场去。）
+
+18. 有一个二维字符矩阵，共有四种字符：#——墙，不可行走，X——每个人的起点，*——迷宫出口，.——地面，可以行走，求每个人走到出口的最短路径（保证每个人都可以走到出口）
+    （可以BFS）
+
+19. 给定n*n的正方形，每个点都有权值，有些点是障碍物，问从左上角走到右下角的最小花费
+    （回溯法，或者dp）
+
+20. 经典算法题：汉诺塔
+
+    ```python
+    （https://www.nowcoder.com/discuss/250029?type=2&order=0&pos=9&page=1&channel=-2&source_id=discuss_tag）
+    def han(n,fom,to,buffer):
+        if n ==1:     
+            x = fom.pop()
+            to.append(x)
+            print('%s->%s:%s'%(fom[0],to[0],x))
+            return
+        han(n-1,fom,buffer,to) # 首先需要借助to 把 n-1个牌都移动到buffer
+        han(1,fom,to,buffer)    # 然后移动一个把要移动的移动过去
+        han(n-1,buffer,to,fom) # 然后把 n-1个从buffer 移动到to
+    ```
+
+21. 已有两个能生成0到1之间的数，并且这些数是均匀分布的随机生成器，给定一个任意的三角形，如何能在三角形内等概率随机的生成一个点(然后对于多边形呢)
+    （感觉先可以在外接圆生成一个随机点，然后排除在三角形外的点）
+    （正解：三角形翻倍映射为平行四边形，平行四边形映射为矩形，两个随机数分别表示在矩形长宽上的采样）
+
+22. 二维前缀差分问题 (比较easy)
+    （二维前缀和：a[i][j]+=a[i][j-1]+a[i-1][j]-a[i-1][j-1]）
+    （参考：https://blog.csdn.net/Love_Jacques/article/details/105628100?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param）
+
+23. 给定一个链表 执行三类操作：（1.将链表的权值都修改成x; 2.链表后面加入新节点；3.打印链表(注意 修改不能遍历所有节点 解法就类似于线段树的lazy标记吧)）
+
+24. 已知有一颗n(n<=1e9)个节点的完全二叉树 每一层编号从左到右以此递增 比如 第一层的节点编号为1 第二层为2、3，现在询问插入的第n+1个节点的父亲的编号 (确定所在层的编号区间 二分答案 然后每次log的复杂度去check合法性)
+
+25. 纯代码面，手撕两道编程题。记得其中一道与flood fill类似。
+    （733. 图像渲染）
+
+26. 两道代码题，一道是用类来实现一个计时器。另一道是动态规划题。
+
+27. 多个有序链表合并成一个有序链表，写代码。
+    （ok，leetcode23）
+
+28. 字符串匹配 A串长n B串长为m 以A每个位置为起点长为m的子串 排序后与B串做精确匹配，问有多少次精确匹配（暴力法，KMP）
+
+29. 给定整数数组a,要求数组b，b[i]定义为a[i]左边离自己最近的比自己小的数字的下标：单调栈，如果用跳表时间复杂度和正确性证明
+    （https://www.jianshu.com/p/9e3416a7a97b）
+
+30. 给出前序遍历、后序遍历有多少种符合的树结构（可被百度）
+
+31. 有序序列，N个数，随机替换其中的K个，求排序算法让序列仍然有序（merge k list很像，或者用堆）
+
+32. 判断二叉搜索树（98. 验证二叉搜索树，高效方法，judge(root, mmin, mmax)）
+
+33. 旋转二维矩阵（leetcode48）
+
+34. 已知二叉树的前序序列，叶子节点为数字，其余节点为运算符，求根最后运算得到的结果
+    首先明确，如果是单枝树怎么办？一个节点是None，另一个非空，如何处理？
+    其次，运算符都有哪些，是不是都是双目运算？
+    还有，如果只知道前序序列，如何区分左子树和右子树
+    （感觉跟使用一个栈，依次弹出计算结果然后弹入，类似计算表达式，逆波兰表达式，即后缀表达式）
+    （这个题是前缀表达式，运算符放在了字符前边）
+
+35. 按字典序输出1-n之间的数，如n=10时，输出1,10,2,3,4,5,6,7,8,9
+    暴力方法是转换为字符串，然后字典序排序
+    正确方式是回溯法，（以下个人测试已通过）
+
+    ```python
+    def func(n):
+    	"""
+    	输入n，输出按字典序排列的1-n，是个list
+    	"""
+    	ret = []
+    	path = [] # 内部暂时存储字符串
+    	def backTracking(n):
+    		"""
+    		n表示最大值，i表示当前正在遍历第i位数字
+    		"""
+    
+    ​      退出的情况，当前值已经大于n
+    
+    ​		if path:
+    ​			val = int("".join(path))
+    ​			if val > n:
+    ​				return
+    ​			ret.append(val)
+    ​		start = 0 if path else 1
+    ​		for j in range(start, 10):
+    ​			path.append(str(j))
+    ​			backTracking(n)
+    ​			path.pop()
+    ​	backTracking(n)
+    ​	return ret
+    ```
+
+36. 给出一个数组，把所有的0移动到最前面，同时其它数组的顺序保持不变（稳定排序，直接冒泡，把0冒泡到前方）（leetcode，283. 移动零）
+
+37. 如何求树的直径（见leetcode543）
+    首先明确，树的直径的定义（一棵二叉树的直径长度是任意两个结点路径长度中的最大值。这条路径可能穿过也可能不穿过根结点。）
+
+    ```python
+    def diameterOfBinaryTree(self, root: TreeNode) -> int:
+        self.ret = 0
+        def getHeight(root):
+            """
+            后续遍历，获取root的高度，同时更新最大直径
+            """
+            if root == None:
+                return 0
+            left = getHeight(root.left)
+            right = getHeight(root.right)
+            self.ret = max(self.ret, left + right)
+            return 1 + max(left, right)
+        getHeight(root)
+        return self.ret
+    ```
+
+38. 给定一个数组，如[7864, 284, 347, 7732, 8498]，现在需要将数组中的数字拼接起来，返回最大的可以拼接出的数字（自定义排序，a > b 的判断表达式为：a拼接b > b拼接a）（使用字符串要更加方便进行拼接，以及拼接后的判断）（最后一个要注意的点就是在快排里，完成这个自定义的排序）
+
+39. 丑数（三指针法，其实也是动态规划，pi表示有资格与i相乘的最小丑数的索引）（核心的跳转逻辑为：if dp[i] == dp[p2] * 2: p2 += 1）
+
+40. 打家劫舍（337. 打家劫舍 III）
+
+    ```python
+    树形dp，错解如下：
+    class Solution:
+        def rob(self, root: TreeNode) -> int:
+            def back(root):
+                """
+                后续遍历，自底向上，返回孙子们，儿子们偷的钱，以及自己最大偷的钱
+                """
+                if root == None:
+                    return 0, 0, 0
+                lchild, lson, lself = back(root.left)
+                rchild, rson, rself = back(root.right)
+                return lson + rson, lself + rself, root.val + max(lson + rson, lchild + rchild)
+            return max(back(root))
+    
+    正解如下：
+    （两个状态，dp[node][0]以及dp[node][1]）
+    class Solution:
+        def rob(self, root: TreeNode) -> int:
+            def back(root):
+                """
+                后续遍历，自底向上，返回当前节点偷或者不偷能得到的最大值
+                """
+                if root == None:
+                    return 0, 0
+                ldo, lnot = back(root.left)
+                rdo, rnot = back(root.right)
+                mdo = root.val + lnot + rnot
+                mnot = max(ldo, lnot) + max(rdo, rnot)
+                return mdo, mnot
+            return max(back(root))
+    ```
+
+41. 监控二叉树（968. 监控二叉树）
+
+    ```python
+    监控二叉树（968. 监控二叉树）
+    同树形dp，三种状态，dp[node][0, 1, 2]分别表示，放置摄像头，不放置但已覆盖，不放置且未覆盖，但是这种方式不太好写，错解：
+    class Solution:
+        def minCameraCover(self, root: TreeNode) -> int:
+            def back(root):
+                """
+                后续遍历，返回三个状态下的数量
+                012表示，已放置，未放置已覆盖，未放置未覆盖
+                """
+                if root == None:
+                    return 0, 0, 0
+                lset, lcover, lnot = back(root.left)
+                rset, rcover, rnot = back(root.right)
+                mset = 1 + lnot + rnot
+                mcover = min(lset + rcover, rset + lcover)
+                mnot = lcover + rcover
+                print(mset, mcover, mnot)
+                return mset, mcover, mnot
+            return min(back(root))
+    
+    （这是一个贪心的策略，假定从底向上可以获取最优解）正解如下：
+    class Solution(object):
+        def minCameraCover(self, root):
+            """
+            :type root: TreeNode
+            :rtype: int
+            左右中，后续遍历
+            3种状态
+                0:未覆盖
+                1:已覆盖
+                2:装有相机
+            """
+            def dfs(root):
+                if root == None:
+                    return 1
+                left = dfs(root.left)
+                right = dfs(root.right)
+                if left == 0 or right == 0:
+                    self.res += 1
+                    return 2
+                elif left == 1 and right == 1:
+                    return 0
+                elif left + right >= 3:
+                    return 1
+            self.res = 0
+        	if dfs(root) == 0:
+            	self.res += 1
+        	return self.res
+    如果改变题意，每台相机只能监控自己，或者直接子对象呢？
+    那就是两个状态了，0表示已经放置相机，1表示未放置相机，待覆盖
+    ```
+
+42. 频率topk问题（347. 前 K 个高频元素）
+    使用快排，生成【出现频次】数组排序，然后二分找到topk
+
+43. 给你一连串的括号。一对括号()的基准分数是1分。一对括号()里面如果嵌套了x对括号，那么这对括号值2x分。
+
+    > （）：1分
+    > （（））：3分
+    > （（）（））：6分
+    > （（）（））（）：7分
+    > （（）（（）））（（））：11分
+    > def score(s):
+    >     n = 0
+    >     empty = 0
+    >     level = 0
+    >     for c in s:
+    >         if c == '(':
+    >             if level:
+    >                 n += 2
+    >             empty = 1
+    >             level += 1
+    >         else:
+    >             n += empty
+    >             empty = 0
+    >             level -= 1
+    >     return n
+
+44. 山峰数组，求topk，本来想无脑堆排序，面试官说不要排序，我就想了好久，面试官就一点点引导我，然后写出来，面试官又让优化，听了好久他是让用二分法找山峰，于是又写了一个二分法，然后代码题结束。接着聊人生，然后反问环节。（个人思路：找到最大值，从中间向两边遍历都是有序数组，归并两个有序数组得到topk）（其中这道题很类似leetcode4，两个有序数组求中位数）
+
+45. 对于给定的数组A，每次可以取出任意一个数A[i]，同时要删除数组内所有等于A[i]-1和A[i]+1的数，直到数组为空，可以取出所有数的最大和为多少
+
+    > 我当时是这样写的
+    > 首先，数组从小到大排序  因为要找出和最大的 ，所以应该优先挑大的 有点类似于贪心的做法 
+    >
+    > 把数值相同的数求和，然后还要保留原始的数值 比如[8,8,7,5,5,5]会变成了一个新的数组 S [(16,8),(7,7),(15,5)]这样 
+    > 3 到这里就很像leetcode的抢家夺舍了 ，用dp来写 如果i 个i-1不相连 比如S 里面的 7 和5 就直接加上去 dpi =dpi-1 + si  如果相连 就变成了 dpi=max（dpi-2 +si ,dpi-1） 让后取dp的最后一个值就是最大值 这样子
+
+46. LEETCODE 150题吐血大整理，https://blog.csdn.net/zr459927180/article/details/51932655?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param
 
 ## 第五部分：智力题
 
 ### 智力题
 
-1.50桶水，其中1桶有毒。有n头猪，一天可以喝两次水，请问在一天内可以找出有毒的那桶水的最小的n。
+1. 50桶水，其中1桶有毒。有n头猪，一天可以喝两次水，请问在一天内可以找出有毒的那桶水的最小的n。
 
 ### 数学题
 
-1.一个绳子随机剪成三段，求能让这三段组成三角形的概率。（1/4）
-2.积分微分的应用 曲率及曲率半径的推导(2333 保研失败后想过考研 正好把高数给复习了)
-3.圆上等概率的选3个点 构成锐角三角形的概率 (现场推导)
+1. 一个绳子随机剪成三段，求能让这三段组成三角形的概率。（1/4）
 
-求圆上任取三个点组成锐角三角形的概率（答案：1/4，参考：https://zhuanlan.zhihu.com/p/69530841）
-（直角三角形显然概率为0，每个锐角三角形，将三个顶点依次和圆心做对称可以映射到三个钝角三角形，说明锐角三角形的概率和钝角三角形的概率是1:3，所以是1/4）
-（等价为：任取三角形，圆心落在三角形内、外、边上的概率各是多少）
-圆上任选三点组成三角形，求三角形的面积的数学期望。
-（求面积期望可以分成锐角三角形和钝角三角形两种情况，锐角三角形从圆心将三角形分成三份，面积是三份和；钝角三角形分开后，面积是两份和减去一份差。三角形面积sinα / 2，期望值为1/π，所以结果就是(1/4 * 3 + 3/4) / π = 3/(2π)）
-强化版：在一个球面任取4个点，请问这4个点构成的4面体会经过球心的概率。（1/8）
+2. 积分微分的应用 曲率及曲率半径的推导(2333 保研失败后想过考研 正好把高数给复习了)
+
+3. 圆上等概率的选3个点 构成锐角三角形的概率 (现场推导)
+
+   > 求圆上任取三个点组成锐角三角形的概率（答案：1/4，参考：https://zhuanlan.zhihu.com/p/69530841）
+   > （直角三角形显然概率为0，每个锐角三角形，将三个顶点依次和圆心做对称可以映射到三个钝角三角形，说明锐角三角形的概率和钝角三角形的概率是1:3，所以是1/4）
+   > （等价为：任取三角形，圆心落在三角形内、外、边上的概率各是多少）
+   > 圆上任选三点组成三角形，求三角形的面积的数学期望。
+   > （求面积期望可以分成锐角三角形和钝角三角形两种情况，锐角三角形从圆心将三角形分成三份，面积是三份和；钝角三角形分开后，面积是两份和减去一份差。三角形面积sinα / 2，期望值为1/π，所以结果就是(1/4 * 3 + 3/4) / π = 3/(2π)）
+   > 强化版：在一个球面任取4个点，请问这4个点构成的4面体会经过球心的概率。（1/8）
+   > （面积法，大三角形面积，等于三个小三角形面积之和，注意浮点数，面积由海伦公式求解）
+   > （求直线方程，判断点位于三条直线的什么方向）
+   > （矢量叉乘，判断点是否在线段AB的左侧）
+
+4. 如何在圆内随机取点，蠡口原题。（Leetcode:478. 在圆内随机生成点，利用极坐标，一个半径，一个角度）
 
 ### 概率题
 
-1.50个红球与50个白球，放入两个盒子，要求每个盒子至少有一个球。拿的时候随机在其中一个盒子内，随机拿出一个球。请问如何摆放这些球，让拿出的是红球的概率最大。
-
-
-
-
-
+1. 50个红球与50个白球，放入两个盒子，要求每个盒子至少有一个球。拿的时候随机在其中一个盒子内，随机拿出一个球。请问如何摆放这些球，让拿出的是红球的概率最大。

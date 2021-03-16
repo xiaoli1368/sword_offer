@@ -29,21 +29,15 @@ class Solution(object):
         return n + 1
 	
 	# ===== 优化版 =====
-    def firstMissingPositive(self, nums):
+    def firstMissingPositive(self, nums: List[int]) -> int:
         """
-		合并几个判断条件
+        原地hash
         """
-        if nums == []:
-            return 1
-        
         n = len(nums)
         for i in range(n):
-            while 0 < nums[i] <= n and nums[nums[i] - 1] != nums[i]:
-                curr = nums[i]
-                nums[i], nums[curr - 1] = nums[curr - 1], nums[i]
-        
-        # 检索缺失的位置
+            while 1 <= nums[i] < n and nums[i] != nums[nums[i] - 1]:
+                nums[nums[i] - 1], nums[i] = nums[i], nums[nums[i] - 1]
         for i in range(n):
-            if nums[i] != i + 1:
+            if i + 1 != nums[i]:
                 return i + 1
         return n + 1

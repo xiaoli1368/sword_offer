@@ -90,6 +90,25 @@ public:
 
 		return s.substr(l, maxLen);
 	}
+
+	// 动态规划（优化版）
+    // dp[i][j]表示区间[i:j]是否为回文子串
+    // dp[i][j] = s[i] == s[j] and dp[i+1][j-1]
+    // i从大到小遍历，j从小到大遍历，保证 i < j，最长长度为1，初始化为true
+    string longestPalindrome4(string s) {
+        int n = s.size(), length = 1, l = 0;
+        vector<vector<bool>> dp(n, vector<bool>(n, true));
+        for (int i = n - 1; i >= 0; i--) {
+            for (int j = i + 1; j < n; j++) {
+                dp[i][j] = s[i] == s[j] && dp[i + 1][j - 1];
+                if (dp[i][j] && j - i + 1 > length) {
+                    l = i;
+                    length = j - i + 1;
+                }
+            }
+        }
+        return s.substr(l, length);
+    }
 };
 
 int main(int argc, char* argv[])

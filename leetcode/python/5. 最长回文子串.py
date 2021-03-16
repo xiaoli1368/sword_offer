@@ -21,6 +21,7 @@ else:
 """
 
 class Solution(object):
+    # ===== 暴力法 =====
 	def judge(self, vec, l, r):
 		"""
 		判断vec[l:r+1]是否为回文
@@ -43,7 +44,8 @@ class Solution(object):
 					maxLen = r - l + 1
 					lastl, lastr = l, r
 		return s[lastl:lastr+1]
-	
+
+    # ===== 中心延拓法 =====
 	def getLength(self, vec, l, r):
 		"""
 		获取vec[l]和vec[r]向两端延拓得最长回文串边界l,r
@@ -70,6 +72,34 @@ class Solution(object):
 				maxLen = r - l + 1
 				lastl, lastr = l, r
 		return s[lastl:lastr+1]
+    
+    # ===== 中心延拓法（优化版）=====
+    def findLength(self, s, l, h):
+        """
+        对字符串s，以[l:h]为中心进行延拓，找到最长结果
+        并且尝试进行更新全局最长结果
+        """
+        if h < len(s) and s[l] == s[h]:
+            while l - 1 >= 0 and h + 1 < len(s) and s[l - 1] == s[h + 1]:
+                l -= 1
+                h += 1
+            if h - l + 1 > self.length:
+                self.length, self.l, self.h = h - l + 1, l, h
+        return
+
+    def longestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: str
+        中心延拓法
+        """
+        self.length = self.l = self.h = 0
+        for i in range(len(s)):
+            self.findLength(s, i, i)
+            self.findLength(s, i, i + 1)
+        return s[self.l:self.h+1]
+    
+    # ===== 动态规划 =====
 
 	def longestPalidrome3(self, s):
 		"""
@@ -92,6 +122,20 @@ class Solution(object):
 					l, r = i, j
 		return s[l:r+1]
 
+    def longestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: str
+        动态规划优化版
+        """
+        n, low, high = len(s), 0, 0
+        dp = [[True] * n for _ in range(n)]
+        for i in range(n - 1, -1, -1):
+            for j in range(i + 1, n):
+                dp[i][j] = s[i] == s[j] and dp[i + 1][j - 1]
+                if dp[i][j] and j - i > high - low:
+                    low, high = i, j
+        return s[low:high+1]
 
 
 if __name__ == "__main__":

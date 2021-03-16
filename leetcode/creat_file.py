@@ -4,10 +4,21 @@
 python test.py "666"
 """
 if __name__ == "__main__":
-	import sys
-	filename = sys.argv[1]
-	fp1 = open("cpp/" + filename + ".cpp", "w")
-	fp2 = open("python/" + filename + ".py", "w")
-	fp1.close()
-	fp2.close()
-	print("Done!")
+    import os
+    import sys
+    filename = sys.argv[1]
+    path_py = "python/" + filename + ".py"
+    path_cpp = "cpp/" + filename + ".cpp"
+    if os.path.exists(path_py):
+        print("[INFO]: {} has existed".format(path_py))
+    else:
+        fp1 = open(path_py, "w")
+        fp1.close()
+        print("[INFO] : success to creat {}".format(path_py))
+    if os.path.exists(path_cpp):
+        print("[INFO]: {} has existed".format(path_cpp))
+    else:
+        fp2 = open(path_cpp, "w")
+        fp2.close()
+        print("[INFO]: success to creat {}".format(path_cpp))
+    print("[INFO]: Done")
