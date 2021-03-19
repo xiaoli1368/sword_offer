@@ -61,3 +61,36 @@ class Solution(object):
             # 满足要求后更新长度
             maxLen = max(maxLen, h - l)
         return maxLen
+
+    # ===== 优化版 =====
+    def longestSubarray(self, nums: List[int], limit: int) -> int:
+        """
+        思路：
+        1. 暴力方法：一重循环确定左侧边界，然后向右延申遍历，期间更新min/max，更新长度
+                    时间复杂度O(n^2)
+        2. 滑窗方法：当达到最大长度后，一定是两个端点不满足需求，此时需要移动左端点滑窗
+                    右端点是一个极值，但是然后注意之后仍然需要内部遍历来获取另一个
+                    min/max极值
+        3. 优化方法：注意到本题的本质是获取滑动窗口的min/max，参考239.滑动窗口的最大值
+                    可得需要两个双端队列来分别维持min/max
+                    注意min/max的取值在滑动窗口后未必一定在两端
+        """
+        from collections import deque
+        l, ret, mindq, maxdq = 0, 0, deque(), deque()
+        for h in range(len(nums)):
+            # 引入当前元素后更新两个单调序列
+            while mindq and mindq[-1] > nums[h]:
+                mindq.pop()
+            while maxdq and maxdq[-1] < nums[h]:
+                maxdq.pop()
+            mindq.append(nums[h])
+            maxdq.append(nums[h])
+            # 进行滑窗直到满足limit要求，注意弹出左侧的元素
+            while l < h and maxdq[0] - mindq[0] > limit:
+                if nums[l] == maxdq[0]:
+                    maxdq.popleft()
+                if nums[l] == mindq[0]:
+                    mindq.popleft()
+                l += 1
+            ret = max(ret, h - l + 1)
+        return ret

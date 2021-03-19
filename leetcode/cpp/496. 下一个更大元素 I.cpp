@@ -26,4 +26,25 @@ public:
         }
         return ret;
     }
+
+	// ===== 优化版 =====
+    vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
+        stack<int> st;
+        unordered_map<int, int> d;
+        vector<int> ret(nums1.size(), -1);
+        for (int i = 0; i < nums1.size(); i++) {
+            d[nums1[i]] = i;
+        }
+        for (const int& val : nums2) {
+            while (!st.empty() && st.top() < val) {
+                int num = st.top();
+                st.pop();
+                if (d.count(num) > 0) {
+                    ret[d[num]] = val;
+                }
+            }
+            st.push(val);
+        }
+        return ret;
+    }
 };

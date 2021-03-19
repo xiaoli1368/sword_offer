@@ -28,3 +28,23 @@ public:
  * StockSpanner* obj = new StockSpanner();
  * int param_1 = obj->next(price);
  */
+
+// ===== 使用pair的版本 =====
+class StockSpanner {
+public:
+    int day;
+    stack<pair<int, int>> st;
+
+    StockSpanner() {
+        day = 0;
+    }
+    
+    int next(int price) {
+        while (!st.empty() && st.top().first <= price) {
+            st.pop();
+        }
+        int ret = ++day - (st.empty() ? 0 : st.top().second);
+        st.push(make_pair(price, day));
+        return ret;
+    }
+};

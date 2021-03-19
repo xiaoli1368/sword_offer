@@ -26,4 +26,22 @@ public:
 
         return ret;
     }
+
+	// ===== 优化版 =====
+    int largestRectangleArea(vector<int>& heights) {
+        stack<int> st;
+        st.push(-1);
+        heights.push_back(0);
+        int ret = 0, width, min_height;
+        for (int i = 0; i < heights.size(); i++) {
+            while (st.size() >= 2 && heights[st.top()] > heights[i]) {
+                min_height = heights[st.top()];
+                st.pop();
+                width = i - st.top() - 1;
+                ret = max(ret, width * min_height);
+            }
+            st.push(i);
+        }
+        return ret;
+    }
 };

@@ -19,6 +19,14 @@ ret[i] = min(leftmax - height[i], rightmax - height[i])
 
 思路四：
 单调栈
+
+根据对水的求和方式，两种思路：
+1. 按层，横向求和，找到当前位置处左右最近的max，高度为二者的min
+   单调递减栈，存储下标
+2. 按列，竖向求和，找到左侧所有和右侧所有的max，高度为二者的min
+   可以直接定位当前最低点，然后左右两侧遍历
+   也可以双指针法，从左右两端来更新max，根据两个max的大小情况
+   一定可以确定一端的高度，进行累加
 """
 
 class Solution(object):
@@ -61,8 +69,7 @@ class Solution(object):
         注意lmax，rmax表示的含义分别指：l指针左侧，r指针右侧，的最大值
         因此当lmax < rmax时，l位置处的雨水量必然纸盒lmax有关了，反之同理
         """
-        ret = 0
-        l, r = 0, len(height) - 1
+        ret, l, r = 0, 0, len(height) - 1
         lmax, rmax = height[l], height[r]
         while l <= r:
             lmax = max(lmax, height[l])
@@ -79,16 +86,14 @@ class Solution(object):
         """
         单调栈，存储下标
         """
-        ret = 0
-        stack = []
+        ret, stack = 0, []
         for i in range(len(height)):
             while stack and height[i] > height[stack[-1]]:
-                top = stack.pop()
-                if stack == []:
-                    break
-                distance = i - stack[-1] - 1
-                bounded_height = min(height[i], height[stack[-1]]) - height[top]
-                ret += distance * bounded_height
+                bottom = height[stack.pop()]
+                if stack:
+                    width = i - stack[-1] - 1
+                    diff_height = min(height[i], height[stack[-1]]) - bottom
+                    ret += width * diff_height
             stack.append(i)
         return ret
 

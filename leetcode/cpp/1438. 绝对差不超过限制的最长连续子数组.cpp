@@ -32,4 +32,31 @@ public:
         }
         return maxLen;
     }
+
+    // ===== 优化版 =====
+    int longestSubarray(vector<int>& nums, int limit) {
+        int l = 0, ret = 0;
+        deque<int> mindq, maxdq;
+        for (int h = 0; h < nums.size(); h++) {
+            while (!mindq.empty() && mindq.back() > nums[h]) {
+                mindq.pop_back();
+            }
+            while (!maxdq.empty() && maxdq.back() < nums[h]) {
+                maxdq.pop_back();
+            }
+            mindq.push_back(nums[h]);
+            maxdq.push_back(nums[h]);
+            while (l < h && maxdq.front() - mindq.front() > limit) {
+                if (nums[l] == mindq.front()) {
+                    mindq.pop_front();
+                }
+                if (nums[l] == maxdq.front()) {
+                    maxdq.pop_front();
+                }
+                l += 1;
+            }
+            ret = max(ret, h - l + 1);
+        }
+        return ret;
+    }
 };

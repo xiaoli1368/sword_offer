@@ -30,20 +30,19 @@
 """
 
 # Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.next = None
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
 
 class Solution:
-    def reverseBetween(self, head: ListNode, m: int, n: int) -> ListNode:
+    def reverseBetween(self, head, m, n):
         # write your code here
         """
         1. 链表为空或则mn没有意义
         2. 链表长度小于m
         3. 链表长度小于n
         4. 其它
-        
         newHead mprev mnode nnode nnext
         """
         if head == None or m <= 0 or n <= 0 or m > n:
@@ -79,25 +78,58 @@ class Solution:
         mnode.next = nnext
         return newHead.next
 
-    def reverseBetween(self, head, m, n):
+    def reverseBetween2(self, head, m, n):
+        """
+        直接翻转法（优化版）
+        重点是找到四个节点：mprev mcurr ncurr nnext
+                          m-1   m     n     n+1
+        """
+        # 特殊情况
+        if head == None or m >= n:
+            return head
+
+        # 初始化额外头节点
+        cnt = 0
+        newHead = curr = ListNode(0)
+        newHead.next = head
+
+        # 找到四个关键位置
+        while curr:
+            if cnt == m - 1:
+                mprev = curr
+            elif cnt == m:
+                mcurr = curr 
+            elif cnt == n:
+                ncurr, nnext = curr, curr.next
+                # 进行中间段[mcurr, ncurr]的反转
+                last, tmp = mprev, mcurr
+                while tmp != nnext:
+                    next = tmp.next
+                    tmp.next = last
+                    last = tmp
+                    tmp = next
+                # 重新连接，并退出循环
+                mprev.next = ncurr
+                mcurr.next = nnext
+                break
+            # 更新当前扫描节点
+            cnt += 1
+            curr = curr.next
+        return newHead.next
+
+    def reverseBetween3(self, head, m, n):
         """
         :type head: ListNode
         :type m: int
         :type n: int
         :rtype: ListNode
-        使用额外存储空间，新建一个链表
-		curr对原始的head进行遍历
-		对[0, m-1][m+1, n]则新建节点添加
-        对[m, n]之间使用头插法
-		相当于重新建立链表
+        使用额外存储空间，新建一个链表newHead，使用curr进行遍历
+        对[0, m-1][m+1, n]则新建节点添加，对[m, n]之间使用头插法
+        tail表示newHead的最后一个非空节点
+        curr表示头插法时的前一个节点
         """
-        if head == None or m > n:
-            return head
-        
-        Head = ListNode(0)
-        curr = tail = Head
         cnt = 0
-
+        Head = curr = tail = ListNode(0)
         while head:
             cnt += 1
             if cnt < m or cnt > n:
@@ -110,5 +142,4 @@ class Solution:
             if tail.next:
                 tail = tail.next 
             head = head.next
-        
         return Head.next

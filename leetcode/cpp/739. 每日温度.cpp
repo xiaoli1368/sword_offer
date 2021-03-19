@@ -18,4 +18,18 @@ public:
         }
         return ret;
     }
+
+	// ===== 优化版 =====
+    vector<int> dailyTemperatures(vector<int>& T) {
+        stack<int> st;
+        vector<int> ret(T.size(), 0);
+        for (int i = 0; i < T.size(); i++) {
+            while (!st.empty() && T[st.top()] < T[i]) {
+                ret[st.top()] = i - st.top();
+                st.pop();
+            }
+            st.push(i);
+        }
+        return ret;
+    }
 };

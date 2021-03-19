@@ -26,3 +26,18 @@ class Solution:
             stack.append(i)
         
         return ret
+
+    # ===== 优化版 =====
+    def nextGreaterElements(self, nums: List[int]) -> List[int]:
+        """
+        单调递减栈循环两次
+        这里需要存储的是下标
+        """
+        n = len(nums)
+        stack, ret = [], [-1] * n
+        for i in range(n * 2):
+            j = i % n
+            while stack and nums[stack[-1]] < nums[j]:
+                ret[stack.pop()] = nums[j]
+            stack.append(j)
+        return ret

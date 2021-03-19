@@ -69,83 +69,35 @@
 
 ### 栈和队列
 
-| 题目链接                                                     | 难度   | 个人题解 | 说明     |
-| ------------------------------------------------------------ | ------ | -------- | -------- |
-| [232. 用栈实现队列](https://leetcode-cn.com/problems/implement-queue-using-stacks/) |        |          |          |
-| [225. 用队列实现栈](https://leetcode-cn.com/problems/implement-stack-using-queues/) |        |          |          |
-| 155                                                          |        |          |          |
-| 20                                                           |        |          |          |
-| 225                                                          |        |          |          |
-| 870                                                          |        |          |          |
-| [649. Dota2 参议院](https://leetcode-cn.com/problems/dota2-senate/) |        |          | 普通队列 |
-| [735. 行星碰撞](https://leetcode-cn.com/problems/asteroid-collision/) | medium |          | 普通栈   |
-| [42. 接雨水](https://leetcode-cn.com/problems/trapping-rain-water/) |        |          | 单调栈   |
-| 盛最多水的容器                                               |        |          | 单调栈   |
-| [84. 柱状图中最大的矩形](https://leetcode-cn.com/problems/largest-rectangle-in-histogram/) |        |          | 单调栈   |
-| [739. 每日温度](https://leetcode-cn.com/problems/daily-temperatures/) |        |          | 单调栈   |
-| [496. 下一个更大元素 I](https://leetcode-cn.com/problems/next-greater-element-i/) |        |          | 单调栈   |
-| [503. 下一个更大元素 II](https://leetcode-cn.com/problems/next-greater-element-ii/) |        |          | 单调栈   |
-| [901. 股票价格跨度](https://leetcode-cn.com/problems/online-stock-span/) |        |          | 单调栈   |
-| [1793. 好子数组的最大分数](https://leetcode-cn.com/problems/maximum-score-of-a-good-subarray/) |        |          | 单调栈   |
-| [239. 滑动窗口最大值](https://leetcode-cn.com/problems/sliding-window-maximum/) |        |          | 双端队列 |
+| 题目链接                                                     | 难度   | 个人题解   | 说明             |
+| ------------------------------------------------------------ | ------ | ---------- | ---------------- |
+| [232. 用栈实现队列](https://leetcode-cn.com/problems/implement-queue-using-stacks/) | easy   | cpp,python | 栈与队列         |
+| [225. 用队列实现栈](https://leetcode-cn.com/problems/implement-stack-using-queues/) | easy   | cpp,python | 栈与队列         |
+| [649. Dota2 参议院](https://leetcode-cn.com/problems/dota2-senate/) | medium | cpp,python | 普通队列         |
+| [155. 最小栈](https://leetcode-cn.com/problems/min-stack/)   | easy   | cpp,python | 普通栈           |
+| [735. 行星碰撞](https://leetcode-cn.com/problems/asteroid-collision/) | medium | cpp,python | 普通栈           |
+| [20. 有效的括号](https://leetcode-cn.com/problems/valid-parentheses/) | easy   | cpp,python | 普通栈，括号匹配 |
+| [32. 最长有效括号](https://leetcode-cn.com/problems/longest-valid-parentheses/) | hard   | cpp,python | 普通栈，括号匹配 |
+| [496. 下一个更大元素 I](https://leetcode-cn.com/problems/next-greater-element-i/) | easy   | cpp,python | 单调栈           |
+| [503. 下一个更大元素 II](https://leetcode-cn.com/problems/next-greater-element-ii/) | medium | cpp,python | 单调栈           |
+| [739. 每日温度](https://leetcode-cn.com/problems/daily-temperatures/) | medium | cpp,python | 单调栈           |
+| [901. 股票价格跨度](https://leetcode-cn.com/problems/online-stock-span/) | medium | cpp,python | 单调栈           |
+| [42. 接雨水](https://leetcode-cn.com/problems/trapping-rain-water/) | hard   | cpp,python | 单调栈           |
+| [84. 柱状图中最大的矩形](https://leetcode-cn.com/problems/largest-rectangle-in-histogram/) | hard   | cpp,python | 单调栈           |
+| [1793. 好子数组的最大分数](https://leetcode-cn.com/problems/maximum-score-of-a-good-subarray/) | hard   | cpp,python | 单调栈           |
+| [239. 滑动窗口最大值](https://leetcode-cn.com/problems/sliding-window-maximum/) | hard   | cpp,python | 双端队列         |
+| [1438. 绝对差不超过限制的最长连续子数组](https://leetcode-cn.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/) | medium | cpp,python | 双端队列         |
+| 思考单端增长/滑动窗口的最小/大值（单调栈/队列）              |        |            |                  |
 
-2.给一个数组和阈值x，求区间里最大值和最小值的差不大于x的最大区间长度。（单调栈+双指针，两个栈记录最小和最大）
-（两个指针同时从0的位置发，同时向右遍历，期间维护单调栈来以O(1)的时间获取最大值和最小值）
-（感觉可以滑窗法，维护单调队列来获取最大值和最小值）
-（参考这里：https://zhuanlan.zhihu.com/p/79532243）
-dp求让每个区间长度*区间最大值的和最大
-https://www.paincker.com/leetcode-intervals
+**单调栈/队列总结：**
 
-> 单调栈问题：
->
-> 42. 接雨水
->     当前位置的雨水只跟min(max(left), max(right))有关
->
-> 43. 盛最多水的容器
->     当前区间盛水量的多少，只跟区间左右两端点的最小值有关
->     跟区间内部的最大值和最小值是无关的
->     因此可以双指针（双指针事实上是不能保证遍历所有可能的区间的，只有O(n^2)才能遍历所有）
->     （之所以双指针能够凑效，是因为双指针可以保证一些区间不用遍历，因为他一定不满足要求）
->     （这个不满足要求的条件判断，也就是双指针更新移动的关键点）
->         ret = 0
->         l, r = 0, len(height) - 1
->         while l < r:
->             ret = max(ret, (r - l) * min(height[l], height[r]))
->             if height[l] < height[r]:
->                 l += 1
->             else:
->                 r -= 1
->         return ret
->
->
-> 84. 柱状图中最大的矩形
->     当前区间的最大矩形，与区间长度以及区间最小值有关
->     暴力法是：中间选定高度，两端遍历，后者事先记录好每个元素两侧的最大值最小值
->     高效方法是：单调栈，因为要取最小值，因此维持一个单调递增的栈
->     每次只要满足单调性就push，不满足则说明出现了一个可以确定的状态
->     当前矩形的高度可以确定，宽度就是高度位置的在单调递增栈中的左右两侧
->     因为此时，左侧一定是小的，右侧因此还没push且也是小的，因此可以确定宽度
->     注意：左侧有可能为空，需要指定左侧的索引为-1，右侧有可能到头，因此需要控制多循环一次
->     def largestRectangleArea(self, heights: List[int]) -> int:
->         """
->         单调递增栈，保存下标，对应元素是递增的
->         """
->         ret = 0
->         stack = []
->         for i in range(len(heights) + 1):
->             while stack != [] and (i == len(heights) or heights[i] < heights[stack[-1]]):
->                 top = stack.pop()
->                 left = stack[-1] if stack else -1
->                 ret = max(ret, heights[top] * (i - left - 1))
->             if i < len(heights):
->                 stack.append(i)      
->         return ret
->
->
-> leetcode239. 滑动窗口最大值
-> （见note.md）
+- 求数组内某个元素的 [left, right] 方向下，最近的更 [min, max] 的元素。（使用单调栈）
+- 求滑动窗口下的最小值/最大值。（使用双端单调队列）
+- 求区间内部所有元素中的最小值/最大值。（使用单调栈）
+- 求单端增长的数组的最小值/最大值。（使用单调栈）
+- 求区间两端中的最小值/最大值。（使用双指针）
 
-### 堆/优先队列
+### 堆和优先队列
 
 | 题目链接                                                     | 难度 | 个人题解   | 说明   |
 | ------------------------------------------------------------ | ---- | ---------- | ------ |
@@ -158,30 +110,33 @@ https://www.paincker.com/leetcode-intervals
 
 ### 哈希表
 
-| 题目链接                                                     | 难度 | 个人题解   | 说明           |
-| ------------------------------------------------------------ | ---- | ---------- | -------------- |
-| [697. 数组的度](https://leetcode-cn.com/problems/degree-of-an-array/) | easy | cpp,python | 哈希           |
-| [705. 设计哈希集合](https://leetcode-cn.com/problems/design-hashset/) | easy | cpp,python | 手写哈希       |
-| 1                                                            |      |            |                |
-| 128                                                          |      |            |                |
-| 149                                                          |      |            |                |
-| 217                                                          |      |            |                |
-| 697                                                          |      |            |                |
-| 594                                                          |      |            |                |
-| 287                                                          |      |            |                |
-| 332                                                          |      |            | 多重集合和映射 |
+| 题目链接                                                     | 难度   | 个人题解   | 说明           |
+| ------------------------------------------------------------ | ------ | ---------- | -------------- |
+| [697. 数组的度](https://leetcode-cn.com/problems/degree-of-an-array/) | easy   | cpp,python | 哈希           |
+| [705. 设计哈希集合](https://leetcode-cn.com/problems/design-hashset/) | easy   | cpp,python | 手写哈希       |
+| 1                                                            |        |            |                |
+| 128                                                          |        |            |                |
+| 149                                                          |        |            |                |
+| 217                                                          |        |            |                |
+| 697                                                          |        |            |                |
+| 594                                                          |        |            |                |
+| 287                                                          |        |            |                |
+| 332                                                          |        |            | 多重集合和映射 |
+| [870. 优势洗牌](https://leetcode-cn.com/problems/advantage-shuffle/) | medium | cpp,python | 普通哈希？     |
 
 ### 链表
 
-| 题目链接    | 难度 | 个人题解 | 说明 |
-| ----------- | ---- | -------- | ---- |
-| leetcode143 |      |          |      |
-| leetcode148 |      |          |      |
-|             |      |          |      |
-|             |      |          |      |
-|             |      |          |      |
-|             |      |          |      |
-|             |      |          |      |
+| 题目链接                                                     | 难度   | 个人题解   | 说明 |
+| ------------------------------------------------------------ | ------ | ---------- | ---- |
+| [206. 反转链表](https://leetcode-cn.com/problems/reverse-linked-list/) | easy   | cpp,python | 翻转 |
+| [92. 反转链表 II](https://leetcode-cn.com/problems/reverse-linked-list-ii/) | medium | cpp,python | 翻转 |
+| leetcode143                                                  |        |            |      |
+| leetcode148                                                  |        |            |      |
+|                                                              |        |            |      |
+|                                                              |        |            |      |
+|                                                              |        |            |      |
+|                                                              |        |            |      |
+|                                                              |        |            |      |
 
 ### 树
 
@@ -277,7 +232,8 @@ class Solution(object):
 | [88. 合并两个有序数组](https://leetcode-cn.com/problems/merge-sorted-array/) | easy   | cpp,python                                                   | 归并排序  |
 | [845. 数组中的最长山脉](https://leetcode-cn.com/problems/longest-mountain-in-array/) |        |                                                              |           |
 | [830. 较大分组的位置](https://leetcode-cn.com/problems/positions-of-large-groups/) |        |                                                              |           |
-| [42. 接雨水](https://leetcode-cn.com/problems/trapping-rain-water/) |        |                                                              |           |
+| [42. 接雨水](https://leetcode-cn.com/problems/trapping-rain-water/) | hard   | cpp,python                                                   | 区间最值  |
+| [11. 盛最多水的容器](https://leetcode-cn.com/problems/container-with-most-water/) | medium | cpp,python                                                   | 区间最值  |
 | [844. 比较含退格的字符串](https://leetcode-cn.com/problems/backspace-string-compare/) |        |                                                              |           |
 | [925. 长按键入](https://leetcode-cn.com/problems/long-pressed-name/) |        |                                                              |           |
 | [1423. 可获得的最大点数](https://leetcode-cn.com/problems/maximum-points-you-can-obtain-from-cards/) |        |                                                              | 滑动窗口  |
@@ -402,6 +358,8 @@ class Solution(object):
 | [967. 连续差相同的数字](https://leetcode-cn.com/problems/numbers-with-same-consecutive-differences/) | medium     | cpp,python | DFS，其它          |
 | [733. 图像渲染](https://leetcode-cn.com/problems/flood-fill/) |            |            | DFS，其它          |
 | [1034. 边框着色](https://leetcode-cn.com/problems/coloring-a-border/) |            |            | DFS，其它          |
+| [22. 括号生成](https://leetcode-cn.com/problems/generate-parentheses/) |            |            | DFS，括号匹配      |
+| [301. 删除无效的括号](https://leetcode-cn.com/problems/remove-invalid-parentheses/) |            |            | DFS，括号匹配      |
 | [257. 二叉树的所有路径](https://leetcode-cn.com/problems/binary-tree-paths/) | 放到树专题 |            | DFS，二叉树        |
 | [310. 最小高度树](https://leetcode-cn.com/problems/minimum-height-trees/) | 放到图专题 |            | DFS，图            |
 | [934. 最短的桥](https://leetcode-cn.com/problems/shortest-bridge/) | medium     | cpp,python | BFS，岛屿问题      |

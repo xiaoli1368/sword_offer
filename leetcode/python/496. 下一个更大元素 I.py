@@ -54,3 +54,21 @@ class Solution:
             ret[i] = d[nums1[i]]
         
         return ret
+
+    # ===== 优化版 =====
+    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        """
+        使用单调递减栈，获取当前元素的右侧最近更大值
+        同时需要一个hash记录待求val的下标，并且初始化为全-1
+        """
+        n1, n2 = len(nums1), len(nums2)
+        d, stack, ret = dict(), [], [-1] * n1
+        for i in range(n1):
+            d[nums1[i]] = i
+        for val in nums2:
+            while stack and stack[-1] < val:
+                num = stack.pop()
+                if num in d:
+                    ret[d[num]] = val
+            stack.append(val)
+        return ret
