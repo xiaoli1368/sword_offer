@@ -28,4 +28,49 @@ class Solution(object):
             for j in range(m):
                 if ret[i] == primes[j] * ret[pointer[j]]: # 更新指针
                     pointer[j] += 1
-        return ret[-1]]
+        return ret[-1]
+
+    # ===== 其它版本 =====
+    def nthSuperUglyNumber(self, n, primes):
+        """
+        :type n: int
+        :type primes: List[int]
+        :rtype: int
+        以 2 3 5 为例
+        较大的丑数，都是由较小的丑数乘以 2 3 5 得到的
+        因此每个 2 3 5 需要维护一个val，该val表示的当前丑数质因数接下来要乘的最小丑数
+        val的更新应按照丑数由小到大，也就是最终的ret
+        这里用pointers来表示ret，内部保存的是在ret中的索引
+        本质是动态规划：
+        dp[i] = min(primes[j] * dp[pointers[j]]) j = 0:len(primes)
+        """
+        k = len(primes)
+        ret, pointers = [1], [0] * k
+        for i in range(n - 1):
+            mmin = float("+inf")
+            for j in range(k):
+                mmin = min(mmin, primes[j] * ret[pointers[j]])
+            ret.append(mmin)
+            for j in range(k):
+                if primes[j] * ret[pointers[j]] == mmin:
+                    pointers[j] += 1
+        return ret[-1]
+
+    # ===== 堆思路 =====
+    def nthSuperUglyNumber(self, n: int, primes: List[int]) -> int:
+        """
+        堆
+        使用最小堆迭代n次，就能得到第n小的超级丑数
+        每次都要使用当前的最小丑数来乘以primes中的各个因子
+		每次将k个构造出来的丑数送入堆，不一定都满足要求，而且存在重复
+		始终明确：更大的丑数 = 较小的丑数 * 所有的因子
+        注意防止重复
+        """
+        vec = [1]
+        for _ in range(n - 1):
+            curr = heappop(vec)
+            while vec and curr == vec[0]: # 去除重复元素
+                heappop(vec)
+            for p in primes:
+                heappush(vec, curr * p)
+        return heappop(vec)
