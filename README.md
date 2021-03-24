@@ -27,19 +27,19 @@
 
 ### 字符串
 
-| 题目链接                                                     | 难度   | 个人题解   | 说明                    |
-| ------------------------------------------------------------ | ------ | ---------- | ----------------------- |
-| [242. 有效的字母异位词](https://leetcode-cn.com/problems/valid-anagram/) | easy   | cpp,python | 字符串比较，哈希        |
-| [205. 同构字符串](https://leetcode-cn.com/problems/isomorphic-strings/) | easy   | cpp,python | 字符串比较，哈希        |
-| [647. 回文子串](https://leetcode-cn.com/problems/palindromic-substrings/) | medium | cpp,python | 回文串，中心延拓DP      |
-| [409. 最长回文串](https://leetcode-cn.com/problems/longest-palindrome/) | easy   | cpp,python | 回文串，中心延拓DP      |
-| [5. 最长回文子串](https://leetcode-cn.com/problems/longest-palindromic-substring/) | medium | cpp,python | 回文串，中心延拓DP      |
-| [696. 计数二进制子串](https://leetcode-cn.com/problems/count-binary-substrings/) | easy   | cpp,python | 其它                    |
-| [224. 基本计算器](https://leetcode-cn.com/problems/basic-calculator/) | hard   |            | 字符串理解（跳过）      |
-| [227. 基本计算器 II](https://leetcode-cn.com/problems/basic-calculator-ii/) | medium |            | 字符串理解（跳过）      |
-| 772（基本计算器3，没有权限）                                 | medium |            | 字符串理解（跳过）      |
-| [28. 实现 strStr()](https://leetcode-cn.com/problems/implement-strstr/) | easy   |            | 字符串匹配，KMP（跳过） |
-| [3. 无重复字符的最长子串](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/) | medium | cpp,python | 子串，滑窗              |
+| 题目链接                                                     | 难度   | 个人题解   | 说明                         |
+| ------------------------------------------------------------ | ------ | ---------- | ---------------------------- |
+| [242. 有效的字母异位词](https://leetcode-cn.com/problems/valid-anagram/) | easy   | cpp,python | 字符串比较，哈希             |
+| [205. 同构字符串](https://leetcode-cn.com/problems/isomorphic-strings/) | easy   | cpp,python | 字符串比较，哈希             |
+| [647. 回文子串](https://leetcode-cn.com/problems/palindromic-substrings/) | medium | cpp,python | 回文串，中心延拓DP           |
+| [409. 最长回文串](https://leetcode-cn.com/problems/longest-palindrome/) | easy   | cpp,python | 回文串，中心延拓DP           |
+| [5. 最长回文子串](https://leetcode-cn.com/problems/longest-palindromic-substring/) | medium | cpp,python | 回文串，中心延拓DP           |
+| [696. 计数二进制子串](https://leetcode-cn.com/problems/count-binary-substrings/) | easy   | cpp,python | 其它                         |
+| [224. 基本计算器](https://leetcode-cn.com/problems/basic-calculator/) | hard   |            | 字符串理解（跳过）           |
+| [227. 基本计算器 II](https://leetcode-cn.com/problems/basic-calculator-ii/) | medium |            | 字符串理解（跳过）           |
+| 772. 基本计算器3                                             | medium |            | 字符串理解（跳过），没有权限 |
+| [28. 实现 strStr()](https://leetcode-cn.com/problems/implement-strstr/) | easy   |            | 字符串匹配，KMP（跳过）      |
+| [3. 无重复字符的最长子串](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/) | medium | cpp,python | 子串，滑窗                   |
 
 ### 数组
 
@@ -91,6 +91,7 @@
 | [42. 接雨水](https://leetcode-cn.com/problems/trapping-rain-water/) | hard   | cpp,python | 单调栈           |
 | [84. 柱状图中最大的矩形](https://leetcode-cn.com/problems/largest-rectangle-in-histogram/) | hard   | cpp,python | 单调栈           |
 | [1793. 好子数组的最大分数](https://leetcode-cn.com/problems/maximum-score-of-a-good-subarray/) | hard   | cpp,python | 单调栈           |
+| [456. 132 模式](https://leetcode-cn.com/problems/132-pattern/) | medium | cpp,python | 单调栈           |
 | [239. 滑动窗口最大值](https://leetcode-cn.com/problems/sliding-window-maximum/) | hard   | cpp,python | 双端队列         |
 | [1438. 绝对差不超过限制的最长连续子数组](https://leetcode-cn.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/) | medium | cpp,python | 双端队列         |
 | 思考单端增长/滑动窗口的最小/大值（单调栈/队列）              |        |            |                  |
@@ -120,17 +121,16 @@
 | ------------------------------------------------------------ | ------ | ---------- | -------------- |
 | [697. 数组的度](https://leetcode-cn.com/problems/degree-of-an-array/) | easy   | cpp,python | 哈希           |
 | [705. 设计哈希集合](https://leetcode-cn.com/problems/design-hashset/) | easy   | cpp,python | 手写哈希       |
-| [1. 两数之和](https://leetcode-cn.com/problems/two-sum/)     | easy   |            |                |
-| [217. 存在重复元素](https://leetcode-cn.com/problems/contains-duplicate/) | easy   |            |                |
-| [697. 数组的度](https://leetcode-cn.com/problems/degree-of-an-array/) | easy   |            |                |
-| [594. 最长和谐子序列](https://leetcode-cn.com/problems/longest-harmonious-subsequence/) | easy   |            |                |
-| [287. 寻找重复数](https://leetcode-cn.com/problems/find-the-duplicate-number/) | medium |            |                |
-| [128. 最长连续序列](https://leetcode-cn.com/problems/longest-consecutive-sequence/) | hard   |            |                |
-| [149. 直线上最多的点数](https://leetcode-cn.com/problems/max-points-on-a-line/) | hard   |            |                |
-| 332                                                          |        |            | 多重集合和映射 |
+| [1. 两数之和](https://leetcode-cn.com/problems/two-sum/)     | easy   | cpp,python | 普通哈希       |
+| [217. 存在重复元素](https://leetcode-cn.com/problems/contains-duplicate/) | easy   | cpp,python | 普通哈希       |
+| [697. 数组的度](https://leetcode-cn.com/problems/degree-of-an-array/) | easy   | cpp,python | 普通哈希       |
+| [287. 寻找重复数](https://leetcode-cn.com/problems/find-the-duplicate-number/) | medium | cpp,python | 原地哈希       |
+| [594. 最长和谐子序列](https://leetcode-cn.com/problems/longest-harmonious-subsequence/) | easy   | cpp,python | 普通哈希       |
+| [128. 最长连续序列](https://leetcode-cn.com/problems/longest-consecutive-sequence/) | hard   | cpp,python | 普通哈希       |
+| [149. 直线上最多的点数](https://leetcode-cn.com/problems/max-points-on-a-line/) | hard   | cpp,python | 普通哈希       |
+| [332. 重新安排行程](https://leetcode-cn.com/problems/reconstruct-itinerary/) | medium | cpp,pytho  | 多重集合和映射 |
 | [870. 优势洗牌](https://leetcode-cn.com/problems/advantage-shuffle/) | medium | cpp,python | 普通哈希？     |
 | [532. 数组中的 k-diff 数对](https://leetcode-cn.com/problems/k-diff-pairs-in-an-array/) | medium | cpp,python | 哈希           |
-| P99-P103                                                     |        |            |                |
 
 ### 链表
 
@@ -138,13 +138,17 @@
 | ------------------------------------------------------------ | ------ | ---------- | ---- |
 | [206. 反转链表](https://leetcode-cn.com/problems/reverse-linked-list/) | easy   | cpp,python | 翻转 |
 | [92. 反转链表 II](https://leetcode-cn.com/problems/reverse-linked-list-ii/) | medium | cpp,python | 翻转 |
-| leetcode143                                                  |        |            |      |
-| leetcode148                                                  |        |            |      |
-|                                                              |        |            |      |
-|                                                              |        |            |      |
-|                                                              |        |            |      |
-|                                                              |        |            |      |
-|                                                              |        |            |      |
+| [21. 合并两个有序链表](https://leetcode-cn.com/problems/merge-two-sorted-lists/) | easy   |            |      |
+| [24. 两两交换链表中的节点](https://leetcode-cn.com/problems/swap-nodes-in-pairs/) | medium |            |      |
+| [160. 相交链表](https://leetcode-cn.com/problems/intersection-of-two-linked-lists/) | easy   |            |      |
+| [234. 回文链表](https://leetcode-cn.com/problems/palindrome-linked-list/) | easy   |            |      |
+| [83. 删除排序链表中的重复元素](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/) | easy   |            |      |
+| [82. 删除排序链表中的重复元素 II](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list-ii/) | medium |            |      |
+| [19. 删除链表的倒数第 N 个结点](https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/) | medium |            |      |
+| [328. 奇偶链表](https://leetcode-cn.com/problems/odd-even-linked-list/) | medium |            |      |
+| [143. 重排链表](https://leetcode-cn.com/problems/reorder-list/) | medium |            |      |
+| [147. 对链表进行插入排序](https://leetcode-cn.com/problems/insertion-sort-list/) | medium |            |      |
+| [148. 排序链表](https://leetcode-cn.com/problems/sort-list/) | medium |            |      |
 
 ### 树
 
@@ -431,19 +435,7 @@ class Solution(object):
 | [309. 最佳买卖股票时机含冷冻期](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/) | medium | cpp,python | DP，股票交易       |
 | [714. 买卖股票的最佳时机含手续费](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/) | medium | cpp,python | DP，股票交易       |
 | [1770. 执行乘法运算的最大分数](https://leetcode-cn.com/problems/maximum-score-from-performing-multiplication-operations/) |        |            | 其它               |
-
-20.给定一个二维01矩阵，返回其中全为1的正方形个数
-（首先明确，全为1的概念）
-（暴力法，利用滑窗的概念，类似目标检测，设置大小分别为1，2，3等的滑窗边长，进行搜索，判断窗口内是否全为1）
-（高效方法，二维dp，同下）
-（拓展：输入一个二维01矩阵，判断矩阵中全为1的正方形的最大边长，解决方法是二维dp，dp表示以该点为正方形右下角的结果）
-（参考这个：https://www.jianshu.com/p/173b9339a0cd）
-
-区间问题：
-
-区间动态规划
-石子合并
-能量项链
+| 区间动态规划，石子合并，能量项链                             |        |            |                    |
 
 ### 分治法
 
@@ -455,6 +447,7 @@ class Solution(object):
 | [932. 漂亮数组](https://leetcode-cn.com/problems/beautiful-array/) | medium | cpp,python | 分治，记忆化递归 |
 | [312. 戳气球](https://leetcode-cn.com/problems/burst-balloons/) | hard   | cpp,python | 分治，区间DP     |
 | [1000. 合并石头的最低成本](https://leetcode-cn.com/problems/minimum-cost-to-merge-stones/) | hard   | cpp,python | 分治，区间DP     |
+| 打印汉诺塔                                                   |        |            |                  |
 
 ## 第三部分：数学问题
 
@@ -467,8 +460,6 @@ class Solution(object):
 | 题目链接                                                     | 难度 | 个人题解 | 说明 |
 | ------------------------------------------------------------ | ---- | -------- | ---- |
 | [191. 位1的个数](https://leetcode-cn.com/problems/number-of-1-bits/) | easy |          |      |
-|                                                              |      |          |      |
-|                                                              |      |          |      |
 
 ## 第四部分：专题
 

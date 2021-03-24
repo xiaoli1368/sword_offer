@@ -76,3 +76,25 @@ class Solution(object):
                 minLen = currLen if freq > maxFre else min(minLen, currLen)
                 maxFre = freq
         return minLen
+
+    # ===== 轻微优化版 =====
+    def findShortestSubArray(self, nums: List[int]) -> int:
+        """
+        1. 需要找到出现次数最多的元素（可能有多个）
+        2. 找到该元素的起始位置（获取长度），并更新最短长度
+        3. 方法：哈希，记录每个元素出现的：[次数，起始位置，长度]
+        """
+        max_freq, min_len, d = 0, len(nums), dict()
+        for i, val in enumerate(nums):
+            # 更新hash
+            if val not in d:
+                d[val] = [1, i, 1]
+            else:
+                d[val][0] += 1
+                d[val][2] = i - d[val][1] + 1
+            freq, _, length = d[val]
+            # 更新最大度以及最小长度
+            if freq >= max_freq:
+                min_len = length if freq > max_freq else min(min_len, length)
+                max_freq = freq
+        return min_len
