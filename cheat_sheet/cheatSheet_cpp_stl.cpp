@@ -142,6 +142,17 @@ int main(int argc, char* argv[])
 	pop_heap(v.begin(), v.end()); // 把堆首元素交换到末尾，不需要调整了
 	v.pop_back(); // 这样再清除掉
 
+	// ===== priority_queue ======================================
+	// 常见方法：push, pop, empty, top
+	// 自定义内部数据类型，以及比较方式
+	typedef std::pair<int, std::string> myPair;
+	struct comp {
+		bool operator() (myPair a, myPair b) {
+			return a.first < b.first; // 对应了大顶堆
+		}
+	};
+	std::priority_queue<myPair, std::vector<myPair>, comp> q;
+
 	// ===== 其它 =================================================
 	// 整数边界
 	int int_min = INT_MIN; // 最小整形

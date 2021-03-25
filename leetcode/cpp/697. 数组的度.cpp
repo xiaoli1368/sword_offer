@@ -29,3 +29,35 @@ public:
         return minLen;
     }
 };
+
+// ===== 轻微优化版 =====
+class Solution {
+public:
+    typedef struct Point {
+        int freq;
+        int start;
+        int len;
+        Point(int f=0, int s=0, int l=0) : freq(f), start(s), len(l) {}
+    } Point;
+
+    int findShortestSubArray(vector<int>& nums) {
+        unordered_map<int, Point> map;
+        int max_freq = 0, min_len = nums.size();
+        for (int val, i = 0; i < nums.size(); i++) {
+            // 更新hash
+            val = nums[i];
+            if (map.count(val) == 0) {
+                map[val] = Point(1, i, 1);
+            } 
+            map[val].freq += 1;
+            map[val].len = i - map[val].start + 1;
+            const auto& p = map[val];
+            // 更新长度
+            if (p.freq >= max_freq) {
+                min_len = (p.freq > max_freq ? p.len : min(min_len, p.len));
+                max_freq = p.freq;
+            }
+        }
+        return min_len;
+    }
+};
