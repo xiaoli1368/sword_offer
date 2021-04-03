@@ -51,3 +51,22 @@ class Solution(object):
 		if j:
 			head.next = j
 		return newHead.next
+
+    def mergeTwoLists(self, p, q):
+        """
+        :type p: ListNode
+        :type q: ListNode
+        :rtype: ListNode
+        迭代的方式，经典
+        """
+        curr = newHead = ListNode(0)
+        while p and q:
+            if p.val < q.val:
+                curr.next = p
+                p = p.next
+            else:
+                curr.next = q
+                q = q.next
+            curr = curr.next
+        curr.next = p if p else q
+        return newHead.next

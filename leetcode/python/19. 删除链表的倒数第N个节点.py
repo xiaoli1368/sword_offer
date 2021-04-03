@@ -25,3 +25,24 @@ class Solution(object):
 			cnt += 1
 		p.next = p.next.next
 		return newHead.next
+
+    def removeNthFromEnd(self, head, n):
+        """
+        :type head: ListNode
+        :type n: int
+        :rtype: ListNode
+        快慢指针
+        要想删除倒数第N
+        需要slow在倒数第N+1的时候停止
+        特殊情况：
+        1. N大于链表长度，没有删除节点（题目限定了 n < length）
+        2. 刚好删除头节点
+        """
+        fast = slow = newHead = ListNode(0, head)
+        while fast and fast.next:
+            n -= 1
+            fast = fast.next
+            if n < 0:
+                slow = slow.next
+        slow.next = slow.next.next
+        return newHead.next

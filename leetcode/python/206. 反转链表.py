@@ -38,3 +38,17 @@ class Solution:
         head.next.next = head # 注意head.next是下一层的尾节点
         head.next = None
         return curr
+
+    def reverseList(self, head: ListNode) -> ListNode:
+        """
+        递归版本比较绕
+        func：将head翻转，并且返回头节点
+        head ----> head.next ----> tail
+        head ----> head.next <---- newHead
+        """
+        if head == None or head.next == None:
+            return head
+        newHead = self.reverseList(head.next)
+        head.next.next = head
+        head.next = None
+        return newHead

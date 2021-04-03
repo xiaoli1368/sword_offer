@@ -55,4 +55,20 @@ public:
 			return q;
 		}
 	}
+
+    ListNode* mergeTwoLists(ListNode* p, ListNode* q) {
+        ListNode *newHead = new ListNode(), *curr = newHead;
+        while (p && q) {
+            if (p->val < q->val) {
+                curr->next = p;
+                p = p->next;
+            } else {
+                curr->next = q;
+                q = q->next;
+            }
+            curr = curr->next;
+        }
+        curr->next = (p ? p : q);
+        return newHead->next;
+    }
 };

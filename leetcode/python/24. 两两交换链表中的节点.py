@@ -60,3 +60,20 @@ class Solution(object):
             curr.next = skipTwo
             last, curr = curr, skipTwo
         return newHead.next
+
+    def swapPairs(self, head: ListNode) -> ListNode:
+        """
+        迭代法
+        last ----> head ----> next1 ---->next2
+        """
+        newHead = last = ListNode(0, head) 
+        while head and head.next:
+            # 穿针引线
+            next1, next2 = head.next, head.next.next
+            last.next = next1
+            next1.next = head
+            head.next= next2
+            # 更新指针
+            last = head
+            head = head.next
+        return newHead.next

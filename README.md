@@ -131,24 +131,36 @@
 | [332. 重新安排行程](https://leetcode-cn.com/problems/reconstruct-itinerary/) | medium | cpp,pytho  | 多重集合和映射 |
 | [870. 优势洗牌](https://leetcode-cn.com/problems/advantage-shuffle/) | medium | cpp,python | 普通哈希？     |
 | [532. 数组中的 k-diff 数对](https://leetcode-cn.com/problems/k-diff-pairs-in-an-array/) | medium | cpp,python | 哈希           |
+| [205. 同构字符串](https://leetcode-cn.com/problems/isomorphic-strings/) |        |            |                |
+| [1128. 等价多米诺骨牌对的数量](https://leetcode-cn.com/problems/number-of-equivalent-domino-pairs/) |        |            |                |
 
 ### 链表
 
-| 题目链接                                                     | 难度   | 个人题解   | 说明 |
-| ------------------------------------------------------------ | ------ | ---------- | ---- |
-| [206. 反转链表](https://leetcode-cn.com/problems/reverse-linked-list/) | easy   | cpp,python | 翻转 |
-| [92. 反转链表 II](https://leetcode-cn.com/problems/reverse-linked-list-ii/) | medium | cpp,python | 翻转 |
-| [21. 合并两个有序链表](https://leetcode-cn.com/problems/merge-two-sorted-lists/) | easy   |            |      |
-| [24. 两两交换链表中的节点](https://leetcode-cn.com/problems/swap-nodes-in-pairs/) | medium |            |      |
-| [160. 相交链表](https://leetcode-cn.com/problems/intersection-of-two-linked-lists/) | easy   |            |      |
-| [234. 回文链表](https://leetcode-cn.com/problems/palindrome-linked-list/) | easy   |            |      |
-| [83. 删除排序链表中的重复元素](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/) | easy   |            |      |
-| [82. 删除排序链表中的重复元素 II](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list-ii/) | medium |            |      |
-| [19. 删除链表的倒数第 N 个结点](https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/) | medium |            |      |
-| [328. 奇偶链表](https://leetcode-cn.com/problems/odd-even-linked-list/) | medium |            |      |
-| [143. 重排链表](https://leetcode-cn.com/problems/reorder-list/) | medium |            |      |
-| [147. 对链表进行插入排序](https://leetcode-cn.com/problems/insertion-sort-list/) | medium |            |      |
-| [148. 排序链表](https://leetcode-cn.com/problems/sort-list/) | medium |            |      |
+| 题目链接                                                     | 难度   | 个人题解   | 说明   |
+| ------------------------------------------------------------ | ------ | ---------- | ------ |
+| [206. 反转链表](https://leetcode-cn.com/problems/reverse-linked-list/) | easy   | cpp,python | 翻转   |
+| [92. 反转链表 II](https://leetcode-cn.com/problems/reverse-linked-list-ii/) | medium | cpp,python | 翻转   |
+| [25. K 个一组翻转链表](https://leetcode-cn.com/problems/reverse-nodes-in-k-group/) | hard   |            | 翻转   |
+| [83. 删除排序链表中的重复元素](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/) | easy   | cpp,python | 删除   |
+| [82. 删除排序链表中的重复元素 II](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list-ii/) | medium | cpp,python | 删除   |
+| [19. 删除链表的倒数第 N 个结点](https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/) | medium | cpp,python | 删除   |
+| [328. 奇偶链表](https://leetcode-cn.com/problems/odd-even-linked-list/) | medium | cpp,python | 重排   |
+| [143. 重排链表](https://leetcode-cn.com/problems/reorder-list/) | medium | cpp,python | 重排   |
+| [24. 两两交换链表中的节点](https://leetcode-cn.com/problems/swap-nodes-in-pairs/) | medium | cpp,python | 重排   |
+| [86. 分隔链表](https://leetcode-cn.com/problems/partition-list/) |        |            | 重排   |
+| [21. 合并两个有序链表](https://leetcode-cn.com/problems/merge-two-sorted-lists/) | easy   | cpp,python | 排序   |
+| [23. 合并K个升序链表](https://leetcode-cn.com/problems/merge-k-sorted-lists/) |        |            | 排序   |
+| [147. 对链表进行插入排序](https://leetcode-cn.com/problems/insertion-sort-list/) | medium |            | 排序   |
+| [148. 排序链表](https://leetcode-cn.com/problems/sort-list/) | medium |            | 排序   |
+| [160. 相交链表](https://leetcode-cn.com/problems/intersection-of-two-linked-lists/) | easy   | cpp,python | 双指针 |
+| [141. 环形链表](https://leetcode-cn.com/problems/linked-list-cycle/) |        |            | 双指针 |
+| [142. 环形链表 II](https://leetcode-cn.com/problems/linked-list-cycle-ii/) |        |            | 双指针 |
+| [876. 链表的中间结点](https://leetcode-cn.com/problems/middle-of-the-linked-list/) |        |            | 双指针 |
+| 找链表的倒数第K个结点                                        |        |            | 双指针 |
+| [234. 回文链表](https://leetcode-cn.com/problems/palindrome-linked-list/) | easy   | cpp,python | 其它   |
+| 链表的深度拷贝                                               |        |            | 其它   |
+| [2. 两数相加](https://leetcode-cn.com/problems/add-two-numbers/)，正序 |        |            | 其它   |
+| [445. 两数相加 II](https://leetcode-cn.com/problems/add-two-numbers-ii/)，倒序 |        |            | 其它   |
 
 ### 树
 
@@ -172,11 +184,51 @@ class Solution(object):
 
 ### 图
 
-| 题目链接                                                     | 难度 | 个人题解 | 说明   |
-| ------------------------------------------------------------ | ---- | -------- | ------ |
-| [765. 情侣牵手](https://leetcode-cn.com/problems/couples-holding-hands/) |      |          | 并查集 |
+知识总结：
+
+- 基本概念，图的表示（邻接矩阵，邻接链表）
+- 图的遍历（DFS，BFS），应用：判断连通域，单词阶梯问题，骑士遍历问题
+- 拓扑排序
+- 带权最短路径（迪克斯特拉算法Dijkstra，属于贪心）
+- 最小生成树（Prim算法，属于贪心）
+
+| 题目链接                                                     | 难度   | 个人题解 | 说明                                                         |
+| ------------------------------------------------------------ | ------ | -------- | ------------------------------------------------------------ |
+| [261. 以图判树](https://blog.csdn.net/jmspan/article/details/51111048) | medium |          | 遍历，[参考](https://blog.csdn.net/m0_37981481/article/details/93420289?utm_medium=distribute.pc_relevant.none-task-blog-baidujs_title-0&spm=1001.2101.3001.4242) |
+| [547. 省份数量](https://leetcode-cn.com/problems/number-of-provinces/) | medium |          | 遍历，连通域个数                                             |
+| [323. 无向图中连通分量的数目](https://leetcode-cn.com/problems/number-of-connected-components-in-an-undirected-graph/) |        |          | 遍历，连通域个数                                             |
+| [785. 判断二分图](https://leetcode-cn.com/problems/is-graph-bipartite/) | medium |          | 遍历，二分图                                                 |
+| [886. 可能的二分法](https://leetcode-cn.com/problems/possible-bipartition/) | medium |          | 遍历，二分图                                                 |
+| [127. 单词接龙](https://leetcode-cn.com/problems/word-ladder/) | hard   |          | 最短路径，用图的思想前缀树字典树                             |
+| [126. 单词接龙 II](https://leetcode-cn.com/problems/word-ladder-ii/) | hard   |          | 最短路径                                                     |
+| [207. 课程表](https://leetcode-cn.com/problems/course-schedule/) | medium |          | 拓扑排序                                                     |
+| [210. 课程表 II](https://leetcode-cn.com/problems/course-schedule-ii/) | medium |          | 拓扑排序                                                     |
+| [743. 网络延迟时间](https://leetcode-cn.com/problems/network-delay-time/) |        |          | Dijkstra                                                     |
+| [1462. 课程表 IV](https://leetcode-cn.com/problems/course-schedule-iv/) |        |          | Floyd                                                        |
+| 1135. 最低成本联通所有城市                                   |        |          | 最小生成树                                                   |
+| 1059，没有权限                                               |        |          |                                                              |
+| 1135，没有权限                                               |        |          |                                                              |
+| [882. 细分图中的可到达结点](https://leetcode-cn.com/problems/reachable-nodes-in-subdivided-graph/) | hard   |          |                                                              |
+| [133. 克隆图](https://leetcode-cn.com/problems/clone-graph/) | medium |          |                                                              |
+| [310. 最小高度树](https://leetcode-cn.com/problems/minimum-height-trees/) | medium |          | DFS，图                                                      |
+| [684. 冗余连接](https://leetcode-cn.com/problems/redundant-connection/) | medium |          |                                                              |
+| [685. 冗余连接 II](https://leetcode-cn.com/problems/redundant-connection-ii/) | hard   |          |                                                              |
+| [1631. 最小体力消耗路径](https://leetcode-cn.com/problems/path-with-minimum-effort/) | medium |          |                                                              |
 
 ### 更加复杂的数据结构
+
+| 题目链接                                                     | 难度   | 个人题解 | 说明   |
+| ------------------------------------------------------------ | ------ | -------- | ------ |
+| [684. 冗余连接](https://leetcode-cn.com/problems/redundant-connection/) | medium |          | 并查集 |
+| [685. 冗余连接 II](https://leetcode-cn.com/problems/redundant-connection-ii/) | hard   |          | 并查集 |
+| [765. 情侣牵手](https://leetcode-cn.com/problems/couples-holding-hands/) | hard   |          | 并查集 |
+| 1135，没有权限                                               |        |          | 并查集 |
+| [146. LRU 缓存机制](https://leetcode-cn.com/problems/lru-cache/) | medium |          | LRU    |
+| [380. 常数时间插入、删除和获取随机元素](https://leetcode-cn.com/problems/insert-delete-getrandom-o1/) | medium |          | 自定义 |
+| [432. 全 O(1) 的数据结构](https://leetcode-cn.com/problems/all-oone-data-structure/) | hard   |          | 自定义 |
+| 716，没有权限                                                | easy   |          | 自定义 |
+| [212. 单词搜索 II](https://leetcode-cn.com/problems/word-search-ii/) |        |          | 字典树 |
+| [472. 连接词](https://leetcode-cn.com/problems/concatenated-words/) | hard   |          | 字典树 |
 
 ## 第二部分：算法
 
@@ -210,9 +262,6 @@ class Solution(object):
 | [738. 单调递增的数字](https://leetcode-cn.com/problems/monotone-increasing-digits/) |        |             |          |
 | [1363. 形成三的最大倍数](https://leetcode-cn.com/problems/largest-multiple-of-three/) | hard   |             |          |
 | [767. 重构字符串](https://leetcode-cn.com/problems/reorganize-string/) |        |             |          |
-
-27.比较经典的贪心题
-（以leetcode 跳跃游戏为例吧）
 
 ### 双指针
 
